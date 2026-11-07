@@ -3,7 +3,8 @@
 Enforces three rules that come straight from the problem statement / project rules:
 
   R1  No label leakage: code under src/**/detect/ must not mention ground-truth names
-      (ground_truth, is_fraud, ring_id, planted, issue_type). Only evaluation code may.
+      (ground_truth, is_fraud, ring_id, planted, issue_type, hidden_manifest) or use the
+      hidden output folder as a path. Only evaluation code may.
   R2  Determinism: generator code (src/**/generate/) must not use the global `random`
       module, global numpy.random functions, or the wall clock. Use a seeded
       numpy Generator: rng = np.random.default_rng(seed).
@@ -31,7 +32,10 @@ SCANNED_SUFFIXES = {".py", ".toml", ".yml", ".yaml", ".json", ".ini", ".cfg"}
 SKIPPED_DIRS = {".git", ".venv", "venv", "node_modules", "__pycache__", "data", "tests", ".claude", "prompts"}
 ALLOW_MARKER = "# policy: allow"
 
-LEAK_TERMS = re.compile(r"\b(ground_truth|is_fraud|ring_id|planted|issue_type)\b")
+LEAK_TERMS = re.compile(r"\b(ground_truth|is_fraud|ring_id|planted|issue_type|hidden_manifest)\b")
+# The hidden output folder as a path or path part: "hidden", 'x/hidden/y', base / "hidden".
+# The plain word in a comment ("hidden links") is allowed.
+HIDDEN_FOLDER = re.compile(r"""["'/\\](hidden)["'/\\]""")
 
 NONDET_RULES = [
     (re.compile(r"^\s*(import\s+random\b|from\s+random\s+import\b)"),
@@ -90,7 +94,7 @@ def check_file(path: Path, root: Path = ROOT) -> list[Violation]:
         if line.rstrip().endswith(ALLOW_MARKER):
             continue
         if is_detect and path.suffix == ".py":
-            m = LEAK_TERMS.search(line)
+            m = LEAK_TERMS.search(line) or HIDDEN_FOLDER.search(line)
             if m:
                 found.append(Violation("R1-leakage", rel_str, n,
                                        f"detector code mentions '{m.group(1)}'; detection must never use ground truth"))
