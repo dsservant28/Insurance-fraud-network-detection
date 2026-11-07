@@ -1,6 +1,6 @@
 # Data dictionary and data plan
 
-**Status:** plan decisions approved by the owner (see section 15). The clean baseline (sections 3-7) is generated and loads into SQLite. Planted patterns, ground truth, edges and everything after them are not built yet, so their counts are still design targets. Final counts will come from the source manifest.
+**Status:** plan decisions approved by the owner (see section 15). The baseline (sections 3-7), fraud rings and benign look-alikes (8.1, 8.2) and ground truth (10) are generated. Edge cases EC-1 to EC-3, edges and everything after them are not built yet, so their counts are still design targets. Final counts will come from the source manifest.
 
 **Conventions**
 
@@ -384,7 +384,7 @@ Current status columns are a convenience copy of the latest event. The event tab
 5. Assign final IDs.
 6. Write input files and, separately, ground truth.
 
-Planted rows are never added on top of the requested counts. They use part of each count.
+Planted rows are never added on top of the requested counts. They use part of each count. Changes to master data, such as shared contacts and joint policies, are applied before step 2, so baseline claims always use the final parents (D-019). Planted claims are added after the baseline claims and pass through the same invoice and lifecycle code.
 
 ### 8.1 Fraud rings
 
@@ -404,7 +404,7 @@ Each ring has 3-8 claimants. There are 4 rings per pattern at scale 1.0, making 
 | Rule | Pattern | Scale 1.0 target | False conclusion it prevents |
 |---|---|---:|---|
 | `B-HOUSE-01` | Shared households: family surname, address, sometimes phone and joint policy | 150 households | "Shared contact details always mean fraud" |
-| `B-REPEAT-01` | Genuine repeat claims, spaced out with varied incidents and providers | 200 claimants | "Repeat claimants are suspicious" |
+| `B-REPEAT-01` | Genuine repeat claims, at least 45 days apart with varied incidents and providers. These claimants have no other claims | 200 claimants | "Repeat claimants are suspicious" |
 | `B-ADDR-01` | Common addresses: apartment block, care home or shared housing (EC-5) | 10 sites | "A shared address proves a link" |
 | `B-PROV-01` | Popular providers with many unrelated customers | 10 providers | "A busy provider is suspicious" |
 | `B-EVENT-01` | Storm or flood: similar narratives and a burst of claims with no contact links | 3 events | "Similar text and timing prove a ring" |

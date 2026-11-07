@@ -136,3 +136,10 @@ Format:
 - **Choice and why:** Rebuilding needs no outside account or second database, keeps one tested schema with its constraints and triggers, and lets a reviewer reproduce the hosted data from the seed. PostgreSQL would need the schema ported and tested on a second engine.
 - **Trade-off / limitation:** The host's disk is not permanent, so investigations created on the live app can reset when it restarts. The app must say so on screen and let the user download the investigation history, and the README must state it. Local runs keep their history. Compatibility with Python 3.13 and the pinned libraries, and startup time, must be checked at deployment.
 - **Requirement link:** Primary Actors / Systems; Business Workflow rule 4 (keep history); Objective and Scope (decisions, exceptions, traceability).
+
+## D-019 — How planted patterns enter the data
+- **Decision:** Planted rows are chosen first, so the baseline can be reduced by the same amount. Shared contacts and joint policies are applied to master data before baseline claims. Planted claims then pass through the same invoice and lifecycle code as all other claims. Each claimant belongs to at most one planted group. Labels cover claimants, planted claims and the providers that are themselves part of the pattern.
+- **Options considered:** Add planted rows on top of the baseline; rewrite finished baseline rows; plan first and use one shared code path.
+- **Choice and why:** Adding rows on top would break the exact claim count, and rewriting finished rows could leave totals and histories inconsistent. One shared code path keeps derived values correct and leaves no separate style for planted rows to reveal.
+- **Trade-off / limitation:** Keeping groups separate means no fraud ring member also belongs to a benign household, which real data can contain. Rings also use a fixed list of patterns, so detection results apply to these patterns and not to fraud in general. Ring claims are placed on both sides of a ring's central date so that claim dates give nothing away.
+- **Requirement link:** Business Workflow rules 3 and 5; Step 2; Step 5; Step 6; Step 7.
