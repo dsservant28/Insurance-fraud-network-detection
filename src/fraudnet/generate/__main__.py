@@ -6,7 +6,8 @@ from pathlib import Path
 
 from fraudnet.generate.config import DEFAULT_SEED, GeneratorConfig
 from fraudnet.generate.export import write_input
-from fraudnet.generate.pipeline import generate
+from fraudnet.generate.ground_truth import write_hidden
+from fraudnet.generate.pipeline import generate_with_labels
 
 
 def main() -> None:
@@ -16,12 +17,15 @@ def main() -> None:
     parser.add_argument("--out", type=Path, default=Path("data/output"))
     args = parser.parse_args()
 
-    manifest = write_input(generate(GeneratorConfig(seed=args.seed, scale=args.scale)), args.out)
+    tables, labels = generate_with_labels(GeneratorConfig(seed=args.seed, scale=args.scale))
+    manifest = write_input(tables, args.out)
+    write_hidden(labels, args.out)
     for item in manifest["files"]:
         if "table" in item:
             print(f"{item['table']:<18} {item['rows']:>7} rows")
     print(f"CSV and SQL files: {args.out / 'input'}")
     print(f"SQLite database:   {args.out / 'fraudnet.db'}")
+    print(f"Hidden labels:     {args.out / 'hidden'}")
 
 
 if __name__ == "__main__":

@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import date, timedelta
+from typing import TYPE_CHECKING
 
 import numpy as np
 import pandas as pd
@@ -15,6 +16,9 @@ import pandas as pd
 from fraudnet.generate import pools
 from fraudnet.generate.config import AS_OF_DATE, GeneratorConfig
 from fraudnet.generate.master import MasterTables
+
+if TYPE_CHECKING:
+    from fraudnet.generate.plant import PlannedClaim, PlantingPlan
 
 WINDOW_START = date(2026, 1, 1)
 WINDOW_END = date(2026, 9, 30)
@@ -69,7 +73,7 @@ def _pick(rng: np.random.Generator, options):
     return options[int(rng.integers(len(options)))]
 
 
-def _day_weights() -> np.ndarray:
+def day_weights() -> np.ndarray:
     """Incidents vary by season and day of week."""
     weekday = (1.0, 1.0, 1.0, 1.0, 1.2, 0.85, 0.7)
     weights = [weekday[day.weekday()] * (1 + 0.20 * np.cos((day.timetuple().tm_yday - 15) / 365 * 2 * np.pi))
@@ -77,14 +81,15 @@ def _day_weights() -> np.ndarray:
     return np.array(weights)
 
 
-def _narrative(rng: np.random.Generator, incident_type: str) -> str:
+def narrative_text(rng: np.random.Generator, incident_type: str, template: str | None = None,
+                   street: str | None = None) -> str:
     """Specific street and clock details keep unrelated narratives from matching by chance."""
-    text = _pick(rng, pools.NARRATIVE_TEMPLATES[incident_type]).format(
+    text = (template or _pick(rng, pools.NARRATIVE_TEMPLATES[incident_type])).format(
         place=_pick(rng, pools.NARRATIVE_PLACES[incident_type]),
         time=_pick(rng, pools.NARRATIVE_TIMES),
         detail=_pick(rng, pools.NARRATIVE_DETAILS[incident_type]),
     )
-    street = _pick(rng, pools.STREET_NAMES)
+    street = street or _pick(rng, pools.STREET_NAMES)
     return f"{text} It happened close to {street} at about {int(rng.integers(24)):02d}:{int(rng.integers(12)) * 5:02d}."
 
 
@@ -139,7 +144,7 @@ def _report_date(rng: np.random.Generator, incident_day: date) -> date:
 class _ProviderPicker:
     """Chooses an active provider. A few providers are genuinely much busier than others."""
 
-    def __init__(self, rng: np.random.Generator, providers: list[dict]) -> None:
+    def __init__(self, rng: np.random.Generator, providers: list[dict], popular_keys: tuple[int, ...] = ()) -> None:
         self.providers = providers
         self.types = np.array([row["provider_type"] for row in providers])
         self.starts = np.array([row["active_from"].toordinal() for row in providers])
@@ -147,6 +152,9 @@ class _ProviderPicker:
                               for row in providers])
         ranks = rng.permutation(len(providers))
         self.weights = 1 / (ranks + 5.0)
+        for position, row in enumerate(providers):
+            if row["provider_key"] in popular_keys:
+                self.weights[position] = self.weights.max()
 
     def choose(self, rng: np.random.Generator, provider_type: str, day: date) -> dict | None:
         ordinal = day.toordinal()
@@ -176,12 +184,12 @@ class _ExternalNumbers:
 
 
 def _build_lines(rng: np.random.Generator, invoice_key: int, role: str, incident_type: str,
-                 exact_cents: int | None) -> list[dict]:
+                 exact_cents: int | None, amount_factor: float = 1.0) -> list[dict]:
     if exact_cents is not None:
         return [{"invoice_key": invoice_key, "line_no": 1, "service_code": pools.SERVICE_CODES[role][0],
                  "quantity": 1, "unit_price_cents": exact_cents, "is_covered": 1}]
     line_count = int(rng.integers(1, 6))
-    total = MEDIAN_INVOICE_DOLLARS[incident_type] * 100 * rng.lognormal(0, 0.7)
+    total = MEDIAN_INVOICE_DOLLARS[incident_type] * 100 * rng.lognormal(0, 0.7) * amount_factor
     shares = rng.dirichlet(np.full(line_count, 2.0))
     rows = []
     for number, share in enumerate(shares, start=1):
@@ -209,24 +217,30 @@ def _build_invoices(rng: np.random.Generator, claims: list[dict], incidents_by_k
                     policies_by_key: dict[int, dict], picker: _ProviderPicker) -> tuple[list[dict], list[dict], list[dict]]:
     invoices, lines, links = [], [], {}
     numbers = _ExternalNumbers(rng)
+    providers_by_key = {row["provider_key"]: row for row in picker.providers}
     for claim in claims:
         incident = incidents_by_key[claim["incident_key"]]
         policy = policies_by_key[claim["policy_key"]]
         count = int(rng.choice((0, 1, 2, 3), p=(0.03, 0.70, 0.22, 0.05)))
+        chosen_providers = claim["plan_providers"]
+        count = max(count, len(chosen_providers))
 
         draw = rng.random()
         exact_cents = None
-        if count and draw < DEDUCTIBLE_BOUNDARY_RATE:
+        if count and not chosen_providers and draw < DEDUCTIBLE_BOUNDARY_RATE:
             count, exact_cents = 1, policy["deductible_cents"]
-        elif count and draw < DEDUCTIBLE_BOUNDARY_RATE + OVER_LIMIT_BOUNDARY_RATE:
+        elif count and not chosen_providers and draw < DEDUCTIBLE_BOUNDARY_RATE + OVER_LIMIT_BOUNDARY_RATE:
             count, exact_cents = 1, policy["coverage_limit_cents"] + policy["deductible_cents"] + 100_000
 
         provider_types = PROVIDER_TYPES_BY_INCIDENT[incident["incident_type"]]
         for position in range(count):
-            lag = int(rng.integers(0, 31))
+            lag = int(rng.integers(0, claim["plan_invoice_lag_max"] + 1))
             invoice_day = min(AS_OF_DATE, claim["reported_date"] + timedelta(days=lag))
             wanted = provider_types[0] if position == 0 else _pick(rng, provider_types)
-            provider = picker.choose(rng, wanted, invoice_day)
+            if position < len(chosen_providers):
+                provider = providers_by_key[chosen_providers[position]]
+            else:
+                provider = picker.choose(rng, wanted, invoice_day)
             if provider is None:
                 continue
 
@@ -250,12 +264,13 @@ def _build_invoices(rng: np.random.Generator, claims: list[dict], incidents_by_k
                 "plan_reject": bool(rng.random() < INVOICE_REJECT_RATE) and exact_cents is None,
             })
             lines.extend(_build_lines(rng, invoice_key, links[link_key]["service_role"],
-                                      incident["incident_type"], exact_cents))
+                                      incident["incident_type"], exact_cents, claim["plan_amount_factor"]))
     return invoices, lines, list(links.values())
 
 
-def build_transaction_source(config: GeneratorConfig, rng: np.random.Generator,
-                             master: MasterTables) -> SourceTables:
+def build_transaction_source(config: GeneratorConfig, rng: np.random.Generator, master: MasterTables,
+                             plan: "PlantingPlan") -> SourceTables:
+    """Build baseline rows, then add planted ones. Planted rows use part of each count, never extra."""
     claimant_keys = master.claimant["claimant_key"].to_numpy()
     policies_by_key = {row["policy_key"]: row for row in master.policy.to_dict("records")}
     policy_keys_by_claimant: dict[int, list[int]] = {}
@@ -265,10 +280,13 @@ def build_transaction_source(config: GeneratorConfig, rng: np.random.Generator,
     for row in master.claimant_contact.to_dict("records"):
         contacts_by_claimant.setdefault(row["claimant_key"], []).append(row)
 
-    day_weights = _day_weights()
-    day_weights = day_weights / day_weights.sum()
-    claim_count = config.count("claim")
-    incident_count = min(config.count("incident"), claim_count)
+    probabilities = day_weights()
+    probabilities = probabilities / probabilities.sum()
+    planned_claims = plan.planned_claims
+    claim_count = config.count("claim") - len(planned_claims)
+    incident_count = min(config.count("incident") - len(plan.incidents), claim_count)
+    if incident_count < 1:
+        raise ValueError(f"planted rows exceed the claim count: scale {config.scale} is too small")
 
     # Long tail: many claimants have 1-3 claims, some have none and a few have more.
     activity = np.minimum(rng.gamma(ACTIVITY_SHAPE, 1.0, size=len(claimant_keys)), ACTIVITY_MAX)
@@ -276,38 +294,56 @@ def build_transaction_source(config: GeneratorConfig, rng: np.random.Generator,
 
     incidents: list[dict] = []
     claims: list[dict] = []
+    # Planted claims count toward each claimant's limit, so the baseline can't push them past it.
     claims_by_claimant: dict[int, int] = {}
+    for planned in planned_claims:
+        claims_by_claimant[planned.claimant_key] = claims_by_claimant.get(planned.claimant_key, 0) + 1
+    for claimant_key in plan.no_baseline_claims:
+        claims_by_claimant[claimant_key] = MAX_BASELINE_CLAIMS_PER_CLAIMANT
 
-    def add_claim(claimant_key: int, policy_key: int, incident: dict) -> None:
-        claims_by_claimant[claimant_key] = claims_by_claimant.get(claimant_key, 0) + 1
+    def add_claim(claimant_key: int, policy_key: int, incident: dict, planned: "PlannedClaim | None" = None) -> None:
+        if planned is None:
+            claims_by_claimant[claimant_key] = claims_by_claimant.get(claimant_key, 0) + 1
+            reported = _report_date(rng, incident["incident_date"])
+        elif planned.report_lag_days is None:
+            reported = _report_date(rng, incident["incident_date"])
+        else:
+            reported = min(AS_OF_DATE, incident["incident_date"] + timedelta(days=planned.report_lag_days))
         claims.append({
             "claim_key": len(claims),
             "incident_key": incident["incident_key"],
             "claimant_key": claimant_key,
             "policy_key": policy_key,
-            "reported_date": _report_date(rng, incident["incident_date"]),
+            "reported_date": reported,
             "plan_withdraw": bool(rng.random() < WITHDRAW_RATE),
             "plan_manual_denial": bool(rng.random() < MANUAL_DENIAL_RATE),
+            "plan_group": planned.group_no if planned else None,
+            "plan_providers": planned.provider_keys if planned else (),
+            "plan_amount_factor": planned.amount_factor if planned else 1.0,
+            "plan_invoice_lag_max": planned.invoice_lag_max_days if planned else 30,
         })
 
-    def add_incident() -> None:
-        claimant_key, policy_key, day = _draw_incident(rng, claimant_keys, activity, day_weights,
-                                                       policy_keys_by_claimant, policies_by_key, claims_by_claimant)
-        policy = policies_by_key[policy_key]
-        incident_type = _incident_type(rng, policy["policy_type"])
-        city, postal_code = _location(rng, contacts_by_claimant[claimant_key], day)
-        is_vehicle = policy["policy_type"] == "AUTO" and incident_type in {"COLLISION", "THEFT"}
+    def new_incident(incident_type: str, day: date, claimant_key: int, policy_key: int, narrative: str | None = None,
+                     location: tuple[str, str] | None = None) -> dict:
+        city, postal_code = location or _location(rng, contacts_by_claimant[claimant_key], day)
+        is_vehicle = policies_by_key[policy_key]["policy_type"] == "AUTO" and incident_type in {"COLLISION", "THEFT"}
         incident = {
             "incident_key": len(incidents),
             "incident_type": incident_type,
             "incident_date": day,
             "city": city,
             "postal_code": postal_code,
-            "narrative": _narrative(rng, incident_type),
+            "narrative": narrative or narrative_text(rng, incident_type),
             "vehicle_ref": f"VEH-{policy_key + 1:06d}" if is_vehicle else None,
         }
         incidents.append(incident)
-        add_claim(claimant_key, policy_key, incident)
+        return incident
+
+    def add_incident() -> None:
+        claimant_key, policy_key, day = _draw_incident(rng, claimant_keys, activity, probabilities,
+                                                       policy_keys_by_claimant, policies_by_key, claims_by_claimant)
+        incident_type = _incident_type(rng, policies_by_key[policy_key]["policy_type"])
+        add_claim(claimant_key, policy_key, new_incident(incident_type, day, claimant_key, policy_key))
 
     for _ in range(incident_count):
         add_incident()
@@ -336,7 +372,15 @@ def build_transaction_source(config: GeneratorConfig, rng: np.random.Generator,
             add_incident()
             parties[incidents[-1]["incident_key"]] = {claims[-1]["claimant_key"]}
 
+    # Planted incidents go through the same invoice and lifecycle steps as every other incident.
+    for planned_incident in plan.incidents:
+        first = planned_incident.claims[0]
+        incident = new_incident(planned_incident.incident_type, planned_incident.day, first.claimant_key,
+                                first.policy_key, planned_incident.narrative, planned_incident.location)
+        for planned in planned_incident.claims:
+            add_claim(planned.claimant_key, planned.policy_key, incident, planned)
+
     incidents_by_key = {row["incident_key"]: row for row in incidents}
-    picker = _ProviderPicker(rng, master.provider.to_dict("records"))
+    picker = _ProviderPicker(rng, master.provider.to_dict("records"), tuple(plan.popular_provider_keys))
     invoices, lines, links = _build_invoices(rng, claims, incidents_by_key, policies_by_key, picker)
     return SourceTables(incident=incidents, claim=claims, claim_provider=links, invoice=invoices, invoice_line=lines)

@@ -7,7 +7,7 @@ import pytest
 from fraudnet.generate.config import AS_OF_DATE, GeneratorConfig
 from fraudnet.generate.export import write_input
 from fraudnet.generate.ids import ID_PATTERNS
-from fraudnet.generate.pipeline import generate
+from fraudnet.generate.pipeline import generate, generate_with_labels
 from fraudnet.generate.pools import STREET_SUFFIXES
 
 POLICY_TRANSITIONS = {
@@ -72,18 +72,24 @@ def test_contact_periods_never_overlap_and_one_stays_open(tables):
         assert all(end < start for end, start in zip(closed_until, next_starts))
 
 
-def test_baseline_contact_values_are_not_shared_between_people(tables):
+@pytest.fixture(scope="module")
+def unlabelled_contacts(tables):
+    """Contacts of claimants no planting rule touched, using the labels only to set them aside."""
+    labels = generate_with_labels(GeneratorConfig(scale=1.0))[1]
+    return tables["claimant_contact"][~tables["claimant_contact"]["claimant_id"].isin(labels["entity_id"])]
+
+
+def test_unlabelled_contact_values_are_not_shared_between_people(tables, unlabelled_contacts):
     """A shared value must come from a documented planting rule, never by accident."""
-    contact = tables["claimant_contact"]
     provider = tables["provider"]
     for field in ("phone", "email", "bank_token"):
-        people = contact[["claimant_id", field]].dropna().drop_duplicates()
+        people = unlabelled_contacts[["claimant_id", field]].dropna().drop_duplicates()
         assert people[field].is_unique, field
         assert not set(people[field]) & set(provider[field]), field
     assert provider["phone"].is_unique and provider["bank_token"].is_unique
 
 
-def test_baseline_addresses_are_unique_after_normalising(tables):
+def test_unlabelled_addresses_are_unique_after_normalising(tables, unlabelled_contacts):
     abbreviations = {short.lower(): full.lower() for full, short in STREET_SUFFIXES.items()}
 
     def normal(row):
@@ -91,7 +97,7 @@ def test_baseline_addresses_are_unique_after_normalising(tables):
         words[-1] = abbreviations.get(words[-1], words[-1])
         return " ".join(words) + "|" + row["city"]
 
-    addresses = [normal(row) for _, row in tables["claimant_contact"].iterrows()]
+    addresses = [normal(row) for _, row in unlabelled_contacts.iterrows()]
     addresses += [normal(row) for _, row in tables["provider"].iterrows()]
     assert len(addresses) == len(set(addresses))
 

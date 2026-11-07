@@ -63,8 +63,9 @@ def _finalize_events(events: pd.DataFrame, parent_key: str, parent_id: str, ids:
                   "actor_role", "actor_id", "reason_code"]]
 
 
-def finalize(master: MasterTables, derived: DerivedTables, rng: np.random.Generator) -> dict[str, pd.DataFrame]:
-    """Assign every final ID and return the tables that are exported."""
+def finalize(master: MasterTables, derived: DerivedTables,
+             rng: np.random.Generator) -> tuple[dict[str, pd.DataFrame], dict[str, dict[int, str]]]:
+    """Assign every final ID. Returns the exported tables and the key-to-ID maps used for labels."""
     claimant_ids = _shuffled_ids(master.claimant["claimant_key"], "claimant", rng)
     provider_ids = _shuffled_ids(master.provider["provider_key"], "provider", rng)
     policy_ids = _shuffled_ids(master.policy["policy_key"], "policy", rng)
@@ -147,6 +148,7 @@ def finalize(master: MasterTables, derived: DerivedTables, rng: np.random.Genera
     )[["payment_id", "claim_id", "invoice_id", "payee_type", "payee_claimant_id", "payee_provider_id",
        "payee_bank_token", "amount_cents", "payment_date", "current_status"]]
 
+    ids = {"claimant": claimant_ids, "provider": provider_ids, "claim": claim_ids}
     return {
         "incident": _dates_to_text(incident).sort_values("incident_id", ignore_index=True),
         "claim": _dates_to_text(claim).sort_values("claim_id", ignore_index=True),
@@ -166,4 +168,4 @@ def finalize(master: MasterTables, derived: DerivedTables, rng: np.random.Genera
         "policy": _dates_to_text(policy).sort_values("policy_id", ignore_index=True),
         "claimant_policy": _dates_to_text(bridge).sort_values(["claimant_id", "policy_id"], ignore_index=True),
         "policy_events": events,
-    }
+    }, ids
