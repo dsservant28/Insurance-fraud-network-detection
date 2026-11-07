@@ -23,6 +23,9 @@ data/tmp/
 *.sqlite
 *.db
 
+# Prompt history stays local for now; the owner adds it to the repo at the end of the challenge
+prompts/
+
 # Editors / OS
 .vscode/*
 !.vscode/extensions.json
