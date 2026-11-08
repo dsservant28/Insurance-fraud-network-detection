@@ -229,3 +229,21 @@ Format:
 - **Choice and why:** The detector and validator replace their tables on every run, so a foreign key would either block the rerun or wipe case history, which must never happen (CLAUDE.md rule 5). A snapshot keeps the case readable exactly as the analyst saw it, and the run ID records which run that was. Recording refusals makes the four-eyes rule and role limits auditable, not just enforced. A per-case chain lets each case be verified and exported on its own.
 - **Trade-off / limitation:** A case can point to a network ID that a later run with different settings numbers differently. The run ID shows which run it came from. Regenerating the data deletes the database, and with it the cases, which the hosted app states (D-018). Staff accounts are synthetic, with no real login.
 - **Requirement link:** Business Workflow rules 1-5; Primary Actors; Step "at least one exception path".
+
+## D-031 — A pre-registered stress test of the frozen detector
+- **Decision:**
+  - The detector is tested on 15 stress scenarios it was not designed around (docs/STRESS_PLAN.md), with 5 new seeds.
+  - The scenarios, the measures and 24 predictions were committed and pushed before any stress code or data existed. Most predictions bound several measures, so they are scored as 51 separate checks.
+  - The detector is frozen at commit `ddf09cc` during the test. Any fix becomes v0.2, scored on 5 separate confirmation seeds, with v0.1's results kept.
+  - Stress settings live in `generate/scenario.py`. With no scenario, the generator is byte-identical to before (tested).
+- **Options considered:**
+  - More unseen seeds from the same settings.
+  - A public dataset. None has labelled fraud rings with this schema.
+  - Stress scenarios without pre-registration.
+  - Stress scenarios with pre-registration.
+- **Choice and why:** The perfect results in docs/EVALUATION.md come from the same generator the detector was designed against, so they show stability, not generality. Scenarios that change the data in ways the design never saw, with predictions committed before the results, show which failures are understood. The git history proves the order. A miss is reported as a miss.
+- **Trade-off / limitation:**
+  - **Same generator.** The scenarios still come from this repository's generator.
+  - **Second random stream.** Value-level noise (S1, S5) uses a second numpy Generator, seeded from the generator seed and the scenario name. CLAUDE.md asks for one generator. The second stream is still fully seeded and deterministic. It exists so the noise never shifts the world it is applied to: at strength 0 the output equals the normal world, and a stronger level changes a superset of the cells a weaker one changes. It is created only when a stress scenario is set.
+  - **One change at a time.** Each scenario changes one thing; real data would combine several.
+- **Requirement link:** Part C evaluation ("ranking quality", "false-positive and false-negative rates"); Explainability (failure gallery cites detector evidence).

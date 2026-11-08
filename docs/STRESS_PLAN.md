@@ -182,4 +182,25 @@ The report places every prediction from section 5 next to its result, marked hit
 
 ## 8. Amendments
 
-None yet. Every amendment must be added here, dated, with its reason, before the scenario it affects is run.
+Every amendment must be added here, dated, with its reason, before the scenario it affects is run.
+
+**A1 (8 Nov 2026, before any stress run). How implementation choices fill gaps in section 4.** No predicted
+range changes. Each item below settles a detail section 4 left open:
+
+- **S1 relationship register.** The relationship register is built from the messy values, as the source
+  system would build it. Links it can't see then count as unrecorded, which is the normal rule.
+- **S1 noise is drawn per cell.** Each field of each contact row gets one uniform draw and its own sub-seed.
+  A cell changes when its draw is below the strength, so a stronger level changes a superset of the cells a
+  weaker level changes, in the same world. Provider records and payment payee tokens stay clean.
+- **S5a drops claimant-pair rows only:** SHARED_ADDRESS, SHARED_PHONE, SHARED_EMAIL and SHARED_BANK.
+  Claimant-to-provider rows are kept.
+- **The threshold sweep (P-T1) covers only networks the detector formed.** Groups whose links were all
+  explained away never become networks, so they have no score to sweep.
+- **Scoring the second sentence of P-S3c-2.** "The missed rings are mostly R-RING-01 rings that share a single
+  bank or phone" counts as a hit when at least half of all missed rings at 3× and at 4× are R-RING-01 rings
+  sharing a single identifier. The identifier count is read from the ring's planting reason.
+- **Scoring the second sentence of P-T2.** "I expect them to come from …" is scored as its own prediction:
+  a hit only if every sensitive setting is on that list.
+- **Setting sensitivity.** Values are clipped to valid ranges: caps, factors, shares and similarities at 1.0;
+  the busy-provider percentile at 0.99. A whole-number setting that rounds back to itself moves by 1 instead.
+  The Louvain seed is not a tunable setting and is left out.
