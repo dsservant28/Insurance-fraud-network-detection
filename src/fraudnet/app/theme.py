@@ -18,8 +18,11 @@ CSS = f"""
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
 html, body, [data-testid="stAppViewContainer"] {{ background: {INK}; color: {TEXT}; font-family: {FONT}; }}
 [data-testid="stHeader"] {{ background: transparent; }}
-[data-testid="stToolbar"], footer, #MainMenu {{ display: none; }}
-[data-testid="stMainBlockContainer"] {{ max-width: 1376px; padding-top: 2.2rem; padding-bottom: 4rem; }}
+/* Keep the toolbar: the page navigation lives inside it. Hide only the deploy button and the main menu. */
+[data-testid="stAppDeployButton"], [data-testid="stMainMenu"], footer, #MainMenu {{ display: none; }}
+[data-testid="stHeader"] {{ background: #0C1016; border-bottom: 1px solid #1C2430; }}
+[data-testid="stTopNav"] a, [data-testid="stTopNav"] button {{ font-family: {FONT}; font-weight: 500; }}
+[data-testid="stMainBlockContainer"] {{ max-width: 1376px; padding-top: 5.2rem; padding-bottom: 4rem; }}
 h1, h2, h3 {{ font-family: {DISPLAY}; letter-spacing: -0.01em; }}
 .fn-kicker {{ font-family: {MONO}; font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: {FAINT}; }}
 .fn-mono {{ font-family: {MONO}; font-variant-numeric: tabular-nums; }}

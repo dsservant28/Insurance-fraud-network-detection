@@ -14,8 +14,10 @@ from fraudnet.app import theme  # noqa: E402
 
 st.set_page_config(page_title="FraudNet · Investigator console", page_icon=":material/radar:", layout="wide")
 theme.apply()
+st.logo(str(Path(__file__).resolve().parent / "src" / "fraudnet" / "app" / "assets" / "logo.svg"), size="large")
 
 PAGES = Path(__file__).resolve().parent / "src" / "fraudnet" / "app" / "pages"
 st.navigation([
     st.Page(PAGES / "risk_field.py", title="Risk field", icon=":material/radar:", default=True),
+    st.Page(PAGES / "network_dossier.py", title="Network dossier", icon=":material/hub:"),
 ], position="top").run()
