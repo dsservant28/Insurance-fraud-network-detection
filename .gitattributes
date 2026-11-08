@@ -1,0 +1,2 @@
+# Generated sample data is stored byte for byte, so its recorded SHA-256 checksums stay valid on every OS.
+data/sample/** -text

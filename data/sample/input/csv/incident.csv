@@ -1,0 +1,471 @@
+incident_id,incident_type,incident_date,city,postal_code,narrative,vehicle_ref
+INC-2026-000001,WATER_DAMAGE,2026-01-01,Pinecrest Hollow,00217,"Water leaked overnight around the bathroom, found in the morning; the carpet was ruined. It happened close to Briar at about 21:30.",
+INC-2026-000002,COLLISION,2026-01-01,Clearhollow,00063,I was hit from behind while stopped near the roundabout during the afternoon; the rear door was dented. It happened close to Coral at about 15:25.,VEH-000126
+INC-2026-000003,THEFT,2026-01-02,Ravensholt,00220,Items were stolen from my property near the parking lot during the early morning; a window was broken. It happened close to Ridge at about 03:05.,
+INC-2026-000004,WATER_DAMAGE,2026-01-04,Eastmarch,00098,"Water leaked overnight around the upstairs hallway, found in the afternoon; the ceiling was stained. It happened close to Wren at about 05:10.",
+INC-2026-000005,COLLISION,2026-01-04,Pinecrest Hollow,00219,"Collision while turning at the highway ramp in the late evening, the side mirror broke. It happened close to Cobble at about 03:35.",VEH-000047
+INC-2026-000006,INJURY,2026-01-05,Ashcombe,00011,"Injury after a fall at the parking lot during the early morning, an X-ray was advised. It happened close to Spruce at about 01:30.",
+INC-2026-000007,ILLNESS,2026-01-07,Larkspur Falls,00179,I developed symptoms in the evening and visited a clinic near the community hall; medication was prescribed. It happened close to Cedar at about 23:15.,
+INC-2026-000008,COLLISION,2026-01-08,Coppergate,00073,"Collision while turning at the roundabout in the evening, the wheel arch was bent. It happened close to Oak at about 11:50.",VEH-000207
+INC-2026-000009,THEFT,2026-01-08,Northfen,00197,Theft reported after the early morning close to the back door; a bicycle was taken. It happened close to Garden at about 12:45.,
+INC-2026-000010,THEFT,2026-01-09,Coppergate,00073,Items were stolen from my property near the shopping center during the late evening; the police were informed. It happened close to River at about 10:20.,
+INC-2026-000011,INJURY,2026-01-09,Clearhollow,00064,I needed treatment after an accident by the office entrance this morning; my knee was bruised. It happened close to Cedar at about 11:40.,
+INC-2026-000012,ILLNESS,2026-01-09,Briarford,00037,I developed symptoms in the late evening and visited a clinic near the community hall; a specialist was recommended. It happened close to Park at about 07:30.,
+INC-2026-000013,ILLNESS,2026-01-10,Briarford,00030,I developed symptoms in the afternoon and visited a clinic near the bus station; a fever continued for days. It happened close to Clover at about 12:40.,
+INC-2026-000014,THEFT,2026-01-10,Silverbrook,00238,Theft reported after the early morning close to the side gate; the lock was forced. It happened close to Laurel at about 13:05.,
+INC-2026-000015,THEFT,2026-01-10,Northfen,00196,"I returned in the late evening to find a break-in near the parking lot, a bicycle was taken. It happened close to Briar at about 08:30.",VEH-000219
+INC-2026-000016,INJURY,2026-01-10,Ashcombe,00011,I needed treatment after an accident by the parking lot this evening; my back was strained. It happened close to Linden at about 17:00.,
+INC-2026-000017,COLLISION,2026-01-10,Glenmoor,00122,"Collision while turning at the traffic light in the evening, the headlight was smashed. It happened close to Crescent at about 03:30.",VEH-000159
+INC-2026-000018,COLLISION,2026-01-11,Maplecross,00186,Another vehicle struck my car at the school crossing in the evening; the rear door was dented. It happened close to Clover at about 05:45.,VEH-000114
+INC-2026-000019,COLLISION,2026-01-11,Clearhollow,00062,"Collision while turning at the roundabout in the early morning, the wheel arch was bent. It happened close to Pine at about 02:35.",VEH-000010
+INC-2026-000020,THEFT,2026-01-12,Fernhaven,00112,Theft reported after the early morning close to the shopping center; the lock was forced. It happened close to Finch at about 17:35.,
+INC-2026-000021,COLLISION,2026-01-12,Ashcombe,00016,Another vehicle struck my car at the parking lot in the early morning; the side mirror broke. It happened close to Beacon at about 05:35.,VEH-000188
+INC-2026-000022,COLLISION,2026-01-13,Briarford,00031,Another vehicle struck my car at the parking lot in the evening; the car could not be driven. It happened close to Spruce at about 20:55.,VEH-000003
+INC-2026-000023,INJURY,2026-01-13,Westmarch,00244,I was injured near the stairway in the late evening; I needed stitches. It happened close to Garden at about 07:10.,
+INC-2026-000024,INJURY,2026-01-13,Elmhurst Vale,00101,"Injury after a fall at the parking lot during the early morning, I needed stitches. It happened close to Coral at about 06:20.",
+INC-2026-000025,THEFT,2026-01-14,Dunmeadow,00088,"I returned in the evening to find a break-in near the driveway, a bicycle was taken. It happened close to Crescent at about 22:35.",VEH-000060
+INC-2026-000026,THEFT,2026-01-14,Fernhaven,00116,Theft reported after the early morning close to the shopping center; a window was broken. It happened close to Elm at about 21:30.,
+INC-2026-000027,INJURY,2026-01-14,Briarford,00037,"Injury after a fall at the parking lot during the early morning, an X-ray was advised. It happened close to Chestnut at about 11:00.",
+INC-2026-000028,COLLISION,2026-01-16,Oakmere,00209,Another vehicle struck my car at the traffic light in the late evening; the side mirror broke. It happened close to Quarry at about 21:10.,VEH-000114
+INC-2026-000029,COLLISION,2026-01-16,Northfen,00196,"Collision while turning at the roundabout in the late evening, the side mirror broke. It happened close to Amber at about 11:10.",VEH-000219
+INC-2026-000030,INJURY,2026-01-16,Larkspur Falls,00178,I was injured near the sidewalk in the early morning; an X-ray was advised. It happened close to Garden at about 19:40.,
+INC-2026-000031,COLLISION,2026-01-16,Briarford,00037,Another vehicle struck my car at the highway ramp in the early morning; the side mirror broke. It happened close to Moss at about 04:10.,VEH-000060
+INC-2026-000032,INJURY,2026-01-17,Briarford,00034,I was injured near the parking lot in the afternoon; I needed stitches. It happened close to Holly at about 06:40.,
+INC-2026-000033,INJURY,2026-01-17,Coppergate,00073,I needed treatment after an accident by the bus stop this morning; my wrist was sprained. It happened close to Moss at about 13:35.,
+INC-2026-000034,ILLNESS,2026-01-17,Ashcombe,00018,Sudden illness in the evening near the pharmacy; a fever continued for days. It happened close to Raven at about 10:05.,
+INC-2026-000035,INJURY,2026-01-18,Cedarwick,00058,I was injured near the market in the morning; I needed stitches. It happened close to Clover at about 06:25.,
+INC-2026-000036,THEFT,2026-01-19,Clearhollow,00064,Items were stolen from my property near the garage during the early morning; a bicycle was taken. It happened close to Juniper at about 18:00.,
+INC-2026-000037,INJURY,2026-01-20,Greywater,00135,I was injured near the parking lot in the early morning; my back was strained. It happened close to Glen at about 21:00.,
+INC-2026-000038,ILLNESS,2026-01-20,Clearhollow,00064,Sudden illness in the late evening near the bus station; tests were ordered. It happened close to Cedar at about 21:55.,
+INC-2026-000039,THEFT,2026-01-21,Dunmeadow,00085,Theft reported after the morning close to the driveway; the lock was forced. It happened close to Hazel at about 10:15.,VEH-000213
+INC-2026-000040,THEFT,2026-01-21,Briarford,00037,Theft reported after the evening close to the parking lot; the police were informed. It happened close to Hazel at about 03:55.,VEH-000027
+INC-2026-000041,THEFT,2026-01-22,Cedarwick,00058,"I returned in the late evening to find a break-in near the driveway, a window was broken. It happened close to Otter at about 05:45.",VEH-000072
+INC-2026-000042,THEFT,2026-01-23,Elmhurst Vale,00108,Theft reported after the early morning close to the back door; tools were missing. It happened close to Pine at about 14:00.,
+INC-2026-000043,THEFT,2026-01-23,Coppergate,00072,Theft reported after the morning close to the driveway; a bicycle was taken. It happened close to Wren at about 03:35.,VEH-000221
+INC-2026-000044,COLLISION,2026-01-23,Pinecrest Hollow,00215,I was hit from behind while stopped near the parking lot during the morning; the front bumper was damaged. It happened close to Pine at about 23:40.,VEH-000003
+INC-2026-000045,FIRE,2026-01-23,Ashcombe,00015,Smoke and fire affected the area by the back porch this morning; appliances were ruined. It happened close to Copper at about 15:30.,
+INC-2026-000046,INJURY,2026-01-23,Bellhaven,00027,I was injured near the stairway in the morning; my ankle was swollen. It happened close to Mill at about 02:55.,
+INC-2026-000047,COLLISION,2026-01-24,Briarford,00035,Another vehicle struck my car at the traffic light in the afternoon; the wheel arch was bent. It happened close to Birch at about 06:30.,VEH-000256
+INC-2026-000048,FIRE,2026-01-25,Alderbrook,00006,Smoke and fire affected the area by the kitchen this early morning; smoke damaged the ceiling. It happened close to Harbor at about 02:25.,
+INC-2026-000049,COLLISION,2026-01-26,Glenmoor,00128,A driver failed to yield at the parking lot this late evening and the car could not be driven. It happened close to Fairview at about 09:15.,VEH-000176
+INC-2026-000050,THEFT,2026-01-27,Kestrel Bay,00163,Items were stolen from my property near the driveway during the morning; a bicycle was taken. It happened close to Briar at about 18:20.,VEH-000027
+INC-2026-000051,WATER_DAMAGE,2026-01-27,Maplecross,00185,"Flooding near the bathroom in the evening damaged the home, the carpet was ruined. It happened close to Raven at about 14:30.",
+INC-2026-000052,INJURY,2026-01-27,Northfen,00196,I needed treatment after an accident by the stairway this afternoon; my ankle was swollen. It happened close to Aspen at about 15:35.,
+INC-2026-000053,WATER_DAMAGE,2026-01-28,Fernhaven,00115,A pipe burst in the early morning and water spread from the upstairs hallway; the carpet was ruined. It happened close to Ivy at about 03:40.,
+INC-2026-000054,COLLISION,2026-01-30,Silverbrook,00231,I was hit from behind while stopped near the traffic light during the late evening; the rear door was dented. It happened close to Ember at about 20:25.,VEH-000176
+INC-2026-000055,COLLISION,2026-02-04,Briarford,00037,Another vehicle struck my car at the school crossing in the afternoon; the car could not be driven. It happened close to Finch at about 03:40.,VEH-000060
+INC-2026-000056,WATER_DAMAGE,2026-02-04,Elmhurst Vale,00105,A pipe burst in the late evening and water spread from the basement; the ceiling was stained. It happened close to Lake at about 13:05.,
+INC-2026-000057,COLLISION,2026-02-05,Briarford,00037,"Collision while turning at the traffic light in the afternoon, the headlight was smashed. It happened close to Elm at about 07:50.",VEH-000060
+INC-2026-000058,THEFT,2026-02-05,Dunmeadow,00086,"I returned in the evening to find a break-in near the back door, the lock was forced. It happened close to Coral at about 04:40.",VEH-000071
+INC-2026-000059,COLLISION,2026-02-06,Northfen,00196,"Collision while turning at the junction in the late evening, the headlight was smashed. It happened close to Chestnut at about 14:25.",VEH-000219
+INC-2026-000060,WATER_DAMAGE,2026-02-06,Coppergate,00073,A pipe burst in the morning and water spread from the bathroom; the carpet was ruined. It happened close to Finch at about 08:10.,
+INC-2026-000061,COLLISION,2026-02-07,Oakmere,00205,I was hit from behind while stopped near the roundabout during the early morning; the car could not be driven. It happened close to Birch at about 10:30.,VEH-000033
+INC-2026-000062,COLLISION,2026-02-07,Briarford,00031,I was hit from behind while stopped near the parking lot during the early morning; the car could not be driven. It happened close to Cedar at about 20:35.,VEH-000003
+INC-2026-000063,FIRE,2026-02-08,Glenmoor,00123,Smoke and fire affected the area by the kitchen this early morning; the wiring was damaged. It happened close to Willow at about 04:25.,
+INC-2026-000064,COLLISION,2026-02-08,Bellhaven,00028,Another vehicle struck my car at the parking lot in the morning; the front bumper was damaged. It happened close to Coral at about 07:30.,VEH-000108
+INC-2026-000065,INJURY,2026-02-09,Westmarch,00242,I needed treatment after an accident by the sidewalk this morning; my wrist was sprained. It happened close to Juniper at about 02:40.,
+INC-2026-000066,COLLISION,2026-02-10,Pinecrest Hollow,00216,Another vehicle struck my car at the junction in the early morning; the headlight was smashed. It happened close to Crescent at about 12:50.,VEH-000107
+INC-2026-000067,COLLISION,2026-02-11,Larkspur Falls,00171,Another vehicle struck my car at the junction in the early morning; the wheel arch was bent. It happened close to Fern at about 09:50.,VEH-000048
+INC-2026-000068,FIRE,2026-02-11,Pinecrest Hollow,00210,Smoke and fire affected the area by the kitchen this late evening; the wiring was damaged. It happened close to Aspen at about 10:10.,
+INC-2026-000069,ILLNESS,2026-02-12,Cedarwick,00058,Sudden illness in the late evening near the workplace; a specialist was recommended. It happened close to Harbor at about 21:15.,
+INC-2026-000070,INJURY,2026-02-12,Northfen,00196,I needed treatment after an accident by the sidewalk this morning; my wrist was sprained. It happened close to Pine at about 21:55.,
+INC-2026-000071,INJURY,2026-02-12,Brookmere,00047,I was injured near the stairway in the morning; my ankle was swollen. It happened close to Hill at about 10:35.,
+INC-2026-000072,THEFT,2026-02-13,Cedarwick,00056,Theft reported after the late evening close to the garage; a window was broken. It happened close to Harbor at about 06:05.,
+INC-2026-000073,THEFT,2026-02-13,Silverbrook,00238,Theft reported after the early morning close to the shopping center; the lock was forced. It happened close to Pine at about 02:45.,
+INC-2026-000074,INJURY,2026-02-14,Harrowfield,00146,"Injury after a fall at the sidewalk during the afternoon, an X-ray was advised. It happened close to Harbor at about 10:10.",
+INC-2026-000075,THEFT,2026-02-14,Hollowbrook,00155,Items were stolen from my property near the garage during the evening; the lock was forced. It happened close to Hill at about 21:10.,
+INC-2026-000076,THEFT,2026-02-16,Ravensholt,00221,"I returned in the morning to find a break-in near the garage, tools were missing. It happened close to Chestnut at about 01:10.",VEH-000162
+INC-2026-000077,COLLISION,2026-02-16,Alderbrook,00007,I was hit from behind while stopped near the roundabout during the early morning; the headlight was smashed. It happened close to Ridge at about 06:00.,VEH-000064
+INC-2026-000078,THEFT,2026-02-17,Harrowfield,00143,Items were stolen from my property near the garage during the afternoon; the lock was forced. It happened close to Otter at about 00:40.,VEH-000243
+INC-2026-000079,INJURY,2026-02-17,Clearhollow,00064,"Injury after a fall at the parking lot during the morning, an X-ray was advised. It happened close to Amber at about 00:00.",
+INC-2026-000080,COLLISION,2026-02-18,Northfen,00192,Another vehicle struck my car at the highway ramp in the afternoon; the rear door was dented. It happened close to Beacon at about 17:25.,VEH-000056
+INC-2026-000081,COLLISION,2026-02-19,Eastmarch,00095,"Collision while turning at the traffic light in the afternoon, the side mirror broke. It happened close to Harbor at about 16:50.",VEH-000242
+INC-2026-000082,THEFT,2026-02-19,Westmarch,00245,"I returned in the evening to find a break-in near the back door, tools were missing. It happened close to Meadow at about 11:35.",VEH-000098
+INC-2026-000083,COLLISION,2026-02-20,Westmarch,00247,Another vehicle struck my car at the school crossing in the evening; the rear door was dented. It happened close to Clover at about 05:50.,VEH-000220
+INC-2026-000084,COLLISION,2026-02-20,Glenmoor,00127,Another vehicle struck my car at the school crossing in the evening; the rear door was dented. It happened close to Clover at about 05:55.,VEH-000029
+INC-2026-000085,WATER_DAMAGE,2026-02-20,Harrowfield,00143,"Water leaked overnight around the upstairs hallway, found in the evening; the carpet was ruined. It happened close to Mill at about 00:20.",
+INC-2026-000086,COLLISION,2026-02-20,Oakmere,00203,Another vehicle struck my car at the school crossing in the evening; the rear door was dented. It happened close to Clover at about 05:50.,VEH-000059
+INC-2026-000087,COLLISION,2026-02-20,Larkspur Falls,00175,Another vehicle struck my car at the school crossing in the evening; the rear door was dented. It happened close to Clover at about 05:55.,VEH-000114
+INC-2026-000088,COLLISION,2026-02-21,Larkspur Falls,00178,I was hit from behind while stopped near the traffic light during the morning; the side mirror broke. It happened close to Birch at about 20:20.,VEH-000056
+INC-2026-000089,ILLNESS,2026-02-23,Greywater,00132,Sudden illness in the early morning near the pharmacy; rest was advised. It happened close to Glen at about 20:35.,
+INC-2026-000090,COLLISION,2026-02-23,Oakmere,00207,"Collision while turning at the traffic light in the early morning, the side mirror broke. It happened close to Bramble at about 12:50.",VEH-000086
+INC-2026-000091,WATER_DAMAGE,2026-02-23,Maplecross,00185,A pipe burst in the early morning and water spread from the laundry room; the cabinets warped. It happened close to Juniper at about 01:10.,
+INC-2026-000092,WATER_DAMAGE,2026-02-23,Larkspur Falls,00172,"Flooding near the bathroom in the morning damaged the home, the carpet was ruined. It happened close to Sage at about 18:00.",
+INC-2026-000093,COLLISION,2026-02-24,Dunmeadow,00089,Another vehicle struck my car at the school crossing in the evening; the rear door was dented. It happened close to Clover at about 05:50.,VEH-000220
+INC-2026-000094,COLLISION,2026-02-25,Clearhollow,00063,A driver failed to yield at the school crossing this late evening and the car could not be driven. It happened close to Quarry at about 15:10.,VEH-000126
+INC-2026-000095,COLLISION,2026-02-25,Eastmarch,00090,A driver failed to yield at the roundabout this late evening and the headlight was smashed. It happened close to Finch at about 00:50.,VEH-000248
+INC-2026-000096,COLLISION,2026-02-25,Cedarwick,00058,Another vehicle struck my car at the highway ramp in the morning; the car could not be driven. It happened close to Coral at about 03:30.,VEH-000237
+INC-2026-000097,INJURY,2026-02-25,Northfen,00191,"Injury after a fall at the stairway during the late evening, an X-ray was advised. It happened close to Coral at about 18:55.",
+INC-2026-000098,COLLISION,2026-02-26,Oakmere,00203,"Collision while turning at the traffic light in the evening, the rear door was dented. It happened close to Wren at about 01:05.",VEH-000229
+INC-2026-000099,WATER_DAMAGE,2026-02-26,Maplecross,00183,"Flooding near the kitchen in the evening damaged the home, the ceiling was stained. It happened close to River at about 13:10.",
+INC-2026-000100,WATER_DAMAGE,2026-02-26,Maplecross,00180,"Flooding near the bathroom in the morning damaged the home, a plumber was called. It happened close to River at about 14:05.",
+INC-2026-000101,WATER_DAMAGE,2026-02-26,Maplecross,00184,"Flooding near the basement in the evening damaged the home, the ceiling was stained. It happened close to River at about 15:20.",
+INC-2026-000102,ILLNESS,2026-02-26,Silverbrook,00231,Sudden illness in the late evening near the bus station; a specialist was recommended. It happened close to Alder at about 12:45.,
+INC-2026-000103,WATER_DAMAGE,2026-02-26,Maplecross,00187,"Flooding near the upstairs hallway in the afternoon damaged the home, the carpet was ruined. It happened close to River at about 02:35.",
+INC-2026-000104,WATER_DAMAGE,2026-02-26,Maplecross,00185,"Flooding near the laundry room in the afternoon damaged the home, the floor was soaked. It happened close to River at about 04:20.",
+INC-2026-000105,WATER_DAMAGE,2026-02-26,Maplecross,00183,"Flooding near the laundry room in the evening damaged the home, a plumber was called. It happened close to River at about 15:55.",
+INC-2026-000106,WATER_DAMAGE,2026-02-26,Maplecross,00187,"Flooding near the bathroom in the evening damaged the home, the floor was soaked. It happened close to River at about 02:55.",
+INC-2026-000107,WATER_DAMAGE,2026-02-26,Maplecross,00186,"Flooding near the bathroom in the evening damaged the home, the carpet was ruined. It happened close to River at about 01:05.",
+INC-2026-000108,COLLISION,2026-02-26,Greywater,00136,Another vehicle struck my car at the traffic light in the late evening; the side mirror broke. It happened close to Finch at about 04:00.,VEH-000120
+INC-2026-000109,WATER_DAMAGE,2026-02-26,Maplecross,00181,"Flooding near the laundry room in the afternoon damaged the home, the cabinets warped. It happened close to River at about 08:40.",
+INC-2026-000110,WATER_DAMAGE,2026-02-26,Maplecross,00186,"Flooding near the kitchen in the morning damaged the home, the ceiling was stained. It happened close to River at about 20:55.",
+INC-2026-000111,WATER_DAMAGE,2026-02-27,Maplecross,00183,"Flooding near the laundry room in the morning damaged the home, the cabinets warped. It happened close to River at about 05:45.",
+INC-2026-000112,WATER_DAMAGE,2026-02-27,Maplecross,00182,"Flooding near the laundry room in the evening damaged the home, the cabinets warped. It happened close to River at about 12:45.",
+INC-2026-000113,WATER_DAMAGE,2026-02-27,Maplecross,00185,"Flooding near the upstairs hallway in the evening damaged the home, a plumber was called. It happened close to River at about 04:45.",
+INC-2026-000114,WATER_DAMAGE,2026-02-27,Maplecross,00181,"Flooding near the basement in the early morning damaged the home, the ceiling was stained. It happened close to River at about 00:35.",
+INC-2026-000115,WATER_DAMAGE,2026-02-27,Maplecross,00182,"Flooding near the kitchen in the afternoon damaged the home, the carpet was ruined. It happened close to River at about 16:30.",
+INC-2026-000116,WATER_DAMAGE,2026-02-27,Maplecross,00183,"Flooding near the upstairs hallway in the early morning damaged the home, the ceiling was stained. It happened close to River at about 12:25.",
+INC-2026-000117,COLLISION,2026-02-27,Brookmere,00041,Another vehicle struck my car at the roundabout in the afternoon; the front bumper was damaged. It happened close to Amber at about 00:45.,VEH-000237
+INC-2026-000118,WATER_DAMAGE,2026-02-27,Maplecross,00181,"Flooding near the upstairs hallway in the late evening damaged the home, the floor was soaked. It happened close to River at about 15:10.",
+INC-2026-000119,ILLNESS,2026-02-27,Ashcombe,00011,I developed symptoms in the early morning and visited a clinic near the community hall; a fever continued for days. It happened close to Fern at about 19:30.,
+INC-2026-000120,WATER_DAMAGE,2026-02-27,Maplecross,00185,"Flooding near the laundry room in the afternoon damaged the home, the ceiling was stained. It happened close to River at about 18:45.",
+INC-2026-000121,WATER_DAMAGE,2026-02-27,Maplecross,00180,"Flooding near the laundry room in the evening damaged the home, the cabinets warped. It happened close to River at about 10:55.",
+INC-2026-000122,WATER_DAMAGE,2026-02-27,Maplecross,00185,"Flooding near the kitchen in the afternoon damaged the home, the carpet was ruined. It happened close to River at about 19:50.",
+INC-2026-000123,WATER_DAMAGE,2026-02-28,Maplecross,00188,"Flooding near the bathroom in the morning damaged the home, a plumber was called. It happened close to River at about 05:50.",
+INC-2026-000124,WATER_DAMAGE,2026-02-28,Maplecross,00182,"Flooding near the basement in the afternoon damaged the home, the cabinets warped. It happened close to River at about 05:55.",
+INC-2026-000125,WATER_DAMAGE,2026-02-28,Maplecross,00183,"Flooding near the bathroom in the late evening damaged the home, the floor was soaked. It happened close to River at about 08:00.",
+INC-2026-000126,COLLISION,2026-02-28,Cedarwick,00058,I was hit from behind while stopped near the junction during the evening; the wheel arch was bent. It happened close to Aspen at about 14:00.,VEH-000090
+INC-2026-000127,WATER_DAMAGE,2026-02-28,Maplecross,00180,"Flooding near the laundry room in the morning damaged the home, a plumber was called. It happened close to River at about 11:25.",
+INC-2026-000128,WATER_DAMAGE,2026-02-28,Maplecross,00180,"Flooding near the bathroom in the early morning damaged the home, the ceiling was stained. It happened close to River at about 02:50.",
+INC-2026-000129,COLLISION,2026-03-01,Silverbrook,00234,"Collision while turning at the school crossing in the late evening, the wheel arch was bent. It happened close to Willow at about 23:10.",VEH-000195
+INC-2026-000130,WATER_DAMAGE,2026-03-01,Ravensholt,00224,"Water leaked overnight around the laundry room, found in the afternoon; the floor was soaked. It happened close to Lake at about 12:05.",
+INC-2026-000131,THEFT,2026-03-01,Ashcombe,00016,"I returned in the evening to find a break-in near the driveway, a laptop was taken. It happened close to Pine at about 01:20.",VEH-000086
+INC-2026-000132,COLLISION,2026-03-01,Coppergate,00070,"Collision while turning at the school crossing in the afternoon, the headlight was smashed. It happened close to Laurel at about 09:25.",VEH-000015
+INC-2026-000133,ILLNESS,2026-03-02,Fernhaven,00115,"Treatment was needed for an illness that began in the early morning, tests were ordered. It happened close to Orchard at about 20:50.",
+INC-2026-000134,COLLISION,2026-03-02,Ashcombe,00017,A driver failed to yield at the school crossing this late evening and the rear door was dented. It happened close to Field at about 19:50.,VEH-000191
+INC-2026-000135,COLLISION,2026-03-03,Dunmeadow,00086,Another vehicle struck my car at the highway ramp in the morning; the car could not be driven. It happened close to Beacon at about 11:30.,VEH-000165
+INC-2026-000136,INJURY,2026-03-03,Bellhaven,00027,"Injury after a fall at the market during the early morning, my knee was bruised. It happened close to Rowan at about 20:35.",
+INC-2026-000137,COLLISION,2026-03-03,Glenmoor,00122,A driver failed to yield at the parking lot this morning and the side mirror broke. It happened close to Lake at about 04:55.,VEH-000159
+INC-2026-000138,COLLISION,2026-03-03,Ashcombe,00012,I was hit from behind while stopped near the junction during the late evening; the car could not be driven. It happened close to Copper at about 22:20.,VEH-000028
+INC-2026-000139,INJURY,2026-03-04,Hollowbrook,00155,"Injury after a fall at the market during the early morning, I needed stitches. It happened close to Fairview at about 08:55.",
+INC-2026-000140,COLLISION,2026-03-04,Clearhollow,00068,Another vehicle struck my car at the parking lot in the late evening; the side mirror broke. It happened close to Rowan at about 23:25.,VEH-000137
+INC-2026-000141,ILLNESS,2026-03-04,Ashcombe,00011,I developed symptoms in the afternoon and visited a clinic near the community hall; rest was advised. It happened close to Wren at about 08:15.,
+INC-2026-000142,INJURY,2026-03-05,Cedarwick,00053,"Injury after a fall at the parking lot during the evening, my ankle was swollen. It happened close to Birch at about 13:15.",
+INC-2026-000143,COLLISION,2026-03-06,Ashcombe,00016,"Collision while turning at the highway ramp in the early morning, the rear door was dented. It happened close to Hill at about 01:00.",VEH-000159
+INC-2026-000144,THEFT,2026-03-07,Brookmere,00041,Theft reported after the early morning close to the driveway; a bicycle was taken. It happened close to Summit at about 10:00.,VEH-000188
+INC-2026-000145,THEFT,2026-03-08,Eastmarch,00092,Theft reported after the morning close to the parking lot; a window was broken. It happened close to Wren at about 03:50.,VEH-000207
+INC-2026-000146,WATER_DAMAGE,2026-03-09,Clearhollow,00062,"Flooding near the upstairs hallway in the morning damaged the home, the floor was soaked. It happened close to Yarrow at about 22:50.",
+INC-2026-000147,FIRE,2026-03-09,Coppergate,00073,Smoke and fire affected the area by the fuse box this late evening; the wall was scorched. It happened close to Birch at about 16:40.,
+INC-2026-000148,FIRE,2026-03-10,Ashcombe,00019,Smoke and fire affected the area by the storage room this afternoon; the wiring was damaged. It happened close to Dale at about 11:20.,
+INC-2026-000149,INJURY,2026-03-10,Alderbrook,00004,"Injury after a fall at the office entrance during the afternoon, an X-ray was advised. It happened close to Quarry at about 12:40.",
+INC-2026-000150,THEFT,2026-03-12,Fernhaven,00114,Theft reported after the early morning close to the driveway; the lock was forced. It happened close to Glen at about 18:10.,VEH-000076
+INC-2026-000151,WATER_DAMAGE,2026-03-13,Westmarch,00247,A pipe burst in the morning and water spread from the laundry room; the cabinets warped. It happened close to Harbor at about 09:00.,
+INC-2026-000152,INJURY,2026-03-13,Hollowbrook,00157,I was injured near the bus stop in the late evening; my ankle was swollen. It happened close to Park at about 05:20.,
+INC-2026-000153,THEFT,2026-03-14,Oakmere,00203,Items were stolen from my property near the side gate during the afternoon; a laptop was taken. It happened close to Field at about 23:20.,VEH-000229
+INC-2026-000154,ILLNESS,2026-03-15,Clearhollow,00064,Sudden illness in the afternoon near the pharmacy; rest was advised. It happened close to Cobble at about 12:25.,
+INC-2026-000155,ILLNESS,2026-03-15,Briarford,00037,I developed symptoms in the morning and visited a clinic near the workplace; tests were ordered. It happened close to Ember at about 21:30.,
+INC-2026-000156,ILLNESS,2026-03-16,Briarford,00037,Sudden illness in the evening near the community hall; a fever continued for days. It happened close to Spruce at about 14:15.,
+INC-2026-000157,COLLISION,2026-03-16,Bellhaven,00025,I was hit from behind while stopped near the traffic light during the evening; the side mirror broke. It happened close to Juniper at about 13:15.,VEH-000106
+INC-2026-000158,COLLISION,2026-03-16,Oakmere,00209,I was hit from behind while stopped near the junction during the late evening; the rear door was dented. It happened close to Stone at about 18:35.,VEH-000114
+INC-2026-000159,THEFT,2026-03-16,Silverbrook,00235,Theft reported after the evening close to the shopping center; tools were missing. It happened close to Dale at about 21:30.,VEH-000255
+INC-2026-000160,FIRE,2026-03-17,Greywater,00135,Smoke and fire affected the area by the fuse box this early morning; the fire service attended. It happened close to Birch at about 01:00.,
+INC-2026-000161,FIRE,2026-03-17,Dunmeadow,00084,Smoke and fire affected the area by the back porch this early morning; appliances were ruined. It happened close to Dale at about 18:55.,
+INC-2026-000162,COLLISION,2026-03-17,Hollowbrook,00155,A driver failed to yield at the parking lot this evening and the side mirror broke. It happened close to Otter at about 03:15.,VEH-000125
+INC-2026-000163,INJURY,2026-03-18,Bellhaven,00024,I needed treatment after an accident by the office entrance this evening; an X-ray was advised. It happened close to Crescent at about 11:50.,
+INC-2026-000164,THEFT,2026-03-18,Clearhollow,00062,Items were stolen from my property near the shopping center during the morning; tools were missing. It happened close to Raven at about 03:10.,VEH-000156
+INC-2026-000165,THEFT,2026-03-18,Pinecrest Hollow,00217,Theft reported after the evening close to the back door; a window was broken. It happened close to Lake at about 17:55.,
+INC-2026-000166,INJURY,2026-03-18,Larkspur Falls,00175,"Injury after a fall at the market during the evening, my back was strained. It happened close to Field at about 06:05.",
+INC-2026-000167,WATER_DAMAGE,2026-03-19,Briarford,00038,"Water leaked overnight around the basement, found in the morning; a plumber was called. It happened close to Dale at about 03:15.",
+INC-2026-000168,WATER_DAMAGE,2026-03-21,Dunmeadow,00088,A pipe burst in the morning and water spread from the upstairs hallway; the ceiling was stained. It happened close to Juniper at about 16:55.,
+INC-2026-000169,COLLISION,2026-03-21,Maplecross,00189,Another vehicle struck my car at the school crossing in the early morning; the rear door was dented. It happened close to Cobble at about 05:50.,VEH-000255
+INC-2026-000170,COLLISION,2026-03-22,Northfen,00198,I was hit from behind while stopped near the school crossing during the late evening; the rear door was dented. It happened close to Linden at about 10:15.,VEH-000225
+INC-2026-000171,COLLISION,2026-03-23,Fernhaven,00116,I was hit from behind while stopped near the junction during the morning; the front bumper was damaged. It happened close to Coral at about 15:50.,VEH-000118
+INC-2026-000172,COLLISION,2026-03-23,Fernhaven,00116,"Collision while turning at the highway ramp in the morning, the wheel arch was bent. It happened close to Aspen at about 19:10.",VEH-000233
+INC-2026-000173,COLLISION,2026-03-23,Brookmere,00040,Another vehicle struck my car at the traffic light in the afternoon; the side mirror broke. It happened close to Glen at about 20:55.,VEH-000145
+INC-2026-000174,COLLISION,2026-03-24,Greywater,00136,"Collision while turning at the school crossing in the late evening, the headlight was smashed. It happened close to Brook at about 23:15.",VEH-000032
+INC-2026-000175,WATER_DAMAGE,2026-03-24,Pinecrest Hollow,00217,A pipe burst in the afternoon and water spread from the bathroom; the ceiling was stained. It happened close to Ivy at about 05:20.,
+INC-2026-000176,COLLISION,2026-03-25,Cedarwick,00055,Another vehicle struck my car at the traffic light in the evening; the wheel arch was bent. It happened close to Willow at about 02:15.,VEH-000010
+INC-2026-000177,THEFT,2026-03-26,Clearhollow,00064,"I returned in the afternoon to find a break-in near the driveway, tools were missing. It happened close to Meadow at about 13:30.",
+INC-2026-000178,WATER_DAMAGE,2026-03-26,Glenmoor,00124,"Water leaked overnight around the bathroom, found in the evening; the cabinets warped. It happened close to Quarry at about 22:55.",
+INC-2026-000179,INJURY,2026-03-26,Kestrel Bay,00168,I was injured near the market in the late evening; my back was strained. It happened close to Ivy at about 09:05.,
+INC-2026-000180,ILLNESS,2026-03-27,Greywater,00136,"Treatment was needed for an illness that began in the early morning, a fever continued for days. It happened close to Park at about 15:50.",
+INC-2026-000181,FIRE,2026-03-27,Clearhollow,00064,Smoke and fire affected the area by the back porch this late evening; appliances were ruined. It happened close to Spruce at about 01:35.,
+INC-2026-000182,COLLISION,2026-03-28,Greywater,00139,"Collision while turning at the junction in the morning, the rear door was dented. It happened close to Maple at about 10:40.",VEH-000240
+INC-2026-000183,COLLISION,2026-03-29,Oakmere,00209,I was hit from behind while stopped near the traffic light during the morning; the side mirror broke. It happened close to Cobble at about 10:40.,VEH-000114
+INC-2026-000184,WATER_DAMAGE,2026-03-30,Glenmoor,00122,"Flooding near the basement in the afternoon damaged the home, the floor was soaked. It happened close to Copper at about 17:45.",
+INC-2026-000185,WATER_DAMAGE,2026-03-30,Greywater,00135,A pipe burst in the late evening and water spread from the basement; the carpet was ruined. It happened close to Oak at about 12:25.,
+INC-2026-000186,THEFT,2026-03-30,Silverbrook,00233,"I returned in the late evening to find a break-in near the shopping center, tools were missing. It happened close to Fairview at about 11:40.",
+INC-2026-000187,THEFT,2026-03-30,Clearhollow,00064,Items were stolen from my property near the garage during the late evening; a laptop was taken. It happened close to Garden at about 02:35.,
+INC-2026-000188,THEFT,2026-03-31,Larkspur Falls,00173,Items were stolen from my property near the driveway during the afternoon; tools were missing. It happened close to Briar at about 05:10.,VEH-000039
+INC-2026-000189,WATER_DAMAGE,2026-03-31,Hollowbrook,00155,"Flooding near the basement in the morning damaged the home, the cabinets warped. It happened close to Ash at about 04:05.",
+INC-2026-000190,THEFT,2026-04-01,Briarford,00033,Items were stolen from my property near the driveway during the early morning; a window was broken. It happened close to Crescent at about 04:45.,
+INC-2026-000191,INJURY,2026-04-03,Briarford,00034,I was injured near the stairway in the afternoon; an X-ray was advised. It happened close to Otter at about 18:15.,
+INC-2026-000192,COLLISION,2026-04-03,Pinecrest Hollow,00210,"Collision while turning at the highway ramp in the late evening, the side mirror broke. It happened close to Rowan at about 20:55.",VEH-000010
+INC-2026-000193,COLLISION,2026-04-03,Maplecross,00182,A driver failed to yield at the parking lot this late evening and the wheel arch was bent. It happened close to Laurel at about 21:20.,VEH-000152
+INC-2026-000194,COLLISION,2026-04-03,Pinecrest Hollow,00211,"Collision while turning at the highway ramp in the morning, the headlight was smashed. It happened close to Rowan at about 10:30.",VEH-000202
+INC-2026-000195,THEFT,2026-04-04,Eastmarch,00095,Items were stolen from my property near the side gate during the morning; a laptop was taken. It happened close to Hill at about 02:35.,VEH-000242
+INC-2026-000196,INJURY,2026-04-04,Cedarwick,00058,"Injury after a fall at the sidewalk during the morning, my ankle was swollen. It happened close to Coral at about 04:20.",
+INC-2026-000197,COLLISION,2026-04-04,Westmarch,00245,I was hit from behind while stopped near the junction during the late evening; the front bumper was damaged. It happened close to Oak at about 23:25.,VEH-000098
+INC-2026-000198,ILLNESS,2026-04-04,Brookmere,00043,"Treatment was needed for an illness that began in the evening, medication was prescribed. It happened close to Ash at about 03:30.",
+INC-2026-000199,WATER_DAMAGE,2026-04-04,Maplecross,00185,"Flooding near the kitchen in the early morning damaged the home, the cabinets warped. It happened close to Garden at about 23:30.",
+INC-2026-000200,COLLISION,2026-04-04,Dunmeadow,00086,I was hit from behind while stopped near the traffic light during the afternoon; the side mirror broke. It happened close to Spruce at about 20:30.,VEH-000071
+INC-2026-000201,COLLISION,2026-04-05,Harrowfield,00140,Another vehicle struck my car at the school crossing in the evening; the rear door was dented. It happened close to Clover at about 05:50.,VEH-000059
+INC-2026-000202,COLLISION,2026-04-06,Oakmere,00202,A driver failed to yield at the highway ramp this morning and the front bumper was damaged. It happened close to Orchard at about 00:10.,VEH-000069
+INC-2026-000203,ILLNESS,2026-04-07,Maplecross,00188,"Treatment was needed for an illness that began in the late evening, a specialist was recommended. It happened close to Cypress at about 07:35.",
+INC-2026-000204,COLLISION,2026-04-07,Elmhurst Vale,00109,"Collision while turning at the traffic light in the morning, the headlight was smashed. It happened close to Birch at about 21:10.",VEH-000070
+INC-2026-000205,COLLISION,2026-04-08,Eastmarch,00095,"Collision while turning at the parking lot in the morning, the car could not be driven. It happened close to Moss at about 15:45.",VEH-000230
+INC-2026-000206,COLLISION,2026-04-08,Fernhaven,00116,A driver failed to yield at the school crossing this afternoon and the rear door was dented. It happened close to Park at about 04:25.,VEH-000074
+INC-2026-000207,COLLISION,2026-04-10,Pinecrest Hollow,00211,"Collision while turning at the parking lot in the early morning, the front bumper was damaged. It happened close to Holly at about 18:00.",VEH-000113
+INC-2026-000208,THEFT,2026-04-13,Coppergate,00077,Items were stolen from my property near the garage during the afternoon; the lock was forced. It happened close to Ridge at about 19:40.,
+INC-2026-000209,COLLISION,2026-04-13,Pinecrest Hollow,00216,I was hit from behind while stopped near the school crossing during the evening; the rear door was dented. It happened close to Wren at about 05:55.,VEH-000107
+INC-2026-000210,COLLISION,2026-04-16,Westmarch,00240,I was hit from behind while stopped near the highway ramp during the afternoon; the side mirror broke. It happened close to Fox at about 23:25.,VEH-000025
+INC-2026-000211,COLLISION,2026-04-17,Glenmoor,00128,Another vehicle struck my car at the traffic light in the afternoon; the front bumper was damaged. It happened close to Finch at about 08:45.,VEH-000248
+INC-2026-000212,COLLISION,2026-04-17,Northfen,00198,"Collision while turning at the school crossing in the early morning, the side mirror broke. It happened close to Beacon at about 03:50.",VEH-000225
+INC-2026-000213,WATER_DAMAGE,2026-04-17,Coppergate,00073,"Water leaked overnight around the upstairs hallway, found in the early morning; the ceiling was stained. It happened close to Meadow at about 14:05.",
+INC-2026-000214,ILLNESS,2026-04-17,Greywater,00132,"Treatment was needed for an illness that began in the afternoon, a fever continued for days. It happened close to Finch at about 20:20.",
+INC-2026-000215,THEFT,2026-04-17,Fernhaven,00118,Theft reported after the late evening close to the back door; the lock was forced. It happened close to Cobble at about 01:50.,
+INC-2026-000216,COLLISION,2026-04-17,Westmarch,00248,A driver failed to yield at the parking lot this early morning and the headlight was smashed. It happened close to Cobble at about 19:50.,VEH-000064
+INC-2026-000217,ILLNESS,2026-04-18,Silverbrook,00239,Sudden illness in the evening near the pharmacy; rest was advised. It happened close to Linden at about 18:50.,
+INC-2026-000218,THEFT,2026-04-19,Kestrel Bay,00164,"I returned in the late evening to find a break-in near the back door, the lock was forced. It happened close to Glen at about 06:35.",VEH-000070
+INC-2026-000219,COLLISION,2026-04-20,Pinecrest Hollow,00211,"Collision while turning at the parking lot in the afternoon, the car could not be driven. It happened close to Copper at about 03:35.",VEH-000240
+INC-2026-000220,WATER_DAMAGE,2026-04-21,Pinecrest Hollow,00213,A pipe burst in the evening and water spread from the kitchen; the floor was soaked. It happened close to Fairview at about 11:15.,
+INC-2026-000221,COLLISION,2026-04-22,Clearhollow,00061,I was hit from behind while stopped near the highway ramp during the late evening; the wheel arch was bent. It happened close to Wren at about 15:10.,VEH-000134
+INC-2026-000222,ILLNESS,2026-04-22,Ashcombe,00011,I developed symptoms in the evening and visited a clinic near the workplace; a specialist was recommended. It happened close to Sage at about 09:40.,
+INC-2026-000223,ILLNESS,2026-04-22,Maplecross,00188,I developed symptoms in the afternoon and visited a clinic near the workplace; medication was prescribed. It happened close to Spruce at about 16:50.,
+INC-2026-000224,WATER_DAMAGE,2026-04-23,Pinecrest Hollow,00216,"Flooding near the basement in the morning damaged the home, a plumber was called. It happened close to Ridge at about 03:30.",
+INC-2026-000225,COLLISION,2026-04-23,Westmarch,00240,Another vehicle struck my car at the school crossing in the evening; the headlight was smashed. It happened close to Holly at about 02:30.,VEH-000181
+INC-2026-000226,ILLNESS,2026-04-23,Brookmere,00048,Sudden illness in the morning near the pharmacy; medication was prescribed. It happened close to Alder at about 19:35.,
+INC-2026-000227,COLLISION,2026-04-23,Silverbrook,00231,"Collision while turning at the traffic light in the evening, the headlight was smashed. It happened close to Yarrow at about 16:50.",VEH-000195
+INC-2026-000228,COLLISION,2026-04-24,Pinecrest Hollow,00214,I was hit from behind while stopped near the traffic light during the evening; the headlight was smashed. It happened close to Briar at about 22:45.,VEH-000033
+INC-2026-000229,COLLISION,2026-04-24,Cedarwick,00058,Another vehicle struck my car at the school crossing in the evening; the headlight was smashed. It happened close to Birch at about 02:15.,VEH-000014
+INC-2026-000230,WATER_DAMAGE,2026-04-24,Fernhaven,00116,A pipe burst in the late evening and water spread from the bathroom; the carpet was ruined. It happened close to Meadow at about 07:50.,
+INC-2026-000231,ILLNESS,2026-04-25,Westmarch,00244,I developed symptoms in the evening and visited a clinic near the pharmacy; a fever continued for days. It happened close to Crescent at about 03:00.,
+INC-2026-000232,THEFT,2026-04-25,Clearhollow,00062,Theft reported after the late evening close to the shopping center; a window was broken. It happened close to Birch at about 07:20.,
+INC-2026-000233,INJURY,2026-04-26,Briarford,00030,I was injured near the office entrance in the late evening; my back was strained. It happened close to Oak at about 10:20.,
+INC-2026-000234,COLLISION,2026-04-27,Ravensholt,00227,I was hit from behind while stopped near the traffic light during the early morning; the headlight was smashed. It happened close to Heather at about 17:45.,VEH-000004
+INC-2026-000235,INJURY,2026-04-27,Coppergate,00073,I was injured near the office entrance in the afternoon; I needed stitches. It happened close to Hill at about 04:50.,
+INC-2026-000236,INJURY,2026-04-28,Silverbrook,00236,"Injury after a fall at the stairway during the morning, my ankle was swollen. It happened close to Copper at about 00:30.",
+INC-2026-000237,ILLNESS,2026-04-29,Ashcombe,00013,Sudden illness in the early morning near the city center; medication was prescribed. It happened close to Copper at about 15:15.,
+INC-2026-000238,COLLISION,2026-04-29,Cedarwick,00058,A driver failed to yield at the school crossing this evening and the headlight was smashed. It happened close to River at about 03:50.,VEH-000090
+INC-2026-000239,COLLISION,2026-04-29,Ravensholt,00224,"Collision while turning at the roundabout in the evening, the car could not be driven. It happened close to Ember at about 02:15.",VEH-000028
+INC-2026-000240,INJURY,2026-05-01,Bellhaven,00029,I needed treatment after an accident by the sidewalk this early morning; my ankle was swollen. It happened close to River at about 12:30.,
+INC-2026-000241,COLLISION,2026-05-02,Northfen,00191,I was hit from behind while stopped near the roundabout during the morning; the wheel arch was bent. It happened close to Finch at about 04:45.,VEH-000030
+INC-2026-000242,THEFT,2026-05-02,Briarford,00034,Items were stolen from my property near the back door during the late evening; a window was broken. It happened close to Harbor at about 14:35.,VEH-000029
+INC-2026-000243,ILLNESS,2026-05-02,Cedarwick,00058,Sudden illness in the afternoon near the workplace; rest was advised. It happened close to Yarrow at about 11:40.,
+INC-2026-000244,COLLISION,2026-05-03,Silverbrook,00239,I was hit from behind while stopped near the traffic light during the evening; the car could not be driven. It happened close to Ridge at about 11:05.,VEH-000065
+INC-2026-000245,ILLNESS,2026-05-03,Coppergate,00077,Sudden illness in the morning near the bus station; a fever continued for days. It happened close to Ivy at about 20:10.,
+INC-2026-000246,INJURY,2026-05-04,Elmhurst Vale,00108,I was injured near the bus stop in the morning; my ankle was swollen. It happened close to Oak at about 00:00.,
+INC-2026-000247,THEFT,2026-05-04,Coppergate,00070,"I returned in the morning to find a break-in near the driveway, a window was broken. It happened close to Amber at about 00:10.",VEH-000015
+INC-2026-000248,INJURY,2026-05-04,Cedarwick,00056,"Injury after a fall at the sidewalk during the morning, an X-ray was advised. It happened close to Ivy at about 18:05.",
+INC-2026-000249,THEFT,2026-05-05,Alderbrook,00007,Items were stolen from my property near the side gate during the afternoon; a bicycle was taken. It happened close to Ivy at about 02:00.,VEH-000140
+INC-2026-000250,COLLISION,2026-05-06,Oakmere,00203,I was hit from behind while stopped near the highway ramp during the morning; the side mirror broke. It happened close to Granite at about 11:00.,VEH-000229
+INC-2026-000251,FIRE,2026-05-07,Cedarwick,00059,Smoke and fire affected the area by the fuse box this evening; the wall was scorched. It happened close to Beacon at about 13:00.,
+INC-2026-000252,COLLISION,2026-05-08,Elmhurst Vale,00109,I was hit from behind while stopped near the parking lot during the late evening; the side mirror broke. It happened close to Beacon at about 19:25.,VEH-000073
+INC-2026-000253,COLLISION,2026-05-08,Coppergate,00078,I was hit from behind while stopped near the parking lot during the morning; the car could not be driven. It happened close to Park at about 00:45.,VEH-000221
+INC-2026-000254,COLLISION,2026-05-08,Greywater,00137,"Collision while turning at the traffic light in the afternoon, the wheel arch was bent. It happened close to Otter at about 06:45.",VEH-000059
+INC-2026-000255,COLLISION,2026-05-08,Northfen,00198,"Collision while turning at the parking lot in the evening, the rear door was dented. It happened close to Birch at about 04:00.",VEH-000225
+INC-2026-000256,COLLISION,2026-05-09,Clearhollow,00063,A driver failed to yield at the highway ramp this late evening and the rear door was dented. It happened close to Clover at about 23:45.,VEH-000126
+INC-2026-000257,COLLISION,2026-05-09,Harrowfield,00142,"Collision while turning at the school crossing in the evening, the wheel arch was bent. It happened close to Fox at about 09:10.",VEH-000086
+INC-2026-000258,COLLISION,2026-05-10,Silverbrook,00233,Another vehicle struck my car at the highway ramp in the afternoon; the rear door was dented. It happened close to Coral at about 12:40.,VEH-000181
+INC-2026-000259,ILLNESS,2026-05-10,Larkspur Falls,00179,"Treatment was needed for an illness that began in the afternoon, rest was advised. It happened close to Ash at about 10:50.",
+INC-2026-000260,INJURY,2026-05-11,Westmarch,00249,I was injured near the market in the afternoon; my knee was bruised. It happened close to Maple at about 04:25.,
+INC-2026-000261,WATER_DAMAGE,2026-05-11,Briarford,00035,"Water leaked overnight around the laundry room, found in the morning; the floor was soaked. It happened close to Laurel at about 21:35.",
+INC-2026-000262,COLLISION,2026-05-11,Ashcombe,00016,Another vehicle struck my car at the traffic light in the late evening; the side mirror broke. It happened close to Clover at about 06:15.,VEH-000188
+INC-2026-000263,THEFT,2026-05-12,Fernhaven,00115,Theft reported after the late evening close to the garage; a laptop was taken. It happened close to Ember at about 23:55.,
+INC-2026-000264,INJURY,2026-05-12,Eastmarch,00099,I was injured near the market in the afternoon; an X-ray was advised. It happened close to Chestnut at about 16:50.,
+INC-2026-000265,THEFT,2026-05-13,Dunmeadow,00085,Items were stolen from my property near the parking lot during the afternoon; a window was broken. It happened close to Cobble at about 03:25.,
+INC-2026-000266,THEFT,2026-05-14,Larkspur Falls,00173,Theft reported after the morning close to the driveway; a bicycle was taken. It happened close to Alder at about 20:20.,
+INC-2026-000267,THEFT,2026-05-16,Kestrel Bay,00163,"I returned in the evening to find a break-in near the shopping center, a bicycle was taken. It happened close to Rowan at about 08:55.",
+INC-2026-000268,WATER_DAMAGE,2026-05-17,Clearhollow,00064,"Flooding near the basement in the afternoon damaged the home, the floor was soaked. It happened close to Birch at about 06:25.",
+INC-2026-000269,THEFT,2026-05-18,Pinecrest Hollow,00213,"I returned in the morning to find a break-in near the back door, a laptop was taken. It happened close to Amber at about 11:35.",VEH-000033
+INC-2026-000270,ILLNESS,2026-05-18,Kestrel Bay,00168,Sudden illness in the early morning near the workplace; a fever continued for days. It happened close to Summit at about 18:30.,
+INC-2026-000271,WATER_DAMAGE,2026-05-19,Silverbrook,00230,"Water leaked overnight around the basement, found in the early morning; the floor was soaked. It happened close to Ridge at about 17:35.",
+INC-2026-000272,COLLISION,2026-05-20,Westmarch,00243,I was hit from behind while stopped near the school crossing during the morning; the car could not be driven. It happened close to Glen at about 03:25.,VEH-000156
+INC-2026-000273,WATER_DAMAGE,2026-05-20,Dunmeadow,00085,"Flooding near the kitchen in the afternoon damaged the home, the floor was soaked. It happened close to Garden at about 04:30.",
+INC-2026-000274,COLLISION,2026-05-21,Ashcombe,00019,"Collision while turning at the school crossing in the afternoon, the headlight was smashed. It happened close to Quarry at about 12:20.",VEH-000235
+INC-2026-000275,COLLISION,2026-05-21,Briarford,00037,"Collision while turning at the junction in the evening, the headlight was smashed. It happened close to Laurel at about 23:40.",VEH-000124
+INC-2026-000276,WATER_DAMAGE,2026-05-24,Ashcombe,00014,"Flooding near the basement in the afternoon damaged the home, the floor was soaked. It happened close to Bramble at about 19:30.",
+INC-2026-000277,THEFT,2026-05-26,Brookmere,00042,Theft reported after the afternoon close to the garage; the police were informed. It happened close to Sage at about 05:40.,
+INC-2026-000278,INJURY,2026-05-27,Coppergate,00077,I needed treatment after an accident by the parking lot this afternoon; my knee was bruised. It happened close to Summit at about 03:50.,
+INC-2026-000279,WATER_DAMAGE,2026-05-28,Glenmoor,00125,A pipe burst in the afternoon and water spread from the laundry room; the ceiling was stained. It happened close to Harbor at about 15:00.,
+INC-2026-000280,COLLISION,2026-05-30,Oakmere,00202,Another vehicle struck my car at the school crossing in the early morning; the car could not be driven. It happened close to Quarry at about 13:05.,VEH-000255
+INC-2026-000281,INJURY,2026-05-30,Bellhaven,00023,I needed treatment after an accident by the bus stop this morning; my knee was bruised. It happened close to Orchard at about 01:05.,
+INC-2026-000282,FIRE,2026-05-31,Pinecrest Hollow,00210,"Fire damage near the storage room during the early morning, the wall was scorched. It happened close to Ash at about 18:30.",
+INC-2026-000283,THEFT,2026-05-31,Greywater,00137,Items were stolen from my property near the back door during the morning; a bicycle was taken. It happened close to Glen at about 17:00.,VEH-000059
+INC-2026-000284,THEFT,2026-06-01,Pinecrest Hollow,00210,Items were stolen from my property near the shopping center during the morning; a window was broken. It happened close to Coral at about 15:55.,
+INC-2026-000285,WATER_DAMAGE,2026-06-01,Clearhollow,00064,"Flooding near the kitchen in the morning damaged the home, the carpet was ruined. It happened close to Ash at about 23:30.",
+INC-2026-000286,COLLISION,2026-06-01,Greywater,00136,A driver failed to yield at the school crossing this morning and the front bumper was damaged. It happened close to Dale at about 16:45.,VEH-000032
+INC-2026-000287,COLLISION,2026-06-02,Silverbrook,00231,"Collision while turning at the traffic light in the afternoon, the headlight was smashed. It happened close to Brook at about 06:20.",VEH-000192
+INC-2026-000288,INJURY,2026-06-02,Eastmarch,00097,I needed treatment after an accident by the parking lot this early morning; an X-ray was advised. It happened close to Hazel at about 23:00.,
+INC-2026-000289,THEFT,2026-06-02,Pinecrest Hollow,00216,Theft reported after the morning close to the back door; tools were missing. It happened close to Wren at about 00:45.,VEH-000021
+INC-2026-000290,WATER_DAMAGE,2026-06-03,Larkspur Falls,00173,A pipe burst in the early morning and water spread from the upstairs hallway; the floor was soaked. It happened close to Hazel at about 08:00.,
+INC-2026-000291,COLLISION,2026-06-03,Oakmere,00207,I was hit from behind while stopped near the roundabout during the morning; the wheel arch was bent. It happened close to Bramble at about 13:15.,VEH-000086
+INC-2026-000292,COLLISION,2026-06-04,Bellhaven,00029,Another vehicle struck my car at the school crossing in the afternoon; the wheel arch was bent. It happened close to Birch at about 15:30.,VEH-000039
+INC-2026-000293,INJURY,2026-06-04,Hollowbrook,00157,"Injury after a fall at the office entrance during the evening, an X-ray was advised. It happened close to Heather at about 11:55.",
+INC-2026-000294,COLLISION,2026-06-05,Bellhaven,00024,I was hit from behind while stopped near the roundabout during the evening; the side mirror broke. It happened close to Oak at about 09:15.,VEH-000235
+INC-2026-000295,WATER_DAMAGE,2026-06-05,Coppergate,00073,A pipe burst in the afternoon and water spread from the upstairs hallway; the floor was soaked. It happened close to Quarry at about 00:30.,
+INC-2026-000296,ILLNESS,2026-06-05,Fernhaven,00117,I developed symptoms in the afternoon and visited a clinic near the bus station; a fever continued for days. It happened close to Ember at about 21:05.,
+INC-2026-000297,COLLISION,2026-06-06,Westmarch,00245,A driver failed to yield at the highway ramp this afternoon and the wheel arch was bent. It happened close to Ember at about 14:05.,VEH-000098
+INC-2026-000298,ILLNESS,2026-06-06,Brookmere,00040,I developed symptoms in the early morning and visited a clinic near the community hall; tests were ordered. It happened close to Laurel at about 02:25.,
+INC-2026-000299,WATER_DAMAGE,2026-06-07,Glenmoor,00124,"Flooding near the laundry room in the early morning damaged the home, the ceiling was stained. It happened close to Mill at about 13:55.",
+INC-2026-000300,THEFT,2026-06-08,Bellhaven,00024,Items were stolen from my property near the side gate during the morning; the police were informed. It happened close to Fox at about 11:35.,VEH-000235
+INC-2026-000301,COLLISION,2026-06-08,Pinecrest Hollow,00216,A driver failed to yield at the school crossing this morning and the car could not be driven. It happened close to Park at about 00:35.,VEH-000107
+INC-2026-000302,COLLISION,2026-06-08,Harrowfield,00147,"Collision while turning at the highway ramp in the late evening, the rear door was dented. It happened close to Copper at about 04:25.",VEH-000071
+INC-2026-000303,COLLISION,2026-06-09,Bellhaven,00027,Another vehicle struck my car at the highway ramp in the morning; the side mirror broke. It happened close to Brook at about 06:10.,VEH-000012
+INC-2026-000304,COLLISION,2026-06-10,Fernhaven,00113,Another vehicle struck my car at the school crossing in the early morning; the rear door was dented. It happened close to Fox at about 07:50.,VEH-000094
+INC-2026-000305,THEFT,2026-06-12,Coppergate,00070,Items were stolen from my property near the parking lot during the afternoon; the lock was forced. It happened close to Briar at about 05:45.,VEH-000124
+INC-2026-000306,THEFT,2026-06-13,Kestrel Bay,00164,Items were stolen from my property near the parking lot during the morning; the lock was forced. It happened close to Raven at about 04:30.,
+INC-2026-000307,INJURY,2026-06-13,Greywater,00137,I was injured near the stairway in the early morning; an X-ray was advised. It happened close to Park at about 17:40.,
+INC-2026-000308,THEFT,2026-06-14,Clearhollow,00064,Theft reported after the early morning close to the parking lot; tools were missing. It happened close to Birch at about 21:10.,
+INC-2026-000309,THEFT,2026-06-14,Ravensholt,00220,Items were stolen from my property near the garage during the late evening; a laptop was taken. It happened close to Summit at about 08:20.,VEH-000248
+INC-2026-000310,INJURY,2026-06-14,Cedarwick,00058,I needed treatment after an accident by the bus stop this afternoon; my back was strained. It happened close to Hickory at about 21:15.,
+INC-2026-000311,ILLNESS,2026-06-14,Elmhurst Vale,00107,"Treatment was needed for an illness that began in the evening, a fever continued for days. It happened close to Laurel at about 18:30.",
+INC-2026-000312,WATER_DAMAGE,2026-06-15,Westmarch,00243,A pipe burst in the evening and water spread from the bathroom; a plumber was called. It happened close to Stone at about 10:25.,
+INC-2026-000313,FIRE,2026-06-15,Cedarwick,00056,"Fire damage near the kitchen during the afternoon, appliances were ruined. It happened close to Granite at about 23:35.",
+INC-2026-000314,COLLISION,2026-06-17,Glenmoor,00122,A driver failed to yield at the school crossing this early morning and the front bumper was damaged. It happened close to Copper at about 09:00.,VEH-000159
+INC-2026-000315,THEFT,2026-06-17,Westmarch,00243,"I returned in the early morning to find a break-in near the shopping center, the police were informed. It happened close to Glen at about 07:25.",VEH-000064
+INC-2026-000316,COLLISION,2026-06-17,Northfen,00191,A driver failed to yield at the parking lot this morning and the headlight was smashed. It happened close to Quarry at about 11:35.,VEH-000030
+INC-2026-000317,THEFT,2026-06-18,Northfen,00198,Theft reported after the early morning close to the side gate; the police were informed. It happened close to Clover at about 04:25.,
+INC-2026-000318,COLLISION,2026-06-18,Harrowfield,00146,Another vehicle struck my car at the school crossing in the early morning; the side mirror broke. It happened close to Rowan at about 08:45.,VEH-000133
+INC-2026-000319,INJURY,2026-06-18,Fernhaven,00113,I was injured near the sidewalk in the late evening; an X-ray was advised. It happened close to Cypress at about 13:05.,
+INC-2026-000320,COLLISION,2026-06-19,Glenmoor,00125,A driver failed to yield at the junction this early morning and the headlight was smashed. It happened close to Fairview at about 18:50.,VEH-000136
+INC-2026-000321,COLLISION,2026-06-19,Elmhurst Vale,00103,I was hit from behind while stopped near the highway ramp during the early morning; the car could not be driven. It happened close to Garden at about 05:15.,VEH-000060
+INC-2026-000322,WATER_DAMAGE,2026-06-19,Alderbrook,00006,A pipe burst in the early morning and water spread from the laundry room; a plumber was called. It happened close to Granite at about 09:05.,
+INC-2026-000323,WATER_DAMAGE,2026-06-19,Silverbrook,00236,"Water leaked overnight around the bathroom, found in the afternoon; the carpet was ruined. It happened close to Park at about 10:50.",
+INC-2026-000324,COLLISION,2026-06-20,Pinecrest Hollow,00219,"Collision while turning at the junction in the evening, the wheel arch was bent. It happened close to Cobble at about 18:40.",VEH-000032
+INC-2026-000325,INJURY,2026-06-21,Larkspur Falls,00177,I needed treatment after an accident by the parking lot this late evening; my ankle was swollen. It happened close to Park at about 00:50.,
+INC-2026-000326,COLLISION,2026-06-21,Ravensholt,00222,Another vehicle struck my car at the highway ramp in the early morning; the car could not be driven. It happened close to Stone at about 01:50.,VEH-000235
+INC-2026-000327,INJURY,2026-06-22,Oakmere,00201,I needed treatment after an accident by the sidewalk this morning; my back was strained. It happened close to Orchard at about 00:35.,
+INC-2026-000328,WATER_DAMAGE,2026-06-22,Greywater,00132,"Flooding near the upstairs hallway in the late evening damaged the home, the carpet was ruined. It happened close to Oak at about 09:25.",
+INC-2026-000329,THEFT,2026-06-23,Bellhaven,00023,"I returned in the afternoon to find a break-in near the driveway, tools were missing. It happened close to Park at about 20:50.",
+INC-2026-000330,THEFT,2026-06-24,Clearhollow,00063,Items were stolen from my property near the parking lot during the evening; tools were missing. It happened close to Cobble at about 11:50.,VEH-000126
+INC-2026-000331,ILLNESS,2026-06-24,Larkspur Falls,00179,"Treatment was needed for an illness that began in the early morning, rest was advised. It happened close to Raven at about 12:00.",
+INC-2026-000332,ILLNESS,2026-06-25,Silverbrook,00230,Sudden illness in the evening near the pharmacy; medication was prescribed. It happened close to Sage at about 13:15.,
+INC-2026-000333,THEFT,2026-06-25,Elmhurst Vale,00100,"I returned in the morning to find a break-in near the back door, a laptop was taken. It happened close to Amber at about 05:35.",
+INC-2026-000334,COLLISION,2026-06-26,Cedarwick,00058,Another vehicle struck my car at the parking lot in the late evening; the headlight was smashed. It happened close to Beacon at about 12:55.,VEH-000195
+INC-2026-000335,COLLISION,2026-06-28,Elmhurst Vale,00108,"Collision while turning at the roundabout in the evening, the wheel arch was bent. It happened close to Mill at about 05:15.",VEH-000166
+INC-2026-000336,COLLISION,2026-06-29,Greywater,00136,"Collision while turning at the highway ramp in the early morning, the wheel arch was bent. It happened close to Raven at about 17:30.",VEH-000075
+INC-2026-000337,COLLISION,2026-06-29,Greywater,00131,A driver failed to yield at the roundabout this afternoon and the car could not be driven. It happened close to Moss at about 19:05.,VEH-000140
+INC-2026-000338,COLLISION,2026-06-30,Briarford,00039,I was hit from behind while stopped near the roundabout during the evening; the rear door was dented. It happened close to Ember at about 19:10.,VEH-000141
+INC-2026-000339,COLLISION,2026-06-30,Silverbrook,00239,"Collision while turning at the junction in the early morning, the front bumper was damaged. It happened close to Ash at about 17:45.",VEH-000065
+INC-2026-000340,COLLISION,2026-06-30,Oakmere,00205,Another vehicle struck my car at the school crossing in the late evening; the headlight was smashed. It happened close to Rowan at about 03:35.,VEH-000133
+INC-2026-000341,COLLISION,2026-06-30,Dunmeadow,00081,Another vehicle struck my car at the traffic light in the morning; the car could not be driven. It happened close to Orchard at about 14:30.,VEH-000005
+INC-2026-000342,COLLISION,2026-06-30,Silverbrook,00238,"Collision while turning at the school crossing in the early morning, the rear door was dented. It happened close to Finch at about 03:45.",VEH-000217
+INC-2026-000343,ILLNESS,2026-06-30,Westmarch,00244,"Treatment was needed for an illness that began in the evening, rest was advised. It happened close to Sage at about 22:15.",
+INC-2026-000344,COLLISION,2026-07-01,Kestrel Bay,00168,I was hit from behind while stopped near the junction during the afternoon; the rear door was dented. It happened close to Ash at about 15:10.,VEH-000015
+INC-2026-000345,THEFT,2026-07-02,Larkspur Falls,00173,Theft reported after the evening close to the garage; a laptop was taken. It happened close to Beacon at about 19:45.,
+INC-2026-000346,INJURY,2026-07-02,Elmhurst Vale,00101,I needed treatment after an accident by the bus stop this afternoon; my wrist was sprained. It happened close to Cobble at about 05:20.,
+INC-2026-000347,COLLISION,2026-07-03,Ashcombe,00016,Another vehicle struck my car at the parking lot in the afternoon; the side mirror broke. It happened close to River at about 11:50.,VEH-000188
+INC-2026-000348,WATER_DAMAGE,2026-07-05,Clearhollow,00063,"Flooding near the upstairs hallway in the evening damaged the home, a plumber was called. It happened close to Cypress at about 14:30.",
+INC-2026-000349,COLLISION,2026-07-06,Silverbrook,00231,I was hit from behind while stopped near the traffic light during the late evening; the wheel arch was bent. It happened close to Field at about 10:15.,VEH-000012
+INC-2026-000350,WATER_DAMAGE,2026-07-07,Ravensholt,00223,"Water leaked overnight around the upstairs hallway, found in the early morning; a plumber was called. It happened close to Willow at about 16:10.",
+INC-2026-000351,WATER_DAMAGE,2026-07-13,Northfen,00195,"Water leaked overnight around the basement, found in the morning; the ceiling was stained. It happened close to Elm at about 12:25.",
+INC-2026-000352,COLLISION,2026-07-14,Larkspur Falls,00175,"Collision while turning at the school crossing in the late evening, the wheel arch was bent. It happened close to Briar at about 02:35.",VEH-000004
+INC-2026-000353,THEFT,2026-07-14,Fernhaven,00113,Items were stolen from my property near the shopping center during the evening; tools were missing. It happened close to Cobble at about 02:10.,
+INC-2026-000354,COLLISION,2026-07-17,Glenmoor,00125,I was hit from behind while stopped near the school crossing during the early morning; the rear door was dented. It happened close to Hickory at about 22:45.,VEH-000136
+INC-2026-000355,COLLISION,2026-07-17,Oakmere,00205,"Collision while turning at the junction in the early morning, the car could not be driven. It happened close to Mill at about 05:50.",VEH-000010
+INC-2026-000356,COLLISION,2026-07-18,Briarford,00037,A driver failed to yield at the junction this afternoon and the side mirror broke. It happened close to Orchard at about 03:05.,VEH-000060
+INC-2026-000357,INJURY,2026-07-20,Northfen,00198,I needed treatment after an accident by the market this early morning; an X-ray was advised. It happened close to Linden at about 11:45.,
+INC-2026-000358,WATER_DAMAGE,2026-07-20,Greywater,00136,"Water leaked overnight around the bathroom, found in the early morning; the cabinets warped. It happened close to Hickory at about 20:10.",
+INC-2026-000359,ILLNESS,2026-07-20,Clearhollow,00062,I developed symptoms in the early morning and visited a clinic near the pharmacy; rest was advised. It happened close to Rowan at about 16:20.,
+INC-2026-000360,ILLNESS,2026-07-21,Ashcombe,00011,Sudden illness in the afternoon near the city center; tests were ordered. It happened close to Willow at about 08:40.,
+INC-2026-000361,COLLISION,2026-07-21,Oakmere,00206,I was hit from behind while stopped near the school crossing during the morning; the headlight was smashed. It happened close to Clover at about 07:50.,VEH-000165
+INC-2026-000362,FIRE,2026-07-21,Clearhollow,00064,A small fire started by the back porch in the late evening; smoke damaged the ceiling. It happened close to Garden at about 00:00.,
+INC-2026-000363,COLLISION,2026-07-22,Maplecross,00188,Another vehicle struck my car at the parking lot in the morning; the car could not be driven. It happened close to Yarrow at about 15:40.,VEH-000158
+INC-2026-000364,COLLISION,2026-07-22,Elmhurst Vale,00109,Another vehicle struck my car at the junction in the evening; the headlight was smashed. It happened close to Meadow at about 03:55.,VEH-000073
+INC-2026-000365,WATER_DAMAGE,2026-07-22,Coppergate,00073,"Flooding near the upstairs hallway in the morning damaged the home, a plumber was called. It happened close to Fern at about 14:15.",
+INC-2026-000366,COLLISION,2026-07-22,Glenmoor,00125,"Collision while turning at the roundabout in the early morning, the car could not be driven. It happened close to Fairview at about 16:40.",VEH-000136
+INC-2026-000367,COLLISION,2026-07-22,Glenmoor,00122,I was hit from behind while stopped near the traffic light during the early morning; the headlight was smashed. It happened close to Garden at about 12:05.,VEH-000159
+INC-2026-000368,COLLISION,2026-07-22,Hollowbrook,00158,Another vehicle struck my car at the roundabout in the early morning; the headlight was smashed. It happened close to Meadow at about 19:30.,VEH-000166
+INC-2026-000369,THEFT,2026-07-22,Cedarwick,00056,Items were stolen from my property near the driveway during the evening; the police were informed. It happened close to Amber at about 11:15.,
+INC-2026-000370,COLLISION,2026-07-23,Elmhurst Vale,00108,"Collision while turning at the traffic light in the afternoon, the front bumper was damaged. It happened close to Laurel at about 22:55.",VEH-000166
+INC-2026-000371,THEFT,2026-07-23,Brookmere,00042,Theft reported after the early morning close to the driveway; the lock was forced. It happened close to Ivy at about 07:30.,
+INC-2026-000372,COLLISION,2026-07-24,Pinecrest Hollow,00216,"Collision while turning at the parking lot in the morning, the side mirror broke. It happened close to Otter at about 10:45.",VEH-000021
+INC-2026-000373,ILLNESS,2026-07-24,Ravensholt,00227,"Treatment was needed for an illness that began in the early morning, medication was prescribed. It happened close to Hill at about 14:00.",
+INC-2026-000374,THEFT,2026-07-24,Bellhaven,00023,Theft reported after the late evening close to the side gate; a window was broken. It happened close to Ember at about 15:40.,
+INC-2026-000375,COLLISION,2026-07-24,Briarford,00035,A driver failed to yield at the roundabout this late evening and the car could not be driven. It happened close to Lake at about 01:55.,VEH-000004
+INC-2026-000376,COLLISION,2026-07-24,Dunmeadow,00080,A driver failed to yield at the junction this evening and the wheel arch was bent. It happened close to Oak at about 21:35.,VEH-000259
+INC-2026-000377,INJURY,2026-07-26,Harrowfield,00149,I needed treatment after an accident by the bus stop this afternoon; my knee was bruised. It happened close to Rowan at about 10:00.,
+INC-2026-000378,THEFT,2026-07-27,Westmarch,00248,Theft reported after the late evening close to the garage; a laptop was taken. It happened close to Alder at about 02:00.,VEH-000012
+INC-2026-000379,COLLISION,2026-07-28,Bellhaven,00029,"Collision while turning at the junction in the late evening, the wheel arch was bent. It happened close to Hickory at about 03:10.",VEH-000039
+INC-2026-000380,COLLISION,2026-07-29,Fernhaven,00115,I was hit from behind while stopped near the school crossing during the late evening; the car could not be driven. It happened close to Yarrow at about 01:00.,VEH-000159
+INC-2026-000381,COLLISION,2026-07-30,Bellhaven,00023,Another vehicle struck my car at the parking lot in the late evening; the car could not be driven. It happened close to Spruce at about 17:45.,VEH-000025
+INC-2026-000382,WATER_DAMAGE,2026-07-30,Elmhurst Vale,00100,A pipe burst in the late evening and water spread from the kitchen; the floor was soaked. It happened close to Laurel at about 13:50.,
+INC-2026-000383,ILLNESS,2026-07-30,Harrowfield,00145,Sudden illness in the late evening near the community hall; rest was advised. It happened close to Park at about 15:10.,
+INC-2026-000384,THEFT,2026-07-31,Greywater,00133,Items were stolen from my property near the garage during the late evening; a window was broken. It happened close to Summit at about 02:10.,VEH-000021
+INC-2026-000385,COLLISION,2026-07-31,Brookmere,00041,Another vehicle struck my car at the parking lot in the morning; the wheel arch was bent. It happened close to Ivy at about 11:20.,VEH-000151
+INC-2026-000386,COLLISION,2026-07-31,Larkspur Falls,00172,I was hit from behind while stopped near the traffic light during the morning; the wheel arch was bent. It happened close to Briar at about 07:10.,VEH-000140
+INC-2026-000387,THEFT,2026-07-31,Hollowbrook,00158,Theft reported after the late evening close to the side gate; a laptop was taken. It happened close to Ivy at about 06:05.,VEH-000012
+INC-2026-000388,ILLNESS,2026-07-31,Elmhurst Vale,00106,I developed symptoms in the evening and visited a clinic near the bus station; medication was prescribed. It happened close to Raven at about 05:00.,
+INC-2026-000389,THEFT,2026-07-31,Westmarch,00247,Theft reported after the evening close to the garage; a bicycle was taken. It happened close to Bramble at about 17:15.,
+INC-2026-000390,COLLISION,2026-08-01,Silverbrook,00231,"Collision while turning at the highway ramp in the morning, the front bumper was damaged. It happened close to Granite at about 06:35.",VEH-000226
+INC-2026-000391,WATER_DAMAGE,2026-08-02,Ravensholt,00220,A pipe burst in the late evening and water spread from the bathroom; the ceiling was stained. It happened close to Beacon at about 07:30.,
+INC-2026-000392,THEFT,2026-08-03,Coppergate,00071,Theft reported after the morning close to the back door; a bicycle was taken. It happened close to Fairview at about 16:40.,
+INC-2026-000393,COLLISION,2026-08-04,Elmhurst Vale,00109,Another vehicle struck my car at the roundabout in the afternoon; the headlight was smashed. It happened close to Juniper at about 09:35.,VEH-000070
+INC-2026-000394,THEFT,2026-08-04,Oakmere,00203,Theft reported after the evening close to the garage; the lock was forced. It happened close to Pine at about 20:30.,VEH-000229
+INC-2026-000395,INJURY,2026-08-05,Harrowfield,00143,I was injured near the stairway in the early morning; an X-ray was advised. It happened close to Raven at about 17:55.,
+INC-2026-000396,INJURY,2026-08-09,Brookmere,00049,I was injured near the market in the afternoon; my wrist was sprained. It happened close to Birch at about 05:20.,
+INC-2026-000397,FIRE,2026-08-10,Westmarch,00243,Smoke and fire affected the area by the garage this evening; smoke damaged the ceiling. It happened close to Wren at about 21:05.,
+INC-2026-000398,INJURY,2026-08-10,Clearhollow,00067,I was injured near the stairway in the evening; an X-ray was advised. It happened close to Ridge at about 20:50.,
+INC-2026-000399,WATER_DAMAGE,2026-08-11,Clearhollow,00061,"Flooding near the bathroom in the morning damaged the home, the carpet was ruined. It happened close to Briar at about 16:55.",
+INC-2026-000400,COLLISION,2026-08-12,Larkspur Falls,00177,I was hit from behind while stopped near the roundabout during the evening; the front bumper was damaged. It happened close to Ember at about 12:50.,VEH-000258
+INC-2026-000401,COLLISION,2026-08-12,Alderbrook,00007,A driver failed to yield at the highway ramp this afternoon and the headlight was smashed. It happened close to Lake at about 00:30.,VEH-000064
+INC-2026-000402,INJURY,2026-08-12,Elmhurst Vale,00109,"Injury after a fall at the office entrance during the morning, I needed stitches. It happened close to Brook at about 14:00.",
+INC-2026-000403,COLLISION,2026-08-12,Glenmoor,00122,I was hit from behind while stopped near the traffic light during the late evening; the wheel arch was bent. It happened close to Glen at about 18:55.,VEH-000159
+INC-2026-000404,COLLISION,2026-08-12,Silverbrook,00231,Another vehicle struck my car at the junction in the evening; the wheel arch was bent. It happened close to Amber at about 01:35.,VEH-000192
+INC-2026-000405,THEFT,2026-08-13,Ashcombe,00017,Items were stolen from my property near the garage during the morning; tools were missing. It happened close to Crescent at about 03:15.,VEH-000126
+INC-2026-000406,THEFT,2026-08-13,Northfen,00191,"I returned in the morning to find a break-in near the garage, the lock was forced. It happened close to Stone at about 10:50.",VEH-000030
+INC-2026-000407,INJURY,2026-08-14,Ashcombe,00010,"Injury after a fall at the market during the morning, I needed stitches. It happened close to Briar at about 15:50.",
+INC-2026-000408,WATER_DAMAGE,2026-08-14,Greywater,00132,"Water leaked overnight around the kitchen, found in the evening; the ceiling was stained. It happened close to Otter at about 03:25.",
+INC-2026-000409,THEFT,2026-08-14,Briarford,00035,"I returned in the early morning to find a break-in near the garage, a window was broken. It happened close to Clover at about 13:30.",
+INC-2026-000410,THEFT,2026-08-15,Greywater,00135,Theft reported after the morning close to the side gate; a laptop was taken. It happened close to Hickory at about 22:05.,
+INC-2026-000411,ILLNESS,2026-08-16,Ashcombe,00011,I developed symptoms in the early morning and visited a clinic near the community hall; a specialist was recommended. It happened close to Granite at about 21:40.,
+INC-2026-000412,ILLNESS,2026-08-18,Larkspur Falls,00179,"Treatment was needed for an illness that began in the morning, a specialist was recommended. It happened close to Raven at about 06:05.",
+INC-2026-000413,COLLISION,2026-08-19,Eastmarch,00095,A driver failed to yield at the highway ramp this evening and the headlight was smashed. It happened close to Spruce at about 19:25.,VEH-000242
+INC-2026-000414,COLLISION,2026-08-20,Ashcombe,00014,A driver failed to yield at the roundabout this morning and the headlight was smashed. It happened close to Raven at about 12:25.,VEH-000235
+INC-2026-000415,COLLISION,2026-08-20,Alderbrook,00006,"Collision while turning at the traffic light in the morning, the wheel arch was bent. It happened close to Ivy at about 03:50.",VEH-000189
+INC-2026-000416,WATER_DAMAGE,2026-08-21,Fernhaven,00115,"Flooding near the basement in the morning damaged the home, the carpet was ruined. It happened close to Laurel at about 13:55.",
+INC-2026-000417,INJURY,2026-08-21,Cedarwick,00058,I needed treatment after an accident by the sidewalk this late evening; an X-ray was advised. It happened close to Ember at about 10:40.,
+INC-2026-000418,INJURY,2026-08-22,Brookmere,00048,"Injury after a fall at the market during the evening, my knee was bruised. It happened close to Willow at about 01:10.",
+INC-2026-000419,INJURY,2026-08-22,Larkspur Falls,00179,I was injured near the stairway in the late evening; my ankle was swollen. It happened close to Hill at about 00:35.,
+INC-2026-000420,COLLISION,2026-08-22,Pinecrest Hollow,00211,I was hit from behind while stopped near the roundabout during the early morning; the rear door was dented. It happened close to Lake at about 15:35.,VEH-000113
+INC-2026-000421,INJURY,2026-08-24,Glenmoor,00124,"Injury after a fall at the parking lot during the evening, my knee was bruised. It happened close to Ivy at about 19:05.",
+INC-2026-000422,COLLISION,2026-08-25,Briarford,00031,Another vehicle struck my car at the junction in the early morning; the car could not be driven. It happened close to Cobble at about 18:25.,VEH-000146
+INC-2026-000423,FIRE,2026-08-26,Elmhurst Vale,00109,A small fire started by the back porch in the evening; the fire service attended. It happened close to Hazel at about 04:25.,
+INC-2026-000424,COLLISION,2026-08-27,Maplecross,00180,"Collision while turning at the roundabout in the early morning, the side mirror broke. It happened close to Briar at about 02:45.",VEH-000113
+INC-2026-000425,INJURY,2026-08-28,Alderbrook,00007,"Injury after a fall at the parking lot during the late evening, my wrist was sprained. It happened close to Wren at about 02:50.",
+INC-2026-000426,THEFT,2026-08-29,Harrowfield,00143,Theft reported after the early morning close to the garage; a laptop was taken. It happened close to Stone at about 14:20.,VEH-000013
+INC-2026-000427,INJURY,2026-09-01,Oakmere,00207,I was injured near the bus stop in the late evening; an X-ray was advised. It happened close to Harbor at about 11:05.,
+INC-2026-000428,THEFT,2026-09-01,Coppergate,00070,"I returned in the morning to find a break-in near the shopping center, the lock was forced. It happened close to Summit at about 14:00.",VEH-000015
+INC-2026-000429,COLLISION,2026-09-02,Larkspur Falls,00179,A driver failed to yield at the junction this afternoon and the car could not be driven. It happened close to Yarrow at about 03:10.,VEH-000259
+INC-2026-000430,THEFT,2026-09-04,Eastmarch,00097,Theft reported after the morning close to the shopping center; a laptop was taken. It happened close to Rowan at about 00:30.,
+INC-2026-000431,COLLISION,2026-09-04,Coppergate,00079,I was hit from behind while stopped near the school crossing during the late evening; the headlight was smashed. It happened close to Amber at about 02:10.,VEH-000032
+INC-2026-000432,INJURY,2026-09-05,Cedarwick,00058,"Injury after a fall at the market during the afternoon, my ankle was swollen. It happened close to Moss at about 23:00.",
+INC-2026-000433,ILLNESS,2026-09-05,Ashcombe,00011,I developed symptoms in the late evening and visited a clinic near the pharmacy; tests were ordered. It happened close to Mill at about 03:20.,
+INC-2026-000434,COLLISION,2026-09-06,Greywater,00138,I was hit from behind while stopped near the roundabout during the morning; the wheel arch was bent. It happened close to Fern at about 21:50.,VEH-000154
+INC-2026-000435,THEFT,2026-09-07,Briarford,00034,Items were stolen from my property near the back door during the early morning; tools were missing. It happened close to Heather at about 09:20.,
+INC-2026-000436,WATER_DAMAGE,2026-09-07,Northfen,00196,A pipe burst in the morning and water spread from the laundry room; the ceiling was stained. It happened close to Meadow at about 10:00.,
+INC-2026-000437,WATER_DAMAGE,2026-09-08,Fernhaven,00113,A pipe burst in the morning and water spread from the kitchen; the carpet was ruined. It happened close to Summit at about 10:15.,
+INC-2026-000438,COLLISION,2026-09-08,Glenmoor,00125,I was hit from behind while stopped near the highway ramp during the evening; the front bumper was damaged. It happened close to Park at about 16:15.,VEH-000136
+INC-2026-000439,COLLISION,2026-09-10,Briarford,00034,"Collision while turning at the highway ramp in the late evening, the wheel arch was bent. It happened close to Orchard at about 13:10.",VEH-000048
+INC-2026-000440,ILLNESS,2026-09-10,Ravensholt,00226,"Treatment was needed for an illness that began in the early morning, medication was prescribed. It happened close to Lake at about 17:30.",
+INC-2026-000441,ILLNESS,2026-09-10,Silverbrook,00231,"Treatment was needed for an illness that began in the afternoon, rest was advised. It happened close to Otter at about 14:45.",
+INC-2026-000442,THEFT,2026-09-11,Fernhaven,00112,Theft reported after the early morning close to the driveway; the lock was forced. It happened close to Cypress at about 10:05.,VEH-000196
+INC-2026-000443,WATER_DAMAGE,2026-09-13,Northfen,00196,"Water leaked overnight around the basement, found in the afternoon; the cabinets warped. It happened close to Rowan at about 05:50.",
+INC-2026-000444,COLLISION,2026-09-13,Cedarwick,00058,"Collision while turning at the traffic light in the late evening, the wheel arch was bent. It happened close to Raven at about 23:35.",VEH-000139
+INC-2026-000445,WATER_DAMAGE,2026-09-14,Westmarch,00247,A pipe burst in the evening and water spread from the laundry room; the ceiling was stained. It happened close to Rowan at about 04:15.,
+INC-2026-000446,COLLISION,2026-09-15,Cedarwick,00058,I was hit from behind while stopped near the junction during the morning; the wheel arch was bent. It happened close to Clover at about 01:45.,VEH-000255
+INC-2026-000447,COLLISION,2026-09-15,Harrowfield,00143,"Collision while turning at the highway ramp in the morning, the headlight was smashed. It happened close to Field at about 18:05.",VEH-000181
+INC-2026-000448,ILLNESS,2026-09-15,Glenmoor,00124,I developed symptoms in the afternoon and visited a clinic near the bus station; medication was prescribed. It happened close to Chestnut at about 20:45.,
+INC-2026-000449,FIRE,2026-09-15,Northfen,00198,Smoke and fire affected the area by the kitchen this early morning; the wall was scorched. It happened close to Glen at about 17:40.,
+INC-2026-000450,WATER_DAMAGE,2026-09-16,Cedarwick,00058,"Flooding near the basement in the morning damaged the home, the carpet was ruined. It happened close to Cedar at about 05:35.",
+INC-2026-000451,THEFT,2026-09-16,Fernhaven,00113,Items were stolen from my property near the driveway during the early morning; a laptop was taken. It happened close to Sage at about 14:25.,
+INC-2026-000452,THEFT,2026-09-17,Cedarwick,00056,Items were stolen from my property near the back door during the morning; the police were informed. It happened close to Copper at about 00:30.,
+INC-2026-000453,WATER_DAMAGE,2026-09-18,Glenmoor,00123,A pipe burst in the evening and water spread from the upstairs hallway; the ceiling was stained. It happened close to Glen at about 13:55.,
+INC-2026-000454,ILLNESS,2026-09-18,Ashcombe,00011,"Treatment was needed for an illness that began in the afternoon, a specialist was recommended. It happened close to Alder at about 03:30.",
+INC-2026-000455,INJURY,2026-09-21,Westmarch,00249,I was injured near the parking lot in the morning; an X-ray was advised. It happened close to Alder at about 16:05.,
+INC-2026-000456,THEFT,2026-09-21,Northfen,00195,Theft reported after the morning close to the shopping center; a window was broken. It happened close to Brook at about 19:15.,
+INC-2026-000457,WATER_DAMAGE,2026-09-23,Fernhaven,00116,A pipe burst in the late evening and water spread from the bathroom; the cabinets warped. It happened close to Mill at about 16:00.,
+INC-2026-000458,THEFT,2026-09-24,Cedarwick,00058,Theft reported after the morning close to the garage; tools were missing. It happened close to Aspen at about 04:05.,VEH-000139
+INC-2026-000459,INJURY,2026-09-25,Bellhaven,00029,"Injury after a fall at the parking lot during the morning, my knee was bruised. It happened close to Summit at about 20:25.",
+INC-2026-000460,INJURY,2026-09-25,Westmarch,00243,I was injured near the sidewalk in the morning; my back was strained. It happened close to Pine at about 23:55.,
+INC-2026-000461,COLLISION,2026-09-26,Ashcombe,00011,I was hit from behind while stopped near the highway ramp during the late evening; the front bumper was damaged. It happened close to Heather at about 06:55.,VEH-000044
+INC-2026-000462,COLLISION,2026-09-27,Northfen,00191,Another vehicle struck my car at the school crossing in the morning; the front bumper was damaged. It happened close to Wren at about 23:35.,VEH-000030
+INC-2026-000463,INJURY,2026-09-27,Brookmere,00041,"Injury after a fall at the stairway during the morning, I needed stitches. It happened close to Elm at about 19:00.",
+INC-2026-000464,THEFT,2026-09-28,Bellhaven,00028,Items were stolen from my property near the parking lot during the evening; a window was broken. It happened close to Moss at about 18:00.,VEH-000093
+INC-2026-000465,COLLISION,2026-09-29,Greywater,00136,Another vehicle struck my car at the highway ramp in the late evening; the front bumper was damaged. It happened close to Maple at about 01:45.,VEH-000023
+INC-2026-000466,WATER_DAMAGE,2026-09-29,Dunmeadow,00085,"Water leaked overnight around the bathroom, found in the afternoon; the cabinets warped. It happened close to Maple at about 12:55.",
+INC-2026-000467,INJURY,2026-09-29,Briarford,00039,"Injury after a fall at the sidewalk during the late evening, my wrist was sprained. It happened close to Amber at about 12:15.",
+INC-2026-000468,COLLISION,2026-09-29,Westmarch,00245,A driver failed to yield at the parking lot this late evening and the rear door was dented. It happened close to Meadow at about 20:40.,VEH-000098
+INC-2026-000469,INJURY,2026-09-29,Kestrel Bay,00165,I was injured near the bus stop in the evening; my knee was bruised. It happened close to Spruce at about 21:45.,
+INC-2026-000470,COLLISION,2026-09-29,Larkspur Falls,00177,Another vehicle struck my car at the roundabout in the late evening; the car could not be driven. It happened close to Pine at about 23:10.,VEH-000258

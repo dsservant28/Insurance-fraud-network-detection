@@ -1,0 +1,134 @@
+{
+  "checks": [
+    {
+      "examples": [],
+      "failure_count": 0,
+      "id": "V-01",
+      "name": "Primary-key uniqueness and ID formats",
+      "status": "PASS"
+    },
+    {
+      "examples": [],
+      "failure_count": 0,
+      "id": "V-02",
+      "name": "Foreign-key integrity",
+      "status": "PASS"
+    },
+    {
+      "examples": [],
+      "failure_count": 0,
+      "id": "V-03",
+      "name": "Allowed values",
+      "status": "PASS"
+    },
+    {
+      "examples": [],
+      "failure_count": 0,
+      "id": "V-04",
+      "name": "Date ordering",
+      "status": "PASS"
+    },
+    {
+      "examples": [],
+      "failure_count": 0,
+      "id": "V-05",
+      "name": "Arithmetic reconciliation",
+      "status": "PASS"
+    },
+    {
+      "examples": [],
+      "failure_count": 0,
+      "id": "V-06",
+      "name": "Lifecycle transitions",
+      "status": "PASS"
+    },
+    {
+      "examples": [],
+      "failure_count": 0,
+      "id": "V-07",
+      "name": "Duplicate checks",
+      "status": "PASS"
+    },
+    {
+      "examples": [],
+      "failure_count": 0,
+      "id": "V-08",
+      "name": "Cross-file consistency",
+      "status": "PASS"
+    },
+    {
+      "examples": [],
+      "failure_count": 0,
+      "id": "V-09",
+      "name": "Volume",
+      "status": "PASS"
+    },
+    {
+      "examples": [],
+      "failure_count": 0,
+      "id": "V-10",
+      "name": "Coverage of normal, boundary, failure and exception cases",
+      "status": "PASS"
+    },
+    {
+      "examples": [],
+      "failure_count": 0,
+      "id": "V-11",
+      "name": "Valid joins",
+      "status": "PASS"
+    },
+    {
+      "examples": [],
+      "failure_count": 0,
+      "id": "V-12",
+      "name": "Synthetic-only data",
+      "status": "PASS"
+    }
+  ],
+  "coverage": {
+    "boundary: incident on first policy day": 5,
+    "boundary: incident on last policy day": 1,
+    "boundary: loss equals deductible": 4,
+    "boundary: paid exactly the approved amount": 344,
+    "boundary: reported on incident date": 40,
+    "boundary: single-line invoice": 129,
+    "exception: claim without a known policy": 1,
+    "exception: paid above approved": 1,
+    "exception: repeated provider invoice number": 1,
+    "failure: denied claim": 112,
+    "failure: failed payment": 11,
+    "failure: lapsed policy": 16,
+    "failure: rejected invoice": 146,
+    "failure: reversed payment": 7,
+    "failure: withdrawn claim": 12,
+    "normal: paid then closed": 325,
+    "open work: claim under review": 23
+  },
+  "exception_note": "Exceptions are reported, not failures. Each one is explained in data_exception.",
+  "exceptions": {
+    "DUPLICATE_INVOICE": 2,
+    "ORPHAN_POLICY_REF": 1,
+    "PAYMENT_OVER_APPROVED": 1
+  },
+  "input_manifest_sha256": "17cc0a4c2bb618a443af509d5602ee2067514102f1accb31223d3eb3ed169da6",
+  "row_counts": {
+    "claim": 500,
+    "claim_events": 2262,
+    "claim_provider": 646,
+    "claimant": 200,
+    "claimant_contact": 228,
+    "claimant_policy": 277,
+    "graph_node": 1464,
+    "incident": 470,
+    "invoice": 650,
+    "invoice_events": 2333,
+    "invoice_line": 1938,
+    "payment": 484,
+    "payment_events": 974,
+    "policy": 260,
+    "policy_events": 405,
+    "provider": 50,
+    "relationship_edge": 1129
+  },
+  "status": "PASS"
+}

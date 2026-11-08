@@ -1,0 +1,14 @@
+{
+  "files": [
+    {
+      "path": "ground_truth.csv",
+      "rows": 277,
+      "sha256": "5609025eacf6ed09154f8a614776e1e06d1998d1714e2b8186cc74188f4007d0"
+    },
+    {
+      "path": "ground_truth.json",
+      "rows": 277,
+      "sha256": "d25211eba79966e6108dc13891a547c96dafdc82b5e17e315b6261b4f0c46ce3"
+    }
+  ]
+}

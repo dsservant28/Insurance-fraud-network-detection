@@ -1,0 +1,220 @@
+{
+  "files": [
+    {
+      "path": "csv/claim.csv",
+      "rows": 500,
+      "sha256": "a50ad190c8fa7ddc72a94a9f429afc1a1edd8ac99252b5ba34beebb48860905b",
+      "table": "claim"
+    },
+    {
+      "path": "json/claim.json",
+      "rows": 500,
+      "sha256": "04b32af6a718f1ae9df067340b5651c9bd314e9f442784e693df473bb23ff67c",
+      "table": "claim"
+    },
+    {
+      "path": "csv/claim_events.csv",
+      "rows": 2262,
+      "sha256": "7e5e010de30b4193e5c3c5d0d9aada7c747a9fc11600d5e2d0900b63cbe9c2d2",
+      "table": "claim_events"
+    },
+    {
+      "path": "json/claim_events.json",
+      "rows": 2262,
+      "sha256": "66614a237ea5e9b705e5e36e6742df0366f1fbd9810981dc7f6819a2dd1707b7",
+      "table": "claim_events"
+    },
+    {
+      "path": "csv/claim_provider.csv",
+      "rows": 646,
+      "sha256": "efb10de64effcbb940c0107c968a49965217b2af21ece05ad7184fe537a16064",
+      "table": "claim_provider"
+    },
+    {
+      "path": "json/claim_provider.json",
+      "rows": 646,
+      "sha256": "042b34e1fc2770c78530111bf9d8a10c31d99a183ce6f45c75cad8192fc19bfe",
+      "table": "claim_provider"
+    },
+    {
+      "path": "csv/claimant.csv",
+      "rows": 200,
+      "sha256": "de4c91fa6648a77cf7f444e86c0c606e7fd2c31e782f5964186e49ae34e2c849",
+      "table": "claimant"
+    },
+    {
+      "path": "json/claimant.json",
+      "rows": 200,
+      "sha256": "1b4cd58a00e1a4e229a8918a2af0d861046aba8f74f67c83ef25f18286571bc7",
+      "table": "claimant"
+    },
+    {
+      "path": "csv/claimant_contact.csv",
+      "rows": 228,
+      "sha256": "4d46391b685213a676986e3db337807bcfd9d9e0bcadee72a7c9e999af969564",
+      "table": "claimant_contact"
+    },
+    {
+      "path": "json/claimant_contact.json",
+      "rows": 228,
+      "sha256": "a8b36ee92392bb4efdfbb3c9934173a95e279435d27f3f43726c2f9cea82e7b8",
+      "table": "claimant_contact"
+    },
+    {
+      "path": "csv/claimant_policy.csv",
+      "rows": 277,
+      "sha256": "ad07718713a6254073e2bcc04cfaf8ade13b9b51d9586dfe57f948a77a4e86ad",
+      "table": "claimant_policy"
+    },
+    {
+      "path": "json/claimant_policy.json",
+      "rows": 277,
+      "sha256": "c312beb693aa54f2d706cdc73ec589f9b86bbfb681a8b226d4311419990c696c",
+      "table": "claimant_policy"
+    },
+    {
+      "path": "csv/graph_node.csv",
+      "rows": 1464,
+      "sha256": "d4b17ddbf65f69f5859eaefd75e03b56dba7dc86adbf77e59d39da78796b87e6",
+      "table": "graph_node"
+    },
+    {
+      "path": "json/graph_node.json",
+      "rows": 1464,
+      "sha256": "953f6262c6e5212e01b9be455934dd9b3ffb209567154e439263d1c8a5ed6f1f",
+      "table": "graph_node"
+    },
+    {
+      "path": "csv/incident.csv",
+      "rows": 470,
+      "sha256": "bcbdb36cf102f9fa5bc9255baca5c5be41bf41e44b936738f3ebc586967b7047",
+      "table": "incident"
+    },
+    {
+      "path": "json/incident.json",
+      "rows": 470,
+      "sha256": "6f3ebf2fb19bc77eaefbae4da47b7b5a17c0819dcaf129b10a9e54b19f820c0a",
+      "table": "incident"
+    },
+    {
+      "path": "csv/invoice.csv",
+      "rows": 650,
+      "sha256": "61ad79100118609124e6c6fdb9311329e5ec9ad8325ebc5caabbf171d5d1f5cf",
+      "table": "invoice"
+    },
+    {
+      "path": "json/invoice.json",
+      "rows": 650,
+      "sha256": "a114afdb27cfa9c1a829806b968dcd11345dabb16fc7054a327cbf85817612a8",
+      "table": "invoice"
+    },
+    {
+      "path": "csv/invoice_events.csv",
+      "rows": 2333,
+      "sha256": "cfb4d1855345036a3fb1b7be328b9a0df18adea4d73d4288e44600b113dd8cec",
+      "table": "invoice_events"
+    },
+    {
+      "path": "json/invoice_events.json",
+      "rows": 2333,
+      "sha256": "21a4f3c688eca0f18870e222a66e0a8dd33b49e09ff303cb197d5b40baf704e0",
+      "table": "invoice_events"
+    },
+    {
+      "path": "csv/invoice_line.csv",
+      "rows": 1938,
+      "sha256": "a4084d6bed0f0eaa5a61f5506c3cd545c7d94dd5dc2cb28a4f49bca2b5f98436",
+      "table": "invoice_line"
+    },
+    {
+      "path": "json/invoice_line.json",
+      "rows": 1938,
+      "sha256": "ccae28ec30e467272cede19b646d5b482936b72a9a8d119b17f41bb6aaad5223",
+      "table": "invoice_line"
+    },
+    {
+      "path": "csv/payment.csv",
+      "rows": 484,
+      "sha256": "934cdee28fba10fd71bb524d8eb156e58598f676538d24f73d0d9ce696e6802a",
+      "table": "payment"
+    },
+    {
+      "path": "json/payment.json",
+      "rows": 484,
+      "sha256": "95681635e12ab587a67a3b6f6b8cb0c653accb7170d0d202f780c9dc7a1af99f",
+      "table": "payment"
+    },
+    {
+      "path": "csv/payment_events.csv",
+      "rows": 974,
+      "sha256": "ed9197b7b2e3aabf5905d4d132f360fa9056dd7e21573b30de30908edb1fccef",
+      "table": "payment_events"
+    },
+    {
+      "path": "json/payment_events.json",
+      "rows": 974,
+      "sha256": "24bc62abee1edeabd0ca53be264e3fb31183f9adf81dc33e4cbebe74ae8a7169",
+      "table": "payment_events"
+    },
+    {
+      "path": "csv/policy.csv",
+      "rows": 260,
+      "sha256": "7e0243138bb1069cd0a8d3a87c567ac78073b09e8871345e72826b7bf32314ad",
+      "table": "policy"
+    },
+    {
+      "path": "json/policy.json",
+      "rows": 260,
+      "sha256": "1f3083206ecdfdf1c0c2cdf34c33897def05aa43c12d0561cd874ce03ccaee0b",
+      "table": "policy"
+    },
+    {
+      "path": "csv/policy_events.csv",
+      "rows": 405,
+      "sha256": "5852cc51d5dce4d41ef7fc384ea046f48aae775e3d8655027268d30ff397e13f",
+      "table": "policy_events"
+    },
+    {
+      "path": "json/policy_events.json",
+      "rows": 405,
+      "sha256": "0870c0df52ebfbeb83feafee3a0a075215f5127d78e222e5b9942df69098dd6a",
+      "table": "policy_events"
+    },
+    {
+      "path": "csv/provider.csv",
+      "rows": 50,
+      "sha256": "29385793b9899235e24184c46a732b99b2bb0c60a9ee351b9017f96eeee3398b",
+      "table": "provider"
+    },
+    {
+      "path": "json/provider.json",
+      "rows": 50,
+      "sha256": "279604c4f1cfc9a0d8699cdc6a5f508083c14f276e7512aa8cc7d991d2566f5f",
+      "table": "provider"
+    },
+    {
+      "path": "csv/relationship_edge.csv",
+      "rows": 1129,
+      "sha256": "bfb6f331cc91111b4236b54473e00a8981401d67a385debe78c58c7d591abe17",
+      "table": "relationship_edge"
+    },
+    {
+      "path": "json/relationship_edge.json",
+      "rows": 1129,
+      "sha256": "94db9b815f9230036f13d174861e86d27778fbc0f171f27cd6445fea4be85305",
+      "table": "relationship_edge"
+    },
+    {
+      "path": "sql/schema.sql",
+      "sha256": "070cff98112916b289f91d78a3183df9e0c1f6a3256a4a15530884dc50bc9dbc"
+    },
+    {
+      "path": "sql/seed.sql",
+      "sha256": "551dc7a449c85a962fa2241b26324de2cb693ce072feade732f0d3f299adab30"
+    }
+  ],
+  "generator": {
+    "scale": 0.1,
+    "seed": 20261022
+  }
+}

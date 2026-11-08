@@ -1,0 +1,46 @@
+[
+  {
+    "detail_json": "{\"claimant_ids\": [\"CLT-000071\", \"CLT-000197\"], \"invoice_date\": \"2026-04-19\", \"invoice_ids\": [\"INV-PRV-000042-000002\", \"INV-PRV-000042-000003\"], \"provider_id\": \"PRV-000042\", \"total_cents\": 177093}",
+    "entity_id": "INV-PRV-000042-000002",
+    "entity_type": "INVOICE",
+    "exception_id": "EXC-000001",
+    "exception_type": "DUPLICATE_INVOICE",
+    "expected_rule": "one provider invoice is billed on one claimant's claim",
+    "field_name": "external_invoice_no",
+    "observed_value": "EXT-8344551",
+    "severity": "HIGH"
+  },
+  {
+    "detail_json": "{\"claimant_ids\": [\"CLT-000071\", \"CLT-000197\"], \"invoice_date\": \"2026-04-19\", \"invoice_ids\": [\"INV-PRV-000042-000002\", \"INV-PRV-000042-000003\"], \"provider_id\": \"PRV-000042\", \"total_cents\": 177093}",
+    "entity_id": "INV-PRV-000042-000003",
+    "entity_type": "INVOICE",
+    "exception_id": "EXC-000002",
+    "exception_type": "DUPLICATE_INVOICE",
+    "expected_rule": "one provider invoice is billed on one claimant's claim",
+    "field_name": "external_invoice_no",
+    "observed_value": "EXT-8344551",
+    "severity": "HIGH"
+  },
+  {
+    "detail_json": "{\"claim_status\": \"UNDER_REVIEW\", \"claimant_id\": \"CLT-000134\"}",
+    "entity_id": "CLM-2026-000165",
+    "entity_type": "CLAIM",
+    "exception_id": "EXC-000003",
+    "exception_type": "ORPHAN_POLICY_REF",
+    "expected_rule": "policy_ref names an existing policy",
+    "field_name": "policy_ref",
+    "observed_value": "POL-526194",
+    "severity": "HIGH"
+  },
+  {
+    "detail_json": "{\"approved_amount_cents\": 677642, \"paid_amount_cents\": 1355284, \"settled_payment_ids\": [\"PAY-2026-000197\", \"PAY-2026-000202\"]}",
+    "entity_id": "CLM-2026-000184",
+    "entity_type": "CLAIM",
+    "exception_id": "EXC-000004",
+    "exception_type": "PAYMENT_OVER_APPROVED",
+    "expected_rule": "paid_amount_cents is not above approved_amount_cents",
+    "field_name": "paid_amount_cents",
+    "observed_value": "1355284",
+    "severity": "HIGH"
+  }
+]
