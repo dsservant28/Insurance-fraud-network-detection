@@ -305,3 +305,17 @@ Format:
   - Overlapping networks share one dot on the map, and the tooltip names the one on top.
   - Hosting (D-018) still has to rebuild `data/output` on start-up; until then the app falls back to the committed sample.
 - **Requirement link:** Part D (investigation workflow and UI); Explainability.
+
+## D-034 — The dossier graph draws one line per pair and kind of evidence
+- **Decision:**
+  - The Network dossier draws the network with Cytoscape.js 3.30.2, kept in `src/fraudnet/app/vendor/` with its MIT licence (D-027).
+  - The graph sits in an embedded HTML frame (`st.iframe`). All interaction happens in the browser: drag, zoom, click a person to light up their links, click a line to list the links behind it.
+  - All links of one kind of evidence between the same two people are drawn as one line. Its width is set by the strongest link. Different kinds stay separate lines.
+  - Whether a link is in the recorded register is shown when a line is clicked, plus one summary sentence. It is not drawn as a line style.
+- **Options considered:**
+  - One line per link: a seven-person ring sharing a bank account and a phone becomes 42 overlapping lines.
+  - One line per pair: hides the weaker kind, such as a shared address under a shared account.
+  - One line per pair and kind.
+- **Choice and why:** The first screenshots showed one line per link as an unreadable tangle, and one line per pair made the address links vanish. One line per pair and kind keeps every kind of evidence visible while staying readable, and clicking a line still lists every link with its strength, register status and ID. Data text is written with `textContent`, and the embedded data escapes `</`, so names can't inject markup.
+- **Trade-off / limitation:** Two links of the same kind between one pair show as one line; the click panel lists both. The vendored file must be updated by hand.
+- **Requirement link:** Explainability (evidence references concrete IDs); Part D (investigation UI).
