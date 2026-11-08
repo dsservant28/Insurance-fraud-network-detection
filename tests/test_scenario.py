@@ -1,4 +1,5 @@
 """Stress scenarios in the generator (docs/STRESS_PLAN.md section 4)."""
+import re
 from functools import lru_cache
 
 import numpy as np
@@ -58,18 +59,25 @@ def test_a_stronger_level_changes_a_superset_of_cells():
     assert weak and weak < strong
 
 
-def test_cosmetic_forms_keep_detector_keys_and_uncovered_forms_change_them():
+# The detector's v0.1 matching rules, kept here because S1b was defined against them (STRESS_PLAN.md).
+V01_RULES = {"phone": lambda v: re.sub(r"\D", "", v), "email": lambda v: v.strip().lower(),
+             "bank_token": lambda v: v.strip().upper(), "postal_code": lambda v: v.strip()}
+
+
+def test_cosmetic_forms_keep_detector_keys_and_uncovered_forms_beat_the_v01_rules():
     rng = np.random.default_rng(1)
+    samples = {"phone": "555-123-4567", "email": "ann.lee.000123@example.com", "bank_token": "ACCT-00012345",
+               "postal_code": "00123"}
     for _ in range(50):
         assert phone_key(_cosmetic(rng, "phone", "555-123-4567")) == phone_key("555-123-4567")
-        assert email_key(_cosmetic(rng, "email", "ann.lee.000123@example.com")) == "ann.lee.000123@example.com"
-        assert bank_key(_cosmetic(rng, "bank_token", "ACCT-00012345")) == "ACCT-00012345"
+        assert email_key(_cosmetic(rng, "email", "ann.lee.000123@example.com")) == email_key("ann.lee.000123@example.com")
+        assert bank_key(_cosmetic(rng, "bank_token", "ACCT-00012345")) == bank_key("ACCT-00012345")
         assert (address_key(_cosmetic(rng, "address_line", "12 Oak St"), "Oakmere", "00123")
                 == address_key("12 Oak Street", "Oakmere", "00123"))
-        assert phone_key(_uncovered(rng, "phone", "555-123-4567")) != phone_key("555-123-4567")
-        assert email_key(_uncovered(rng, "email", "ann.lee.000123@example.com")) != "ann.lee.000123@example.com"
-        assert bank_key(_uncovered(rng, "bank_token", "ACCT-00012345")) != "ACCT-00012345"
-        assert _uncovered(rng, "postal_code", "00123").startswith("00123-")
+        for field, value in samples.items():
+            changed = _uncovered(rng, field, value)
+            assert V01_RULES[field](changed) != V01_RULES[field](value)
+    assert _uncovered(rng, "postal_code", "00123").startswith("00123-")
 
 
 def test_a_typo_changes_exactly_one_character():

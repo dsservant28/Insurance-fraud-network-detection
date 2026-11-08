@@ -12,7 +12,9 @@ import pytest
 from fraudnet.detect.config import load_config
 from fraudnet.detect.facts import claim_facts, invoice_facts
 from fraudnet.detect.links import rebuild_links
-from fraudnet.detect.normalise import NarrativeSimilarity, address_key, narrative_words
+from fraudnet.detect.normalise import (
+    NarrativeSimilarity, address_key, bank_key, email_key, narrative_words, phone_key, tells_a_story,
+)
 from fraudnet.generate.__main__ import run as generate_into
 from fraudnet.inputs import load_input
 
@@ -87,6 +89,23 @@ def test_address_spellings_give_one_key():
     assert address_key("12 Oak St", "Ashcombe", "00010") == address_key("12 OAK STREET", "ashcombe ", "00010")
     assert address_key("12 Oak St", "Ashcombe", "00010") != address_key("12 Oak St", "Bellhaven", "00010")
     assert address_key("12 Oak Ct", "Ashcombe", "00010") != address_key("12 Oak St", "Ashcombe", "00010")
+
+
+def test_v02_identifier_rules_match_the_same_value_in_other_forms():
+    assert phone_key("+1 555-123-4567") == phone_key("001 555 123 4567") == phone_key("(555) 123-4567") == "5551234567"
+    assert phone_key("555-123-4567") != phone_key("555-123-4568")
+    assert email_key(" Ann.Lee+claims@Example.com ") == email_key("ann.lee@example.com") == "ann.lee@example.com"
+    assert email_key("ann.lee@example.com") != email_key("ann.lees@example.com")
+    assert bank_key("ACCT-00012345") == bank_key("acct 00012345") == bank_key("ACCT00012345")
+    assert bank_key("ACCT-00012345") != bank_key("ACCT-00012346")
+    assert address_key("12 Oak St", "Ashcombe", "00010-0002") == address_key("12 Oak St", "Ashcombe", "00010")
+
+
+def test_placeholders_are_not_stories():
+    assert not tells_a_story(narrative_words("N/A"), 6)
+    assert not tells_a_story(narrative_words("See attached report."), 6)
+    assert not tells_a_story(narrative_words("No description provided."), 6)
+    assert tells_a_story(narrative_words(STORY.format("08:05")), 6)
 
 
 def test_narrative_words_ignore_the_clock_time():

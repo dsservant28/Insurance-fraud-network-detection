@@ -20,24 +20,36 @@ _CLOCK = re.compile(r"\b\d{1,2}:\d{2}\b")
 _LETTERS = re.compile(r"[a-z]+")
 
 
+PHONE_DIGITS = 10   # a national number; longer forms carry a country or trunk prefix (+1 555..., 001 555...)
+POSTAL_DIGITS = 5   # base postal code; an extension (00123-0001) names a delivery point inside it
+
+
+def postal_key(value: str) -> str:
+    return re.sub(r"\D", "", value)[:POSTAL_DIGITS]
+
+
 def address_key(line: str, city: str, postal_code: str) -> str:
     """`12 Oak St`, `12 OAK STREET` and `12 Oak Street.` in one city and postal code give one key."""
     words = _WORD.findall(line.lower())
     if words:
         words[-1] = STREET_SUFFIXES.get(words[-1], words[-1])
-    return f"{' '.join(words)}|{' '.join(city.lower().split())}|{postal_code.strip()}"
+    return f"{' '.join(words)}|{' '.join(city.lower().split())}|{postal_key(postal_code)}"
 
 
 def phone_key(value: str) -> str:
-    return re.sub(r"\D", "", value)
+    """Digits only, without a country or trunk prefix: `+1 555-123-4567` and `555.123.4567` match."""
+    return re.sub(r"\D", "", value)[-PHONE_DIGITS:]
 
 
 def email_key(value: str) -> str:
-    return value.strip().lower()
+    """Case and spaces ignored, and a `+tag` dropped: `ann.lee+claims@x.com` is `ann.lee@x.com`."""
+    local, _, domain = value.strip().lower().partition("@")
+    return f"{local.split('+', 1)[0]}@{domain}" if domain else local
 
 
 def bank_key(value: str) -> str:
-    return value.strip().upper()
+    """Letters and digits only: `ACCT-00012345`, `acct 00012345` and `ACCT00012345` match."""
+    return re.sub(r"[^A-Z0-9]", "", value.upper())
 
 
 IDENTITY_KEYS = {"phone": phone_key, "email": email_key, "bank_token": bank_key}
@@ -50,6 +62,11 @@ def surname(full_name: str) -> str:
 def narrative_words(text: str) -> frozenset[str]:
     """Words of a narrative with clock times removed, since the time is the part that changes between copies."""
     return frozenset(_LETTERS.findall(_CLOCK.sub(" ", text.lower())))
+
+
+def tells_a_story(words: frozenset[str], minimum: int) -> bool:
+    """A placeholder such as `N/A` or `See attached report.` has too few words to be a story (v0.2)."""
+    return len(words) >= minimum
 
 
 class NarrativeSimilarity:

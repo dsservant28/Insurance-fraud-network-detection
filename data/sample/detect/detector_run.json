@@ -1,7 +1,7 @@
 {
   "busy_provider_min_customers": 29.099999999999994,
-  "code_version": "0.1.0",
-  "config_sha256": "3bb79611587da9b45d1787db9e978df43e3004a3f1002b6b7aa51ff76e4bd67e",
+  "code_version": "0.2.0",
+  "config_sha256": "2e25a4d5696393f355c08c3ff6083a8b9565611e99d30fa47998054f1808aab3",
   "counts": {
     "cleared_groups": 16,
     "early_claims": 27,
@@ -96,5 +96,5 @@
       "share": 0.03
     }
   },
-  "run_id": "RUN-FBE1F8B9C4B7"
+  "run_id": "RUN-71153BF11C6F"
 }

@@ -14,7 +14,9 @@ from itertools import combinations
 
 import pandas as pd
 
-from fraudnet.detect.normalise import IDENTITY_KEYS, NarrativeSimilarity, address_key, narrative_words, surname
+from fraudnet.detect.normalise import (
+    IDENTITY_KEYS, NarrativeSimilarity, address_key, narrative_words, surname, tells_a_story,
+)
 
 OPEN_END = "9999-12-31"
 FAMILY = {
@@ -185,6 +187,8 @@ def _story_links(used: pd.DataFrame, similarity: NarrativeSimilarity, busy: set[
     """Near-identical narratives on different incidents at the same provider (P4)."""
     explain, minimum = settings["explanations"], settings["links"]["story_min_similarity"]
     used = used.assign(words=used["narrative"].map(narrative_words))
+    stories = used["words"].map(lambda words: tells_a_story(words, settings["links"]["story_min_words"]))
+    used = used.loc[stories.astype(bool)]
     for (provider_id, _), group in used.groupby(["provider_id", "incident_type"], sort=True):
         for a, b in combinations(group.to_dict("records"), 2):
             if a["claimant_id"] == b["claimant_id"] or a["incident_id"] == b["incident_id"]:

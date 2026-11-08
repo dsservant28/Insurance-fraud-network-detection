@@ -5,6 +5,7 @@
 # Highest strength each link type can carry before rarity and benign explanations.
 caps = { SHARED_BANK = 0.85, SHARED_PHONE = 0.75, SHARED_EMAIL = 0.70, SHARED_CONTACT_PROVIDER = 0.85, DUPLICATE_INVOICE = 0.80, SIMILAR_NARRATIVE = 0.65, EARLY_CLAIM_PAIR = 0.55, SAME_INCIDENT = 0.45, SHARED_ADDRESS = 0.20 }
 story_min_similarity = 0.85     # IDF-weighted Jaccard of narrative words
+story_min_words = 6             # v0.2: a narrative with fewer distinct words (e.g. "N/A") is not a story
 early_claim_max_days = 10       # incident within this many days of policy start
 timing_window_days = 45         # two early claims at one provider within this many days
 incident_min_parties = 3        # an incident with fewer claimants is an ordinary crash
