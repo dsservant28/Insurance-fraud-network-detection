@@ -96,6 +96,19 @@ Each link joins two claimants or a claimant and a provider. It carries:
 
 **Narrative similarity** is IDF-weighted Jaccard over word sets with clock times removed. Words common to many narratives, such as template phrasing, count for little, while specific streets and details count for a lot. Plain word overlap was rejected because template text gives unrelated pairs 0.8 to 0.9 (section 8).
 
+**A story needs words (v0.2).** A narrative with fewer than 6 distinct words, such as `N/A` or `See attached report.`, is not a story and makes no story links. In v0.1, identical placeholders at one provider linked every customer into one giant network. In the stress test this dropped ring recall to 0 (docs/STRESS.md, scenario S5c; D-032).
+
+**Identifier rules (v0.2).** Values are matched on these keys:
+
+| Identifier | Rule | Example of values that match |
+|---|---|---|
+| Phone | Last 10 digits | `+1 555-123-4567`, `001 555 123 4567`, `(555) 123-4567` |
+| Email | Case-insensitive, with any `+tag` dropped | `Ann.Lee+claims@x.com`, `ann.lee@x.com` |
+| Bank | Letters and digits only | `ACCT-00012345`, `acct 00012345` |
+| Postal code | First 5 digits | `00123-0001`, `00123` |
+
+These are standard data-matching rules. v0.1 missed them, and stress scenario S1b showed the cost. Single-character typos are still not matched: that needs fuzzy matching, which risks joining unrelated people (docs/STRESS.md, S1c).
+
 ### 3.2 Claim-level indicators (`fraud_indicator`)
 These describe single claims and invoices. They add support to a network but never create one.
 

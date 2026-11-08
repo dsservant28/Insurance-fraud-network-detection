@@ -594,8 +594,14 @@ The generator also loads the SQL files into `data/output/fraudnet.db` with forei
 | Edge-case results | Reported per EC ID. EC-1 to EC-4 must be found, and EC-5 must not be flagged on address alone |
 | Explanation check | Every flagged network has indicators with evidence, and every referenced ID exists |
 | Hidden-link recovery | Share of EC-4 links recovered |
+| Ring fragments | A flagged network that matches no group but lies wholly inside one fraud group: part of a real ring. It still counts as a false alarm in precision. `fragment_networks` counts these networks, and `precision_counting_fragments` gives precision if they counted as correct |
 
 Results are reported overall and per rule, on the default seed and on unseen seeds 606, 707, 808, 909 and 1010, next to two comparison methods and three one-principle-off runs. Command: `python -m fraudnet.evaluate --data data/output --doc docs/EVALUATION.md` (`src/fraudnet/evaluate/`). The results are in `docs/EVALUATION.md`.
+
+The stress test (`docs/STRESS_PLAN.md`) runs the detector on 15 scenarios it was not designed around, each checked against predictions registered in advance:
+- **v0.1:** `python -m fraudnet.evaluate stress --doc docs/STRESS.md`, with results in `docs/STRESS.md`.
+- **v0.2:** `python -m fraudnet.evaluate stress --seeds 6161 7272 8383 9494 10505 --predictions v0.2 --compare docs/stress/stress_v0.1.json --doc docs/STRESS_V02.md`.
+- **Saved v0.1 summary:** `docs/stress/stress_v0.1.json`, which the v0.2 report compares against.
 
 ---
 

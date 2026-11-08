@@ -204,3 +204,65 @@ range changes. Each item below settles a detail section 4 left open:
 - **Setting sensitivity.** Values are clipped to valid ranges: caps, factors, shares and similarities at 1.0;
   the busy-provider percentile at 0.99. A whole-number setting that rounds back to itself moves by 1 instead.
   The Louvain seed is not a tunable setting and is left out.
+
+**A2 (8 Nov 2026, after the v0.1 results in docs/STRESS.md and before v0.2 met the confirmation seeds). Detector
+v0.2 and its predictions.**
+
+The v0.1 results are committed (docs/STRESS.md, 41 of 51 hits). The owner approved three changes (D-032):
+- **F1:** a narrative with fewer than 6 distinct words is not a story.
+- **F2:** standard identifier rules: phone last 10 digits, email `+tag` dropped, bank letters and digits only,
+  postal code first 5 digits.
+- **F3:** ring fragments are reported (evaluation only).
+
+A co-resident explanation for flatmates and blended families was considered and **left out**: it would weaken
+detection of rings that share an address.
+
+v0.2 still scores 1.000 on the development seed and on unseen seeds 606–1010, with docs/EVALUATION.md unchanged.
+
+**Rules for the v0.2 run:**
+- v0.2 is scored on the confirmation seeds 6161, 7272, 8383, 9494 and 10505, which no detector version has seen.
+- The v0.1 summary is kept in `docs/stress/stress_v0.1.json` and shown side by side with v0.2.
+- The threshold and setting predictions (P-T1, P-T2) were registered for v0.1 only and are not re-scored.
+
+Predictions for v0.2, as the mean over the confirmation seeds. They are encoded in
+`src/fraudnet/evaluate/stress.py` as `PREDICTIONS_V02` and checked automatically.
+
+| ID | Hypothesis or fix | Condition | Prediction |
+|---|---|---|---|
+| V-BASE.1 | F0 | baseline | no stress: precision ≥ 0.99 |
+| V-BASE.2 | F0 | baseline | no stress: ring recall ≥ 0.99 |
+| V-S1a.0 | H8 | S1a @ 0.25, 0.5, 0.75, 1.0 | precision ≥ 0.97 at every level |
+| V-S1a.1 | H8 | S1a @ 0.25, 0.5, 0.75, 1.0 | recall ≥ 0.97 at every level |
+| V-S1a.2 | H8 | S1a @ 0.25, 0.5, 0.75, 1.0 | every innocent rule's FP rate ≤ 0.01 |
+| V-S1b.1 | F2 | S1b @ 0.25, 0.5, 0.75, 1.0 | recall ≥ 0.95 at every level (was 0.74–0.86) |
+| V-S1b.2 | F2 | S1b @ 0.25, 0.5, 0.75, 1.0 | precision ≥ 0.95 at every level (was 0.61–0.74) |
+| V-S1b.3 | F2 | S1b @ 0.25, 0.5, 0.75, 1.0 | every innocent rule's FP rate ≤ 0.02 |
+| V-S1c.1 | H1 | S1c @ 0.5 | typos unchanged: recall 0.40–0.75 |
+| V-S1c.2 | H9 | S1c @ 1.0 | typos unchanged: recall 0.05–0.35 |
+| V-S2.1 | H3 | S2 @ 0.5 | reworded stories still escape: R-RING-02 ≤ 0.25 |
+| V-S2.2 | H3 | S2 @ 1.0 | recall 0.55–0.85 |
+| V-S2.3 | F3 | S2 @ 1.0 | counting ring fragments, precision ≥ 0.90 |
+| V-S3a | H7 | S3a @ pairs | two-person story rings still missed: R-RING-02 ≤ 0.10 |
+| V-S3b | H6 | S3b @ large | big rings still fragment: recall 0.45–0.80 |
+| V-S3c.1 | H4 | S3c @ x2 | recall ≥ 0.95 at 2× |
+| V-S3c.2 | H4 | S3c @ x4 | rarity crowding unchanged: recall 0.55–0.85 at 4× |
+| V-S4a | H5 | S4a | flatmates still flagged: B-ROOM-01 FP rate 0.35–0.75 |
+| V-S4b | H5 | S4b | blended families still flagged: B-FAMILY-02 FP rate ≥ 0.80 |
+| V-S4c | H4 | S4c | fleets mostly not flagged: B-FLEET-01 FP rate ≤ 0.30 |
+| V-S4d.1 | H4 | S4d | body shops not flagged: B-AGENT-01 FP rate ≤ 0.20 |
+| V-S4d.2 | H4 | S4d | story rings crowded out: R-RING-02 recall ≤ 0.40 |
+| V-S5a | H8 | S5a @ 0.25, 0.5, 0.75, 1.0 | register gaps still harmless: recall ≥ 0.97 |
+| V-S5b.1 | H4 | S5b @ 1.0 | missing banks unchanged: R-RING-04 ≤ 0.25 |
+| V-S5b.2 | H4 | S5b @ 1.0 | recall 0.60–0.85 |
+| V-S5c.1 | F1 | S5c @ 0.25, 0.5, 0.75, 1.0 | precision ≥ 0.95 at every level (was 0.00–0.45) |
+| V-S5c.2 | F1 | S5c @ 0.25, 0.5, 0.75, 1.0 | every innocent rule's FP rate ≤ 0.02 (was up to 0.82) |
+| V-S5c.3 | F1 | S5c @ 0.25 | recall 0.90–1.00 at 0.25 (was 0.18) |
+| V-S5c.4 | F1 | S5c @ 1.0 | recall 0.78–0.88 at 1.0: only story rings lost (was 0) |
+| V-S5c.5 | F1 | S5c @ 1.0 | with no stories left, R-RING-02 ≤ 0.10 |
+| V-S0 | H8 | S0 | no-fraud world: at most 2 flagged per seed |
+
+**What these predictions say:**
+- **The fixes work:** F1 should cure placeholder narratives (S5c), and F2 should cure the uncovered identifier
+  forms (S1b).
+- **Nothing else should move:** typos, rewording, ring size, rarity crowding, flatmates and blended families
+  stay as v0.1 left them, and the report should show them still failing where they failed.

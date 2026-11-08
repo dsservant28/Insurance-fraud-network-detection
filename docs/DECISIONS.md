@@ -247,3 +247,40 @@ Format:
   - **Second random stream.** Value-level noise (S1, S5) uses a second numpy Generator, seeded from the generator seed and the scenario name. CLAUDE.md asks for one generator. The second stream is still fully seeded and deterministic. It exists so the noise never shifts the world it is applied to: at strength 0 the output equals the normal world, and a stronger level changes a superset of the cells a weaker one changes. It is created only when a stress scenario is set.
   - **One change at a time.** Each scenario changes one thing; real data would combine several.
 - **Requirement link:** Part C evaluation ("ranking quality", "false-positive and false-negative rates"); Explainability (failure gallery cites detector evidence).
+
+## D-032 — Detector v0.2: a story needs words, and identifiers follow standard matching rules
+- **Decision:**
+  - A narrative with fewer than 6 distinct words is not a story and makes no story link (`story_min_words`).
+  - Identifiers are compared on standard keys:
+    - phone: last 10 digits;
+    - email: lower case, without a `+tag`;
+    - bank: letters and digits only;
+    - postal code: first 5 digits.
+  - Evaluation also reports ring fragments: flagged networks lying wholly inside one fraud group. The strict
+    precision is unchanged.
+  - Version 0.2.0.
+- **Options considered:**
+  - Keep v0.1 and only document the failures.
+  - These two fixes.
+  - Also fuzzy matching for typos.
+  - Also a co-resident explanation for flatmates and blended families.
+  - Per-value rarity instead of per-link-type rarity.
+- **Choice and why:**
+  - The stress test (docs/STRESS.md) showed two failures with standard, low-risk cures. Placeholder text like
+    `N/A` linked every customer of a provider into one network and dropped ring recall to 0 (S5c). `+1`
+    prefixes, plus-tags, bank punctuation and ZIP+4 codes broke matches that any data-matching tool would
+    make (S1b).
+  - Both fixes leave the normal-world results unchanged: docs/EVALUATION.md is byte-identical under v0.2.
+  - **Fuzzy matching was rejected:** with 2,000 claimants it would join unrelated people whose numbers differ
+    by one digit.
+  - **The co-resident explanation was rejected (owner decision):** it would weaken detection of rings that
+    share an address.
+  - **Rarity was kept per link type:** it held company fleets to 10% false alarms (S4c), at the cost of recall
+    when a link type becomes crowded (S3c, S4d). That trade-off is documented rather than tuned away.
+- **Trade-off / limitation:**
+  - A genuine but very short story, such as "Rear-ended at the lights", no longer counts as a story.
+  - The last-10-digits phone rule assumes 10-digit national numbers, which is true of this data. Another
+    country would need its own length.
+  - v0.2 was designed after seeing the stress results, so it is scored on confirmation seeds no version had
+    seen, with predictions registered first (STRESS_PLAN.md amendment A2).
+- **Requirement link:** Part B ("rebuild relationships from raw attributes"); Part C evaluation.
