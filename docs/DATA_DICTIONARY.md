@@ -1,6 +1,6 @@
 # Data dictionary and data plan
 
-**Status:** plan decisions approved by the owner (see section 15). The generator is complete: baseline (sections 3-7), planted patterns and edge cases (8), recorded edges (3.8, 5.3) and ground truth (10). The exception checks in 11.2 are built. The rest of the validator, the detector and later stages are not built yet, so their details are still design targets. Final counts will come from the source manifest.
+**Status:** plan decisions approved by the owner (see section 15). Part A is complete: the generator (sections 3-8, 10), the validator and reproducibility check (11) and all exports (12). The detector and later stages are not built yet, so sections 9 and 13 are still design targets. Actual counts are in `reports/source_manifest.json`.
 
 **Conventions**
 
@@ -504,6 +504,8 @@ The sample in `data/sample/` is protected the same way: the detector is pointed 
 
 ## 11. Validation
 
+Run with `python -m fraudnet.validate --data data/output --reproducibility`. Exit code 1 means a hard check failed. Each check recalculates its rule from the input files on its own (`src/fraudnet/validate/checks.py`), and tests break each rule deliberately to prove the check catches it.
+
 ### 11.1 Hard checks: any failure fails the run
 
 | ID | Brief's check | Rule |
@@ -548,14 +550,22 @@ data/output/
     ground_truth.json
     hidden_manifest.json
   reports/
-    source_manifest.json
-    validation_summary.json
-    reproducibility_report.json
+    source_manifest.json         (generator)
+    validation_summary.json      (validator)
+    data_exception.csv / .json   (validator)
+    reproducibility_report.json  (validator with --reproducibility)
   detect/
   evaluation/
 ```
 
-The generator also loads the SQL files into `data/output/fraudnet.db` with foreign keys on, for browsing and later stages. It holds input tables only, with no labels. Its bytes are not part of the reproducibility check; the CSV and SQL files are.
+The generator also loads the SQL files into `data/output/fraudnet.db` with foreign keys on, for browsing and later stages. It holds input tables only, with no labels, and the validator adds `data_exception`. Its bytes are not part of the reproducibility check; the CSV, JSON, SQL, hidden and source manifest files are.
+
+| File | Format |
+|---|---|
+| `csv/<table>.csv` | UTF-8, LF line endings, header row, rows sorted by key, empty field for null |
+| `json/<table>.json` | One array per table with one record per line, in the CSV's row and column order, `null` for empty values |
+| `sql/schema.sql`, `sql/seed.sql` | `STRICT` tables, constraints and append-only triggers, then inserts in parent-before-child order |
+| `input_manifest.json` | Path, row count and SHA-256 for every input file, plus the generator seed and scale. No label files are listed |
 
 `data/output/` is git-ignored because it can be regenerated. A scale 0.1 copy of `input/`, `hidden/` and `reports/` is committed in `data/sample/` so reviewers can inspect the data without running code.
 
