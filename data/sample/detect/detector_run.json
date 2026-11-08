@@ -1,0 +1,99 @@
+{
+  "busy_provider_min_customers": 29.099999999999994,
+  "code_version": "0.1.0",
+  "config_sha256": "3bb79611587da9b45d1787db9e978df43e3004a3f1002b6b7aa51ff76e4bd67e",
+  "counts": {
+    "cleared_groups": 16,
+    "early_claims": 27,
+    "explained_links": {
+      "BUILDING": 66,
+      "BUSY_PROVIDER": 3,
+      "HOUSEHOLD": 119
+    },
+    "flagged_by_priority": {
+      "HIGH": 3,
+      "MEDIUM": 4
+    },
+    "flagged_networks": 7,
+    "indicators": {
+      "CLAIM_BURST": 2,
+      "DUPLICATE_INVOICE": 2,
+      "INFLATED_AMOUNT": 2,
+      "ORPHAN_POLICY_REF": 1,
+      "PAYMENT_OVER_APPROVED": 1,
+      "PROVIDER_CONCENTRATION": 5,
+      "PROVIDER_SHARED_CONTACT": 1,
+      "REPEATED_NARRATIVE": 1,
+      "SHARED_ADDRESS": 1,
+      "SHARED_BANK": 2,
+      "SHARED_EMAIL": 1,
+      "SHARED_INCIDENT": 1,
+      "SHARED_PHONE": 4,
+      "UNRECORDED_LINK": 1
+    },
+    "inflated_invoices": 121,
+    "links": {
+      "DUPLICATE_INVOICE": 1,
+      "EARLY_CLAIM_PAIR": 9,
+      "SAME_INCIDENT": 15,
+      "SHARED_ADDRESS": 145,
+      "SHARED_BANK": 13,
+      "SHARED_CONTACT_PROVIDER": 3,
+      "SHARED_EMAIL": 6,
+      "SHARED_PHONE": 59,
+      "SIMILAR_NARRATIVE": 7
+    },
+    "networks": 7,
+    "unrecorded_links": 21
+  },
+  "flag_threshold": 0.6,
+  "input_manifest_sha256": "17cc0a4c2bb618a443af509d5602ee2067514102f1accb31223d3eb3ed169da6",
+  "rarity": {
+    "DUPLICATE_INVOICE": {
+      "claimants": 2,
+      "rarity": 1.0,
+      "share": 0.01
+    },
+    "EARLY_CLAIM_PAIR": {
+      "claimants": 8,
+      "rarity": 0.932,
+      "share": 0.04
+    },
+    "SAME_INCIDENT": {
+      "claimants": 15,
+      "rarity": 0.75,
+      "share": 0.075
+    },
+    "SHARED_ADDRESS": {
+      "claimants": 2,
+      "rarity": 1.0,
+      "share": 0.01
+    },
+    "SHARED_BANK": {
+      "claimants": 8,
+      "rarity": 0.932,
+      "share": 0.04
+    },
+    "SHARED_CONTACT_PROVIDER": {
+      "claimants": 3,
+      "rarity": 1.0,
+      "share": 0.015
+    },
+    "SHARED_EMAIL": {
+      "claimants": 4,
+      "rarity": 1.0,
+      "share": 0.02
+    },
+    "SHARED_PHONE": {
+      "claimants": 13,
+      "rarity": 0.7914,
+      "share": 0.065
+    },
+    "SIMILAR_NARRATIVE": {
+      "claimants": 6,
+      "rarity": 1.0,
+      "share": 0.03
+    }
+  },
+  "run_id": "RUN-FBE1F8B9C4B7"
+}

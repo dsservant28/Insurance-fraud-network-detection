@@ -1,0 +1,5750 @@
+[
+  {
+    "context": {
+      "PRV-000002": "LINKED_PROVIDER"
+    },
+    "discounted_links": [],
+    "evidence": [
+      {
+        "best_link_strength": 0.85,
+        "claimants": [
+          "CLT-000067",
+          "CLT-000089",
+          "CLT-000110"
+        ],
+        "coverage": 1.0,
+        "edge_type": "SHARED_CONTACT_PROVIDER",
+        "family": "IDENTITY",
+        "repetition": 1.0,
+        "sentence": "CLT-000067, CLT-000089 and CLT-000110 hold the bank token of provider PRV-000002 (ACCT-89810733). Only 1.5% of claimants have a link like this with no innocent explanation.",
+        "strength": 0.85
+      },
+      {
+        "best_link_strength": 0.7922,
+        "claimants": [
+          "CLT-000067",
+          "CLT-000089",
+          "CLT-000110"
+        ],
+        "coverage": 1.0,
+        "edge_type": "SHARED_BANK",
+        "family": "IDENTITY",
+        "repetition": 1.0,
+        "sentence": "CLT-000067, CLT-000089 and CLT-000110 share bank account ACCT-89810733. Only 4.0% of claimants have a link like this with no innocent explanation.",
+        "strength": 0.7922
+      }
+    ],
+    "families": {
+      "IDENTITY": 0.85
+    },
+    "flagged": true,
+    "graph": {
+      "edges": [
+        {
+          "edge_type": "SHARED_BANK",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000178",
+          "recorded": 1,
+          "source": "CLT-000067",
+          "strength": 0.7922,
+          "target": "CLT-000089"
+        },
+        {
+          "edge_type": "SHARED_BANK",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000179",
+          "recorded": 1,
+          "source": "CLT-000067",
+          "strength": 0.7922,
+          "target": "CLT-000110"
+        },
+        {
+          "edge_type": "SHARED_BANK",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000182",
+          "recorded": 1,
+          "source": "CLT-000089",
+          "strength": 0.7922,
+          "target": "CLT-000110"
+        },
+        {
+          "edge_type": "SHARED_CONTACT_PROVIDER",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000184",
+          "recorded": 1,
+          "source": "CLT-000067",
+          "strength": 0.85,
+          "target": "PRV-000002"
+        },
+        {
+          "edge_type": "SHARED_CONTACT_PROVIDER",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000185",
+          "recorded": 1,
+          "source": "CLT-000089",
+          "strength": 0.85,
+          "target": "PRV-000002"
+        },
+        {
+          "edge_type": "SHARED_CONTACT_PROVIDER",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000186",
+          "recorded": 1,
+          "source": "CLT-000110",
+          "strength": 0.85,
+          "target": "PRV-000002"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000067-PRV-000002",
+          "recorded": null,
+          "source": "CLT-000067",
+          "strength": 0.0,
+          "target": "PRV-000002"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000089-PRV-000002",
+          "recorded": null,
+          "source": "CLT-000089",
+          "strength": 0.0,
+          "target": "PRV-000002"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000110-PRV-000002",
+          "recorded": null,
+          "source": "CLT-000110",
+          "strength": 0.0,
+          "target": "PRV-000002"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "CLT-000067",
+          "label": "Priya Ortiz",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000089",
+          "label": "Felix Ellis",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000110",
+          "label": "Aarav Duarte",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "PRV-000002",
+          "label": "PRV-000002",
+          "role": "LINKED_PROVIDER",
+          "type": "PROVIDER"
+        }
+      ]
+    },
+    "members": [
+      "CLT-000067",
+      "CLT-000089",
+      "CLT-000110"
+    ],
+    "network_id": "NET-000001",
+    "priority": "HIGH",
+    "rank": 1,
+    "score": 0.895,
+    "support": [
+      {
+        "code": "PROVIDER_CONCENTRATION",
+        "sentence": "3 of 3 members use provider PRV-000002, which is not a busy provider.",
+        "value": 0.2
+      },
+      {
+        "code": "INFLATED_AMOUNT",
+        "sentence": "Their invoices at provider PRV-000002 have a median of 3.8x the peer median for the same incident and provider type.",
+        "value": 0.2
+      }
+    ],
+    "timeline": [
+      {
+        "claim_id": "CLM-2026-000042",
+        "claimant_id": "CLT-000067",
+        "date": "2025-08-03",
+        "event": "POLICY_START",
+        "ref": "POL-000221"
+      },
+      {
+        "claim_id": "CLM-2026-000014",
+        "claimant_id": "CLT-000110",
+        "date": "2025-09-07",
+        "event": "POLICY_START",
+        "ref": "POL-000085"
+      },
+      {
+        "claim_id": "CLM-2026-000143",
+        "claimant_id": "CLT-000110",
+        "date": "2025-09-07",
+        "event": "POLICY_START",
+        "ref": "POL-000085"
+      },
+      {
+        "claim_id": "CLM-2026-000144",
+        "claimant_id": "CLT-000110",
+        "date": "2025-09-07",
+        "event": "POLICY_START",
+        "ref": "POL-000085"
+      },
+      {
+        "claim_id": "CLM-2026-000181",
+        "claimant_id": "CLT-000110",
+        "date": "2025-09-07",
+        "event": "POLICY_START",
+        "ref": "POL-000085"
+      },
+      {
+        "claim_id": "CLM-2026-000325",
+        "claimant_id": "CLT-000110",
+        "date": "2025-09-07",
+        "event": "POLICY_START",
+        "ref": "POL-000085"
+      },
+      {
+        "claim_id": "CLM-2026-000382",
+        "claimant_id": "CLT-000110",
+        "date": "2025-09-07",
+        "event": "POLICY_START",
+        "ref": "POL-000085"
+      },
+      {
+        "claim_id": "CLM-2026-000399",
+        "claimant_id": "CLT-000110",
+        "date": "2025-09-07",
+        "event": "POLICY_START",
+        "ref": "POL-000085"
+      },
+      {
+        "claim_id": "CLM-2026-000418",
+        "claimant_id": "CLT-000110",
+        "date": "2025-09-07",
+        "event": "POLICY_START",
+        "ref": "POL-000085"
+      },
+      {
+        "claim_id": "CLM-2026-000253",
+        "claimant_id": "CLT-000067",
+        "date": "2025-11-07",
+        "event": "POLICY_START",
+        "ref": "POL-000219"
+      },
+      {
+        "claim_id": "CLM-2026-000345",
+        "claimant_id": "CLT-000067",
+        "date": "2025-11-07",
+        "event": "POLICY_START",
+        "ref": "POL-000219"
+      },
+      {
+        "claim_id": "CLM-2026-000379",
+        "claimant_id": "CLT-000067",
+        "date": "2025-11-07",
+        "event": "POLICY_START",
+        "ref": "POL-000219"
+      },
+      {
+        "claim_id": "CLM-2026-000392",
+        "claimant_id": "CLT-000067",
+        "date": "2025-11-07",
+        "event": "POLICY_START",
+        "ref": "POL-000219"
+      },
+      {
+        "claim_id": "CLM-2026-000014",
+        "claimant_id": "CLT-000110",
+        "date": "2026-01-10",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000017"
+      },
+      {
+        "claim_id": "CLM-2026-000014",
+        "claimant_id": "CLT-000110",
+        "date": "2026-01-12",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000014"
+      },
+      {
+        "amount_cents": 567992,
+        "claim_id": "CLM-2026-000014",
+        "claimant_id": "CLT-000110",
+        "date": "2026-01-18",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000001"
+      },
+      {
+        "claim_id": "CLM-2026-000042",
+        "claimant_id": "CLT-000067",
+        "date": "2026-01-23",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000042"
+      },
+      {
+        "claim_id": "CLM-2026-000042",
+        "claimant_id": "CLT-000067",
+        "date": "2026-01-26",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000042"
+      },
+      {
+        "amount_cents": 533108,
+        "claim_id": "CLM-2026-000014",
+        "claimant_id": "CLT-000110",
+        "date": "2026-01-31",
+        "event": "INVOICE",
+        "provider_id": "PRV-000014",
+        "ref": "INV-PRV-000014-000001"
+      },
+      {
+        "amount_cents": 516407,
+        "claim_id": "CLM-2026-000014",
+        "claimant_id": "CLT-000110",
+        "date": "2026-02-14",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000015",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 484693,
+        "claim_id": "CLM-2026-000014",
+        "claimant_id": "CLT-000110",
+        "date": "2026-02-15",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000017",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 325526,
+        "claim_id": "CLM-2026-000042",
+        "claimant_id": "CLT-000067",
+        "date": "2026-02-25",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000009"
+      },
+      {
+        "claim_id": "CLM-2026-000144",
+        "claimant_id": "CLT-000110",
+        "date": "2026-03-03",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000137"
+      },
+      {
+        "claim_id": "CLM-2026-000143",
+        "claimant_id": "CLT-000110",
+        "date": "2026-03-06",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000143"
+      },
+      {
+        "claim_id": "CLM-2026-000143",
+        "claimant_id": "CLT-000110",
+        "date": "2026-03-11",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000143"
+      },
+      {
+        "claim_id": "CLM-2026-000144",
+        "claimant_id": "CLT-000110",
+        "date": "2026-03-11",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000144"
+      },
+      {
+        "amount_cents": 225526,
+        "claim_id": "CLM-2026-000042",
+        "claimant_id": "CLT-000067",
+        "date": "2026-03-15",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000062",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000332",
+        "claimant_id": "CLT-000089",
+        "date": "2026-03-21",
+        "event": "POLICY_START",
+        "ref": "POL-000172"
+      },
+      {
+        "claim_id": "CLM-2026-000372",
+        "claimant_id": "CLT-000089",
+        "date": "2026-03-21",
+        "event": "POLICY_START",
+        "ref": "POL-000172"
+      },
+      {
+        "claim_id": "CLM-2026-000384",
+        "claimant_id": "CLT-000089",
+        "date": "2026-03-21",
+        "event": "POLICY_START",
+        "ref": "POL-000172"
+      },
+      {
+        "claim_id": "CLM-2026-000403",
+        "claimant_id": "CLT-000089",
+        "date": "2026-03-21",
+        "event": "POLICY_START",
+        "ref": "POL-000172"
+      },
+      {
+        "claim_id": "CLM-2026-000485",
+        "claimant_id": "CLT-000089",
+        "date": "2026-03-21",
+        "event": "POLICY_START",
+        "ref": "POL-000172"
+      },
+      {
+        "amount_cents": 579793,
+        "claim_id": "CLM-2026-000143",
+        "claimant_id": "CLT-000110",
+        "date": "2026-03-22",
+        "event": "INVOICE",
+        "provider_id": "PRV-000006",
+        "ref": "INV-PRV-000006-000006"
+      },
+      {
+        "amount_cents": 277103,
+        "claim_id": "CLM-2026-000144",
+        "claimant_id": "CLT-000110",
+        "date": "2026-03-24",
+        "event": "INVOICE",
+        "provider_id": "PRV-000027",
+        "ref": "INV-PRV-000027-000002"
+      },
+      {
+        "claim_id": "CLM-2026-000181",
+        "claimant_id": "CLT-000110",
+        "date": "2026-03-30",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000184"
+      },
+      {
+        "claim_id": "CLM-2026-000181",
+        "claimant_id": "CLT-000110",
+        "date": "2026-03-30",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000181"
+      },
+      {
+        "amount_cents": 127197,
+        "claim_id": "CLM-2026-000143",
+        "claimant_id": "CLT-000110",
+        "date": "2026-04-01",
+        "event": "INVOICE",
+        "provider_id": "PRV-000039",
+        "ref": "INV-PRV-000039-000012"
+      },
+      {
+        "amount_cents": 497784,
+        "claim_id": "CLM-2026-000143",
+        "claimant_id": "CLT-000110",
+        "date": "2026-04-11",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000134",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 177103,
+        "claim_id": "CLM-2026-000144",
+        "claimant_id": "CLT-000110",
+        "date": "2026-04-11",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000137",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 109206,
+        "claim_id": "CLM-2026-000143",
+        "claimant_id": "CLT-000110",
+        "date": "2026-04-12",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000140",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 470283,
+        "claim_id": "CLM-2026-000181",
+        "claimant_id": "CLT-000110",
+        "date": "2026-04-19",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000030"
+      },
+      {
+        "claim_id": "CLM-2026-000253",
+        "claimant_id": "CLT-000067",
+        "date": "2026-05-04",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000246"
+      },
+      {
+        "claim_id": "CLM-2026-000253",
+        "claimant_id": "CLT-000067",
+        "date": "2026-05-05",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000253"
+      },
+      {
+        "amount_cents": 72426,
+        "claim_id": "CLM-2026-000253",
+        "claimant_id": "CLT-000067",
+        "date": "2026-05-17",
+        "event": "INVOICE",
+        "provider_id": "PRV-000010",
+        "ref": "INV-PRV-000010-000013"
+      },
+      {
+        "amount_cents": 247790,
+        "claim_id": "CLM-2026-000253",
+        "claimant_id": "CLT-000067",
+        "date": "2026-06-03",
+        "event": "INVOICE",
+        "provider_id": "PRV-000035",
+        "ref": "INV-PRV-000035-000012"
+      },
+      {
+        "amount_cents": 66771,
+        "claim_id": "CLM-2026-000253",
+        "claimant_id": "CLT-000067",
+        "date": "2026-06-13",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000262",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 228445,
+        "claim_id": "CLM-2026-000253",
+        "claimant_id": "CLT-000067",
+        "date": "2026-06-17",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000270",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000325",
+        "claimant_id": "CLT-000110",
+        "date": "2026-06-17",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000314"
+      },
+      {
+        "claim_id": "CLM-2026-000325",
+        "claimant_id": "CLT-000110",
+        "date": "2026-06-18",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000325"
+      },
+      {
+        "claim_id": "CLM-2026-000332",
+        "claimant_id": "CLT-000089",
+        "date": "2026-06-19",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000320"
+      },
+      {
+        "claim_id": "CLM-2026-000332",
+        "claimant_id": "CLT-000089",
+        "date": "2026-06-21",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000332"
+      },
+      {
+        "claim_id": "CLM-2026-000345",
+        "claimant_id": "CLT-000067",
+        "date": "2026-06-28",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000335"
+      },
+      {
+        "claim_id": "CLM-2026-000345",
+        "claimant_id": "CLT-000067",
+        "date": "2026-06-28",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000345"
+      },
+      {
+        "amount_cents": 354272,
+        "claim_id": "CLM-2026-000332",
+        "claimant_id": "CLT-000089",
+        "date": "2026-07-06",
+        "event": "INVOICE",
+        "provider_id": "PRV-000012",
+        "ref": "INV-PRV-000012-000033"
+      },
+      {
+        "amount_cents": 2118195,
+        "claim_id": "CLM-2026-000345",
+        "claimant_id": "CLT-000067",
+        "date": "2026-07-10",
+        "event": "INVOICE",
+        "provider_id": "PRV-000002",
+        "ref": "INV-PRV-000002-000007"
+      },
+      {
+        "amount_cents": 65132,
+        "claim_id": "CLM-2026-000332",
+        "claimant_id": "CLT-000089",
+        "date": "2026-07-12",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000302",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 1009420,
+        "claim_id": "CLM-2026-000325",
+        "claimant_id": "CLT-000110",
+        "date": "2026-07-14",
+        "event": "INVOICE",
+        "provider_id": "PRV-000002",
+        "ref": "INV-PRV-000002-000008"
+      },
+      {
+        "amount_cents": 2093195,
+        "claim_id": "CLM-2026-000345",
+        "claimant_id": "CLT-000067",
+        "date": "2026-07-17",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000306",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000372",
+        "claimant_id": "CLT-000089",
+        "date": "2026-07-17",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000354"
+      },
+      {
+        "claim_id": "CLM-2026-000372",
+        "claimant_id": "CLT-000089",
+        "date": "2026-07-18",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000372"
+      },
+      {
+        "claim_id": "CLM-2026-000379",
+        "claimant_id": "CLT-000067",
+        "date": "2026-07-22",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000368"
+      },
+      {
+        "claim_id": "CLM-2026-000379",
+        "claimant_id": "CLT-000067",
+        "date": "2026-07-22",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000379"
+      },
+      {
+        "claim_id": "CLM-2026-000382",
+        "claimant_id": "CLT-000110",
+        "date": "2026-07-22",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000367"
+      },
+      {
+        "claim_id": "CLM-2026-000384",
+        "claimant_id": "CLT-000089",
+        "date": "2026-07-22",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000366"
+      },
+      {
+        "claim_id": "CLM-2026-000392",
+        "claimant_id": "CLT-000067",
+        "date": "2026-07-23",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000370"
+      },
+      {
+        "claim_id": "CLM-2026-000382",
+        "claimant_id": "CLT-000110",
+        "date": "2026-07-24",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000382"
+      },
+      {
+        "amount_cents": 3059426,
+        "claim_id": "CLM-2026-000372",
+        "claimant_id": "CLT-000089",
+        "date": "2026-07-25",
+        "event": "INVOICE",
+        "provider_id": "PRV-000002",
+        "ref": "INV-PRV-000002-000009"
+      },
+      {
+        "amount_cents": 770136,
+        "claim_id": "CLM-2026-000325",
+        "claimant_id": "CLT-000110",
+        "date": "2026-07-26",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000340",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000384",
+        "claimant_id": "CLT-000089",
+        "date": "2026-07-26",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000384"
+      },
+      {
+        "claim_id": "CLM-2026-000392",
+        "claimant_id": "CLT-000067",
+        "date": "2026-07-29",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000392"
+      },
+      {
+        "claim_id": "CLM-2026-000399",
+        "claimant_id": "CLT-000110",
+        "date": "2026-07-29",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000380"
+      },
+      {
+        "claim_id": "CLM-2026-000403",
+        "claimant_id": "CLT-000089",
+        "date": "2026-07-31",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000385"
+      },
+      {
+        "claim_id": "CLM-2026-000399",
+        "claimant_id": "CLT-000110",
+        "date": "2026-08-01",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000399"
+      },
+      {
+        "claim_id": "CLM-2026-000403",
+        "claimant_id": "CLT-000089",
+        "date": "2026-08-03",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000403"
+      },
+      {
+        "amount_cents": 554074,
+        "claim_id": "CLM-2026-000382",
+        "claimant_id": "CLT-000110",
+        "date": "2026-08-05",
+        "event": "INVOICE",
+        "provider_id": "PRV-000002",
+        "ref": "INV-PRV-000002-000010"
+      },
+      {
+        "amount_cents": 1016629,
+        "claim_id": "CLM-2026-000392",
+        "claimant_id": "CLT-000067",
+        "date": "2026-08-07",
+        "event": "INVOICE",
+        "provider_id": "PRV-000002",
+        "ref": "INV-PRV-000002-000011"
+      },
+      {
+        "claim_id": "CLM-2026-000418",
+        "claimant_id": "CLT-000110",
+        "date": "2026-08-12",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000403"
+      },
+      {
+        "claim_id": "CLM-2026-000418",
+        "claimant_id": "CLT-000110",
+        "date": "2026-08-13",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000418"
+      },
+      {
+        "amount_cents": 2400000,
+        "claim_id": "CLM-2026-000372",
+        "claimant_id": "CLT-000089",
+        "date": "2026-08-14",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000383",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 454074,
+        "claim_id": "CLM-2026-000382",
+        "claimant_id": "CLT-000110",
+        "date": "2026-08-15",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000384",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 260206,
+        "claim_id": "CLM-2026-000379",
+        "claimant_id": "CLT-000067",
+        "date": "2026-08-17",
+        "event": "INVOICE",
+        "provider_id": "PRV-000002",
+        "ref": "INV-PRV-000002-000013"
+      },
+      {
+        "amount_cents": 121040,
+        "claim_id": "CLM-2026-000418",
+        "claimant_id": "CLT-000110",
+        "date": "2026-08-18",
+        "event": "INVOICE",
+        "provider_id": "PRV-000047",
+        "ref": "INV-PRV-000047-000010"
+      },
+      {
+        "amount_cents": 618268,
+        "claim_id": "CLM-2026-000392",
+        "claimant_id": "CLT-000067",
+        "date": "2026-08-21",
+        "event": "INVOICE",
+        "provider_id": "PRV-000014",
+        "ref": "INV-PRV-000014-000011"
+      },
+      {
+        "amount_cents": 877424,
+        "claim_id": "CLM-2026-000384",
+        "claimant_id": "CLT-000089",
+        "date": "2026-08-23",
+        "event": "INVOICE",
+        "provider_id": "PRV-000002",
+        "ref": "INV-PRV-000002-000014"
+      },
+      {
+        "amount_cents": 2362625,
+        "claim_id": "CLM-2026-000399",
+        "claimant_id": "CLT-000110",
+        "date": "2026-08-24",
+        "event": "INVOICE",
+        "provider_id": "PRV-000002",
+        "ref": "INV-PRV-000002-000015"
+      },
+      {
+        "amount_cents": 460041,
+        "claim_id": "CLM-2026-000403",
+        "claimant_id": "CLT-000089",
+        "date": "2026-08-26",
+        "event": "INVOICE",
+        "provider_id": "PRV-000039",
+        "ref": "INV-PRV-000039-000031"
+      },
+      {
+        "amount_cents": 212348,
+        "claim_id": "CLM-2026-000399",
+        "claimant_id": "CLT-000110",
+        "date": "2026-08-28",
+        "event": "INVOICE",
+        "provider_id": "PRV-000048",
+        "ref": "INV-PRV-000048-000012"
+      },
+      {
+        "amount_cents": 235206,
+        "claim_id": "CLM-2026-000379",
+        "claimant_id": "CLT-000067",
+        "date": "2026-08-29",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000403",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 1001083,
+        "claim_id": "CLM-2026-000392",
+        "claimant_id": "CLT-000067",
+        "date": "2026-09-03",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000409",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 608814,
+        "claim_id": "CLM-2026-000392",
+        "claimant_id": "CLT-000067",
+        "date": "2026-09-08",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000418",
+        "status": "REVERSED"
+      },
+      {
+        "amount_cents": 360041,
+        "claim_id": "CLM-2026-000403",
+        "claimant_id": "CLT-000089",
+        "date": "2026-09-08",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000419",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000485",
+        "claimant_id": "CLT-000089",
+        "date": "2026-09-08",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000438"
+      },
+      {
+        "amount_cents": 21040,
+        "claim_id": "CLM-2026-000418",
+        "claimant_id": "CLT-000110",
+        "date": "2026-09-09",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000422",
+        "status": "REVERSED"
+      },
+      {
+        "amount_cents": 777424,
+        "claim_id": "CLM-2026-000384",
+        "claimant_id": "CLT-000089",
+        "date": "2026-09-13",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000433",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 200894,
+        "claim_id": "CLM-2026-000399",
+        "claimant_id": "CLT-000110",
+        "date": "2026-09-13",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000432",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 1552979,
+        "claim_id": "CLM-2026-000399",
+        "claimant_id": "CLT-000110",
+        "date": "2026-09-17",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000441",
+        "status": "FAILED"
+      },
+      {
+        "amount_cents": 1552979,
+        "claim_id": "CLM-2026-000399",
+        "claimant_id": "CLT-000110",
+        "date": "2026-09-24",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000449",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000485",
+        "claimant_id": "CLT-000089",
+        "date": "2026-09-27",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000485"
+      },
+      {
+        "amount_cents": 452875,
+        "claim_id": "CLM-2026-000485",
+        "claimant_id": "CLT-000089",
+        "date": "2026-10-21",
+        "event": "INVOICE",
+        "provider_id": "PRV-000010",
+        "ref": "INV-PRV-000010-000029"
+      },
+      {
+        "amount_cents": 166672,
+        "claim_id": "CLM-2026-000485",
+        "claimant_id": "CLT-000089",
+        "date": "2026-10-22",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000081"
+      }
+    ],
+    "waterfall": [
+      {
+        "added": 0.85,
+        "family": "IDENTITY"
+      },
+      {
+        "added": 0.045,
+        "family": "SUPPORT"
+      }
+    ]
+  },
+  {
+    "context": {
+      "PRV-000028": "SHARED_PROVIDER"
+    },
+    "discounted_links": [],
+    "evidence": [
+      {
+        "best_link_strength": 0.7922,
+        "claimants": [
+          "CLT-000023",
+          "CLT-000038",
+          "CLT-000075",
+          "CLT-000143",
+          "CLT-000188"
+        ],
+        "coverage": 1.0,
+        "edge_type": "SHARED_BANK",
+        "family": "IDENTITY",
+        "repetition": 1.0,
+        "sentence": "CLT-000023, CLT-000038, CLT-000075, CLT-000143 and CLT-000188 share bank account ACCT-64218300. Only 4.0% of claimants have a link like this with no innocent explanation.",
+        "strength": 0.7922
+      },
+      {
+        "best_link_strength": 0.5936,
+        "claimants": [
+          "CLT-000023",
+          "CLT-000038",
+          "CLT-000075",
+          "CLT-000143",
+          "CLT-000188"
+        ],
+        "coverage": 1.0,
+        "edge_type": "SHARED_PHONE",
+        "family": "IDENTITY",
+        "repetition": 1.0,
+        "sentence": "CLT-000023, CLT-000038, CLT-000075, CLT-000143 and CLT-000188 share phone number 555-722-0926. Only 6.5% of claimants have a link like this with no innocent explanation.",
+        "strength": 0.5936
+      },
+      {
+        "best_link_strength": 0.2,
+        "claimants": [
+          "CLT-000038",
+          "CLT-000143"
+        ],
+        "coverage": 0.6325,
+        "edge_type": "SHARED_ADDRESS",
+        "family": "LOCATION",
+        "repetition": 0.5,
+        "sentence": "CLT-000038 and CLT-000143 share the address 1192 Hazel Ct. Only 1.0% of claimants have a link like this with no innocent explanation.",
+        "strength": 0.0632
+      }
+    ],
+    "families": {
+      "IDENTITY": 0.7922,
+      "LOCATION": 0.0632
+    },
+    "flagged": true,
+    "graph": {
+      "edges": [
+        {
+          "edge_type": "SHARED_ADDRESS",
+          "evidence": true,
+          "explanation": null,
+          "family": "LOCATION",
+          "id": "LNK-000087",
+          "recorded": 0,
+          "source": "CLT-000038",
+          "strength": 0.2,
+          "target": "CLT-000143"
+        },
+        {
+          "edge_type": "SHARED_BANK",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000171",
+          "recorded": 0,
+          "source": "CLT-000023",
+          "strength": 0.7922,
+          "target": "CLT-000038"
+        },
+        {
+          "edge_type": "SHARED_BANK",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000172",
+          "recorded": 0,
+          "source": "CLT-000023",
+          "strength": 0.7922,
+          "target": "CLT-000075"
+        },
+        {
+          "edge_type": "SHARED_BANK",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000173",
+          "recorded": 0,
+          "source": "CLT-000023",
+          "strength": 0.7922,
+          "target": "CLT-000143"
+        },
+        {
+          "edge_type": "SHARED_BANK",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000174",
+          "recorded": 0,
+          "source": "CLT-000023",
+          "strength": 0.7922,
+          "target": "CLT-000188"
+        },
+        {
+          "edge_type": "SHARED_BANK",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000175",
+          "recorded": 0,
+          "source": "CLT-000038",
+          "strength": 0.7922,
+          "target": "CLT-000075"
+        },
+        {
+          "edge_type": "SHARED_BANK",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000176",
+          "recorded": 0,
+          "source": "CLT-000038",
+          "strength": 0.7922,
+          "target": "CLT-000143"
+        },
+        {
+          "edge_type": "SHARED_BANK",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000177",
+          "recorded": 0,
+          "source": "CLT-000038",
+          "strength": 0.7922,
+          "target": "CLT-000188"
+        },
+        {
+          "edge_type": "SHARED_BANK",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000180",
+          "recorded": 0,
+          "source": "CLT-000075",
+          "strength": 0.7922,
+          "target": "CLT-000143"
+        },
+        {
+          "edge_type": "SHARED_BANK",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000181",
+          "recorded": 0,
+          "source": "CLT-000075",
+          "strength": 0.7922,
+          "target": "CLT-000188"
+        },
+        {
+          "edge_type": "SHARED_BANK",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000183",
+          "recorded": 0,
+          "source": "CLT-000143",
+          "strength": 0.7922,
+          "target": "CLT-000188"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000206",
+          "recorded": 0,
+          "source": "CLT-000023",
+          "strength": 0.5936,
+          "target": "CLT-000038"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000207",
+          "recorded": 0,
+          "source": "CLT-000023",
+          "strength": 0.5936,
+          "target": "CLT-000075"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000208",
+          "recorded": 0,
+          "source": "CLT-000023",
+          "strength": 0.5936,
+          "target": "CLT-000143"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000209",
+          "recorded": 0,
+          "source": "CLT-000023",
+          "strength": 0.5936,
+          "target": "CLT-000188"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000218",
+          "recorded": 0,
+          "source": "CLT-000038",
+          "strength": 0.5936,
+          "target": "CLT-000075"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000219",
+          "recorded": 0,
+          "source": "CLT-000038",
+          "strength": 0.5936,
+          "target": "CLT-000143"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000220",
+          "recorded": 0,
+          "source": "CLT-000038",
+          "strength": 0.5936,
+          "target": "CLT-000188"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000232",
+          "recorded": 0,
+          "source": "CLT-000075",
+          "strength": 0.5936,
+          "target": "CLT-000143"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000233",
+          "recorded": 0,
+          "source": "CLT-000075",
+          "strength": 0.5936,
+          "target": "CLT-000188"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000246",
+          "recorded": 0,
+          "source": "CLT-000143",
+          "strength": 0.5936,
+          "target": "CLT-000188"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000023-PRV-000028",
+          "recorded": null,
+          "source": "CLT-000023",
+          "strength": 0.0,
+          "target": "PRV-000028"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000038-PRV-000028",
+          "recorded": null,
+          "source": "CLT-000038",
+          "strength": 0.0,
+          "target": "PRV-000028"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000075-PRV-000028",
+          "recorded": null,
+          "source": "CLT-000075",
+          "strength": 0.0,
+          "target": "PRV-000028"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000143-PRV-000028",
+          "recorded": null,
+          "source": "CLT-000143",
+          "strength": 0.0,
+          "target": "PRV-000028"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000188-PRV-000028",
+          "recorded": null,
+          "source": "CLT-000188",
+          "strength": 0.0,
+          "target": "PRV-000028"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "CLT-000023",
+          "label": "Adele Keller",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000038",
+          "label": "Mei Hart",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000075",
+          "label": "Mei Kapoor",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000143",
+          "label": "Asha Acosta",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000188",
+          "label": "Ines Varga",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "PRV-000028",
+          "label": "PRV-000028",
+          "role": "SHARED_PROVIDER",
+          "type": "PROVIDER"
+        }
+      ]
+    },
+    "members": [
+      "CLT-000023",
+      "CLT-000038",
+      "CLT-000075",
+      "CLT-000143",
+      "CLT-000188"
+    ],
+    "network_id": "NET-000002",
+    "priority": "HIGH",
+    "rank": 2,
+    "score": 0.8637,
+    "support": [
+      {
+        "code": "UNRECORDED_LINK",
+        "sentence": "21 of these links (SHARED_ADDRESS, SHARED_BANK and SHARED_PHONE) are missing from the recorded relationship register, for example between CLT-000038 and CLT-000143, and were found only by rebuilding links from raw data.",
+        "value": 0.15
+      },
+      {
+        "code": "PROVIDER_CONCENTRATION",
+        "sentence": "5 of 5 members use provider PRV-000028, which is not a busy provider.",
+        "value": 0.2
+      }
+    ],
+    "timeline": [
+      {
+        "claim_id": "CLM-2026-000361",
+        "claimant_id": "CLT-000188",
+        "date": "2025-10-01",
+        "event": "POLICY_START",
+        "ref": "POL-000054"
+      },
+      {
+        "claim_id": "CLM-2026-000446",
+        "claimant_id": "CLT-000188",
+        "date": "2025-10-01",
+        "event": "POLICY_START",
+        "ref": "POL-000054"
+      },
+      {
+        "claim_id": "CLM-2026-000498",
+        "claimant_id": "CLT-000188",
+        "date": "2025-10-01",
+        "event": "POLICY_START",
+        "ref": "POL-000054"
+      },
+      {
+        "claim_id": "CLM-2026-000364",
+        "claimant_id": "CLT-000075",
+        "date": "2025-10-16",
+        "event": "POLICY_START",
+        "ref": "POL-000024"
+      },
+      {
+        "claim_id": "CLM-2026-000073",
+        "claimant_id": "CLT-000023",
+        "date": "2026-02-14",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000074"
+      },
+      {
+        "amount_cents": 443979,
+        "claim_id": "CLM-2026-000073",
+        "claimant_id": "CLT-000023",
+        "date": "2026-02-18",
+        "event": "INVOICE",
+        "provider_id": "PRV-000036",
+        "ref": "INV-PRV-000036-000003"
+      },
+      {
+        "claim_id": "CLM-2026-000073",
+        "claimant_id": "CLT-000023",
+        "date": "2026-02-18",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000073"
+      },
+      {
+        "claim_id": "CLM-2026-000258",
+        "claimant_id": "CLT-000143",
+        "date": "2026-03-16",
+        "event": "POLICY_START",
+        "ref": "POL-000257"
+      },
+      {
+        "claim_id": "CLM-2026-000354",
+        "claimant_id": "CLT-000143",
+        "date": "2026-03-16",
+        "event": "POLICY_START",
+        "ref": "POL-000257"
+      },
+      {
+        "claim_id": "CLM-2026-000420",
+        "claimant_id": "CLT-000143",
+        "date": "2026-03-16",
+        "event": "POLICY_START",
+        "ref": "POL-000257"
+      },
+      {
+        "claim_id": "CLM-2026-000258",
+        "claimant_id": "CLT-000143",
+        "date": "2026-05-03",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000244"
+      },
+      {
+        "claim_id": "CLM-2026-000258",
+        "claimant_id": "CLT-000143",
+        "date": "2026-05-06",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000258"
+      },
+      {
+        "claim_id": "CLM-2026-000073",
+        "claimant_id": "CLT-000023",
+        "date": "2026-05-26",
+        "event": "POLICY_START",
+        "ref": "POL-000001"
+      },
+      {
+        "claim_id": "CLM-2026-000333",
+        "claimant_id": "CLT-000023",
+        "date": "2026-05-26",
+        "event": "POLICY_START",
+        "ref": "POL-000001"
+      },
+      {
+        "claim_id": "CLM-2026-000366",
+        "claimant_id": "CLT-000023",
+        "date": "2026-05-26",
+        "event": "POLICY_START",
+        "ref": "POL-000001"
+      },
+      {
+        "amount_cents": 213444,
+        "claim_id": "CLM-2026-000258",
+        "claimant_id": "CLT-000143",
+        "date": "2026-05-30",
+        "event": "INVOICE",
+        "provider_id": "PRV-000012",
+        "ref": "INV-PRV-000012-000024"
+      },
+      {
+        "amount_cents": 113444,
+        "claim_id": "CLM-2026-000258",
+        "claimant_id": "CLT-000143",
+        "date": "2026-06-13",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000260",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000333",
+        "claimant_id": "CLT-000023",
+        "date": "2026-06-18",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000318"
+      },
+      {
+        "claim_id": "CLM-2026-000333",
+        "claimant_id": "CLT-000023",
+        "date": "2026-06-21",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000333"
+      },
+      {
+        "amount_cents": 79820,
+        "claim_id": "CLM-2026-000333",
+        "claimant_id": "CLT-000023",
+        "date": "2026-06-29",
+        "event": "INVOICE",
+        "provider_id": "PRV-000043",
+        "ref": "INV-PRV-000043-000020"
+      },
+      {
+        "claim_id": "CLM-2026-000347",
+        "claimant_id": "CLT-000038",
+        "date": "2026-06-29",
+        "event": "POLICY_START",
+        "ref": "POL-000060"
+      },
+      {
+        "claim_id": "CLM-2026-000347",
+        "claimant_id": "CLT-000038",
+        "date": "2026-06-30",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000341"
+      },
+      {
+        "claim_id": "CLM-2026-000354",
+        "claimant_id": "CLT-000143",
+        "date": "2026-06-30",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000339"
+      },
+      {
+        "claim_id": "CLM-2026-000361",
+        "claimant_id": "CLT-000188",
+        "date": "2026-06-30",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000338"
+      },
+      {
+        "claim_id": "CLM-2026-000364",
+        "claimant_id": "CLT-000075",
+        "date": "2026-06-30",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000342"
+      },
+      {
+        "claim_id": "CLM-2026-000366",
+        "claimant_id": "CLT-000023",
+        "date": "2026-06-30",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000340"
+      },
+      {
+        "claim_id": "CLM-2026-000347",
+        "claimant_id": "CLT-000038",
+        "date": "2026-07-01",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000347"
+      },
+      {
+        "claim_id": "CLM-2026-000354",
+        "claimant_id": "CLT-000143",
+        "date": "2026-07-03",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000354"
+      },
+      {
+        "claim_id": "CLM-2026-000361",
+        "claimant_id": "CLT-000188",
+        "date": "2026-07-06",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000361"
+      },
+      {
+        "amount_cents": 123327,
+        "claim_id": "CLM-2026-000354",
+        "claimant_id": "CLT-000143",
+        "date": "2026-07-07",
+        "event": "INVOICE",
+        "provider_id": "PRV-000028",
+        "ref": "INV-PRV-000028-000004"
+      },
+      {
+        "amount_cents": 264718,
+        "claim_id": "CLM-2026-000354",
+        "claimant_id": "CLT-000143",
+        "date": "2026-07-08",
+        "event": "INVOICE",
+        "provider_id": "PRV-000030",
+        "ref": "INV-PRV-000030-000016"
+      },
+      {
+        "claim_id": "CLM-2026-000364",
+        "claimant_id": "CLT-000075",
+        "date": "2026-07-08",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000364"
+      },
+      {
+        "amount_cents": 299487,
+        "claim_id": "CLM-2026-000364",
+        "claimant_id": "CLT-000075",
+        "date": "2026-07-10",
+        "event": "INVOICE",
+        "provider_id": "PRV-000036",
+        "ref": "INV-PRV-000036-000014"
+      },
+      {
+        "claim_id": "CLM-2026-000366",
+        "claimant_id": "CLT-000023",
+        "date": "2026-07-10",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000366"
+      },
+      {
+        "amount_cents": 959861,
+        "claim_id": "CLM-2026-000361",
+        "claimant_id": "CLT-000188",
+        "date": "2026-07-24",
+        "event": "INVOICE",
+        "provider_id": "PRV-000028",
+        "ref": "INV-PRV-000028-000005"
+      },
+      {
+        "amount_cents": 257382,
+        "claim_id": "CLM-2026-000347",
+        "claimant_id": "CLT-000038",
+        "date": "2026-07-27",
+        "event": "INVOICE",
+        "provider_id": "PRV-000028",
+        "ref": "INV-PRV-000028-000006"
+      },
+      {
+        "amount_cents": 91545,
+        "claim_id": "CLM-2026-000354",
+        "claimant_id": "CLT-000143",
+        "date": "2026-07-28",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000344",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 264832,
+        "claim_id": "CLM-2026-000364",
+        "claimant_id": "CLT-000075",
+        "date": "2026-07-28",
+        "event": "INVOICE",
+        "provider_id": "PRV-000003",
+        "ref": "INV-PRV-000003-000014"
+      },
+      {
+        "amount_cents": 102355,
+        "claim_id": "CLM-2026-000364",
+        "claimant_id": "CLT-000075",
+        "date": "2026-07-29",
+        "event": "INVOICE",
+        "provider_id": "PRV-000028",
+        "ref": "INV-PRV-000028-000007"
+      },
+      {
+        "amount_cents": 196500,
+        "claim_id": "CLM-2026-000354",
+        "claimant_id": "CLT-000143",
+        "date": "2026-08-02",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000357",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 934861,
+        "claim_id": "CLM-2026-000361",
+        "claimant_id": "CLT-000188",
+        "date": "2026-08-06",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000364",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 544214,
+        "claim_id": "CLM-2026-000366",
+        "claimant_id": "CLT-000023",
+        "date": "2026-08-07",
+        "event": "INVOICE",
+        "provider_id": "PRV-000028",
+        "ref": "INV-PRV-000028-000009"
+      },
+      {
+        "amount_cents": 81039,
+        "claim_id": "CLM-2026-000364",
+        "claimant_id": "CLT-000075",
+        "date": "2026-08-12",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000377",
+        "status": "FAILED"
+      },
+      {
+        "claim_id": "CLM-2026-000420",
+        "claimant_id": "CLT-000143",
+        "date": "2026-08-12",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000403"
+      },
+      {
+        "claim_id": "CLM-2026-000420",
+        "claimant_id": "CLT-000143",
+        "date": "2026-08-14",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000420"
+      },
+      {
+        "amount_cents": 207382,
+        "claim_id": "CLM-2026-000347",
+        "claimant_id": "CLT-000038",
+        "date": "2026-08-16",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000388",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 81039,
+        "claim_id": "CLM-2026-000364",
+        "claimant_id": "CLT-000075",
+        "date": "2026-08-17",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000389",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 287943,
+        "claim_id": "CLM-2026-000364",
+        "claimant_id": "CLT-000075",
+        "date": "2026-08-19",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000390",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 254624,
+        "claim_id": "CLM-2026-000364",
+        "claimant_id": "CLT-000075",
+        "date": "2026-08-19",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000392",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 177274,
+        "claim_id": "CLM-2026-000366",
+        "claimant_id": "CLT-000023",
+        "date": "2026-08-19",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000391",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000446",
+        "claimant_id": "CLT-000188",
+        "date": "2026-08-28",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000425"
+      },
+      {
+        "claim_id": "CLM-2026-000446",
+        "claimant_id": "CLT-000188",
+        "date": "2026-08-28",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000446"
+      },
+      {
+        "amount_cents": 125073,
+        "claim_id": "CLM-2026-000420",
+        "claimant_id": "CLT-000143",
+        "date": "2026-08-29",
+        "event": "INVOICE",
+        "provider_id": "PRV-000030",
+        "ref": "INV-PRV-000030-000018"
+      },
+      {
+        "amount_cents": 243015,
+        "claim_id": "CLM-2026-000420",
+        "claimant_id": "CLT-000143",
+        "date": "2026-09-11",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000075"
+      },
+      {
+        "amount_cents": 295064,
+        "claim_id": "CLM-2026-000446",
+        "claimant_id": "CLT-000188",
+        "date": "2026-09-23",
+        "event": "INVOICE",
+        "provider_id": "PRV-000024",
+        "ref": "INV-PRV-000024-000002"
+      },
+      {
+        "amount_cents": 50160,
+        "claim_id": "CLM-2026-000446",
+        "claimant_id": "CLT-000188",
+        "date": "2026-09-23",
+        "event": "INVOICE",
+        "provider_id": "PRV-000031",
+        "ref": "INV-PRV-000031-000002"
+      },
+      {
+        "claim_id": "CLM-2026-000498",
+        "claimant_id": "CLT-000188",
+        "date": "2026-09-29",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000467"
+      },
+      {
+        "amount_cents": 273697,
+        "claim_id": "CLM-2026-000446",
+        "claimant_id": "CLT-000188",
+        "date": "2026-10-07",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000465",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 46527,
+        "claim_id": "CLM-2026-000446",
+        "claimant_id": "CLT-000188",
+        "date": "2026-10-08",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000466",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000498",
+        "claimant_id": "CLT-000188",
+        "date": "2026-10-10",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000498"
+      },
+      {
+        "amount_cents": 148024,
+        "claim_id": "CLM-2026-000498",
+        "claimant_id": "CLT-000188",
+        "date": "2026-10-21",
+        "event": "INVOICE",
+        "provider_id": "PRV-000010",
+        "ref": "INV-PRV-000010-000028"
+      }
+    ],
+    "waterfall": [
+      {
+        "added": 0.7922,
+        "family": "IDENTITY"
+      },
+      {
+        "added": 0.0131,
+        "family": "LOCATION"
+      },
+      {
+        "added": 0.0584,
+        "family": "SUPPORT"
+      }
+    ]
+  },
+  {
+    "context": {
+      "PRV-000042": "BILLING_PROVIDER"
+    },
+    "discounted_links": [],
+    "evidence": [
+      {
+        "best_link_strength": 0.8,
+        "claimants": [
+          "CLT-000071",
+          "CLT-000197"
+        ],
+        "coverage": 1.0,
+        "edge_type": "DUPLICATE_INVOICE",
+        "family": "BILLING",
+        "repetition": 1.0,
+        "sentence": "CLT-000071 and CLT-000197 were billed the same invoice EXT-8344551 from provider PRV-000042 dated 2026-04-19 for $1,770.93, on invoices INV-PRV-000042-000002 and INV-PRV-000042-000003. Only 1.0% of claimants have a link like this with no innocent explanation.",
+        "strength": 0.8
+      }
+    ],
+    "families": {
+      "BILLING": 0.8
+    },
+    "flagged": true,
+    "graph": {
+      "edges": [
+        {
+          "edge_type": "DUPLICATE_INVOICE",
+          "evidence": true,
+          "explanation": null,
+          "family": "BILLING",
+          "id": "LNK-000001",
+          "recorded": null,
+          "source": "CLT-000071",
+          "strength": 0.8,
+          "target": "CLT-000197"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000071-PRV-000042",
+          "recorded": null,
+          "source": "CLT-000071",
+          "strength": 0.0,
+          "target": "PRV-000042"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000197-PRV-000042",
+          "recorded": null,
+          "source": "CLT-000197",
+          "strength": 0.0,
+          "target": "PRV-000042"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "CLT-000071",
+          "label": "Dara Fernandez",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000197",
+          "label": "Nikhil Nair",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "PRV-000042",
+          "label": "PRV-000042",
+          "role": "BILLING_PROVIDER",
+          "type": "PROVIDER"
+        }
+      ]
+    },
+    "members": [
+      "CLT-000071",
+      "CLT-000197"
+    ],
+    "network_id": "NET-000003",
+    "priority": "HIGH",
+    "rank": 3,
+    "score": 0.84,
+    "support": [
+      {
+        "code": "INFLATED_AMOUNT",
+        "sentence": "Their invoices at provider PRV-000005 have a median of 2.2x the peer median for the same incident and provider type.",
+        "value": 0.2
+      }
+    ],
+    "timeline": [
+      {
+        "claim_id": "CLM-2026-000075",
+        "claimant_id": "CLT-000071",
+        "date": "2026-01-01",
+        "event": "POLICY_START",
+        "ref": "POL-000192"
+      },
+      {
+        "claim_id": "CLM-2026-000197",
+        "claimant_id": "CLT-000071",
+        "date": "2026-01-01",
+        "event": "POLICY_START",
+        "ref": "POL-000192"
+      },
+      {
+        "claim_id": "CLM-2026-000304",
+        "claimant_id": "CLT-000071",
+        "date": "2026-01-01",
+        "event": "POLICY_START",
+        "ref": "POL-000192"
+      },
+      {
+        "claim_id": "CLM-2026-000490",
+        "claimant_id": "CLT-000071",
+        "date": "2026-01-01",
+        "event": "POLICY_START",
+        "ref": "POL-000192"
+      },
+      {
+        "claim_id": "CLM-2026-000075",
+        "claimant_id": "CLT-000071",
+        "date": "2026-02-19",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000082"
+      },
+      {
+        "claim_id": "CLM-2026-000075",
+        "claimant_id": "CLT-000071",
+        "date": "2026-02-20",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000075"
+      },
+      {
+        "amount_cents": 226325,
+        "claim_id": "CLM-2026-000075",
+        "claimant_id": "CLT-000071",
+        "date": "2026-03-03",
+        "event": "INVOICE",
+        "provider_id": "PRV-000019",
+        "ref": "INV-PRV-000019-000002"
+      },
+      {
+        "amount_cents": 285493,
+        "claim_id": "CLM-2026-000075",
+        "claimant_id": "CLT-000071",
+        "date": "2026-03-06",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000011"
+      },
+      {
+        "claim_id": "CLM-2026-000209",
+        "claimant_id": "CLT-000197",
+        "date": "2026-03-10",
+        "event": "POLICY_START",
+        "ref": "POL-000072"
+      },
+      {
+        "claim_id": "CLM-2026-000220",
+        "claimant_id": "CLT-000197",
+        "date": "2026-03-10",
+        "event": "POLICY_START",
+        "ref": "POL-000072"
+      },
+      {
+        "claim_id": "CLM-2026-000404",
+        "claimant_id": "CLT-000197",
+        "date": "2026-03-10",
+        "event": "POLICY_START",
+        "ref": "POL-000072"
+      },
+      {
+        "claim_id": "CLM-2026-000437",
+        "claimant_id": "CLT-000197",
+        "date": "2026-03-10",
+        "event": "POLICY_START",
+        "ref": "POL-000072"
+      },
+      {
+        "amount_cents": 271548,
+        "claim_id": "CLM-2026-000075",
+        "claimant_id": "CLT-000071",
+        "date": "2026-03-16",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000063",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 215270,
+        "claim_id": "CLM-2026-000075",
+        "claimant_id": "CLT-000071",
+        "date": "2026-03-19",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000068",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000197",
+        "claimant_id": "CLT-000071",
+        "date": "2026-04-04",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000197"
+      },
+      {
+        "claim_id": "CLM-2026-000197",
+        "claimant_id": "CLT-000071",
+        "date": "2026-04-05",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000197"
+      },
+      {
+        "claim_id": "CLM-2026-000209",
+        "claimant_id": "CLT-000197",
+        "date": "2026-04-07",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000204"
+      },
+      {
+        "claim_id": "CLM-2026-000209",
+        "claimant_id": "CLT-000197",
+        "date": "2026-04-11",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000209"
+      },
+      {
+        "amount_cents": 177093,
+        "claim_id": "CLM-2026-000197",
+        "claimant_id": "CLT-000071",
+        "date": "2026-04-19",
+        "event": "INVOICE",
+        "provider_id": "PRV-000042",
+        "ref": "INV-PRV-000042-000003"
+      },
+      {
+        "amount_cents": 177093,
+        "claim_id": "CLM-2026-000209",
+        "claimant_id": "CLT-000197",
+        "date": "2026-04-19",
+        "event": "INVOICE",
+        "provider_id": "PRV-000042",
+        "ref": "INV-PRV-000042-000002"
+      },
+      {
+        "claim_id": "CLM-2026-000220",
+        "claimant_id": "CLT-000197",
+        "date": "2026-04-19",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000218"
+      },
+      {
+        "claim_id": "CLM-2026-000220",
+        "claimant_id": "CLT-000197",
+        "date": "2026-04-19",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000220"
+      },
+      {
+        "amount_cents": 343983,
+        "claim_id": "CLM-2026-000220",
+        "claimant_id": "CLT-000197",
+        "date": "2026-04-23",
+        "event": "INVOICE",
+        "provider_id": "PRV-000027",
+        "ref": "INV-PRV-000027-000004"
+      },
+      {
+        "amount_cents": 152093,
+        "claim_id": "CLM-2026-000209",
+        "claimant_id": "CLT-000197",
+        "date": "2026-04-28",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000173",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 318983,
+        "claim_id": "CLM-2026-000220",
+        "claimant_id": "CLT-000197",
+        "date": "2026-05-04",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000188",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 152093,
+        "claim_id": "CLM-2026-000197",
+        "claimant_id": "CLT-000071",
+        "date": "2026-05-10",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000195",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000304",
+        "claimant_id": "CLT-000071",
+        "date": "2026-06-06",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000297"
+      },
+      {
+        "claim_id": "CLM-2026-000304",
+        "claimant_id": "CLT-000071",
+        "date": "2026-06-08",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000304"
+      },
+      {
+        "amount_cents": 798440,
+        "claim_id": "CLM-2026-000304",
+        "claimant_id": "CLT-000071",
+        "date": "2026-06-19",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000049"
+      },
+      {
+        "claim_id": "CLM-2026-000404",
+        "claimant_id": "CLT-000197",
+        "date": "2026-08-04",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000393"
+      },
+      {
+        "amount_cents": 571942,
+        "claim_id": "CLM-2026-000404",
+        "claimant_id": "CLT-000197",
+        "date": "2026-08-04",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000066"
+      },
+      {
+        "claim_id": "CLM-2026-000404",
+        "claimant_id": "CLT-000197",
+        "date": "2026-08-04",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000404"
+      },
+      {
+        "claim_id": "CLM-2026-000437",
+        "claimant_id": "CLT-000197",
+        "date": "2026-08-12",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000404"
+      },
+      {
+        "amount_cents": 399662,
+        "claim_id": "CLM-2026-000404",
+        "claimant_id": "CLT-000197",
+        "date": "2026-08-18",
+        "event": "INVOICE",
+        "provider_id": "PRV-000015",
+        "ref": "INV-PRV-000015-000019"
+      },
+      {
+        "claim_id": "CLM-2026-000437",
+        "claimant_id": "CLT-000197",
+        "date": "2026-08-23",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000437"
+      },
+      {
+        "amount_cents": 136996,
+        "claim_id": "CLM-2026-000437",
+        "claimant_id": "CLT-000197",
+        "date": "2026-09-10",
+        "event": "INVOICE",
+        "provider_id": "PRV-000030",
+        "ref": "INV-PRV-000030-000020"
+      },
+      {
+        "amount_cents": 374874,
+        "claim_id": "CLM-2026-000437",
+        "claimant_id": "CLT-000197",
+        "date": "2026-09-20",
+        "event": "INVOICE",
+        "provider_id": "PRV-000009",
+        "ref": "INV-PRV-000009-000005"
+      },
+      {
+        "claim_id": "CLM-2026-000490",
+        "claimant_id": "CLT-000071",
+        "date": "2026-09-29",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000468"
+      },
+      {
+        "claim_id": "CLM-2026-000490",
+        "claimant_id": "CLT-000071",
+        "date": "2026-09-30",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000490"
+      },
+      {
+        "amount_cents": 452108,
+        "claim_id": "CLM-2026-000490",
+        "claimant_id": "CLT-000071",
+        "date": "2026-10-02",
+        "event": "INVOICE",
+        "provider_id": "PRV-000012",
+        "ref": "INV-PRV-000012-000048"
+      }
+    ],
+    "waterfall": [
+      {
+        "added": 0.8,
+        "family": "BILLING"
+      },
+      {
+        "added": 0.04,
+        "family": "SUPPORT"
+      }
+    ]
+  },
+  {
+    "context": {
+      "PRV-000015": "SHARED_PROVIDER"
+    },
+    "discounted_links": [],
+    "evidence": [
+      {
+        "best_link_strength": 0.5126,
+        "claimants": [
+          "CLT-000047",
+          "CLT-000137",
+          "CLT-000157"
+        ],
+        "coverage": 1.0,
+        "edge_type": "EARLY_CLAIM_PAIR",
+        "family": "TIMING",
+        "repetition": 1.0,
+        "sentence": "CLT-000047, CLT-000137 and CLT-000157 each claimed within 9 days of their policy starting, at provider PRV-000015, on claims CLM-2026-000060, CLM-2026-000089 and CLM-2026-000095 no more than 15 days apart. Only 4.0% of claimants have a link like this with no innocent explanation.",
+        "strength": 0.5126
+      },
+      {
+        "best_link_strength": 0.5936,
+        "claimants": [
+          "CLT-000137",
+          "CLT-000157"
+        ],
+        "coverage": 0.8165,
+        "edge_type": "SHARED_PHONE",
+        "family": "IDENTITY",
+        "repetition": 1.0,
+        "sentence": "CLT-000137 and CLT-000157 share phone number 555-024-3294. Only 6.5% of claimants have a link like this with no innocent explanation.",
+        "strength": 0.4847
+      }
+    ],
+    "families": {
+      "IDENTITY": 0.4847,
+      "TIMING": 0.5126
+    },
+    "flagged": true,
+    "graph": {
+      "edges": [
+        {
+          "edge_type": "EARLY_CLAIM_PAIR",
+          "evidence": true,
+          "explanation": null,
+          "family": "TIMING",
+          "id": "LNK-000003",
+          "recorded": null,
+          "source": "CLT-000047",
+          "strength": 0.5126,
+          "target": "CLT-000137"
+        },
+        {
+          "edge_type": "EARLY_CLAIM_PAIR",
+          "evidence": true,
+          "explanation": null,
+          "family": "TIMING",
+          "id": "LNK-000004",
+          "recorded": null,
+          "source": "CLT-000047",
+          "strength": 0.5126,
+          "target": "CLT-000157"
+        },
+        {
+          "edge_type": "EARLY_CLAIM_PAIR",
+          "evidence": true,
+          "explanation": null,
+          "family": "TIMING",
+          "id": "LNK-000010",
+          "recorded": null,
+          "source": "CLT-000137",
+          "strength": 0.5126,
+          "target": "CLT-000157"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000245",
+          "recorded": 1,
+          "source": "CLT-000137",
+          "strength": 0.5936,
+          "target": "CLT-000157"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000047-PRV-000015",
+          "recorded": null,
+          "source": "CLT-000047",
+          "strength": 0.0,
+          "target": "PRV-000015"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000137-PRV-000015",
+          "recorded": null,
+          "source": "CLT-000137",
+          "strength": 0.0,
+          "target": "PRV-000015"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000157-PRV-000015",
+          "recorded": null,
+          "source": "CLT-000157",
+          "strength": 0.0,
+          "target": "PRV-000015"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "CLT-000047",
+          "label": "Bianca Varga",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000137",
+          "label": "Hugo Bailey",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000157",
+          "label": "Imani Barnes",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "PRV-000015",
+          "label": "PRV-000015",
+          "role": "SHARED_PROVIDER",
+          "type": "PROVIDER"
+        }
+      ]
+    },
+    "members": [
+      "CLT-000047",
+      "CLT-000137",
+      "CLT-000157"
+    ],
+    "network_id": "NET-000004",
+    "priority": "MEDIUM",
+    "rank": 4,
+    "score": 0.7991,
+    "support": [
+      {
+        "code": "PROVIDER_CONCENTRATION",
+        "sentence": "3 of 3 members use provider PRV-000015, which is not a busy provider.",
+        "value": 0.2
+      }
+    ],
+    "timeline": [
+      {
+        "claim_id": "CLM-2026-000060",
+        "claimant_id": "CLT-000137",
+        "date": "2026-02-07",
+        "event": "POLICY_START",
+        "ref": "POL-000218"
+      },
+      {
+        "claim_id": "CLM-2026-000065",
+        "claimant_id": "CLT-000137",
+        "date": "2026-02-07",
+        "event": "POLICY_START",
+        "ref": "POL-000218"
+      },
+      {
+        "claim_id": "CLM-2026-000407",
+        "claimant_id": "CLT-000137",
+        "date": "2026-02-07",
+        "event": "POLICY_START",
+        "ref": "POL-000218"
+      },
+      {
+        "claim_id": "CLM-2026-000481",
+        "claimant_id": "CLT-000137",
+        "date": "2026-02-07",
+        "event": "POLICY_START",
+        "ref": "POL-000218"
+      },
+      {
+        "claim_id": "CLM-2026-000065",
+        "claimant_id": "CLT-000137",
+        "date": "2026-02-09",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000065"
+      },
+      {
+        "claim_id": "CLM-2026-000060",
+        "claimant_id": "CLT-000137",
+        "date": "2026-02-11",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000067"
+      },
+      {
+        "amount_cents": 105280,
+        "claim_id": "CLM-2026-000060",
+        "claimant_id": "CLT-000137",
+        "date": "2026-02-11",
+        "event": "INVOICE",
+        "provider_id": "PRV-000015",
+        "ref": "INV-PRV-000015-000003"
+      },
+      {
+        "claim_id": "CLM-2026-000060",
+        "claimant_id": "CLT-000137",
+        "date": "2026-02-11",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000060"
+      },
+      {
+        "claim_id": "CLM-2026-000065",
+        "claimant_id": "CLT-000137",
+        "date": "2026-02-13",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000065"
+      },
+      {
+        "claim_id": "CLM-2026-000089",
+        "claimant_id": "CLT-000157",
+        "date": "2026-02-14",
+        "event": "POLICY_START",
+        "ref": "POL-000234"
+      },
+      {
+        "claim_id": "CLM-2026-000116",
+        "claimant_id": "CLT-000157",
+        "date": "2026-02-14",
+        "event": "POLICY_START",
+        "ref": "POL-000234"
+      },
+      {
+        "claim_id": "CLM-2026-000243",
+        "claimant_id": "CLT-000157",
+        "date": "2026-02-14",
+        "event": "POLICY_START",
+        "ref": "POL-000234"
+      },
+      {
+        "claim_id": "CLM-2026-000281",
+        "claimant_id": "CLT-000157",
+        "date": "2026-02-14",
+        "event": "POLICY_START",
+        "ref": "POL-000234"
+      },
+      {
+        "claim_id": "CLM-2026-000371",
+        "claimant_id": "CLT-000157",
+        "date": "2026-02-14",
+        "event": "POLICY_START",
+        "ref": "POL-000234"
+      },
+      {
+        "claim_id": "CLM-2026-000451",
+        "claimant_id": "CLT-000157",
+        "date": "2026-02-14",
+        "event": "POLICY_START",
+        "ref": "POL-000234"
+      },
+      {
+        "claim_id": "CLM-2026-000095",
+        "claimant_id": "CLT-000047",
+        "date": "2026-02-22",
+        "event": "POLICY_START",
+        "ref": "POL-000084"
+      },
+      {
+        "claim_id": "CLM-2026-000260",
+        "claimant_id": "CLT-000047",
+        "date": "2026-02-22",
+        "event": "POLICY_START",
+        "ref": "POL-000084"
+      },
+      {
+        "claim_id": "CLM-2026-000089",
+        "claimant_id": "CLT-000157",
+        "date": "2026-02-23",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000090"
+      },
+      {
+        "amount_cents": 207045,
+        "claim_id": "CLM-2026-000089",
+        "claimant_id": "CLT-000157",
+        "date": "2026-02-24",
+        "event": "INVOICE",
+        "provider_id": "PRV-000015",
+        "ref": "INV-PRV-000015-000005"
+      },
+      {
+        "claim_id": "CLM-2026-000089",
+        "claimant_id": "CLT-000157",
+        "date": "2026-02-24",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000089"
+      },
+      {
+        "claim_id": "CLM-2026-000095",
+        "claimant_id": "CLT-000047",
+        "date": "2026-02-26",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000108"
+      },
+      {
+        "claim_id": "CLM-2026-000095",
+        "claimant_id": "CLT-000047",
+        "date": "2026-02-27",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000095"
+      },
+      {
+        "amount_cents": 623179,
+        "claim_id": "CLM-2026-000095",
+        "claimant_id": "CLT-000047",
+        "date": "2026-02-28",
+        "event": "INVOICE",
+        "provider_id": "PRV-000015",
+        "ref": "INV-PRV-000015-000006"
+      },
+      {
+        "claim_id": "CLM-2026-000116",
+        "claimant_id": "CLT-000157",
+        "date": "2026-03-01",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000131"
+      },
+      {
+        "amount_cents": 545048,
+        "claim_id": "CLM-2026-000116",
+        "claimant_id": "CLT-000157",
+        "date": "2026-03-03",
+        "event": "INVOICE",
+        "provider_id": "PRV-000047",
+        "ref": "INV-PRV-000047-000003"
+      },
+      {
+        "claim_id": "CLM-2026-000116",
+        "claimant_id": "CLT-000157",
+        "date": "2026-03-03",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000116"
+      },
+      {
+        "amount_cents": 118470,
+        "claim_id": "CLM-2026-000065",
+        "claimant_id": "CLT-000137",
+        "date": "2026-03-11",
+        "event": "INVOICE",
+        "provider_id": "PRV-000016",
+        "ref": "INV-PRV-000016-000001"
+      },
+      {
+        "amount_cents": 182045,
+        "claim_id": "CLM-2026-000089",
+        "claimant_id": "CLT-000157",
+        "date": "2026-03-12",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000061",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 523179,
+        "claim_id": "CLM-2026-000095",
+        "claimant_id": "CLT-000047",
+        "date": "2026-03-27",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000090",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000243",
+        "claimant_id": "CLT-000157",
+        "date": "2026-04-29",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000239"
+      },
+      {
+        "claim_id": "CLM-2026-000243",
+        "claimant_id": "CLT-000157",
+        "date": "2026-05-02",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000243"
+      },
+      {
+        "claim_id": "CLM-2026-000260",
+        "claimant_id": "CLT-000047",
+        "date": "2026-05-04",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000248"
+      },
+      {
+        "claim_id": "CLM-2026-000260",
+        "claimant_id": "CLT-000047",
+        "date": "2026-05-07",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000260"
+      },
+      {
+        "claim_id": "CLM-2026-000281",
+        "claimant_id": "CLT-000157",
+        "date": "2026-05-09",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000257"
+      },
+      {
+        "amount_cents": 122576,
+        "claim_id": "CLM-2026-000243",
+        "claimant_id": "CLT-000157",
+        "date": "2026-05-11",
+        "event": "INVOICE",
+        "provider_id": "PRV-000043",
+        "ref": "INV-PRV-000043-000016"
+      },
+      {
+        "amount_cents": 92816,
+        "claim_id": "CLM-2026-000260",
+        "claimant_id": "CLT-000047",
+        "date": "2026-05-13",
+        "event": "INVOICE",
+        "provider_id": "PRV-000006",
+        "ref": "INV-PRV-000006-000012"
+      },
+      {
+        "amount_cents": 59131,
+        "claim_id": "CLM-2026-000260",
+        "claimant_id": "CLT-000047",
+        "date": "2026-05-17",
+        "event": "INVOICE",
+        "provider_id": "PRV-000034",
+        "ref": "INV-PRV-000034-000015"
+      },
+      {
+        "claim_id": "CLM-2026-000281",
+        "claimant_id": "CLT-000157",
+        "date": "2026-05-19",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000281"
+      },
+      {
+        "claim_id": "CLM-2026-000371",
+        "claimant_id": "CLT-000157",
+        "date": "2026-06-03",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000291"
+      },
+      {
+        "amount_cents": 31731,
+        "claim_id": "CLM-2026-000260",
+        "claimant_id": "CLT-000047",
+        "date": "2026-06-08",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000246",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 20216,
+        "claim_id": "CLM-2026-000260",
+        "claimant_id": "CLT-000047",
+        "date": "2026-06-11",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000253",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 45804,
+        "claim_id": "CLM-2026-000281",
+        "claimant_id": "CLT-000157",
+        "date": "2026-06-16",
+        "event": "INVOICE",
+        "provider_id": "PRV-000039",
+        "ref": "INV-PRV-000039-000023"
+      },
+      {
+        "amount_cents": 20804,
+        "claim_id": "CLM-2026-000281",
+        "claimant_id": "CLT-000157",
+        "date": "2026-07-07",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000297",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 153276,
+        "claim_id": "CLM-2026-000371",
+        "claimant_id": "CLT-000157",
+        "date": "2026-07-18",
+        "event": "INVOICE",
+        "provider_id": "PRV-000043",
+        "ref": "INV-PRV-000043-000021"
+      },
+      {
+        "claim_id": "CLM-2026-000371",
+        "claimant_id": "CLT-000157",
+        "date": "2026-07-18",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000371"
+      },
+      {
+        "amount_cents": 846048,
+        "claim_id": "CLM-2026-000371",
+        "claimant_id": "CLT-000157",
+        "date": "2026-07-29",
+        "event": "INVOICE",
+        "provider_id": "PRV-000017",
+        "ref": "INV-PRV-000017-000008"
+      },
+      {
+        "claim_id": "CLM-2026-000407",
+        "claimant_id": "CLT-000137",
+        "date": "2026-08-01",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000390"
+      },
+      {
+        "claim_id": "CLM-2026-000407",
+        "claimant_id": "CLT-000137",
+        "date": "2026-08-05",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000407"
+      },
+      {
+        "amount_cents": 183570,
+        "claim_id": "CLM-2026-000407",
+        "claimant_id": "CLT-000137",
+        "date": "2026-08-09",
+        "event": "INVOICE",
+        "provider_id": "PRV-000048",
+        "ref": "INV-PRV-000048-000010"
+      },
+      {
+        "amount_cents": 107203,
+        "claim_id": "CLM-2026-000407",
+        "claimant_id": "CLT-000137",
+        "date": "2026-08-17",
+        "event": "INVOICE",
+        "provider_id": "PRV-000038",
+        "ref": "INV-PRV-000038-000004"
+      },
+      {
+        "amount_cents": 8015,
+        "claim_id": "CLM-2026-000407",
+        "claimant_id": "CLT-000137",
+        "date": "2026-08-28",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000401",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 28910,
+        "claim_id": "CLM-2026-000407",
+        "claimant_id": "CLT-000137",
+        "date": "2026-09-01",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000407",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000451",
+        "claimant_id": "CLT-000157",
+        "date": "2026-09-01",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000427"
+      },
+      {
+        "claim_id": "CLM-2026-000451",
+        "claimant_id": "CLT-000157",
+        "date": "2026-09-03",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000451"
+      },
+      {
+        "claim_id": "CLM-2026-000481",
+        "claimant_id": "CLT-000137",
+        "date": "2026-09-10",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000439"
+      },
+      {
+        "amount_cents": 375243,
+        "claim_id": "CLM-2026-000451",
+        "claimant_id": "CLT-000157",
+        "date": "2026-09-15",
+        "event": "INVOICE",
+        "provider_id": "PRV-000035",
+        "ref": "INV-PRV-000035-000028"
+      },
+      {
+        "amount_cents": 396920,
+        "claim_id": "CLM-2026-000481",
+        "claimant_id": "CLT-000137",
+        "date": "2026-09-26",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000076"
+      },
+      {
+        "claim_id": "CLM-2026-000481",
+        "claimant_id": "CLT-000137",
+        "date": "2026-09-26",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000481"
+      },
+      {
+        "amount_cents": 350243,
+        "claim_id": "CLM-2026-000451",
+        "claimant_id": "CLT-000157",
+        "date": "2026-10-01",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000455",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 296920,
+        "claim_id": "CLM-2026-000481",
+        "claimant_id": "CLT-000137",
+        "date": "2026-10-12",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000475",
+        "status": "SETTLED"
+      }
+    ],
+    "waterfall": [
+      {
+        "added": 0.5126,
+        "family": "TIMING"
+      },
+      {
+        "added": 0.2362,
+        "family": "IDENTITY"
+      },
+      {
+        "added": 0.0502,
+        "family": "SUPPORT"
+      }
+    ]
+  },
+  {
+    "context": {
+      "INC-2026-000301": "SHARED_INCIDENT",
+      "PRV-000042": "SHARED_PROVIDER"
+    },
+    "discounted_links": [],
+    "evidence": [
+      {
+        "best_link_strength": 0.5126,
+        "claimants": [
+          "CLT-000129",
+          "CLT-000174",
+          "CLT-000191"
+        ],
+        "coverage": 0.7746,
+        "edge_type": "EARLY_CLAIM_PAIR",
+        "family": "TIMING",
+        "repetition": 1.0,
+        "sentence": "CLT-000129, CLT-000174 and CLT-000191 each claimed within 10 days of their policy starting, at provider PRV-000042, on claims CLM-2026-000232, CLM-2026-000288 and CLM-2026-000308 no more than 33 days apart. Only 4.0% of claimants have a link like this with no innocent explanation.",
+        "strength": 0.3971
+      },
+      {
+        "best_link_strength": 0.5936,
+        "claimants": [
+          "CLT-000119",
+          "CLT-000174"
+        ],
+        "coverage": 0.6325,
+        "edge_type": "SHARED_PHONE",
+        "family": "IDENTITY",
+        "repetition": 1.0,
+        "sentence": "CLT-000119 and CLT-000174 share phone number 555-571-1276. Only 6.5% of claimants have a link like this with no innocent explanation.",
+        "strength": 0.3754
+      },
+      {
+        "best_link_strength": 0.3375,
+        "claimants": [
+          "CLT-000119",
+          "CLT-000130",
+          "CLT-000174"
+        ],
+        "coverage": 0.7746,
+        "edge_type": "SAME_INCIDENT",
+        "family": "INCIDENT",
+        "repetition": 1.0,
+        "sentence": "CLT-000119, CLT-000130 and CLT-000174 all claimed on incident INC-2026-000301 (3 claimants).",
+        "strength": 0.2614
+      }
+    ],
+    "families": {
+      "IDENTITY": 0.3754,
+      "INCIDENT": 0.2614,
+      "TIMING": 0.3971
+    },
+    "flagged": true,
+    "graph": {
+      "edges": [
+        {
+          "edge_type": "EARLY_CLAIM_PAIR",
+          "evidence": true,
+          "explanation": null,
+          "family": "TIMING",
+          "id": "LNK-000008",
+          "recorded": null,
+          "source": "CLT-000129",
+          "strength": 0.5126,
+          "target": "CLT-000174"
+        },
+        {
+          "edge_type": "EARLY_CLAIM_PAIR",
+          "evidence": true,
+          "explanation": null,
+          "family": "TIMING",
+          "id": "LNK-000009",
+          "recorded": null,
+          "source": "CLT-000129",
+          "strength": 0.5126,
+          "target": "CLT-000191"
+        },
+        {
+          "edge_type": "SAME_INCIDENT",
+          "evidence": true,
+          "explanation": null,
+          "family": "INCIDENT",
+          "id": "LNK-000022",
+          "recorded": 1,
+          "source": "CLT-000119",
+          "strength": 0.3375,
+          "target": "CLT-000130"
+        },
+        {
+          "edge_type": "SAME_INCIDENT",
+          "evidence": true,
+          "explanation": null,
+          "family": "INCIDENT",
+          "id": "LNK-000023",
+          "recorded": 1,
+          "source": "CLT-000119",
+          "strength": 0.3375,
+          "target": "CLT-000174"
+        },
+        {
+          "edge_type": "SAME_INCIDENT",
+          "evidence": true,
+          "explanation": null,
+          "family": "INCIDENT",
+          "id": "LNK-000024",
+          "recorded": 1,
+          "source": "CLT-000130",
+          "strength": 0.3375,
+          "target": "CLT-000174"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000239",
+          "recorded": 1,
+          "source": "CLT-000119",
+          "strength": 0.5936,
+          "target": "CLT-000174"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000129-PRV-000042",
+          "recorded": null,
+          "source": "CLT-000129",
+          "strength": 0.0,
+          "target": "PRV-000042"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000174-PRV-000042",
+          "recorded": null,
+          "source": "CLT-000174",
+          "strength": 0.0,
+          "target": "PRV-000042"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000191-PRV-000042",
+          "recorded": null,
+          "source": "CLT-000191",
+          "strength": 0.0,
+          "target": "PRV-000042"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "CLT-000119",
+          "label": "Zane Ahmed",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000129",
+          "label": "Lara Alvarez",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000130",
+          "label": "Yara Carter",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000174",
+          "label": "Yara Acosta",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000191",
+          "label": "Lina Gomez",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "INC-2026-000301",
+          "label": "INC-2026-000301",
+          "role": "SHARED_INCIDENT",
+          "type": "INCIDENT"
+        },
+        {
+          "id": "PRV-000042",
+          "label": "PRV-000042",
+          "role": "SHARED_PROVIDER",
+          "type": "PROVIDER"
+        }
+      ]
+    },
+    "members": [
+      "CLT-000119",
+      "CLT-000129",
+      "CLT-000130",
+      "CLT-000174",
+      "CLT-000191"
+    ],
+    "network_id": "NET-000005",
+    "priority": "MEDIUM",
+    "rank": 5,
+    "score": 0.7775,
+    "support": [
+      {
+        "code": "PROVIDER_CONCENTRATION",
+        "sentence": "3 of 5 members use provider PRV-000042, which is not a busy provider.",
+        "value": 0.2
+      }
+    ],
+    "timeline": [
+      {
+        "claim_id": "CLM-2026-000063",
+        "claimant_id": "CLT-000174",
+        "date": "2025-06-19",
+        "event": "POLICY_START",
+        "ref": "POL-000062"
+      },
+      {
+        "claim_id": "CLM-2026-000215",
+        "claimant_id": "CLT-000174",
+        "date": "2025-06-19",
+        "event": "POLICY_START",
+        "ref": "POL-000062"
+      },
+      {
+        "claim_id": "CLM-2026-000316",
+        "claimant_id": "CLT-000174",
+        "date": "2025-06-19",
+        "event": "POLICY_START",
+        "ref": "POL-000062"
+      },
+      {
+        "claim_id": "CLM-2026-000301",
+        "claimant_id": "CLT-000130",
+        "date": "2025-08-20",
+        "event": "POLICY_START",
+        "ref": "POL-000178"
+      },
+      {
+        "claim_id": "CLM-2026-000271",
+        "claimant_id": "CLT-000119",
+        "date": "2025-12-04",
+        "event": "POLICY_START",
+        "ref": "POL-000057"
+      },
+      {
+        "claim_id": "CLM-2026-000286",
+        "claimant_id": "CLT-000119",
+        "date": "2025-12-04",
+        "event": "POLICY_START",
+        "ref": "POL-000057"
+      },
+      {
+        "claim_id": "CLM-2026-000499",
+        "claimant_id": "CLT-000119",
+        "date": "2025-12-04",
+        "event": "POLICY_START",
+        "ref": "POL-000057"
+      },
+      {
+        "claim_id": "CLM-2026-000063",
+        "claimant_id": "CLT-000174",
+        "date": "2026-02-10",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000066"
+      },
+      {
+        "claim_id": "CLM-2026-000063",
+        "claimant_id": "CLT-000174",
+        "date": "2026-02-12",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000063"
+      },
+      {
+        "amount_cents": 388999,
+        "claim_id": "CLM-2026-000063",
+        "claimant_id": "CLT-000174",
+        "date": "2026-02-24",
+        "event": "INVOICE",
+        "provider_id": "PRV-000043",
+        "ref": "INV-PRV-000043-000004"
+      },
+      {
+        "claim_id": "CLM-2026-000215",
+        "claimant_id": "CLT-000174",
+        "date": "2026-04-13",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000209"
+      },
+      {
+        "claim_id": "CLM-2026-000215",
+        "claimant_id": "CLT-000174",
+        "date": "2026-04-14",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000215"
+      },
+      {
+        "claim_id": "CLM-2026-000232",
+        "claimant_id": "CLT-000174",
+        "date": "2026-04-17",
+        "event": "POLICY_START",
+        "ref": "POL-000015"
+      },
+      {
+        "amount_cents": 242640,
+        "claim_id": "CLM-2026-000215",
+        "claimant_id": "CLT-000174",
+        "date": "2026-04-23",
+        "event": "INVOICE",
+        "provider_id": "PRV-000029",
+        "ref": "INV-PRV-000029-000008"
+      },
+      {
+        "claim_id": "CLM-2026-000232",
+        "claimant_id": "CLT-000174",
+        "date": "2026-04-23",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000224"
+      },
+      {
+        "claim_id": "CLM-2026-000232",
+        "claimant_id": "CLT-000174",
+        "date": "2026-04-26",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000232"
+      },
+      {
+        "amount_cents": 138402,
+        "claim_id": "CLM-2026-000215",
+        "claimant_id": "CLT-000174",
+        "date": "2026-05-08",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000192",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000271",
+        "claimant_id": "CLT-000119",
+        "date": "2026-05-11",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000260"
+      },
+      {
+        "claim_id": "CLM-2026-000271",
+        "claimant_id": "CLT-000119",
+        "date": "2026-05-13",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000271"
+      },
+      {
+        "amount_cents": 88261,
+        "claim_id": "CLM-2026-000271",
+        "claimant_id": "CLT-000119",
+        "date": "2026-05-15",
+        "event": "INVOICE",
+        "provider_id": "PRV-000034",
+        "ref": "INV-PRV-000034-000013"
+      },
+      {
+        "claim_id": "CLM-2026-000286",
+        "claimant_id": "CLT-000119",
+        "date": "2026-05-21",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000275"
+      },
+      {
+        "amount_cents": 38261,
+        "claim_id": "CLM-2026-000271",
+        "claimant_id": "CLT-000119",
+        "date": "2026-05-22",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000219",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000288",
+        "claimant_id": "CLT-000129",
+        "date": "2026-05-22",
+        "event": "POLICY_START",
+        "ref": "POL-000201"
+      },
+      {
+        "claim_id": "CLM-2026-000387",
+        "claimant_id": "CLT-000129",
+        "date": "2026-05-22",
+        "event": "POLICY_START",
+        "ref": "POL-000201"
+      },
+      {
+        "claim_id": "CLM-2026-000458",
+        "claimant_id": "CLT-000129",
+        "date": "2026-05-22",
+        "event": "POLICY_START",
+        "ref": "POL-000201"
+      },
+      {
+        "amount_cents": 418880,
+        "claim_id": "CLM-2026-000232",
+        "claimant_id": "CLT-000174",
+        "date": "2026-05-25",
+        "event": "INVOICE",
+        "provider_id": "PRV-000042",
+        "ref": "INV-PRV-000042-000004"
+      },
+      {
+        "claim_id": "CLM-2026-000286",
+        "claimant_id": "CLT-000119",
+        "date": "2026-05-25",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000286"
+      },
+      {
+        "claim_id": "CLM-2026-000288",
+        "claimant_id": "CLT-000129",
+        "date": "2026-05-26",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000277"
+      },
+      {
+        "claim_id": "CLM-2026-000288",
+        "claimant_id": "CLT-000129",
+        "date": "2026-05-27",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000288"
+      },
+      {
+        "claim_id": "CLM-2026-000308",
+        "claimant_id": "CLT-000191",
+        "date": "2026-05-30",
+        "event": "POLICY_START",
+        "ref": "POL-000003"
+      },
+      {
+        "claim_id": "CLM-2026-000368",
+        "claimant_id": "CLT-000191",
+        "date": "2026-05-30",
+        "event": "POLICY_START",
+        "ref": "POL-000003"
+      },
+      {
+        "claim_id": "CLM-2026-000395",
+        "claimant_id": "CLT-000191",
+        "date": "2026-05-30",
+        "event": "POLICY_START",
+        "ref": "POL-000003"
+      },
+      {
+        "claim_id": "CLM-2026-000402",
+        "claimant_id": "CLT-000191",
+        "date": "2026-05-30",
+        "event": "POLICY_START",
+        "ref": "POL-000003"
+      },
+      {
+        "amount_cents": 168880,
+        "claim_id": "CLM-2026-000232",
+        "claimant_id": "CLT-000174",
+        "date": "2026-06-06",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000242",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000301",
+        "claimant_id": "CLT-000130",
+        "date": "2026-06-08",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000301"
+      },
+      {
+        "claim_id": "CLM-2026-000301",
+        "claimant_id": "CLT-000130",
+        "date": "2026-06-08",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000301"
+      },
+      {
+        "claim_id": "CLM-2026-000310",
+        "claimant_id": "CLT-000119",
+        "date": "2026-06-08",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000301"
+      },
+      {
+        "claim_id": "CLM-2026-000310",
+        "claimant_id": "CLT-000119",
+        "date": "2026-06-08",
+        "event": "POLICY_START",
+        "ref": "POL-000146"
+      },
+      {
+        "claim_id": "CLM-2026-000316",
+        "claimant_id": "CLT-000174",
+        "date": "2026-06-08",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000301"
+      },
+      {
+        "claim_id": "CLM-2026-000308",
+        "claimant_id": "CLT-000191",
+        "date": "2026-06-09",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000303"
+      },
+      {
+        "claim_id": "CLM-2026-000308",
+        "claimant_id": "CLT-000191",
+        "date": "2026-06-10",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000308"
+      },
+      {
+        "amount_cents": 1577378,
+        "claim_id": "CLM-2026-000288",
+        "claimant_id": "CLT-000129",
+        "date": "2026-06-11",
+        "event": "INVOICE",
+        "provider_id": "PRV-000003",
+        "ref": "INV-PRV-000003-000011"
+      },
+      {
+        "amount_cents": 193626,
+        "claim_id": "CLM-2026-000301",
+        "claimant_id": "CLT-000130",
+        "date": "2026-06-11",
+        "event": "INVOICE",
+        "provider_id": "PRV-000022",
+        "ref": "INV-PRV-000022-000006"
+      },
+      {
+        "amount_cents": 594809,
+        "claim_id": "CLM-2026-000310",
+        "claimant_id": "CLT-000119",
+        "date": "2026-06-11",
+        "event": "INVOICE",
+        "provider_id": "PRV-000022",
+        "ref": "INV-PRV-000022-000007"
+      },
+      {
+        "claim_id": "CLM-2026-000310",
+        "claimant_id": "CLT-000119",
+        "date": "2026-06-11",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000310"
+      },
+      {
+        "claim_id": "CLM-2026-000316",
+        "claimant_id": "CLT-000174",
+        "date": "2026-06-12",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000316"
+      },
+      {
+        "amount_cents": 228211,
+        "claim_id": "CLM-2026-000288",
+        "claimant_id": "CLT-000129",
+        "date": "2026-06-17",
+        "event": "INVOICE",
+        "provider_id": "PRV-000017",
+        "ref": "INV-PRV-000017-000005"
+      },
+      {
+        "amount_cents": 1629210,
+        "claim_id": "CLM-2026-000288",
+        "claimant_id": "CLT-000129",
+        "date": "2026-06-19",
+        "event": "INVOICE",
+        "provider_id": "PRV-000042",
+        "ref": "INV-PRV-000042-000005"
+      },
+      {
+        "amount_cents": 794230,
+        "claim_id": "CLM-2026-000286",
+        "claimant_id": "CLT-000119",
+        "date": "2026-06-21",
+        "event": "INVOICE",
+        "provider_id": "PRV-000007",
+        "ref": "INV-PRV-000007-000004"
+      },
+      {
+        "amount_cents": 195194,
+        "claim_id": "CLM-2026-000316",
+        "claimant_id": "CLT-000174",
+        "date": "2026-06-23",
+        "event": "INVOICE",
+        "provider_id": "PRV-000007",
+        "ref": "INV-PRV-000007-000005"
+      },
+      {
+        "amount_cents": 93626,
+        "claim_id": "CLM-2026-000301",
+        "claimant_id": "CLT-000130",
+        "date": "2026-06-25",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000279",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 208596,
+        "claim_id": "CLM-2026-000288",
+        "claimant_id": "CLT-000129",
+        "date": "2026-06-30",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000282",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 494809,
+        "claim_id": "CLM-2026-000310",
+        "claimant_id": "CLT-000119",
+        "date": "2026-06-30",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000285",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 1489182,
+        "claim_id": "CLM-2026-000288",
+        "claimant_id": "CLT-000129",
+        "date": "2026-07-02",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000288",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 960921,
+        "claim_id": "CLM-2026-000288",
+        "claimant_id": "CLT-000129",
+        "date": "2026-07-04",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000293",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000368",
+        "claimant_id": "CLT-000191",
+        "date": "2026-07-06",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000349"
+      },
+      {
+        "amount_cents": 126994,
+        "claim_id": "CLM-2026-000308",
+        "claimant_id": "CLT-000191",
+        "date": "2026-07-09",
+        "event": "INVOICE",
+        "provider_id": "PRV-000042",
+        "ref": "INV-PRV-000042-000006"
+      },
+      {
+        "amount_cents": 744230,
+        "claim_id": "CLM-2026-000286",
+        "claimant_id": "CLT-000119",
+        "date": "2026-07-10",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000300",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000368",
+        "claimant_id": "CLT-000191",
+        "date": "2026-07-14",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000368"
+      },
+      {
+        "claim_id": "CLM-2026-000387",
+        "claimant_id": "CLT-000129",
+        "date": "2026-07-23",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000371"
+      },
+      {
+        "claim_id": "CLM-2026-000387",
+        "claimant_id": "CLT-000129",
+        "date": "2026-07-27",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000387"
+      },
+      {
+        "claim_id": "CLM-2026-000395",
+        "claimant_id": "CLT-000191",
+        "date": "2026-07-27",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000378"
+      },
+      {
+        "amount_cents": 401674,
+        "claim_id": "CLM-2026-000395",
+        "claimant_id": "CLT-000191",
+        "date": "2026-07-30",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000064"
+      },
+      {
+        "claim_id": "CLM-2026-000395",
+        "claimant_id": "CLT-000191",
+        "date": "2026-07-30",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000395"
+      },
+      {
+        "claim_id": "CLM-2026-000402",
+        "claimant_id": "CLT-000191",
+        "date": "2026-07-31",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000387"
+      },
+      {
+        "claim_id": "CLM-2026-000402",
+        "claimant_id": "CLT-000191",
+        "date": "2026-08-03",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000402"
+      },
+      {
+        "amount_cents": 423843,
+        "claim_id": "CLM-2026-000402",
+        "claimant_id": "CLT-000191",
+        "date": "2026-08-13",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000070"
+      },
+      {
+        "amount_cents": 851593,
+        "claim_id": "CLM-2026-000387",
+        "claimant_id": "CLT-000129",
+        "date": "2026-08-26",
+        "event": "INVOICE",
+        "provider_id": "PRV-000002",
+        "ref": "INV-PRV-000002-000016"
+      },
+      {
+        "amount_cents": 8612,
+        "claim_id": "CLM-2026-000395",
+        "claimant_id": "CLT-000191",
+        "date": "2026-08-27",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000400",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000458",
+        "claimant_id": "CLT-000129",
+        "date": "2026-09-07",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000435"
+      },
+      {
+        "claim_id": "CLM-2026-000458",
+        "claimant_id": "CLT-000129",
+        "date": "2026-09-09",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000458"
+      },
+      {
+        "amount_cents": 601593,
+        "claim_id": "CLM-2026-000387",
+        "claimant_id": "CLT-000129",
+        "date": "2026-09-11",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000427",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 195676,
+        "claim_id": "CLM-2026-000458",
+        "claimant_id": "CLT-000129",
+        "date": "2026-09-20",
+        "event": "INVOICE",
+        "provider_id": "PRV-000012",
+        "ref": "INV-PRV-000012-000046"
+      },
+      {
+        "claim_id": "CLM-2026-000499",
+        "claimant_id": "CLT-000119",
+        "date": "2026-09-21",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000455"
+      },
+      {
+        "claim_id": "CLM-2026-000499",
+        "claimant_id": "CLT-000119",
+        "date": "2026-10-13",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000499"
+      },
+      {
+        "amount_cents": 140252,
+        "claim_id": "CLM-2026-000499",
+        "claimant_id": "CLT-000119",
+        "date": "2026-10-22",
+        "event": "INVOICE",
+        "provider_id": "PRV-000018",
+        "ref": "INV-PRV-000018-000009"
+      },
+      {
+        "amount_cents": 341183,
+        "claim_id": "CLM-2026-000499",
+        "claimant_id": "CLT-000119",
+        "date": "2026-10-22",
+        "event": "INVOICE",
+        "provider_id": "PRV-000030",
+        "ref": "INV-PRV-000030-000021"
+      }
+    ],
+    "waterfall": [
+      {
+        "added": 0.3971,
+        "family": "TIMING"
+      },
+      {
+        "added": 0.2263,
+        "family": "IDENTITY"
+      },
+      {
+        "added": 0.0984,
+        "family": "INCIDENT"
+      },
+      {
+        "added": 0.0556,
+        "family": "SUPPORT"
+      }
+    ]
+  },
+  {
+    "context": {
+      "PRV-000023": "SHARED_PROVIDER"
+    },
+    "discounted_links": [],
+    "evidence": [
+      {
+        "best_link_strength": 0.65,
+        "claimants": [
+          "CLT-000085",
+          "CLT-000126",
+          "CLT-000144",
+          "CLT-000150"
+        ],
+        "coverage": 1.0,
+        "edge_type": "SIMILAR_NARRATIVE",
+        "family": "STORY",
+        "repetition": 1.0,
+        "sentence": "CLT-000085, CLT-000126, CLT-000144 and CLT-000150 filed near-identical narratives (similarity up to 1.00) on separate incidents INC-2026-000018, INC-2026-000083, INC-2026-000084 and INC-2026-000086 in 4 cities, all at provider PRV-000023. Only 3.0% of claimants have a link like this with no innocent explanation.",
+        "strength": 0.65
+      }
+    ],
+    "families": {
+      "STORY": 0.65
+    },
+    "flagged": true,
+    "graph": {
+      "edges": [
+        {
+          "edge_type": "SIMILAR_NARRATIVE",
+          "evidence": true,
+          "explanation": null,
+          "family": "STORY",
+          "id": "LNK-000252",
+          "recorded": null,
+          "source": "CLT-000085",
+          "strength": 0.65,
+          "target": "CLT-000126"
+        },
+        {
+          "edge_type": "SIMILAR_NARRATIVE",
+          "evidence": true,
+          "explanation": null,
+          "family": "STORY",
+          "id": "LNK-000253",
+          "recorded": null,
+          "source": "CLT-000085",
+          "strength": 0.65,
+          "target": "CLT-000144"
+        },
+        {
+          "edge_type": "SIMILAR_NARRATIVE",
+          "evidence": true,
+          "explanation": null,
+          "family": "STORY",
+          "id": "LNK-000254",
+          "recorded": null,
+          "source": "CLT-000085",
+          "strength": 0.65,
+          "target": "CLT-000150"
+        },
+        {
+          "edge_type": "SIMILAR_NARRATIVE",
+          "evidence": true,
+          "explanation": null,
+          "family": "STORY",
+          "id": "LNK-000255",
+          "recorded": null,
+          "source": "CLT-000126",
+          "strength": 0.65,
+          "target": "CLT-000144"
+        },
+        {
+          "edge_type": "SIMILAR_NARRATIVE",
+          "evidence": true,
+          "explanation": null,
+          "family": "STORY",
+          "id": "LNK-000256",
+          "recorded": null,
+          "source": "CLT-000126",
+          "strength": 0.65,
+          "target": "CLT-000150"
+        },
+        {
+          "edge_type": "SIMILAR_NARRATIVE",
+          "evidence": true,
+          "explanation": null,
+          "family": "STORY",
+          "id": "LNK-000257",
+          "recorded": null,
+          "source": "CLT-000144",
+          "strength": 0.65,
+          "target": "CLT-000150"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000085-PRV-000023",
+          "recorded": null,
+          "source": "CLT-000085",
+          "strength": 0.0,
+          "target": "PRV-000023"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000126-PRV-000023",
+          "recorded": null,
+          "source": "CLT-000126",
+          "strength": 0.0,
+          "target": "PRV-000023"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000144-PRV-000023",
+          "recorded": null,
+          "source": "CLT-000144",
+          "strength": 0.0,
+          "target": "PRV-000023"
+        },
+        {
+          "edge_type": "USED_PROVIDER",
+          "evidence": false,
+          "explanation": null,
+          "family": "CONTEXT",
+          "id": "USE-CLT-000150-PRV-000023",
+          "recorded": null,
+          "source": "CLT-000150",
+          "strength": 0.0,
+          "target": "PRV-000023"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "CLT-000085",
+          "label": "Kai Chavez",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000126",
+          "label": "Lina Chandra",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000144",
+          "label": "Vera Khan",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000150",
+          "label": "Bianca Nair",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "PRV-000023",
+          "label": "PRV-000023",
+          "role": "SHARED_PROVIDER",
+          "type": "PROVIDER"
+        }
+      ]
+    },
+    "members": [
+      "CLT-000085",
+      "CLT-000126",
+      "CLT-000144",
+      "CLT-000150"
+    ],
+    "network_id": "NET-000006",
+    "priority": "MEDIUM",
+    "rank": 6,
+    "score": 0.72,
+    "support": [
+      {
+        "code": "PROVIDER_CONCENTRATION",
+        "sentence": "4 of 4 members use provider PRV-000023, which is not a busy provider.",
+        "value": 0.2
+      }
+    ],
+    "timeline": [
+      {
+        "claim_id": "CLM-2026-000013",
+        "claimant_id": "CLT-000150",
+        "date": "2025-06-08",
+        "event": "POLICY_START",
+        "ref": "POL-000125"
+      },
+      {
+        "claim_id": "CLM-2026-000027",
+        "claimant_id": "CLT-000150",
+        "date": "2025-06-08",
+        "event": "POLICY_START",
+        "ref": "POL-000125"
+      },
+      {
+        "claim_id": "CLM-2026-000080",
+        "claimant_id": "CLT-000150",
+        "date": "2025-06-08",
+        "event": "POLICY_START",
+        "ref": "POL-000125"
+      },
+      {
+        "claim_id": "CLM-2026-000138",
+        "claimant_id": "CLT-000150",
+        "date": "2025-06-08",
+        "event": "POLICY_START",
+        "ref": "POL-000125"
+      },
+      {
+        "claim_id": "CLM-2026-000187",
+        "claimant_id": "CLT-000150",
+        "date": "2025-06-08",
+        "event": "POLICY_START",
+        "ref": "POL-000125"
+      },
+      {
+        "claim_id": "CLM-2026-000206",
+        "claimant_id": "CLT-000150",
+        "date": "2025-06-08",
+        "event": "POLICY_START",
+        "ref": "POL-000125"
+      },
+      {
+        "claim_id": "CLM-2026-000125",
+        "claimant_id": "CLT-000126",
+        "date": "2025-07-08",
+        "event": "POLICY_START",
+        "ref": "POL-000037"
+      },
+      {
+        "claim_id": "CLM-2026-000199",
+        "claimant_id": "CLT-000126",
+        "date": "2025-07-08",
+        "event": "POLICY_START",
+        "ref": "POL-000037"
+      },
+      {
+        "claim_id": "CLM-2026-000265",
+        "claimant_id": "CLT-000126",
+        "date": "2025-07-08",
+        "event": "POLICY_START",
+        "ref": "POL-000037"
+      },
+      {
+        "claim_id": "CLM-2026-000303",
+        "claimant_id": "CLT-000126",
+        "date": "2025-07-08",
+        "event": "POLICY_START",
+        "ref": "POL-000037"
+      },
+      {
+        "claim_id": "CLM-2026-000318",
+        "claimant_id": "CLT-000126",
+        "date": "2025-07-08",
+        "event": "POLICY_START",
+        "ref": "POL-000037"
+      },
+      {
+        "claim_id": "CLM-2026-000038",
+        "claimant_id": "CLT-000144",
+        "date": "2025-08-07",
+        "event": "POLICY_START",
+        "ref": "POL-000152"
+      },
+      {
+        "claim_id": "CLM-2026-000088",
+        "claimant_id": "CLT-000144",
+        "date": "2025-08-07",
+        "event": "POLICY_START",
+        "ref": "POL-000152"
+      },
+      {
+        "claim_id": "CLM-2026-000121",
+        "claimant_id": "CLT-000144",
+        "date": "2025-08-07",
+        "event": "POLICY_START",
+        "ref": "POL-000152"
+      },
+      {
+        "claim_id": "CLM-2026-000163",
+        "claimant_id": "CLT-000144",
+        "date": "2025-08-30",
+        "event": "POLICY_START",
+        "ref": "POL-000066"
+      },
+      {
+        "claim_id": "CLM-2026-000185",
+        "claimant_id": "CLT-000144",
+        "date": "2025-08-30",
+        "event": "POLICY_START",
+        "ref": "POL-000066"
+      },
+      {
+        "claim_id": "CLM-2026-000462",
+        "claimant_id": "CLT-000144",
+        "date": "2025-08-30",
+        "event": "POLICY_START",
+        "ref": "POL-000066"
+      },
+      {
+        "claim_id": "CLM-2026-000031",
+        "claimant_id": "CLT-000085",
+        "date": "2025-10-31",
+        "event": "POLICY_START",
+        "ref": "POL-000251"
+      },
+      {
+        "claim_id": "CLM-2026-000082",
+        "claimant_id": "CLT-000085",
+        "date": "2025-10-31",
+        "event": "POLICY_START",
+        "ref": "POL-000251"
+      },
+      {
+        "claim_id": "CLM-2026-000208",
+        "claimant_id": "CLT-000085",
+        "date": "2025-10-31",
+        "event": "POLICY_START",
+        "ref": "POL-000251"
+      },
+      {
+        "claim_id": "CLM-2026-000250",
+        "claimant_id": "CLT-000085",
+        "date": "2025-10-31",
+        "event": "POLICY_START",
+        "ref": "POL-000251"
+      },
+      {
+        "claim_id": "CLM-2026-000360",
+        "claimant_id": "CLT-000085",
+        "date": "2025-10-31",
+        "event": "POLICY_START",
+        "ref": "POL-000251"
+      },
+      {
+        "claim_id": "CLM-2026-000013",
+        "claimant_id": "CLT-000150",
+        "date": "2026-01-11",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000018"
+      },
+      {
+        "claim_id": "CLM-2026-000013",
+        "claimant_id": "CLT-000150",
+        "date": "2026-01-12",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000013"
+      },
+      {
+        "claim_id": "CLM-2026-000027",
+        "claimant_id": "CLT-000150",
+        "date": "2026-01-16",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000028"
+      },
+      {
+        "amount_cents": 1147970,
+        "claim_id": "CLM-2026-000013",
+        "claimant_id": "CLT-000150",
+        "date": "2026-01-17",
+        "event": "INVOICE",
+        "provider_id": "PRV-000023",
+        "ref": "INV-PRV-000023-000001"
+      },
+      {
+        "claim_id": "CLM-2026-000031",
+        "claimant_id": "CLT-000085",
+        "date": "2026-01-17",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000032"
+      },
+      {
+        "claim_id": "CLM-2026-000038",
+        "claimant_id": "CLT-000144",
+        "date": "2026-01-20",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000037"
+      },
+      {
+        "amount_cents": 156251,
+        "claim_id": "CLM-2026-000013",
+        "claimant_id": "CLT-000150",
+        "date": "2026-01-21",
+        "event": "INVOICE",
+        "provider_id": "PRV-000034",
+        "ref": "INV-PRV-000034-000002"
+      },
+      {
+        "claim_id": "CLM-2026-000027",
+        "claimant_id": "CLT-000150",
+        "date": "2026-01-21",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000027"
+      },
+      {
+        "claim_id": "CLM-2026-000031",
+        "claimant_id": "CLT-000085",
+        "date": "2026-01-23",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000031"
+      },
+      {
+        "claim_id": "CLM-2026-000038",
+        "claimant_id": "CLT-000144",
+        "date": "2026-01-26",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000038"
+      },
+      {
+        "amount_cents": 153003,
+        "claim_id": "CLM-2026-000031",
+        "claimant_id": "CLT-000085",
+        "date": "2026-01-27",
+        "event": "INVOICE",
+        "provider_id": "PRV-000010",
+        "ref": "INV-PRV-000010-000003"
+      },
+      {
+        "amount_cents": 377589,
+        "claim_id": "CLM-2026-000027",
+        "claimant_id": "CLT-000150",
+        "date": "2026-02-01",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000002"
+      },
+      {
+        "amount_cents": 158380,
+        "claim_id": "CLM-2026-000038",
+        "claimant_id": "CLT-000144",
+        "date": "2026-02-09",
+        "event": "INVOICE",
+        "provider_id": "PRV-000010",
+        "ref": "INV-PRV-000010-000005"
+      },
+      {
+        "amount_cents": 297873,
+        "claim_id": "CLM-2026-000013",
+        "claimant_id": "CLT-000150",
+        "date": "2026-02-10",
+        "event": "INVOICE",
+        "provider_id": "PRV-000030",
+        "ref": "INV-PRV-000030-000002"
+      },
+      {
+        "amount_cents": 103003,
+        "claim_id": "CLM-2026-000031",
+        "claimant_id": "CLT-000085",
+        "date": "2026-02-12",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000011",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 176333,
+        "claim_id": "CLM-2026-000027",
+        "claimant_id": "CLT-000150",
+        "date": "2026-02-18",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000019",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000080",
+        "claimant_id": "CLT-000150",
+        "date": "2026-02-20",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000087"
+      },
+      {
+        "claim_id": "CLM-2026-000082",
+        "claimant_id": "CLT-000085",
+        "date": "2026-02-20",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000084"
+      },
+      {
+        "claim_id": "CLM-2026-000088",
+        "claimant_id": "CLT-000144",
+        "date": "2026-02-20",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000083"
+      },
+      {
+        "claim_id": "CLM-2026-000125",
+        "claimant_id": "CLT-000126",
+        "date": "2026-02-20",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000086"
+      },
+      {
+        "claim_id": "CLM-2026-000080",
+        "claimant_id": "CLT-000150",
+        "date": "2026-02-22",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000080"
+      },
+      {
+        "claim_id": "CLM-2026-000082",
+        "claimant_id": "CLT-000085",
+        "date": "2026-02-22",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000082"
+      },
+      {
+        "claim_id": "CLM-2026-000088",
+        "claimant_id": "CLT-000144",
+        "date": "2026-02-24",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000088"
+      },
+      {
+        "claim_id": "CLM-2026-000121",
+        "claimant_id": "CLT-000144",
+        "date": "2026-02-24",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000093"
+      },
+      {
+        "amount_cents": 108380,
+        "claim_id": "CLM-2026-000038",
+        "claimant_id": "CLT-000144",
+        "date": "2026-02-25",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000030",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 152849,
+        "claim_id": "CLM-2026-000013",
+        "claimant_id": "CLT-000150",
+        "date": "2026-02-26",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000032",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 129167,
+        "claim_id": "CLM-2026-000088",
+        "claimant_id": "CLT-000144",
+        "date": "2026-03-03",
+        "event": "INVOICE",
+        "provider_id": "PRV-000019",
+        "ref": "INV-PRV-000019-000001"
+      },
+      {
+        "claim_id": "CLM-2026-000121",
+        "claimant_id": "CLT-000144",
+        "date": "2026-03-03",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000121"
+      },
+      {
+        "claim_id": "CLM-2026-000138",
+        "claimant_id": "CLT-000150",
+        "date": "2026-03-03",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000135"
+      },
+      {
+        "amount_cents": 291389,
+        "claim_id": "CLM-2026-000013",
+        "claimant_id": "CLT-000150",
+        "date": "2026-03-04",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000044",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000125",
+        "claimant_id": "CLT-000126",
+        "date": "2026-03-04",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000125"
+      },
+      {
+        "amount_cents": 345413,
+        "claim_id": "CLM-2026-000121",
+        "claimant_id": "CLT-000144",
+        "date": "2026-03-05",
+        "event": "INVOICE",
+        "provider_id": "PRV-000008",
+        "ref": "INV-PRV-000008-000002"
+      },
+      {
+        "amount_cents": 679055,
+        "claim_id": "CLM-2026-000013",
+        "claimant_id": "CLT-000150",
+        "date": "2026-03-06",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000051",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000138",
+        "claimant_id": "CLT-000150",
+        "date": "2026-03-08",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000138"
+      },
+      {
+        "amount_cents": 211799,
+        "claim_id": "CLM-2026-000080",
+        "claimant_id": "CLT-000150",
+        "date": "2026-03-14",
+        "event": "INVOICE",
+        "provider_id": "PRV-000049",
+        "ref": "INV-PRV-000049-000001"
+      },
+      {
+        "amount_cents": 204052,
+        "claim_id": "CLM-2026-000088",
+        "claimant_id": "CLT-000144",
+        "date": "2026-03-15",
+        "event": "INVOICE",
+        "provider_id": "PRV-000023",
+        "ref": "INV-PRV-000023-000004"
+      },
+      {
+        "amount_cents": 116163,
+        "claim_id": "CLM-2026-000080",
+        "claimant_id": "CLT-000150",
+        "date": "2026-03-16",
+        "event": "INVOICE",
+        "provider_id": "PRV-000023",
+        "ref": "INV-PRV-000023-000005"
+      },
+      {
+        "claim_id": "CLM-2026-000187",
+        "claimant_id": "CLT-000150",
+        "date": "2026-03-16",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000158"
+      },
+      {
+        "amount_cents": 318509,
+        "claim_id": "CLM-2026-000121",
+        "claimant_id": "CLT-000144",
+        "date": "2026-03-17",
+        "event": "INVOICE",
+        "provider_id": "PRV-000023",
+        "ref": "INV-PRV-000023-000006"
+      },
+      {
+        "claim_id": "CLM-2026-000163",
+        "claimant_id": "CLT-000144",
+        "date": "2026-03-17",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000160"
+      },
+      {
+        "amount_cents": 576428,
+        "claim_id": "CLM-2026-000125",
+        "claimant_id": "CLT-000126",
+        "date": "2026-03-20",
+        "event": "INVOICE",
+        "provider_id": "PRV-000023",
+        "ref": "INV-PRV-000023-000007"
+      },
+      {
+        "amount_cents": 188685,
+        "claim_id": "CLM-2026-000082",
+        "claimant_id": "CLT-000085",
+        "date": "2026-03-21",
+        "event": "INVOICE",
+        "provider_id": "PRV-000023",
+        "ref": "INV-PRV-000023-000008"
+      },
+      {
+        "amount_cents": 307984,
+        "claim_id": "CLM-2026-000088",
+        "claimant_id": "CLT-000144",
+        "date": "2026-03-21",
+        "event": "INVOICE",
+        "provider_id": "PRV-000035",
+        "ref": "INV-PRV-000035-000005"
+      },
+      {
+        "amount_cents": 160786,
+        "claim_id": "CLM-2026-000163",
+        "claimant_id": "CLT-000144",
+        "date": "2026-03-21",
+        "event": "INVOICE",
+        "provider_id": "PRV-000049",
+        "ref": "INV-PRV-000049-000002"
+      },
+      {
+        "claim_id": "CLM-2026-000163",
+        "claimant_id": "CLT-000144",
+        "date": "2026-03-21",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000163"
+      },
+      {
+        "amount_cents": 323400,
+        "claim_id": "CLM-2026-000125",
+        "claimant_id": "CLT-000126",
+        "date": "2026-03-23",
+        "event": "INVOICE",
+        "provider_id": "PRV-000018",
+        "ref": "INV-PRV-000018-000003"
+      },
+      {
+        "amount_cents": 93899,
+        "claim_id": "CLM-2026-000080",
+        "claimant_id": "CLT-000150",
+        "date": "2026-03-24",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000085",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 406420,
+        "claim_id": "CLM-2026-000125",
+        "claimant_id": "CLT-000126",
+        "date": "2026-03-25",
+        "event": "INVOICE",
+        "provider_id": "PRV-000007",
+        "ref": "INV-PRV-000007-000002"
+      },
+      {
+        "amount_cents": 101742,
+        "claim_id": "CLM-2026-000080",
+        "claimant_id": "CLT-000150",
+        "date": "2026-03-27",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000087",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 128469,
+        "claim_id": "CLM-2026-000138",
+        "claimant_id": "CLT-000150",
+        "date": "2026-03-28",
+        "event": "INVOICE",
+        "provider_id": "PRV-000002",
+        "ref": "INV-PRV-000002-000005"
+      },
+      {
+        "amount_cents": 319399,
+        "claim_id": "CLM-2026-000121",
+        "claimant_id": "CLT-000144",
+        "date": "2026-03-29",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000094",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000206",
+        "claimant_id": "CLT-000150",
+        "date": "2026-03-29",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000183"
+      },
+      {
+        "claim_id": "CLM-2026-000185",
+        "claimant_id": "CLT-000144",
+        "date": "2026-03-30",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000185"
+      },
+      {
+        "amount_cents": 294523,
+        "claim_id": "CLM-2026-000121",
+        "claimant_id": "CLT-000144",
+        "date": "2026-03-31",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000101",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000185",
+        "claimant_id": "CLT-000144",
+        "date": "2026-04-01",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000185"
+      },
+      {
+        "claim_id": "CLM-2026-000187",
+        "claimant_id": "CLT-000150",
+        "date": "2026-04-02",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000187"
+      },
+      {
+        "claim_id": "CLM-2026-000208",
+        "claimant_id": "CLT-000085",
+        "date": "2026-04-03",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000191"
+      },
+      {
+        "amount_cents": 126373,
+        "claim_id": "CLM-2026-000082",
+        "claimant_id": "CLT-000085",
+        "date": "2026-04-04",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000110",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 115653,
+        "claim_id": "CLM-2026-000088",
+        "claimant_id": "CLT-000144",
+        "date": "2026-04-04",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000113",
+        "status": "FAILED"
+      },
+      {
+        "amount_cents": 90811,
+        "claim_id": "CLM-2026-000138",
+        "claimant_id": "CLT-000150",
+        "date": "2026-04-04",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000114",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 743516,
+        "claim_id": "CLM-2026-000185",
+        "claimant_id": "CLT-000144",
+        "date": "2026-04-05",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000023"
+      },
+      {
+        "claim_id": "CLM-2026-000199",
+        "claimant_id": "CLT-000126",
+        "date": "2026-04-05",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000201"
+      },
+      {
+        "claim_id": "CLM-2026-000199",
+        "claimant_id": "CLT-000126",
+        "date": "2026-04-06",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000199"
+      },
+      {
+        "amount_cents": 129566,
+        "claim_id": "CLM-2026-000088",
+        "claimant_id": "CLT-000144",
+        "date": "2026-04-07",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000121",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 182704,
+        "claim_id": "CLM-2026-000088",
+        "claimant_id": "CLT-000144",
+        "date": "2026-04-08",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000127",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 317210,
+        "claim_id": "CLM-2026-000125",
+        "claimant_id": "CLT-000126",
+        "date": "2026-04-08",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000126",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 325396,
+        "claim_id": "CLM-2026-000187",
+        "claimant_id": "CLT-000150",
+        "date": "2026-04-08",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000027"
+      },
+      {
+        "amount_cents": 115653,
+        "claim_id": "CLM-2026-000088",
+        "claimant_id": "CLT-000144",
+        "date": "2026-04-09",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000128",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000206",
+        "claimant_id": "CLT-000150",
+        "date": "2026-04-09",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000206"
+      },
+      {
+        "amount_cents": 565395,
+        "claim_id": "CLM-2026-000125",
+        "claimant_id": "CLT-000126",
+        "date": "2026-04-10",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000132",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000208",
+        "claimant_id": "CLT-000085",
+        "date": "2026-04-11",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000208"
+      },
+      {
+        "amount_cents": 398643,
+        "claim_id": "CLM-2026-000125",
+        "claimant_id": "CLT-000126",
+        "date": "2026-04-12",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000141",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 647794,
+        "claim_id": "CLM-2026-000185",
+        "claimant_id": "CLT-000144",
+        "date": "2026-04-14",
+        "event": "INVOICE",
+        "provider_id": "PRV-000017",
+        "ref": "INV-PRV-000017-000003"
+      },
+      {
+        "amount_cents": 317673,
+        "claim_id": "CLM-2026-000199",
+        "claimant_id": "CLT-000126",
+        "date": "2026-04-14",
+        "event": "INVOICE",
+        "provider_id": "PRV-000023",
+        "ref": "INV-PRV-000023-000010"
+      },
+      {
+        "amount_cents": 1207508,
+        "claim_id": "CLM-2026-000163",
+        "claimant_id": "CLT-000144",
+        "date": "2026-04-15",
+        "event": "INVOICE",
+        "provider_id": "PRV-000039",
+        "ref": "INV-PRV-000039-000014"
+      },
+      {
+        "amount_cents": 690186,
+        "claim_id": "CLM-2026-000206",
+        "claimant_id": "CLT-000150",
+        "date": "2026-04-17",
+        "event": "INVOICE",
+        "provider_id": "PRV-000012",
+        "ref": "INV-PRV-000012-000017"
+      },
+      {
+        "amount_cents": 149035,
+        "claim_id": "CLM-2026-000163",
+        "claimant_id": "CLT-000144",
+        "date": "2026-04-26",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000161",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 690076,
+        "claim_id": "CLM-2026-000185",
+        "claimant_id": "CLT-000144",
+        "date": "2026-04-27",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000168",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 1119259,
+        "claim_id": "CLM-2026-000163",
+        "claimant_id": "CLT-000144",
+        "date": "2026-04-28",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000172",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 404270,
+        "claim_id": "CLM-2026-000206",
+        "claimant_id": "CLT-000150",
+        "date": "2026-04-29",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000174",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 601234,
+        "claim_id": "CLM-2026-000185",
+        "claimant_id": "CLT-000144",
+        "date": "2026-05-01",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000180",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 200574,
+        "claim_id": "CLM-2026-000187",
+        "claimant_id": "CLT-000150",
+        "date": "2026-05-01",
+        "event": "INVOICE",
+        "provider_id": "PRV-000012",
+        "ref": "INV-PRV-000012-000021"
+      },
+      {
+        "amount_cents": 292673,
+        "claim_id": "CLM-2026-000199",
+        "claimant_id": "CLT-000126",
+        "date": "2026-05-01",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000179",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 355215,
+        "claim_id": "CLM-2026-000208",
+        "claimant_id": "CLT-000085",
+        "date": "2026-05-01",
+        "event": "INVOICE",
+        "provider_id": "PRV-000030",
+        "ref": "INV-PRV-000030-000006"
+      },
+      {
+        "claim_id": "CLM-2026-000250",
+        "claimant_id": "CLT-000085",
+        "date": "2026-05-02",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000242"
+      },
+      {
+        "amount_cents": 242756,
+        "claim_id": "CLM-2026-000208",
+        "claimant_id": "CLT-000085",
+        "date": "2026-05-03",
+        "event": "INVOICE",
+        "provider_id": "PRV-000010",
+        "ref": "INV-PRV-000010-000012"
+      },
+      {
+        "amount_cents": 92618,
+        "claim_id": "CLM-2026-000208",
+        "claimant_id": "CLT-000085",
+        "date": "2026-05-03",
+        "event": "INVOICE",
+        "provider_id": "PRV-000018",
+        "ref": "INV-PRV-000018-000005"
+      },
+      {
+        "claim_id": "CLM-2026-000250",
+        "claimant_id": "CLT-000085",
+        "date": "2026-05-03",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000250"
+      },
+      {
+        "claim_id": "CLM-2026-000265",
+        "claimant_id": "CLT-000126",
+        "date": "2026-05-08",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000254"
+      },
+      {
+        "claim_id": "CLM-2026-000265",
+        "claimant_id": "CLT-000126",
+        "date": "2026-05-10",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000265"
+      },
+      {
+        "amount_cents": 114248,
+        "claim_id": "CLM-2026-000208",
+        "claimant_id": "CLT-000085",
+        "date": "2026-05-21",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000217",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 236835,
+        "claim_id": "CLM-2026-000250",
+        "claimant_id": "CLT-000085",
+        "date": "2026-05-24",
+        "event": "INVOICE",
+        "provider_id": "PRV-000029",
+        "ref": "INV-PRV-000029-000009"
+      },
+      {
+        "amount_cents": 52543,
+        "claim_id": "CLM-2026-000208",
+        "claimant_id": "CLT-000085",
+        "date": "2026-05-25",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000225",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 161815,
+        "claim_id": "CLM-2026-000250",
+        "claimant_id": "CLT-000085",
+        "date": "2026-05-27",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000229",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 317256,
+        "claim_id": "CLM-2026-000265",
+        "claimant_id": "CLT-000126",
+        "date": "2026-05-28",
+        "event": "INVOICE",
+        "provider_id": "PRV-000012",
+        "ref": "INV-PRV-000012-000023"
+      },
+      {
+        "claim_id": "CLM-2026-000303",
+        "claimant_id": "CLT-000126",
+        "date": "2026-05-31",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000283"
+      },
+      {
+        "claim_id": "CLM-2026-000303",
+        "claimant_id": "CLT-000126",
+        "date": "2026-06-08",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000303"
+      },
+      {
+        "claim_id": "CLM-2026-000318",
+        "claimant_id": "CLT-000126",
+        "date": "2026-06-13",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000307"
+      },
+      {
+        "claim_id": "CLM-2026-000318",
+        "claimant_id": "CLT-000126",
+        "date": "2026-06-13",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000318"
+      },
+      {
+        "amount_cents": 292256,
+        "claim_id": "CLM-2026-000265",
+        "claimant_id": "CLT-000126",
+        "date": "2026-06-19",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000274",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 534829,
+        "claim_id": "CLM-2026-000318",
+        "claimant_id": "CLT-000126",
+        "date": "2026-06-30",
+        "event": "INVOICE",
+        "provider_id": "PRV-000036",
+        "ref": "INV-PRV-000036-000013"
+      },
+      {
+        "claim_id": "CLM-2026-000360",
+        "claimant_id": "CLT-000085",
+        "date": "2026-07-06",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000349"
+      },
+      {
+        "claim_id": "CLM-2026-000360",
+        "claimant_id": "CLT-000085",
+        "date": "2026-07-06",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000360"
+      },
+      {
+        "amount_cents": 80954,
+        "claim_id": "CLM-2026-000360",
+        "claimant_id": "CLT-000085",
+        "date": "2026-07-09",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000057"
+      },
+      {
+        "amount_cents": 509829,
+        "claim_id": "CLM-2026-000318",
+        "claimant_id": "CLT-000126",
+        "date": "2026-07-21",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000321",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 30954,
+        "claim_id": "CLM-2026-000360",
+        "claimant_id": "CLT-000085",
+        "date": "2026-07-24",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000332",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000462",
+        "claimant_id": "CLT-000144",
+        "date": "2026-08-15",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000410"
+      },
+      {
+        "claim_id": "CLM-2026-000462",
+        "claimant_id": "CLT-000144",
+        "date": "2026-09-12",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000462"
+      },
+      {
+        "amount_cents": 378372,
+        "claim_id": "CLM-2026-000462",
+        "claimant_id": "CLT-000144",
+        "date": "2026-10-06",
+        "event": "INVOICE",
+        "provider_id": "PRV-000012",
+        "ref": "INV-PRV-000012-000050"
+      }
+    ],
+    "waterfall": [
+      {
+        "added": 0.65,
+        "family": "STORY"
+      },
+      {
+        "added": 0.07,
+        "family": "SUPPORT"
+      }
+    ]
+  },
+  {
+    "context": {},
+    "discounted_links": [],
+    "evidence": [
+      {
+        "best_link_strength": 0.7,
+        "claimants": [
+          "CLT-000012",
+          "CLT-000020",
+          "CLT-000147",
+          "CLT-000186"
+        ],
+        "coverage": 1.0,
+        "edge_type": "SHARED_EMAIL",
+        "family": "IDENTITY",
+        "repetition": 1.0,
+        "sentence": "CLT-000012, CLT-000020, CLT-000147 and CLT-000186 share email address erin.nair.813589@example.com. Only 2.0% of claimants have a link like this with no innocent explanation.",
+        "strength": 0.7
+      },
+      {
+        "best_link_strength": 0.5936,
+        "claimants": [
+          "CLT-000012",
+          "CLT-000020",
+          "CLT-000147",
+          "CLT-000186"
+        ],
+        "coverage": 1.0,
+        "edge_type": "SHARED_PHONE",
+        "family": "IDENTITY",
+        "repetition": 1.0,
+        "sentence": "CLT-000012, CLT-000020, CLT-000147 and CLT-000186 share phone number 555-877-1843. Only 6.5% of claimants have a link like this with no innocent explanation.",
+        "strength": 0.5936
+      }
+    ],
+    "families": {
+      "IDENTITY": 0.7
+    },
+    "flagged": true,
+    "graph": {
+      "edges": [
+        {
+          "edge_type": "SHARED_EMAIL",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000187",
+          "recorded": 1,
+          "source": "CLT-000012",
+          "strength": 0.7,
+          "target": "CLT-000020"
+        },
+        {
+          "edge_type": "SHARED_EMAIL",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000188",
+          "recorded": 1,
+          "source": "CLT-000012",
+          "strength": 0.7,
+          "target": "CLT-000147"
+        },
+        {
+          "edge_type": "SHARED_EMAIL",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000189",
+          "recorded": 1,
+          "source": "CLT-000012",
+          "strength": 0.7,
+          "target": "CLT-000186"
+        },
+        {
+          "edge_type": "SHARED_EMAIL",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000190",
+          "recorded": 1,
+          "source": "CLT-000020",
+          "strength": 0.7,
+          "target": "CLT-000147"
+        },
+        {
+          "edge_type": "SHARED_EMAIL",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000191",
+          "recorded": 1,
+          "source": "CLT-000020",
+          "strength": 0.7,
+          "target": "CLT-000186"
+        },
+        {
+          "edge_type": "SHARED_EMAIL",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000192",
+          "recorded": 1,
+          "source": "CLT-000147",
+          "strength": 0.7,
+          "target": "CLT-000186"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000198",
+          "recorded": 1,
+          "source": "CLT-000012",
+          "strength": 0.5936,
+          "target": "CLT-000020"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000199",
+          "recorded": 1,
+          "source": "CLT-000012",
+          "strength": 0.5936,
+          "target": "CLT-000147"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000200",
+          "recorded": 1,
+          "source": "CLT-000012",
+          "strength": 0.5936,
+          "target": "CLT-000186"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000204",
+          "recorded": 1,
+          "source": "CLT-000020",
+          "strength": 0.5936,
+          "target": "CLT-000147"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000205",
+          "recorded": 1,
+          "source": "CLT-000020",
+          "strength": 0.5936,
+          "target": "CLT-000186"
+        },
+        {
+          "edge_type": "SHARED_PHONE",
+          "evidence": true,
+          "explanation": null,
+          "family": "IDENTITY",
+          "id": "LNK-000247",
+          "recorded": 1,
+          "source": "CLT-000147",
+          "strength": 0.5936,
+          "target": "CLT-000186"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "CLT-000012",
+          "label": "Quinn Wong",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000020",
+          "label": "Aiko Ibrahim",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000147",
+          "label": "Kai Banerjee",
+          "type": "CLAIMANT"
+        },
+        {
+          "id": "CLT-000186",
+          "label": "Erin Nair",
+          "type": "CLAIMANT"
+        }
+      ]
+    },
+    "members": [
+      "CLT-000012",
+      "CLT-000020",
+      "CLT-000147",
+      "CLT-000186"
+    ],
+    "network_id": "NET-000007",
+    "priority": "MEDIUM",
+    "rank": 7,
+    "score": 0.7,
+    "support": [],
+    "timeline": [
+      {
+        "claim_id": "CLM-2026-000337",
+        "claimant_id": "CLT-000012",
+        "date": "2026-01-27",
+        "event": "POLICY_START",
+        "ref": "POL-000038"
+      },
+      {
+        "claim_id": "CLM-2026-000393",
+        "claimant_id": "CLT-000012",
+        "date": "2026-01-27",
+        "event": "POLICY_START",
+        "ref": "POL-000038"
+      },
+      {
+        "claim_id": "CLM-2026-000397",
+        "claimant_id": "CLT-000012",
+        "date": "2026-01-27",
+        "event": "POLICY_START",
+        "ref": "POL-000038"
+      },
+      {
+        "claim_id": "CLM-2026-000414",
+        "claimant_id": "CLT-000012",
+        "date": "2026-01-27",
+        "event": "POLICY_START",
+        "ref": "POL-000038"
+      },
+      {
+        "claim_id": "CLM-2026-000434",
+        "claimant_id": "CLT-000012",
+        "date": "2026-01-27",
+        "event": "POLICY_START",
+        "ref": "POL-000038"
+      },
+      {
+        "claim_id": "CLM-2026-000394",
+        "claimant_id": "CLT-000147",
+        "date": "2026-03-12",
+        "event": "POLICY_START",
+        "ref": "POL-000116"
+      },
+      {
+        "claim_id": "CLM-2026-000386",
+        "claimant_id": "CLT-000020",
+        "date": "2026-03-14",
+        "event": "POLICY_START",
+        "ref": "POL-000047"
+      },
+      {
+        "claim_id": "CLM-2026-000444",
+        "claimant_id": "CLT-000020",
+        "date": "2026-03-14",
+        "event": "POLICY_START",
+        "ref": "POL-000047"
+      },
+      {
+        "claim_id": "CLM-2026-000454",
+        "claimant_id": "CLT-000020",
+        "date": "2026-03-14",
+        "event": "POLICY_START",
+        "ref": "POL-000047"
+      },
+      {
+        "claim_id": "CLM-2026-000342",
+        "claimant_id": "CLT-000186",
+        "date": "2026-04-17",
+        "event": "POLICY_START",
+        "ref": "POL-000250"
+      },
+      {
+        "claim_id": "CLM-2026-000419",
+        "claimant_id": "CLT-000186",
+        "date": "2026-04-17",
+        "event": "POLICY_START",
+        "ref": "POL-000250"
+      },
+      {
+        "claim_id": "CLM-2026-000337",
+        "claimant_id": "CLT-000012",
+        "date": "2026-06-02",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000289"
+      },
+      {
+        "claim_id": "CLM-2026-000342",
+        "claimant_id": "CLT-000186",
+        "date": "2026-06-23",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000329"
+      },
+      {
+        "claim_id": "CLM-2026-000337",
+        "claimant_id": "CLT-000012",
+        "date": "2026-06-25",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000337"
+      },
+      {
+        "claim_id": "CLM-2026-000342",
+        "claimant_id": "CLT-000186",
+        "date": "2026-06-28",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000342"
+      },
+      {
+        "amount_cents": 565208,
+        "claim_id": "CLM-2026-000342",
+        "claimant_id": "CLT-000186",
+        "date": "2026-06-30",
+        "event": "INVOICE",
+        "provider_id": "PRV-000039",
+        "ref": "INV-PRV-000039-000025"
+      },
+      {
+        "amount_cents": 766251,
+        "claim_id": "CLM-2026-000342",
+        "claimant_id": "CLT-000186",
+        "date": "2026-07-06",
+        "event": "INVOICE",
+        "provider_id": "PRV-000030",
+        "ref": "INV-PRV-000030-000015"
+      },
+      {
+        "amount_cents": 315208,
+        "claim_id": "CLM-2026-000342",
+        "claimant_id": "CLT-000186",
+        "date": "2026-07-12",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000304",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 435096,
+        "claim_id": "CLM-2026-000337",
+        "claimant_id": "CLT-000012",
+        "date": "2026-07-24",
+        "event": "INVOICE",
+        "provider_id": "PRV-000015",
+        "ref": "INV-PRV-000015-000017"
+      },
+      {
+        "claim_id": "CLM-2026-000386",
+        "claimant_id": "CLT-000020",
+        "date": "2026-07-24",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000376"
+      },
+      {
+        "claim_id": "CLM-2026-000393",
+        "claimant_id": "CLT-000012",
+        "date": "2026-07-24",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000372"
+      },
+      {
+        "claim_id": "CLM-2026-000394",
+        "claimant_id": "CLT-000147",
+        "date": "2026-07-24",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000373"
+      },
+      {
+        "claim_id": "CLM-2026-000419",
+        "claimant_id": "CLT-000186",
+        "date": "2026-07-24",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000374"
+      },
+      {
+        "claim_id": "CLM-2026-000386",
+        "claimant_id": "CLT-000020",
+        "date": "2026-07-26",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000386"
+      },
+      {
+        "amount_cents": 176060,
+        "claim_id": "CLM-2026-000386",
+        "claimant_id": "CLT-000020",
+        "date": "2026-07-29",
+        "event": "INVOICE",
+        "provider_id": "PRV-000012",
+        "ref": "INV-PRV-000012-000037"
+      },
+      {
+        "claim_id": "CLM-2026-000393",
+        "claimant_id": "CLT-000012",
+        "date": "2026-07-30",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000393"
+      },
+      {
+        "claim_id": "CLM-2026-000394",
+        "claimant_id": "CLT-000147",
+        "date": "2026-07-30",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000394"
+      },
+      {
+        "claim_id": "CLM-2026-000397",
+        "claimant_id": "CLT-000012",
+        "date": "2026-07-31",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000384"
+      },
+      {
+        "claim_id": "CLM-2026-000397",
+        "claimant_id": "CLT-000012",
+        "date": "2026-07-31",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000397"
+      },
+      {
+        "amount_cents": 85388,
+        "claim_id": "CLM-2026-000393",
+        "claimant_id": "CLT-000012",
+        "date": "2026-08-01",
+        "event": "INVOICE",
+        "provider_id": "PRV-000047",
+        "ref": "INV-PRV-000047-000009"
+      },
+      {
+        "amount_cents": 273838,
+        "claim_id": "CLM-2026-000393",
+        "claimant_id": "CLT-000012",
+        "date": "2026-08-04",
+        "event": "INVOICE",
+        "provider_id": "PRV-000015",
+        "ref": "INV-PRV-000015-000018"
+      },
+      {
+        "amount_cents": 75908,
+        "claim_id": "CLM-2026-000397",
+        "claimant_id": "CLT-000012",
+        "date": "2026-08-08",
+        "event": "INVOICE",
+        "provider_id": "PRV-000045",
+        "ref": "INV-PRV-000045-000002"
+      },
+      {
+        "claim_id": "CLM-2026-000414",
+        "claimant_id": "CLT-000012",
+        "date": "2026-08-09",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000396"
+      },
+      {
+        "claim_id": "CLM-2026-000414",
+        "claimant_id": "CLT-000012",
+        "date": "2026-08-11",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000414"
+      },
+      {
+        "amount_cents": 126060,
+        "claim_id": "CLM-2026-000386",
+        "claimant_id": "CLT-000020",
+        "date": "2026-08-12",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000380",
+        "status": "SETTLED"
+      },
+      {
+        "claim_id": "CLM-2026-000419",
+        "claimant_id": "CLT-000186",
+        "date": "2026-08-14",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000419"
+      },
+      {
+        "amount_cents": 335096,
+        "claim_id": "CLM-2026-000337",
+        "claimant_id": "CLT-000012",
+        "date": "2026-08-15",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000387",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 140535,
+        "claim_id": "CLM-2026-000393",
+        "claimant_id": "CLT-000012",
+        "date": "2026-08-19",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000393",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 54117,
+        "claim_id": "CLM-2026-000394",
+        "claimant_id": "CLT-000147",
+        "date": "2026-08-19",
+        "event": "INVOICE",
+        "provider_id": "PRV-000035",
+        "ref": "INV-PRV-000035-000024"
+      },
+      {
+        "amount_cents": 107126,
+        "claim_id": "CLM-2026-000414",
+        "claimant_id": "CLT-000012",
+        "date": "2026-08-20",
+        "event": "INVOICE",
+        "provider_id": "PRV-000035",
+        "ref": "INV-PRV-000035-000025"
+      },
+      {
+        "claim_id": "CLM-2026-000434",
+        "claimant_id": "CLT-000012",
+        "date": "2026-08-20",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000414"
+      },
+      {
+        "claim_id": "CLM-2026-000434",
+        "claimant_id": "CLT-000012",
+        "date": "2026-08-21",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000434"
+      },
+      {
+        "claim_id": "CLM-2026-000444",
+        "claimant_id": "CLT-000020",
+        "date": "2026-08-22",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000419"
+      },
+      {
+        "amount_cents": 29431,
+        "claim_id": "CLM-2026-000393",
+        "claimant_id": "CLT-000012",
+        "date": "2026-08-24",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000397",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 306082,
+        "claim_id": "CLM-2026-000419",
+        "claimant_id": "CLT-000186",
+        "date": "2026-08-24",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000071"
+      },
+      {
+        "amount_cents": 426634,
+        "claim_id": "CLM-2026-000397",
+        "claimant_id": "CLT-000012",
+        "date": "2026-08-25",
+        "event": "INVOICE",
+        "provider_id": "PRV-000014",
+        "ref": "INV-PRV-000014-000012"
+      },
+      {
+        "amount_cents": 29520,
+        "claim_id": "CLM-2026-000394",
+        "claimant_id": "CLT-000147",
+        "date": "2026-08-27",
+        "event": "INVOICE",
+        "provider_id": "PRV-000004",
+        "ref": "INV-PRV-000004-000005"
+      },
+      {
+        "claim_id": "CLM-2026-000444",
+        "claimant_id": "CLT-000020",
+        "date": "2026-08-27",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000444"
+      },
+      {
+        "amount_cents": 318288,
+        "claim_id": "CLM-2026-000434",
+        "claimant_id": "CLT-000012",
+        "date": "2026-08-28",
+        "event": "INVOICE",
+        "provider_id": "PRV-000048",
+        "ref": "INV-PRV-000048-000013"
+      },
+      {
+        "claim_id": "CLM-2026-000454",
+        "claimant_id": "CLT-000020",
+        "date": "2026-09-02",
+        "event": "INCIDENT",
+        "ref": "INC-2026-000429"
+      },
+      {
+        "claim_id": "CLM-2026-000454",
+        "claimant_id": "CLT-000020",
+        "date": "2026-09-03",
+        "event": "REPORTED",
+        "ref": "CLM-2026-000454"
+      },
+      {
+        "amount_cents": 7126,
+        "claim_id": "CLM-2026-000414",
+        "claimant_id": "CLT-000012",
+        "date": "2026-09-04",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000411",
+        "status": "REVERSED"
+      },
+      {
+        "amount_cents": 56082,
+        "claim_id": "CLM-2026-000419",
+        "claimant_id": "CLT-000186",
+        "date": "2026-09-11",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000426",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 218288,
+        "claim_id": "CLM-2026-000434",
+        "claimant_id": "CLT-000012",
+        "date": "2026-09-11",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000425",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 21764,
+        "claim_id": "CLM-2026-000394",
+        "claimant_id": "CLT-000147",
+        "date": "2026-09-12",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000429",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 341739,
+        "claim_id": "CLM-2026-000397",
+        "claimant_id": "CLT-000012",
+        "date": "2026-09-12",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000428",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 60803,
+        "claim_id": "CLM-2026-000397",
+        "claimant_id": "CLT-000012",
+        "date": "2026-09-13",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000436",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 11873,
+        "claim_id": "CLM-2026-000394",
+        "claimant_id": "CLT-000147",
+        "date": "2026-09-15",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000438",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 324116,
+        "claim_id": "CLM-2026-000444",
+        "claimant_id": "CLT-000020",
+        "date": "2026-09-26",
+        "event": "INVOICE",
+        "provider_id": "PRV-000036",
+        "ref": "INV-PRV-000036-000017"
+      },
+      {
+        "amount_cents": 232780,
+        "claim_id": "CLM-2026-000454",
+        "claimant_id": "CLT-000020",
+        "date": "2026-09-26",
+        "event": "INVOICE",
+        "provider_id": "PRV-000005",
+        "ref": "INV-PRV-000005-000077"
+      },
+      {
+        "amount_cents": 182780,
+        "claim_id": "CLM-2026-000454",
+        "claimant_id": "CLT-000020",
+        "date": "2026-10-11",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000474",
+        "status": "SETTLED"
+      },
+      {
+        "amount_cents": 274116,
+        "claim_id": "CLM-2026-000444",
+        "claimant_id": "CLT-000020",
+        "date": "2026-10-19",
+        "event": "PAYMENT",
+        "ref": "PAY-2026-000483",
+        "status": "SETTLED"
+      }
+    ],
+    "waterfall": [
+      {
+        "added": 0.7,
+        "family": "IDENTITY"
+      },
+      {
+        "added": 0.0,
+        "family": "SUPPORT"
+      }
+    ]
+  }
+]
