@@ -1,7 +1,8 @@
 """Command line: python -m fraudnet.evaluate --data data/output [--seeds 606 707 808 909 1010] [--doc docs/EVALUATION.md]
+              python -m fraudnet.evaluate stress [--seeds ...] [--workers N] [--doc docs/STRESS.md]
 
 Scores <data>/detect against <data>/hidden, then generates, detects and scores each unseen seed at
-the same scale. Writes <data>/evaluation/.
+the same scale. Writes <data>/evaluation/. `stress` runs the stress test in docs/STRESS_PLAN.md.
 """
 from __future__ import annotations
 
@@ -18,14 +19,39 @@ from fraudnet.evaluate.run import aggregate, evaluate_dataset, evaluate_seeds
 UNSEEN_SEEDS = (606, 707, 808, 909, 1010)
 
 
+def stress(args) -> None:
+    """python -m fraudnet.evaluate stress [--seeds ...] [--workers N] [--doc docs/STRESS.md]"""
+    from fraudnet.evaluate.stress import STRESS_SEEDS, run_stress, write_json
+    from fraudnet.evaluate.stress_report import write_stress_report
+
+    seeds = args.seeds if args.seeds_given else list(STRESS_SEEDS)
+    result = run_stress(seeds, workers=args.workers, sensitivity=not args.no_sensitivity)
+    write_json(result, args.data / "evaluation" / "stress.json")
+    command = "python -m fraudnet.evaluate " + " ".join(sys.argv[1:])
+    write_stress_report(result, command.strip(), args.doc or args.data / "evaluation" / "stress_report.md")
+    hits = sum(item["hit"] for item in result["predictions"])
+    print(f"Stress seeds {seeds}: predictions hit {hits} of {len(result['predictions'])}")
+    for item in result["predictions"]:
+        print(f"  {'HIT ' if item['hit'] else 'MISS'} {item['pid']:<10} {item['predicted']}  actual {item['actual']}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Evaluate detector output against the hidden labels.")
+    parser.add_argument("command", nargs="?", choices=("stress",), help="stress: run the stress test (STRESS_PLAN.md)")
     parser.add_argument("--data", type=Path, default=Path("data/output"))
-    parser.add_argument("--seeds", type=int, nargs="*", default=list(UNSEEN_SEEDS),
-                        help="unseen seeds to generate and score at the same scale (none: development seed only)")
+    parser.add_argument("--seeds", type=int, nargs="*", default=None,
+                        help="seeds to generate and score at the same scale (none: development seed only)")
     parser.add_argument("--no-comparisons", action="store_true", help="skip comparison methods and principle-off runs")
     parser.add_argument("--doc", type=Path, help="also write the Markdown report here")
+    parser.add_argument("--workers", type=int, help="stress: parallel worker processes")
+    parser.add_argument("--no-sensitivity", action="store_true", help="stress: skip the setting sensitivity runs")
     args = parser.parse_args()
+    args.seeds_given = args.seeds is not None
+    if args.command == "stress":
+        stress(args)
+        return
+    if args.seeds is None:
+        args.seeds = list(UNSEEN_SEEDS)
 
     with_comparisons = not args.no_comparisons
     development = evaluate_dataset(args.data, with_comparisons)
