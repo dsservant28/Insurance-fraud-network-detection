@@ -24,6 +24,7 @@ def stress(args) -> None:
     from fraudnet.evaluate.stress import STRESS_SEEDS, run_stress, write_json
     from fraudnet.evaluate.stress_report import write_stress_report
 
+    sys.stdout.reconfigure(errors="replace")  # the Windows console can't print every symbol in the predictions
     seeds = args.seeds if args.seeds_given else list(STRESS_SEEDS)
     result = run_stress(seeds, workers=args.workers, sensitivity=not args.no_sensitivity)
     write_json(result, args.data / "evaluation" / "stress.json")

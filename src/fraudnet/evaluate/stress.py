@@ -12,6 +12,7 @@ import hashlib
 import json
 import os
 import statistics
+import sys
 import tempfile
 from concurrent.futures import ProcessPoolExecutor
 from dataclasses import dataclass
@@ -421,7 +422,11 @@ def run_stress(seeds=STRESS_SEEDS, workers: int | None = None, sensitivity: bool
              for scenario in conditions() for seed in seeds]
     workers = workers or max(1, (os.cpu_count() or 2) - 1)
     with ProcessPoolExecutor(max_workers=workers) as pool:
-        runs = list(pool.map(run_condition, tasks))
+        runs = []
+        for done, run in enumerate(pool.map(run_condition, tasks), start=1):
+            runs.append(run)
+            if done % 20 == 0 or done == len(tasks):
+                print(f"stress runs: {done} of {len(tasks)}", file=sys.stderr, flush=True)
         settings, config_sha = load_config()
         development = run_condition((DEFAULT_SEED, None, None))
         sensitivity_rows = []
