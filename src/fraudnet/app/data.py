@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import json
 import os
+import sqlite3
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -37,6 +38,7 @@ class Network:
     evidence: list[dict]
     support: list[dict]
     context: dict[str, str]
+    detail: dict = field(default_factory=dict, repr=False)  # graph, waterfall, timeline, discounted links
 
     @property
     def strongest(self) -> float:
@@ -81,8 +83,26 @@ def load_overview(folder: Path | None = None) -> Overview:
             network_id=detail["network_id"], rank=int(row["rank"]), score=float(row["score"]),
             priority=str(row["priority"]), flagged=bool(row["flagged"]), members=list(detail["members"]), names=names,
             families=dict(detail["families"]), evidence=list(detail["evidence"]), support=list(detail["support"]),
-            context=dict(detail.get("context", {}))))
+            context=dict(detail.get("context", {})), detail=detail))
     networks.sort(key=lambda network: network.rank)
     manifest = json.loads((folder / "input" / "input_manifest.json").read_text(encoding="utf-8"))
     rows = {item["table"]: item["rows"] for item in manifest["files"] if "table" in item and item["path"].startswith("csv/")}
     return Overview(folder, run, networks, rows.get("claimant", 0), rows.get("claim", 0), rows)
+
+
+def cases_for_network(folder: Path, network_id: str) -> list[dict]:
+    """Investigation cases opened from this network, newest first. Empty if there is no case table yet."""
+    database = Path(folder) / "fraudnet.db"
+    if not database.exists():
+        return []
+    connection = sqlite3.connect(f"file:{database.as_posix()}?mode=ro", uri=True)
+    connection.row_factory = sqlite3.Row
+    try:
+        rows = connection.execute(
+            "SELECT investigation_id, current_status, priority, opened_at, opened_by, run_id FROM investigation "
+            "WHERE network_id = ? ORDER BY investigation_id DESC", (network_id,)).fetchall()
+    except sqlite3.OperationalError:  # no investigation table in this database yet
+        rows = []
+    finally:
+        connection.close()
+    return [dict(row) for row in rows]

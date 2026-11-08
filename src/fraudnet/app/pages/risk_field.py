@@ -93,6 +93,8 @@ with side:
   <div class="fn-names">{names}</div>
   <div class="fn-sum">score = 1 − (1 − {chosen.strongest:.3f}) × (1 − {chosen.other:.3f})</div>
 </div>""")
+        st.page_link("src/fraudnet/app/pages/network_dossier.py", label=f"Open the dossier for {chosen.network_id}",
+                     icon=":material/arrow_forward:")
 
 with queue:
     st.html(f'<div class="fn-panel-head"><h2>Review queue</h2><span class="fn-kicker">{len(flagged)} flagged</span></div>')

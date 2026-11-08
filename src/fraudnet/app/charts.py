@@ -66,7 +66,68 @@ def score_map(networks: list[Network], reasons: dict[str, str], threshold: float
             size=650, shape="circle", filled=False, color=theme.CYAN, strokeWidth=2.5).encode(x=x_axis, y=y_axis)
         layers.append(ring)
 
-    return alt.layer(*layers).properties(height=430, background="transparent").configure_view(stroke=None).configure_axis(
+    return _style(alt.layer(*layers).properties(height=430, background="transparent"))
+
+
+def _style(chart):
+    return chart.configure_view(stroke=None).configure_axis(
         labelColor=theme.FAINT, titleColor=theme.MUTED, gridColor="#1E2632", domainColor="#3A4658", tickColor="#3A4658",
         labelFont="JetBrains Mono", titleFont="Inter", titleFontWeight=500, titleFontSize=12,
-    ).configure_legend(labelFont="Inter", labelFontSize=12)
+    ).configure_legend(labelFont="Inter", labelFontSize=12, labelColor=theme.MUTED)
+
+
+TIMELINE_EVENTS = {"POLICY_START": ("Policy started", "triangle-up", "#8F9BAE"), "INCIDENT": ("Incident", "circle", "#E9EDF3"),
+                   "INVOICE": ("Invoice", "diamond", "#F4A62A"), "PAYMENT": ("Payment", "square", "#5BC6E8")}
+
+
+def timeline_events(network: Network) -> pd.DataFrame:
+    rows = [dict(item) for item in network.detail.get("timeline", []) if item["event"] in TIMELINE_EVENTS]
+    frame = pd.DataFrame(rows, columns=["date", "event", "claimant_id", "claim_id", "ref"])
+    if frame.empty:
+        return frame.assign(name=[], kind=[])
+    frame = frame.drop_duplicates(["date", "event", "claimant_id", "ref"])
+    frame["name"] = frame["claimant_id"].map(lambda cid: f"{network.names.get(cid, cid)} · {cid}")
+    frame["kind"] = frame["event"].map(lambda event: TIMELINE_EVENTS[event][0])
+    incidents = frame[frame["event"] == "INCIDENT"]
+    if not incidents.empty:  # policy starts long before the first incident would squash the view
+        start = pd.Timestamp(incidents["date"].min()) - pd.Timedelta(days=45)
+        frame = frame[pd.to_datetime(frame["date"]) >= start]
+    return frame.reset_index(drop=True)
+
+
+def same_day_incidents(network: Network, frame: pd.DataFrame) -> pd.DataFrame:
+    """Days on which at least half the group (and at least 3 people) reported an incident."""
+    incidents = frame[frame["event"] == "INCIDENT"]
+    need = max(3, -(-len(network.members) // 2))
+    per_day = incidents.groupby("date")["claimant_id"].nunique()
+    days = per_day[per_day >= need]
+    return pd.DataFrame({"date": days.index, "people": days.values,
+                         "text": [f"{n} of {len(network.members)} report an incident" for n in days.values]})
+
+
+def timeline(network: Network) -> alt.LayerChart | None:
+    frame = timeline_events(network)
+    if frame.empty:
+        return None
+    order = [f"{network.names.get(m, m)} · {m}" for m in network.members]
+    kinds = [label for label, _, _ in TIMELINE_EVENTS.values()]
+    x = alt.X("date:T", title=None, axis=alt.Axis(format="%b %Y", labelAngle=0, tickCount={"interval": "month", "step": 1}))
+    y = alt.Y("name:N", title=None, sort=order, axis=alt.Axis(labelFont="Inter", labelFontSize=12, labelLimit=260))
+    marks = alt.Chart(frame).mark_point(filled=True, size=90, opacity=0.95).encode(
+        x=x, y=y,
+        shape=alt.Shape("kind:N", title=None, scale=alt.Scale(domain=kinds, range=[s for _, s, _ in TIMELINE_EVENTS.values()]),
+                        legend=None),  # the page draws its own key above the chart
+        color=alt.Color("kind:N", title=None, scale=alt.Scale(domain=kinds, range=[c for _, _, c in TIMELINE_EVENTS.values()]),
+                        legend=None),
+        tooltip=[alt.Tooltip("date:T", title="Date", format="%d %b %Y"), alt.Tooltip("kind:N", title="Event"),
+                 alt.Tooltip("claim_id:N", title="Claim"), alt.Tooltip("ref:N", title="Reference"), alt.Tooltip("name:N", title="Who")])
+    layers = [marks]
+    bursts = same_day_incidents(network, frame)
+    if not bursts.empty:
+        rule = alt.Chart(bursts).mark_rule(color=theme.PRIORITY["CRITICAL"], strokeWidth=2, opacity=0.7).encode(
+            x="date:T", tooltip=[alt.Tooltip("date:T", format="%d %b %Y", title="Date"), alt.Tooltip("text:N", title="Same day")])
+        label = alt.Chart(bursts).mark_text(color="#FF9A66", align="left", dx=6, dy=-6, font="JetBrains Mono", fontSize=11).encode(
+            x="date:T", y=alt.value(0), text="text:N")
+        layers = [rule, label, marks]
+    height = max(160, 44 * len(order))
+    return _style(alt.layer(*layers).properties(height=height, background="transparent"))

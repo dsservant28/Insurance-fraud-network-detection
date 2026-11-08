@@ -62,6 +62,73 @@ def test_score_map_builds_with_a_selection():
     assert len(spec["layer"]) == 6 and any(p.get("name") == "pick" for p in params)
 
 
+def _graph_network():
+    edges = [
+        {"id": "LNK-1", "source": "A", "target": "B", "edge_type": "SHARED_BANK", "family": "IDENTITY", "strength": 0.84,
+         "recorded": 0, "evidence": True, "explanation": None},
+        {"id": "LNK-2", "source": "B", "target": "A", "edge_type": "SHARED_PHONE", "family": "IDENTITY", "strength": 0.75,
+         "recorded": 1, "evidence": True, "explanation": None},
+        {"id": "LNK-3", "source": "A", "target": "B", "edge_type": "SHARED_ADDRESS", "family": "LOCATION", "strength": 0.2,
+         "recorded": 0, "evidence": True, "explanation": None},
+        {"id": "LNK-4", "source": "A", "target": "PRV-000001", "edge_type": "USED_PROVIDER", "family": "PROVIDER",
+         "strength": None, "recorded": 1, "evidence": False, "explanation": None},
+    ]
+    nodes = [{"id": "A", "label": "Ann </script><b>Lee", "type": "CLAIMANT"}, {"id": "B", "label": "Bo Kim", "type": "CLAIMANT"},
+             {"id": "PRV-000001", "label": "PRV-000001", "type": "PROVIDER"}]
+    timeline = [{"date": "2026-07-09", "event": "INCIDENT", "claimant_id": c, "claim_id": f"CLM-{c}", "ref": "INC"} for c in "ABC"]
+    network = _network([_ev("SHARED_BANK", "A", "B")], members=["A", "B", "C"])
+    network.detail = {"graph": {"nodes": nodes, "edges": edges}, "timeline": timeline}
+    return network
+
+
+def test_graph_draws_one_line_per_pair_and_kind_of_evidence():
+    from fraudnet.app.graph import elements
+    lines = [e["data"] for e in elements(_graph_network()) if "source" in e["data"]]
+    identity = [d for d in lines if d["family"] == "IDENTITY"]
+    assert len(lines) == 3 and len(identity) == 1  # bank + phone merged; address separate; provider use as context
+    assert identity[0]["missing"] == 1 and len(identity[0]["links"]) == 2 and identity[0]["links"][0].startswith("Shared bank")
+    assert [d["context"] for d in lines if d["family"] == "CONTEXT"] == [True]
+
+
+def test_graph_page_text_cannot_break_out_of_the_script():
+    from fraudnet.app.graph import html
+    page = html(_graph_network())
+    data_part = page.split("const els = ", 1)[1].split(";\n", 1)[0]
+    assert "</script>" not in data_part and "<\\/script>" in data_part
+
+
+def test_same_day_incidents_need_half_the_group():
+    from fraudnet.app.charts import same_day_incidents, timeline_events
+    network = _graph_network()
+    bursts = same_day_incidents(network, timeline_events(network))
+    assert list(bursts["people"]) == [3] and bursts["text"].iloc[0] == "3 of 3 report an incident"
+
+
+def test_case_lookup_handles_no_database_no_table_and_a_case(tmp_path):
+    import sqlite3
+    from fraudnet.app.data import cases_for_network
+    assert cases_for_network(tmp_path, "NET-000001") == []
+    sqlite3.connect(tmp_path / "fraudnet.db").close()
+    assert cases_for_network(tmp_path, "NET-000001") == []
+    with sqlite3.connect(tmp_path / "fraudnet.db") as db:
+        db.execute("CREATE TABLE investigation (investigation_id TEXT, current_status TEXT, priority TEXT, opened_at TEXT, "
+                   "opened_by TEXT, run_id TEXT, network_id TEXT)")
+        db.execute("INSERT INTO investigation VALUES ('INVG-2026-000001', 'OPEN', 'HIGH', 't', 'USR-OPS-01', 'RUN-X', 'NET-000001')")
+    assert [c["investigation_id"] for c in cases_for_network(tmp_path, "NET-000001")] == ["INVG-2026-000001"]
+
+
+def test_dossier_page_runs_and_follows_the_picked_network(monkeypatch):
+    from streamlit.testing.v1 import AppTest
+    monkeypatch.setenv("FRAUDNET_DATA", str(SAMPLE))
+    app = AppTest.from_file(str(ROOT / "streamlit_app.py"), default_timeout=60)
+    app.run()
+    app.switch_page("src/fraudnet/app/pages/network_dossier.py").run()
+    assert not app.exception
+    last = load_overview(SAMPLE).networks[-1].network_id
+    app.selectbox(key="dossier_pick").set_value(last).run()
+    assert not app.exception and app.session_state["network"] == last
+
+
 def test_risk_field_page_runs_and_selects_a_network(monkeypatch):
     from streamlit.testing.v1 import AppTest
     monkeypatch.setenv("FRAUDNET_DATA", str(SAMPLE))

@@ -14,6 +14,9 @@ CLAUSE = {"DUPLICATE_INVOICE": "carry copies of the same invoice",
           "SIMILAR_NARRATIVE": "filed near-identical stories at one provider",
           "EARLY_CLAIM_PAIR": "claimed within days of their policies starting, at one provider",
           "SAME_INCIDENT": "claimed on the same incident"}
+FAMILY_LABEL = {"IDENTITY": "Shared contact details", "BILLING": "Same invoice", "STORY": "Near-identical stories",
+                "TIMING": "Early claims at one provider", "INCIDENT": "Same incident", "LOCATION": "Shared address",
+                "PROVIDER": "Same provider", "SUPPORT": "Supporting facts"}
 ORDER = ("SHARED_BANK", "SHARED_PHONE", "SHARED_EMAIL", "SHARED_CONTACT_PROVIDER", "SHARED_ADDRESS",
          "DUPLICATE_INVOICE", "SIMILAR_NARRATIVE", "EARLY_CLAIM_PAIR", "SAME_INCIDENT")
 
