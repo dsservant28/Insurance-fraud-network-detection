@@ -284,3 +284,24 @@ Format:
   - v0.2 was designed after seeing the stress results, so it is scored on confirmation seeds no version had
     seen, with predictions registered first (STRESS_PLAN.md amendment A2).
 - **Requirement link:** Part B ("rebuild relationships from raw attributes"); Part C evaluation.
+
+## D-033 — The console is built for the investigator, page by page, in plain language
+- **Decision:**
+  - The app (`streamlit_app.py`, `src/fraudnet/app/`) runs on Streamlit 1.66.1, pinned. Charts use Altair, which ships with Streamlit, so there is no extra dependency.
+  - Every page answers one investigator question.
+  - The first page, **Risk field**, shows:
+    - what needs review, as one headline count;
+    - the review queue, highest risk first, each row with a one-line reason;
+    - a score map, where clicking a dot selects that network.
+  - The reasons are built in `app/plain.py` from the detector's own evidence. Codes and IDs stay on the dossier page.
+  - The maths (rarity curve, formulas, evidence funnel) moves to a separate **How it works** page.
+  - The app reads only `detect/` and the input manifest. `scripts/policy_check.py` rule R1 now covers `src/**/app/` as well as `detect/`, so app code can't name labels or the hidden folder.
+- **Options considered:**
+  - Keep the full mockup overview: score field, queue, funnel, rarity curve and formulas on one page.
+  - Investigator-first pages, with the maths on its own page.
+- **Choice and why:** The owner reviewed the mockup and found seven panels on one page too much to take in. An investigator opening the app needs to know what to look at first and why. The maths is a strength for a reviewer, so it keeps a page of its own instead of crowding the work screen.
+- **Trade-off / limitation:**
+  - The reason sentence is a summary. The dossier holds the full evidence.
+  - Overlapping networks share one dot on the map, and the tooltip names the one on top.
+  - Hosting (D-018) still has to rebuild `data/output` on start-up; until then the app falls back to the committed sample.
+- **Requirement link:** Part D (investigation workflow and UI); Explainability.
