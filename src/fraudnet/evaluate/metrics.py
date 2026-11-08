@@ -2,7 +2,9 @@
 
 A network matches a labelled group when the Jaccard similarity of their claimants is at least 0.5.
 Networks are matched in rank order and each group matches at most one network, so a duplicate
-network for an already-found ring counts as a false alarm, not a second success.
+network for an already-found ring counts as a false alarm, not a second success. A flagged network
+lying wholly inside a fraud group without matching it is still a false alarm in `precision`; it is
+also counted as a fragment, and `precision_counting_fragments` shows precision if fragments counted.
 """
 from __future__ import annotations
 
@@ -75,12 +77,16 @@ def match(ranked: list[Ranked], groups: list[LabelledGroup]) -> list[dict]:
         matched = best if best is not None and best_score >= MATCH_JACCARD else None
         if matched:
             taken.add(matched.group_id)
+        # A network that isn't a match but lies wholly inside one fraud group is a piece of a real ring.
+        fragment = not (matched and matched.is_fraud) and len(network.claimants) >= 2 and any(
+            group.is_fraud and network.claimants <= group.claimants for group in candidates.values())
         rows.append({"rank": position, "network_id": network.network_id, "flagged": network.flagged,
                      "claimants": len(network.claimants),
                      "group_id": matched.group_id if matched else None,
                      "rule_id": matched.rule_id if matched else None,
                      "is_fraud": bool(matched and matched.is_fraud),
-                     "jaccard": round(best_score, 4) if matched else round(best_score, 4)})
+                     "fraud_fragment": fragment,
+                     "jaccard": round(best_score, 4)})
     return rows
 
 
@@ -122,6 +128,10 @@ def score(ranked: list[Ranked], groups: list[LabelledGroup]) -> dict:
         "false_positive_networks": sum(not row["is_fraud"] for row in flagged),
         "unmatched_flagged_networks": sum(row["group_id"] is None for row in flagged),
         "precision": _rate(sum(row["is_fraud"] for row in flagged), len(flagged)),
+        # Not a headline measure: shows how many "false alarms" are really pieces of a fraud group.
+        "fragment_networks": sum(row["fraud_fragment"] for row in flagged),
+        "precision_counting_fragments": _rate(sum(row["is_fraud"] or row["fraud_fragment"] for row in flagged),
+                                              len(flagged)),
         "recall": _rate(len(found & ring_ids), len(rings)),
         "fraud_group_recall": _rate(len(found), len(fraud)),
         "false_positive_rate": _rate(len(false_benign), len(benign)),

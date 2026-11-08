@@ -1,5 +1,5 @@
 """Command line: python -m fraudnet.evaluate --data data/output [--seeds 606 707 808 909 1010] [--doc docs/EVALUATION.md]
-              python -m fraudnet.evaluate stress [--seeds ...] [--workers N] [--doc docs/STRESS.md]
+              python -m fraudnet.evaluate stress [--seeds ...] [--predictions v0.2] [--compare FILE] [--doc FILE]
 
 Scores <data>/detect against <data>/hidden, then generates, detects and scores each unseen seed at
 the same scale. Writes <data>/evaluation/. `stress` runs the stress test in docs/STRESS_PLAN.md.
@@ -26,10 +26,11 @@ def stress(args) -> None:
 
     sys.stdout.reconfigure(errors="replace")  # the Windows console can't print every symbol in the predictions
     seeds = args.seeds if args.seeds_given else list(STRESS_SEEDS)
-    result = run_stress(seeds, workers=args.workers, sensitivity=not args.no_sensitivity)
-    write_json(result, args.data / "evaluation" / "stress.json")
+    result = run_stress(seeds, workers=args.workers, sensitivity=not args.no_sensitivity, predictions=args.predictions)
+    write_json(result, args.data / "evaluation" / f"stress_{args.predictions}.json")
     command = "python -m fraudnet.evaluate " + " ".join(sys.argv[1:])
-    write_stress_report(result, command.strip(), args.doc or args.data / "evaluation" / "stress_report.md")
+    compare = json.loads(args.compare.read_text(encoding="utf-8")) if args.compare else None
+    write_stress_report(result, command.strip(), args.doc or args.data / "evaluation" / "stress_report.md", compare)
     hits = sum(item["hit"] for item in result["predictions"])
     print(f"Stress seeds {seeds}: predictions hit {hits} of {len(result['predictions'])}")
     for item in result["predictions"]:
@@ -46,6 +47,9 @@ def main() -> None:
     parser.add_argument("--doc", type=Path, help="also write the Markdown report here")
     parser.add_argument("--workers", type=int, help="stress: parallel worker processes")
     parser.add_argument("--no-sensitivity", action="store_true", help="stress: skip the setting sensitivity runs")
+    parser.add_argument("--predictions", choices=("v0.1", "v0.2"), default="v0.1",
+                        help="stress: which registered prediction set to check")
+    parser.add_argument("--compare", type=Path, help="stress: an earlier version's summary to show side by side")
     args = parser.parse_args()
     args.seeds_given = args.seeds is not None
     if args.command == "stress":

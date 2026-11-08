@@ -1,0 +1,2945 @@
+{
+ "config_sha256": "3bb79611587da9b45d1787db9e978df43e3004a3f1002b6b7aa51ff76e4bd67e",
+ "development_sweep": [
+  {
+   "flagged": 30,
+   "precision": 0.9667,
+   "recall": 1.0,
+   "threshold": 0.3
+  },
+  {
+   "flagged": 30,
+   "precision": 0.9667,
+   "recall": 1.0,
+   "threshold": 0.35
+  },
+  {
+   "flagged": 30,
+   "precision": 0.9667,
+   "recall": 1.0,
+   "threshold": 0.4
+  },
+  {
+   "flagged": 29,
+   "precision": 1.0,
+   "recall": 1.0,
+   "threshold": 0.45
+  },
+  {
+   "flagged": 29,
+   "precision": 1.0,
+   "recall": 1.0,
+   "threshold": 0.5
+  },
+  {
+   "flagged": 29,
+   "precision": 1.0,
+   "recall": 1.0,
+   "threshold": 0.55
+  },
+  {
+   "flagged": 29,
+   "precision": 1.0,
+   "recall": 1.0,
+   "threshold": 0.6
+  },
+  {
+   "flagged": 29,
+   "precision": 1.0,
+   "recall": 1.0,
+   "threshold": 0.65
+  },
+  {
+   "flagged": 24,
+   "precision": 1.0,
+   "recall": 0.7917,
+   "threshold": 0.7
+  },
+  {
+   "flagged": 21,
+   "precision": 1.0,
+   "recall": 0.6667,
+   "threshold": 0.75
+  },
+  {
+   "flagged": 18,
+   "precision": 1.0,
+   "recall": 0.5417,
+   "threshold": 0.8
+  },
+  {
+   "flagged": 9,
+   "precision": 1.0,
+   "recall": 0.3333,
+   "threshold": 0.85
+  },
+  {
+   "flagged": 1,
+   "precision": 1.0,
+   "recall": 0.0417,
+   "threshold": 0.9
+  },
+  {
+   "flagged": 0,
+   "precision": null,
+   "recall": 0.0,
+   "threshold": 0.95
+  }
+ ],
+ "frozen_commit": "ddf09cc25bb0280ce1e6a479aaa8f0e28f13fa41",
+ "predictions": [
+  {
+   "actual": {
+    "0.25": 1.0,
+    "0.5": 1.0,
+    "0.75": 1.0,
+    "1.0": 1.0
+   },
+   "condition": "S1a",
+   "high": 1,
+   "hit": true,
+   "hypothesis": "H8",
+   "levels": [
+    "0.25",
+    "0.5",
+    "0.75",
+    "1.0"
+   ],
+   "low": 0.97,
+   "measure": "precision",
+   "pid": "P-S1a.1",
+   "predicted": "precision \u2265 0.97 at every level"
+  },
+  {
+   "actual": {
+    "0.25": 1.0,
+    "0.5": 1.0,
+    "0.75": 1.0,
+    "1.0": 1.0
+   },
+   "condition": "S1a",
+   "high": 1,
+   "hit": true,
+   "hypothesis": "H8",
+   "levels": [
+    "0.25",
+    "0.5",
+    "0.75",
+    "1.0"
+   ],
+   "low": 0.97,
+   "measure": "recall",
+   "pid": "P-S1a.2",
+   "predicted": "recall \u2265 0.97 at every level"
+  },
+  {
+   "actual": {
+    "0.25": 0.0,
+    "0.5": 0.0,
+    "0.75": 0.0,
+    "1.0": 0.0
+   },
+   "condition": "S1a",
+   "high": 0.01,
+   "hit": true,
+   "hypothesis": "H8",
+   "levels": [
+    "0.25",
+    "0.5",
+    "0.75",
+    "1.0"
+   ],
+   "low": 0,
+   "measure": "max_benign_fp",
+   "pid": "P-S1a.3",
+   "predicted": "every innocent rule's FP rate \u2264 0.01"
+  },
+  {
+   "actual": {
+    "0.5": 0.7417
+   },
+   "condition": "S1b",
+   "high": 0.9,
+   "hit": true,
+   "hypothesis": "H1",
+   "levels": [
+    "0.5"
+   ],
+   "low": 0.6,
+   "measure": "recall",
+   "pid": "P-S1b-1.1",
+   "predicted": "recall 0.60\u20130.90"
+  },
+  {
+   "actual": {
+    "0.5": 0.6672
+   },
+   "condition": "S1b",
+   "high": 0.9,
+   "hit": true,
+   "hypothesis": "H1",
+   "levels": [
+    "0.5"
+   ],
+   "low": 0.55,
+   "measure": "precision",
+   "pid": "P-S1b-1.2",
+   "predicted": "precision 0.55\u20130.90"
+  },
+  {
+   "actual": {
+    "0.5": 0.0453
+   },
+   "condition": "S1b",
+   "high": 0.25,
+   "hit": true,
+   "hypothesis": "H1",
+   "levels": [
+    "0.5"
+   ],
+   "low": 0.04,
+   "measure": "fp:B-HOUSE-01",
+   "pid": "P-S1b-1.3",
+   "predicted": "B-HOUSE-01 FP rate 0.04\u20130.25"
+  },
+  {
+   "actual": {
+    "1.0": 0.6
+   },
+   "condition": "S1b",
+   "high": 0.8,
+   "hit": true,
+   "hypothesis": "H1",
+   "levels": [
+    "1.0"
+   ],
+   "low": 0.3,
+   "measure": "recall:R-RING-01",
+   "pid": "P-S1b-2.1",
+   "predicted": "R-RING-01 recall 0.30\u20130.80"
+  },
+  {
+   "actual": {
+    "1.0": 1.0
+   },
+   "condition": "S1b",
+   "high": 1,
+   "hit": true,
+   "hypothesis": "H1",
+   "levels": [
+    "1.0"
+   ],
+   "low": 0.9,
+   "measure": "recall:R-RING-02",
+   "pid": "P-S1b-2.2",
+   "predicted": "R-RING-02 recall \u2265 0.9"
+  },
+  {
+   "actual": {
+    "1.0": 0.7
+   },
+   "condition": "S1b",
+   "high": 0.9,
+   "hit": true,
+   "hypothesis": "H9",
+   "levels": [
+    "1.0"
+   ],
+   "low": 0.3,
+   "measure": "recall:R-RING-03",
+   "pid": "P-S1b-2.3",
+   "predicted": "R-RING-03 recall 0.30\u20130.90"
+  },
+  {
+   "actual": {
+    "0.5": 0.5833
+   },
+   "condition": "S1c",
+   "high": 0.85,
+   "hit": true,
+   "hypothesis": "H1",
+   "levels": [
+    "0.5"
+   ],
+   "low": 0.55,
+   "measure": "recall",
+   "pid": "P-S1c-1.1",
+   "predicted": "recall 0.55\u20130.85"
+  },
+  {
+   "actual": {
+    "0.5": 0.1627
+   },
+   "condition": "S1c",
+   "high": 0.25,
+   "hit": true,
+   "hypothesis": "H1",
+   "levels": [
+    "0.5"
+   ],
+   "low": 0.04,
+   "measure": "fp:B-HOUSE-01",
+   "pid": "P-S1c-1.2",
+   "predicted": "B-HOUSE-01 FP rate 0.04\u20130.25"
+  },
+  {
+   "actual": {
+    "1.0": 0.1917
+   },
+   "condition": "S1c",
+   "high": 0.3,
+   "hit": true,
+   "hypothesis": "H9",
+   "levels": [
+    "1.0"
+   ],
+   "low": 0.1,
+   "measure": "recall",
+   "pid": "P-S1c-2.1",
+   "predicted": "recall 0.10\u20130.30"
+  },
+  {
+   "actual": {
+    "1.0": 0.5483
+   },
+   "condition": "S1c",
+   "high": 1,
+   "hit": false,
+   "hypothesis": "H1",
+   "levels": [
+    "1.0"
+   ],
+   "low": 0.85,
+   "measure": "precision",
+   "pid": "P-S1c-2.2",
+   "predicted": "precision \u2265 0.85"
+  },
+  {
+   "actual": {
+    "0.5": 0.8167
+   },
+   "condition": "S2",
+   "high": 0.85,
+   "hit": true,
+   "hypothesis": "H3",
+   "levels": [
+    "0.5"
+   ],
+   "low": 0.55,
+   "measure": "recall",
+   "pid": "P-S2-1.1",
+   "predicted": "recall 0.55\u20130.85"
+  },
+  {
+   "actual": {
+    "0.5": 0.1
+   },
+   "condition": "S2",
+   "high": 0.25,
+   "hit": true,
+   "hypothesis": "H3",
+   "levels": [
+    "0.5"
+   ],
+   "low": 0,
+   "measure": "recall:R-RING-02",
+   "pid": "P-S2-1.2",
+   "predicted": "R-RING-02 recall \u2264 0.25"
+  },
+  {
+   "actual": {
+    "1.0": 0.6917
+   },
+   "condition": "S2",
+   "high": 0.5,
+   "hit": false,
+   "hypothesis": "H3",
+   "levels": [
+    "1.0"
+   ],
+   "low": 0.15,
+   "measure": "recall",
+   "pid": "P-S2-2.1",
+   "predicted": "recall 0.15\u20130.50"
+  },
+  {
+   "actual": {
+    "1.0": 0.7729
+   },
+   "condition": "S2",
+   "high": 1,
+   "hit": false,
+   "hypothesis": "H3",
+   "levels": [
+    "1.0"
+   ],
+   "low": 0.95,
+   "measure": "precision",
+   "pid": "P-S2-2.2",
+   "predicted": "precision \u2265 0.95"
+  },
+  {
+   "actual": {
+    "1.0": 0.7719
+   },
+   "condition": "S2",
+   "high": 0.8499,
+   "hit": true,
+   "hypothesis": "H3",
+   "levels": [
+    "1.0"
+   ],
+   "low": 0,
+   "measure": "mean_match_jaccard",
+   "pid": "P-S2-2.3",
+   "predicted": "mean match Jaccard below 0.85"
+  },
+  {
+   "actual": {
+    "0.25": 0.05
+   },
+   "condition": "S2",
+   "high": 0.6,
+   "hit": true,
+   "hypothesis": "H3",
+   "levels": [
+    "0.25"
+   ],
+   "low": 0,
+   "measure": "recall:R-RING-02",
+   "pid": "P-S2-3",
+   "predicted": "R-RING-02 recall \u2264 0.60"
+  },
+  {
+   "actual": {
+    "pairs": 0.825
+   },
+   "condition": "S3a",
+   "high": 0.9,
+   "hit": true,
+   "hypothesis": "H7",
+   "levels": [
+    "pairs"
+   ],
+   "low": 0.7,
+   "measure": "recall",
+   "pid": "P-S3a.1",
+   "predicted": "recall 0.70\u20130.90"
+  },
+  {
+   "actual": {
+    "pairs": 0.0
+   },
+   "condition": "S3a",
+   "high": 0.1,
+   "hit": true,
+   "hypothesis": "H7",
+   "levels": [
+    "pairs"
+   ],
+   "low": 0,
+   "measure": "recall:R-RING-02",
+   "pid": "P-S3a.2",
+   "predicted": "R-RING-02 recall \u2264 0.10"
+  },
+  {
+   "actual": {
+    "pairs": 1.0
+   },
+   "condition": "S3a",
+   "high": 1,
+   "hit": true,
+   "hypothesis": "H7",
+   "levels": [
+    "pairs"
+   ],
+   "low": 0.9,
+   "measure": "min_recall:R-RING-01|R-RING-04|R-RING-05|R-RING-06",
+   "pid": "P-S3a.3",
+   "predicted": "R-RING-01, -04, -05 and -06 recall \u2265 0.9"
+  },
+  {
+   "actual": {
+    "large": 0.6167
+   },
+   "condition": "S3b",
+   "high": 0.8,
+   "hit": true,
+   "hypothesis": "H6",
+   "levels": [
+    "large"
+   ],
+   "low": 0.3,
+   "measure": "recall",
+   "pid": "P-S3b.1",
+   "predicted": "recall 0.30\u20130.80"
+  },
+  {
+   "actual": {
+    "large": 0.8766
+   },
+   "condition": "S3b",
+   "high": 0.9,
+   "hit": true,
+   "hypothesis": "H6",
+   "levels": [
+    "large"
+   ],
+   "low": 0.55,
+   "measure": "precision",
+   "pid": "P-S3b.2",
+   "predicted": "precision 0.55\u20130.90"
+  },
+  {
+   "actual": {
+    "x2": 0.9958
+   },
+   "condition": "S3c",
+   "high": 1,
+   "hit": true,
+   "hypothesis": "H4",
+   "levels": [
+    "x2"
+   ],
+   "low": 0.95,
+   "measure": "recall",
+   "pid": "P-S3c-1.1",
+   "predicted": "recall \u2265 0.95"
+  },
+  {
+   "actual": {
+    "x2": 0.9889
+   },
+   "condition": "S3c",
+   "high": 1,
+   "hit": true,
+   "hypothesis": "H4",
+   "levels": [
+    "x2"
+   ],
+   "low": 0.95,
+   "measure": "precision",
+   "pid": "P-S3c-1.2",
+   "predicted": "precision \u2265 0.95"
+  },
+  {
+   "actual": {
+    "x3": 0.9056
+   },
+   "condition": "S3c",
+   "high": 0.99,
+   "hit": true,
+   "hypothesis": "H4",
+   "levels": [
+    "x3"
+   ],
+   "low": 0.85,
+   "measure": "recall",
+   "pid": "P-S3c-2.1",
+   "predicted": "recall 0.85\u20130.99 at 3\u00d7"
+  },
+  {
+   "actual": {
+    "x4": 0.7146
+   },
+   "condition": "S3c",
+   "high": 0.97,
+   "hit": false,
+   "hypothesis": "H4",
+   "levels": [
+    "x4"
+   ],
+   "low": 0.8,
+   "measure": "recall",
+   "pid": "P-S3c-2.2",
+   "predicted": "recall 0.80\u20130.97 at 4\u00d7"
+  },
+  {
+   "actual": {
+    "x3": 0.6471,
+    "x4": 0.146
+   },
+   "condition": "S3c",
+   "high": 1,
+   "hit": false,
+   "hypothesis": "H4",
+   "levels": [
+    "x3",
+    "x4"
+   ],
+   "low": 0.5,
+   "measure": "single_id_share",
+   "pid": "P-S3c-2.3",
+   "predicted": "most missed rings are single-identifier R-RING-01 rings"
+  },
+  {
+   "actual": {
+    "x3": 1.0,
+    "x4": 1.0
+   },
+   "condition": "S3c",
+   "high": 1,
+   "hit": true,
+   "hypothesis": "H4",
+   "levels": [
+    "x3",
+    "x4"
+   ],
+   "low": 0.95,
+   "measure": "precision",
+   "pid": "P-S3c-2.4",
+   "predicted": "precision \u2265 0.95"
+  },
+  {
+   "actual": {
+    "B-ROOM-01": 0.55
+   },
+   "condition": "S4a",
+   "high": 0.65,
+   "hit": true,
+   "hypothesis": "H5",
+   "levels": [
+    "B-ROOM-01"
+   ],
+   "low": 0.3,
+   "measure": "fp:B-ROOM-01",
+   "pid": "P-S4a.1",
+   "predicted": "B-ROOM-01 FP rate 0.30\u20130.65"
+  },
+  {
+   "actual": {
+    "B-ROOM-01": 1.0
+   },
+   "condition": "S4a",
+   "high": 1,
+   "hit": true,
+   "hypothesis": "H5",
+   "levels": [
+    "B-ROOM-01"
+   ],
+   "low": 0.97,
+   "measure": "recall",
+   "pid": "P-S4a.2",
+   "predicted": "recall \u2265 0.97"
+  },
+  {
+   "actual": {
+    "B-FAMILY-02": 0.99
+   },
+   "condition": "S4b",
+   "high": 1,
+   "hit": true,
+   "hypothesis": "H5",
+   "levels": [
+    "B-FAMILY-02"
+   ],
+   "low": 0.8,
+   "measure": "fp:B-FAMILY-02",
+   "pid": "P-S4b.1",
+   "predicted": "B-FAMILY-02 FP rate \u2265 0.80"
+  },
+  {
+   "actual": {
+    "B-FAMILY-02": 0.5813
+   },
+   "condition": "S4b",
+   "high": 0.75,
+   "hit": true,
+   "hypothesis": "H5",
+   "levels": [
+    "B-FAMILY-02"
+   ],
+   "low": 0.45,
+   "measure": "precision",
+   "pid": "P-S4b.2",
+   "predicted": "precision 0.45\u20130.75"
+  },
+  {
+   "actual": {
+    "B-FLEET-01": 0.1
+   },
+   "condition": "S4c",
+   "high": 0.3,
+   "hit": true,
+   "hypothesis": "H4",
+   "levels": [
+    "B-FLEET-01"
+   ],
+   "low": 0,
+   "measure": "fp:B-FLEET-01",
+   "pid": "P-S4c.1",
+   "predicted": "B-FLEET-01 FP rate \u2264 0.30"
+  },
+  {
+   "actual": {
+    "B-FLEET-01": 0.9583
+   },
+   "condition": "S4c",
+   "high": 0.99,
+   "hit": true,
+   "hypothesis": "H4",
+   "levels": [
+    "B-FLEET-01"
+   ],
+   "low": 0.85,
+   "measure": "recall",
+   "pid": "P-S4c.2",
+   "predicted": "recall 0.85\u20130.99"
+  },
+  {
+   "actual": {
+    "B-AGENT-01": 0.0
+   },
+   "condition": "S4d",
+   "high": 1,
+   "hit": false,
+   "hypothesis": "H5",
+   "levels": [
+    "B-AGENT-01"
+   ],
+   "low": 0.8,
+   "measure": "fp:B-AGENT-01",
+   "pid": "P-S4d.1",
+   "predicted": "B-AGENT-01 FP rate \u2265 0.80"
+  },
+  {
+   "actual": {
+    "B-AGENT-01": 0.9923
+   },
+   "condition": "S4d",
+   "high": 0.75,
+   "hit": false,
+   "hypothesis": "H5",
+   "levels": [
+    "B-AGENT-01"
+   ],
+   "low": 0.45,
+   "measure": "precision",
+   "pid": "P-S4d.2",
+   "predicted": "precision 0.45\u20130.75"
+  },
+  {
+   "actual": {
+    "0.25": 1.0,
+    "0.5": 1.0,
+    "0.75": 1.0,
+    "1.0": 1.0
+   },
+   "condition": "S5a",
+   "high": 1,
+   "hit": true,
+   "hypothesis": "H8",
+   "levels": [
+    "0.25",
+    "0.5",
+    "0.75",
+    "1.0"
+   ],
+   "low": 0.97,
+   "measure": "recall",
+   "pid": "P-S5a.1",
+   "predicted": "recall \u2265 0.97 at every level"
+  },
+  {
+   "actual": {
+    "0.25": 1.0,
+    "0.5": 1.0,
+    "0.75": 1.0,
+    "1.0": 1.0
+   },
+   "condition": "S5a",
+   "high": 1,
+   "hit": true,
+   "hypothesis": "H8",
+   "levels": [
+    "0.25",
+    "0.5",
+    "0.75",
+    "1.0"
+   ],
+   "low": 0.97,
+   "measure": "precision",
+   "pid": "P-S5a.2",
+   "predicted": "precision \u2265 0.97 at every level"
+  },
+  {
+   "actual": {
+    "1.0": 0.725
+   },
+   "condition": "S5b",
+   "high": 0.9,
+   "hit": true,
+   "hypothesis": "H4",
+   "levels": [
+    "1.0"
+   ],
+   "low": 0.65,
+   "measure": "recall",
+   "pid": "P-S5b.1",
+   "predicted": "recall 0.65\u20130.90"
+  },
+  {
+   "actual": {
+    "1.0": 0.0
+   },
+   "condition": "S5b",
+   "high": 0.25,
+   "hit": true,
+   "hypothesis": "H4",
+   "levels": [
+    "1.0"
+   ],
+   "low": 0,
+   "measure": "recall:R-RING-04",
+   "pid": "P-S5b.2",
+   "predicted": "R-RING-04 recall \u2264 0.25"
+  },
+  {
+   "actual": {
+    "1.0": 1.0
+   },
+   "condition": "S5b",
+   "high": 1,
+   "hit": true,
+   "hypothesis": "H4",
+   "levels": [
+    "1.0"
+   ],
+   "low": 0.9,
+   "measure": "recall:R-RING-06",
+   "pid": "P-S5b.3",
+   "predicted": "R-RING-06 recall \u2265 0.9"
+  },
+  {
+   "actual": {
+    "0.25": 0.4545
+   },
+   "condition": "S5c",
+   "high": 0.7,
+   "hit": true,
+   "hypothesis": "H2",
+   "levels": [
+    "0.25"
+   ],
+   "low": 0,
+   "measure": "precision",
+   "pid": "P-S5c-1",
+   "predicted": "precision \u2264 0.70"
+  },
+  {
+   "actual": {
+    "1.0": 0.0
+   },
+   "condition": "S5c",
+   "high": 0.4,
+   "hit": true,
+   "hypothesis": "H2",
+   "levels": [
+    "1.0"
+   ],
+   "low": 0,
+   "measure": "precision",
+   "pid": "P-S5c-2.1",
+   "predicted": "precision \u2264 0.40"
+  },
+  {
+   "actual": {
+    "1.0": 0.0
+   },
+   "condition": "S5c",
+   "high": 0.9,
+   "hit": false,
+   "hypothesis": "H2",
+   "levels": [
+    "1.0"
+   ],
+   "low": 0.6,
+   "measure": "recall",
+   "pid": "P-S5c-2.2",
+   "predicted": "recall 0.60\u20130.90"
+  },
+  {
+   "actual": {
+    "no fraud": 2
+   },
+   "condition": "S0",
+   "high": 1,
+   "hit": false,
+   "hypothesis": "H8",
+   "levels": [
+    "no fraud"
+   ],
+   "low": 0,
+   "measure": "flagged_max",
+   "pid": "P-S0",
+   "predicted": "at most 1 flagged network per seed"
+  },
+  {
+   "actual": {
+    "0.45": "1.0/1.0",
+    "0.5": "1.0/1.0",
+    "0.55": "1.0/1.0",
+    "0.6": "1.0/1.0",
+    "0.65": "1.0/1.0"
+   },
+   "condition": "threshold sweep",
+   "hit": true,
+   "hypothesis": "-",
+   "levels": [
+    "dev seed"
+   ],
+   "measure": "precision and recall",
+   "pid": "P-T1.1",
+   "predicted": "both 1.000 for every threshold in (0.42, 0.65]"
+  },
+  {
+   "actual": {
+    "0.7": 0.7917
+   },
+   "condition": "threshold sweep",
+   "hit": true,
+   "hypothesis": "-",
+   "levels": [
+    "dev seed"
+   ],
+   "measure": "recall",
+   "pid": "P-T1.2",
+   "predicted": "recall falls once the threshold passes 0.65"
+  },
+  {
+   "actual": {
+    "count": 6
+   },
+   "condition": "settings \u00b130%",
+   "hit": true,
+   "hypothesis": "-",
+   "levels": [
+    "dev seed"
+   ],
+   "measure": "settings that move precision or recall by more than 0.05",
+   "pid": "P-T2.1",
+   "predicted": "no more than 6"
+  },
+  {
+   "actual": {
+    "unexpected": [
+     "network.max_claimants",
+     "network.repetition_min_claimants"
+    ]
+   },
+   "condition": "settings \u00b130%",
+   "hit": false,
+   "hypothesis": "-",
+   "levels": [
+    "dev seed"
+   ],
+   "measure": "which settings",
+   "pid": "P-T2.2",
+   "predicted": "all from the expected list"
+  }
+ ],
+ "seeds": [
+  1111,
+  2222,
+  3333,
+  4444,
+  5555
+ ],
+ "sensitive_settings": [
+  "links.caps.SHARED_EMAIL",
+  "links.caps.SIMILAR_NARRATIVE",
+  "links.story_min_similarity",
+  "network.max_claimants",
+  "network.repetition_min_claimants",
+  "score.flag_threshold"
+ ],
+ "table": {
+  "S0@no fraud": {
+   "capacity": {
+    "10": 0.0,
+    "20": 0.0,
+    "50": 0.0
+   },
+   "flagged_networks": {
+    "mean": 0.4,
+    "std": 0.8
+   },
+   "fraud_groups": 0.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0
+   },
+   "precision": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "recall": {
+    "mean": null,
+    "std": 0.0
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S1a@0.25": {
+   "capacity": {
+    "10": 10.0,
+    "20": 20.0,
+    "50": 29.0
+   },
+   "flagged_networks": {
+    "mean": 29.0,
+    "std": 0.0
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9936,
+    "std": 0.0054
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 1.0,
+    "R-RING-03": 1.0,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "recall": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S1a@0.5": {
+   "capacity": {
+    "10": 10.0,
+    "20": 20.0,
+    "50": 29.0
+   },
+   "flagged_networks": {
+    "mean": 29.0,
+    "std": 0.0
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9936,
+    "std": 0.0054
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 1.0,
+    "R-RING-03": 1.0,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "recall": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S1a@0.75": {
+   "capacity": {
+    "10": 10.0,
+    "20": 20.0,
+    "50": 29.0
+   },
+   "flagged_networks": {
+    "mean": 29.0,
+    "std": 0.0
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9936,
+    "std": 0.0054
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 1.0,
+    "R-RING-03": 1.0,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "recall": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S1a@1.0": {
+   "capacity": {
+    "10": 10.0,
+    "20": 20.0,
+    "50": 29.0
+   },
+   "flagged_networks": {
+    "mean": 29.0,
+    "std": 0.0
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9936,
+    "std": 0.0054
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 1.0,
+    "R-RING-03": 1.0,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "recall": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S1b@0.25": {
+   "capacity": {
+    "10": 8.8,
+    "20": 18.4,
+    "50": 26.6
+   },
+   "flagged_networks": {
+    "mean": 40.0,
+    "std": 10.4115
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0827,
+    "std": 0.0559
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9458,
+    "std": 0.0113
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0827,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 0.7,
+    "R-RING-02": 1.0,
+    "R-RING-03": 0.8,
+    "R-RING-04": 1.0,
+    "R-RING-05": 0.65,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.6766,
+    "std": 0.1442
+   },
+   "recall": {
+    "mean": 0.8583,
+    "std": 0.0773
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S1b@0.5": {
+   "capacity": {
+    "10": 6.6,
+    "20": 16.0,
+    "50": 24.2
+   },
+   "flagged_networks": {
+    "mean": 34.6,
+    "std": 3.6111
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0453,
+    "std": 0.0186
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9179,
+    "std": 0.0314
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0453,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 0.6,
+    "R-RING-02": 1.0,
+    "R-RING-03": 0.6,
+    "R-RING-04": 0.75,
+    "R-RING-05": 0.5,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.6672,
+    "std": 0.0817
+   },
+   "recall": {
+    "mean": 0.7417,
+    "std": 0.0408
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S1b@0.75": {
+   "capacity": {
+    "10": 6.8,
+    "20": 15.4,
+    "50": 23.6
+   },
+   "flagged_networks": {
+    "mean": 39.6,
+    "std": 12.8156
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0707,
+    "std": 0.0686
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9111,
+    "std": 0.0353
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0707,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 0.6,
+    "R-RING-02": 1.0,
+    "R-RING-03": 0.4,
+    "R-RING-04": 0.85,
+    "R-RING-05": 0.6,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.613,
+    "std": 0.1186
+   },
+   "recall": {
+    "mean": 0.7417,
+    "std": 0.0666
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S1b@1.0": {
+   "capacity": {
+    "10": 8.0,
+    "20": 17.4,
+    "50": 27.2
+   },
+   "flagged_networks": {
+    "mean": 33.2,
+    "std": 3.0594
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.036,
+    "std": 0.0124
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9265,
+    "std": 0.0127
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.036,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 0.6,
+    "R-RING-02": 1.0,
+    "R-RING-03": 0.7,
+    "R-RING-04": 1.0,
+    "R-RING-05": 0.6,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.7424,
+    "std": 0.0322
+   },
+   "recall": {
+    "mean": 0.8166,
+    "std": 0.0858
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S1c@0.25": {
+   "capacity": {
+    "10": 9.6,
+    "20": 18.4,
+    "50": 25.6
+   },
+   "flagged_networks": {
+    "mean": 36.4,
+    "std": 10.3653
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0773,
+    "std": 0.057
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9383,
+    "std": 0.0088
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0773,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 0.65,
+    "R-RING-02": 1.0,
+    "R-RING-03": 0.75,
+    "R-RING-04": 0.85,
+    "R-RING-05": 0.55,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.7089,
+    "std": 0.1582
+   },
+   "recall": {
+    "mean": 0.8,
+    "std": 0.0717
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S1c@0.5": {
+   "capacity": {
+    "10": 8.6,
+    "20": 13.0,
+    "50": 19.0
+   },
+   "flagged_networks": {
+    "mean": 49.8,
+    "std": 3.3106
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.1627,
+    "std": 0.008
+   },
+   "mean_match_jaccard": {
+    "mean": 0.8774,
+    "std": 0.0476
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.1627,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 0.8,
+    "R-RING-02": 1.0,
+    "R-RING-03": 0.3,
+    "R-RING-04": 0.5,
+    "R-RING-05": 0.15,
+    "R-RING-06": 0.75
+   },
+   "precision": {
+    "mean": 0.3831,
+    "std": 0.0268
+   },
+   "recall": {
+    "mean": 0.5833,
+    "std": 0.0263
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S1c@0.75": {
+   "capacity": {
+    "10": 6.0,
+    "20": 7.4,
+    "50": 16.2
+   },
+   "flagged_networks": {
+    "mean": 30.0,
+    "std": 2.0
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0507,
+    "std": 0.0116
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9309,
+    "std": 0.0391
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0507,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 0.2,
+    "R-RING-02": 1.0,
+    "R-RING-03": 0.1,
+    "R-RING-04": 0.1,
+    "R-RING-05": 0.1,
+    "R-RING-06": 0.4
+   },
+   "precision": {
+    "mean": 0.4258,
+    "std": 0.0935
+   },
+   "recall": {
+    "mean": 0.3167,
+    "std": 0.0816
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S1c@1.0": {
+   "capacity": {
+    "10": 5.4,
+    "20": 10.8,
+    "50": 13.4
+   },
+   "flagged_networks": {
+    "mean": 18.0,
+    "std": 3.4059
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0173,
+    "std": 0.0108
+   },
+   "mean_match_jaccard": {
+    "mean": 0.98,
+    "std": 0.0245
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0173,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 0.0,
+    "R-RING-02": 1.0,
+    "R-RING-03": 0.05,
+    "R-RING-04": 0.0,
+    "R-RING-05": 0.0,
+    "R-RING-06": 0.1
+   },
+   "precision": {
+    "mean": 0.5483,
+    "std": 0.0814
+   },
+   "recall": {
+    "mean": 0.1917,
+    "std": 0.0204
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S2@0.25": {
+   "capacity": {
+    "10": 9.8,
+    "20": 19.6,
+    "50": 24.8
+   },
+   "flagged_networks": {
+    "mean": 26.4,
+    "std": 0.4899
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9316,
+    "std": 0.0146
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 0.05,
+    "R-RING-03": 0.9,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.9399,
+    "std": 0.029
+   },
+   "recall": {
+    "mean": 0.825,
+    "std": 0.0166
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S2@0.5": {
+   "capacity": {
+    "10": 10.0,
+    "20": 19.2,
+    "50": 24.6
+   },
+   "flagged_networks": {
+    "mean": 26.4,
+    "std": 1.4967
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.02,
+    "std": 0.04
+   },
+   "mean_match_jaccard": {
+    "mean": 0.8436,
+    "std": 0.0148
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.02,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 0.1,
+    "R-RING-03": 0.8,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.9349,
+    "std": 0.0768
+   },
+   "recall": {
+    "mean": 0.8167,
+    "std": 0.0624
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S2@0.75": {
+   "capacity": {
+    "10": 10.0,
+    "20": 19.4,
+    "50": 24.8
+   },
+   "flagged_networks": {
+    "mean": 26.6,
+    "std": 1.6248
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.7727,
+    "std": 0.0165
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 0.15,
+    "R-RING-03": 0.8,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.9339,
+    "std": 0.0464
+   },
+   "recall": {
+    "mean": 0.825,
+    "std": 0.0553
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S2@1.0": {
+   "capacity": {
+    "10": 6.2,
+    "20": 15.0,
+    "50": 21.6
+   },
+   "flagged_networks": {
+    "mean": 28.0,
+    "std": 1.4142
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.7719,
+    "std": 0.0143
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 0.75,
+    "R-RING-02": 0.55,
+    "R-RING-03": 0.8,
+    "R-RING-04": 0.55,
+    "R-RING-05": 1.0,
+    "R-RING-06": 0.5
+   },
+   "precision": {
+    "mean": 0.7729,
+    "std": 0.0709
+   },
+   "recall": {
+    "mean": 0.6917,
+    "std": 0.0773
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S3a@pairs": {
+   "capacity": {
+    "10": 10.0,
+    "20": 20.0,
+    "50": 24.8
+   },
+   "flagged_networks": {
+    "mean": 25.4,
+    "std": 0.4899
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.04,
+    "std": 0.049
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9972,
+    "std": 0.0056
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.04,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 0.0,
+    "R-RING-03": 0.95,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.9766,
+    "std": 0.0191
+   },
+   "recall": {
+    "mean": 0.825,
+    "std": 0.0166
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S3b@large": {
+   "capacity": {
+    "10": 9.2,
+    "20": 17.2,
+    "50": 29.0
+   },
+   "flagged_networks": {
+    "mean": 22.6,
+    "std": 0.8
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9567,
+    "std": 0.0144
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 0.4,
+    "R-RING-02": 0.05,
+    "R-RING-03": 0.95,
+    "R-RING-04": 1.0,
+    "R-RING-05": 0.3,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.8766,
+    "std": 0.0311
+   },
+   "recall": {
+    "mean": 0.6167,
+    "std": 0.0312
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S3c@x2": {
+   "capacity": {
+    "10": 10.0,
+    "20": 20.0,
+    "50": 49.8
+   },
+   "flagged_networks": {
+    "mean": 53.4,
+    "std": 0.4899
+   },
+   "fraud_groups": 53.0,
+   "max_benign_fp": {
+    "mean": 0.02,
+    "std": 0.04
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9819,
+    "std": 0.0088
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.02,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 1.0,
+    "R-RING-03": 0.975,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.9889,
+    "std": 0.0148
+   },
+   "recall": {
+    "mean": 0.9958,
+    "std": 0.0083
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S3c@x3": {
+   "capacity": {
+    "10": 10.0,
+    "20": 20.0,
+    "50": 50.0
+   },
+   "flagged_networks": {
+    "mean": 70.2,
+    "std": 2.4819
+   },
+   "fraud_groups": 77.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9888,
+    "std": 0.0039
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 0.5333,
+    "R-RING-02": 1.0,
+    "R-RING-03": 0.95,
+    "R-RING-04": 1.0,
+    "R-RING-05": 0.95,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "recall": {
+    "mean": 0.9056,
+    "std": 0.0345
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S3c@x4": {
+   "capacity": {
+    "10": 10.0,
+    "20": 20.0,
+    "50": 50.0
+   },
+   "flagged_networks": {
+    "mean": 73.6,
+    "std": 1.0198
+   },
+   "fraud_groups": 101.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9923,
+    "std": 0.0035
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 0.5875,
+    "R-RING-02": 0.025,
+    "R-RING-03": 0.9875,
+    "R-RING-04": 1.0,
+    "R-RING-05": 0.6875,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "recall": {
+    "mean": 0.7146,
+    "std": 0.0106
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S4a@B-ROOM-01": {
+   "capacity": {
+    "10": 10.0,
+    "20": 17.4,
+    "50": 29.0
+   },
+   "flagged_networks": {
+    "mean": 40.0,
+    "std": 2.6077
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.55,
+    "std": 0.1304
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9936,
+    "std": 0.0054
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "B-ROOM-01": 0.55,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 1.0,
+    "R-RING-03": 1.0,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.7284,
+    "std": 0.0517
+   },
+   "recall": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S4b@B-FAMILY-02": {
+   "capacity": {
+    "10": 10.0,
+    "20": 17.4,
+    "50": 28.6
+   },
+   "flagged_networks": {
+    "mean": 49.2,
+    "std": 0.4
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.99,
+    "std": 0.02
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9825,
+    "std": 0.0122
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-FAMILY-02": 0.99,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 0.95,
+    "R-RING-02": 1.0,
+    "R-RING-03": 0.95,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.5813,
+    "std": 0.0158
+   },
+   "recall": {
+    "mean": 0.9833,
+    "std": 0.0333
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S4c@B-FLEET-01": {
+   "capacity": {
+    "10": 10.0,
+    "20": 19.8,
+    "50": 28.6
+   },
+   "flagged_networks": {
+    "mean": 30.2,
+    "std": 1.1662
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.1,
+    "std": 0.0707
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9907,
+    "std": 0.0088
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-FLEET-01": 0.1,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 0.9,
+    "R-RING-02": 1.0,
+    "R-RING-03": 0.9,
+    "R-RING-04": 1.0,
+    "R-RING-05": 0.95,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.9283,
+    "std": 0.0421
+   },
+   "recall": {
+    "mean": 0.9583,
+    "std": 0.0373
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S4d@B-AGENT-01": {
+   "capacity": {
+    "10": 10.0,
+    "20": 20.0,
+    "50": 28.4
+   },
+   "flagged_networks": {
+    "mean": 25.2,
+    "std": 0.4
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.986,
+    "std": 0.0161
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-AGENT-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 0.0,
+    "R-RING-03": 1.0,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.9923,
+    "std": 0.0154
+   },
+   "recall": {
+    "mean": 0.8333,
+    "std": 0.0
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S5a@0.25": {
+   "capacity": {
+    "10": 10.0,
+    "20": 20.0,
+    "50": 29.0
+   },
+   "flagged_networks": {
+    "mean": 29.0,
+    "std": 0.0
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9936,
+    "std": 0.0054
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 1.0,
+    "R-RING-03": 1.0,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "recall": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S5a@0.5": {
+   "capacity": {
+    "10": 10.0,
+    "20": 20.0,
+    "50": 29.0
+   },
+   "flagged_networks": {
+    "mean": 29.0,
+    "std": 0.0
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9936,
+    "std": 0.0054
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 1.0,
+    "R-RING-03": 1.0,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "recall": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S5a@0.75": {
+   "capacity": {
+    "10": 10.0,
+    "20": 20.0,
+    "50": 29.0
+   },
+   "flagged_networks": {
+    "mean": 29.0,
+    "std": 0.0
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9936,
+    "std": 0.0054
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 1.0,
+    "R-RING-03": 1.0,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "recall": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S5a@1.0": {
+   "capacity": {
+    "10": 10.0,
+    "20": 20.0,
+    "50": 29.0
+   },
+   "flagged_networks": {
+    "mean": 29.0,
+    "std": 0.0
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9936,
+    "std": 0.0054
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 1.0,
+    "R-RING-03": 1.0,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "recall": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S5b@0.25": {
+   "capacity": {
+    "10": 9.8,
+    "20": 19.8,
+    "50": 28.2
+   },
+   "flagged_networks": {
+    "mean": 28.4,
+    "std": 0.4899
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9649,
+    "std": 0.0199
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 1.0,
+    "R-RING-03": 1.0,
+    "R-RING-04": 0.9,
+    "R-RING-05": 0.9,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.9931,
+    "std": 0.0138
+   },
+   "recall": {
+    "mean": 0.9666,
+    "std": 0.0167
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S5b@0.5": {
+   "capacity": {
+    "10": 8.8,
+    "20": 18.8,
+    "50": 26.0
+   },
+   "flagged_networks": {
+    "mean": 27.2,
+    "std": 1.4697
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9611,
+    "std": 0.0149
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 1.0,
+    "R-RING-03": 1.0,
+    "R-RING-04": 0.45,
+    "R-RING-05": 0.8,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.9562,
+    "std": 0.0274
+   },
+   "recall": {
+    "mean": 0.875,
+    "std": 0.0589
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S5b@0.75": {
+   "capacity": {
+    "10": 9.0,
+    "20": 19.0,
+    "50": 23.2
+   },
+   "flagged_networks": {
+    "mean": 24.2,
+    "std": 1.9391
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9858,
+    "std": 0.0096
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 0.85,
+    "R-RING-02": 1.0,
+    "R-RING-03": 1.0,
+    "R-RING-04": 0.1,
+    "R-RING-05": 0.6,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 0.9601,
+    "std": 0.0236
+   },
+   "recall": {
+    "mean": 0.7583,
+    "std": 0.0612
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S5b@1.0": {
+   "capacity": {
+    "10": 10.0,
+    "20": 20.0,
+    "50": 22.4
+   },
+   "flagged_networks": {
+    "mean": 22.4,
+    "std": 1.0198
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9916,
+    "std": 0.0073
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 0.85,
+    "R-RING-02": 1.0,
+    "R-RING-03": 1.0,
+    "R-RING-04": 0.0,
+    "R-RING-05": 0.5,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "recall": {
+    "mean": 0.725,
+    "std": 0.0425
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S5c@0.25": {
+   "capacity": {
+    "10": 5.8,
+    "20": 6.0,
+    "50": 6.8
+   },
+   "flagged_networks": {
+    "mean": 13.0,
+    "std": 1.4142
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.82,
+    "std": 0.172
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9284,
+    "std": 0.0399
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.82,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 0.36,
+    "R-RING-01": 0.1,
+    "R-RING-02": 0.0,
+    "R-RING-03": 0.3,
+    "R-RING-04": 0.2,
+    "R-RING-05": 0.25,
+    "R-RING-06": 0.2
+   },
+   "precision": {
+    "mean": 0.4545,
+    "std": 0.1475
+   },
+   "recall": {
+    "mean": 0.175,
+    "std": 0.0486
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S5c@0.5": {
+   "capacity": {
+    "10": 1.4,
+    "20": 1.4,
+    "50": 1.4
+   },
+   "flagged_networks": {
+    "mean": 4.6,
+    "std": 1.2
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.64,
+    "std": 0.102
+   },
+   "mean_match_jaccard": {
+    "mean": 0.7417,
+    "std": 0.3768
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.64,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 0.08,
+    "R-RING-01": 0.0,
+    "R-RING-02": 0.0,
+    "R-RING-03": 0.05,
+    "R-RING-04": 0.1,
+    "R-RING-05": 0.05,
+    "R-RING-06": 0.05
+   },
+   "precision": {
+    "mean": 0.3333,
+    "std": 0.2357
+   },
+   "recall": {
+    "mean": 0.0417,
+    "std": 0.0263
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S5c@0.75": {
+   "capacity": {
+    "10": 1.2,
+    "20": 1.2,
+    "50": 1.2
+   },
+   "flagged_networks": {
+    "mean": 3.4,
+    "std": 0.4899
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.46,
+    "std": 0.2577
+   },
+   "mean_match_jaccard": {
+    "mean": 0.6144,
+    "std": 0.3466
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.46,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 0.04,
+    "R-RING-01": 0.0,
+    "R-RING-02": 0.0,
+    "R-RING-03": 0.1,
+    "R-RING-04": 0.05,
+    "R-RING-05": 0.0,
+    "R-RING-06": 0.1
+   },
+   "precision": {
+    "mean": 0.3333,
+    "std": 0.2415
+   },
+   "recall": {
+    "mean": 0.0417,
+    "std": 0.0456
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "S5c@1.0": {
+   "capacity": {
+    "10": 0.0,
+    "20": 0.0,
+    "50": 0.0
+   },
+   "flagged_networks": {
+    "mean": 1.6,
+    "std": 0.4899
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.7,
+    "std": 0.2683
+   },
+   "mean_match_jaccard": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.7,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 0.0,
+    "R-RING-01": 0.0,
+    "R-RING-02": 0.0,
+    "R-RING-03": 0.0,
+    "R-RING-04": 0.0,
+    "R-RING-05": 0.0,
+    "R-RING-06": 0.0
+   },
+   "precision": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "recall": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  },
+  "baseline": {
+   "capacity": {
+    "10": 10.0,
+    "20": 20.0,
+    "50": 29.0
+   },
+   "flagged_networks": {
+    "mean": 29.0,
+    "std": 0.0
+   },
+   "fraud_groups": 29.0,
+   "max_benign_fp": {
+    "mean": 0.0,
+    "std": 0.0
+   },
+   "mean_match_jaccard": {
+    "mean": 0.9936,
+    "std": 0.0054
+   },
+   "per_rule": {
+    "B-ADDR-01": 0.0,
+    "B-EVENT-01": 0.0,
+    "B-HOUSE-01": 0.0,
+    "B-MOVE-01": 0.0,
+    "B-PROV-01": 0.0,
+    "B-REPEAT-01": 0.0,
+    "EC-1": 0.0,
+    "EC-3": 1.0,
+    "R-RING-01": 1.0,
+    "R-RING-02": 1.0,
+    "R-RING-03": 1.0,
+    "R-RING-04": 1.0,
+    "R-RING-05": 1.0,
+    "R-RING-06": 1.0
+   },
+   "precision": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "recall": {
+    "mean": 1.0,
+    "std": 0.0
+   },
+   "seeds": [
+    1111,
+    2222,
+    3333,
+    4444,
+    5555
+   ]
+  }
+ },
+ "version": "0.1.0"
+}

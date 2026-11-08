@@ -33,6 +33,15 @@ def test_each_group_matches_one_network_only():
     assert [row["group_id"] for row in rows] == ["RING-001", None]
 
 
+def test_pieces_of_a_ring_stay_false_alarms_but_are_counted_as_fragments():
+    ranked = [_net("N1", True, "A", "B", "C"), _net("N2", True, "D", "E"), _net("N3", True, "D", "X"),
+              _net("N4", True, "E", "F")]
+    result = score(ranked, GROUPS)
+    # N2 matches RING-002 (2/3); N4 is a second piece of RING-002, so it is a fragment; N3 holds an outsider.
+    assert result["precision"] == 0.5 and result["fragment_networks"] == 1
+    assert result["precision_counting_fragments"] == 0.75
+
+
 def test_metrics_count_false_alarms_and_misses():
     ranked = [_net("N1", True, "A", "B", "C"), _net("N2", True, "G", "H"), _net("N3", False, "D", "E", "F")]
     result = score(ranked, GROUPS)

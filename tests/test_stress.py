@@ -2,7 +2,7 @@
 import pytest
 
 from fraudnet.evaluate.stress import (
-    PREDICTIONS, Prediction, _check, _moved, _sensitivity_checks, _threshold_checks, conditions, metric,
+    PREDICTION_SETS, Prediction, _check, _moved, _sensitivity_checks, _threshold_checks, conditions, metric,
     numeric_settings, run_condition, summarise,
 )
 from fraudnet.evaluate.stress_report import markdown
@@ -13,17 +13,21 @@ from fraudnet.generate.scenario import LEVELS
 def _run(condition, seed, precision=1.0, recall=1.0, per_rule=None, flagged=10, misses=()):
     rules = {"R-RING-01": {"recall": recall}, "B-HOUSE-01": {"false_positive_rate": 0.0}, **(per_rule or {})}
     return {"condition": condition, "seed": seed, "precision": precision, "recall": recall,
-            "mean_match_jaccard": 0.95, "max_benign_fp": max(item.get("false_positive_rate", 0) or 0
+            "mean_match_jaccard": 0.95, "precision_counting_fragments": precision, "fragment_networks": 0,
+            "max_benign_fp": max(item.get("false_positive_rate", 0) or 0
                                                              for item in rules.values()),
             "flagged_networks": flagged, "per_rule": rules, "capacity": {"10": 9, "20": 12, "50": 12},
             "fraud_groups": 12, "gallery": {"missed_rings": list(misses), "false_alarms": []},
             "sweep": [{"threshold": 0.6, "flagged": flagged, "precision": precision, "recall": recall}]}
 
 
-def test_every_registered_prediction_names_a_real_condition_and_range():
-    assert len(PREDICTIONS) == len({item.pid for item in PREDICTIONS})
-    for item in PREDICTIONS:
-        assert item.condition in LEVELS and all(level in LEVELS[item.condition] for level in item.levels)
+@pytest.mark.parametrize("name", sorted(PREDICTION_SETS))
+def test_every_registered_prediction_names_a_real_condition_and_range(name):
+    predictions = PREDICTION_SETS[name]
+    assert len(predictions) == len({item.pid for item in predictions})
+    for item in predictions:
+        assert item.condition == "baseline" or (
+            item.condition in LEVELS and all(level in LEVELS[item.condition] for level in item.levels))
         assert 0 <= item.low <= item.high
 
 

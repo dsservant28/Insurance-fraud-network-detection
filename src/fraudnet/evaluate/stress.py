@@ -20,6 +20,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from fraudnet import __version__
 from fraudnet.detect.config import load_config
 from fraudnet.detect.pipeline import run_detector
 from fraudnet.evaluate.metrics import Ranked, labelled_groups, score
@@ -341,6 +342,43 @@ PREDICTIONS = (
     _p("P-S5c-2.2", "H2", "S5c", (1.0,), "recall", 0.60, 0.90, "recall 0.60–0.90"),
     _p("P-S0", "H8", "S0", ("no fraud",), "flagged_max", 0, 1, "at most 1 flagged network per seed"),
 )
+# Detector v0.2 on the confirmation seeds (STRESS_PLAN.md amendment A2), registered before v0.2 met them.
+# Fix 1 (story needs a story) should cure S5c; fix 2 (identifier rules) should cure S1b; nothing else should move.
+PREDICTIONS_V02 = (
+    _p("V-BASE.1", "F0", BASELINE, ("-",), "precision", 0.99, 1, "no stress: precision ≥ 0.99"),
+    _p("V-BASE.2", "F0", BASELINE, ("-",), "recall", 0.99, 1, "no stress: ring recall ≥ 0.99"),
+    _p("V-S1a.0", "H8", "S1a", ALL, "precision", 0.97, 1, "precision ≥ 0.97 at every level"),
+    _p("V-S1a.1", "H8", "S1a", ALL, "recall", 0.97, 1, "recall ≥ 0.97 at every level"),
+    _p("V-S1a.2", "H8", "S1a", ALL, "max_benign_fp", 0, 0.01, "every innocent rule's FP rate ≤ 0.01"),
+    _p("V-S1b.1", "F2", "S1b", ALL, "recall", 0.95, 1, "recall ≥ 0.95 at every level (was 0.74–0.86)"),
+    _p("V-S1b.2", "F2", "S1b", ALL, "precision", 0.95, 1, "precision ≥ 0.95 at every level (was 0.61–0.74)"),
+    _p("V-S1b.3", "F2", "S1b", ALL, "max_benign_fp", 0, 0.02, "every innocent rule's FP rate ≤ 0.02"),
+    _p("V-S1c.1", "H1", "S1c", (0.5,), "recall", 0.40, 0.75, "typos unchanged: recall 0.40–0.75"),
+    _p("V-S1c.2", "H9", "S1c", (1.0,), "recall", 0.05, 0.35, "typos unchanged: recall 0.05–0.35"),
+    _p("V-S2.1", "H3", "S2", (0.5,), "recall:R-RING-02", 0, 0.25, "reworded stories still escape: R-RING-02 ≤ 0.25"),
+    _p("V-S2.2", "H3", "S2", (1.0,), "recall", 0.55, 0.85, "recall 0.55–0.85"),
+    _p("V-S2.3", "F3", "S2", (1.0,), "precision_counting_fragments", 0.90, 1,
+       "counting ring fragments, precision ≥ 0.90"),
+    _p("V-S3a", "H7", "S3a", ("pairs",), "recall:R-RING-02", 0, 0.10, "two-person story rings still missed: R-RING-02 ≤ 0.10"),
+    _p("V-S3b", "H6", "S3b", ("large",), "recall", 0.45, 0.80, "big rings still fragment: recall 0.45–0.80"),
+    _p("V-S3c.1", "H4", "S3c", ("x2",), "recall", 0.95, 1, "recall ≥ 0.95 at 2×"),
+    _p("V-S3c.2", "H4", "S3c", ("x4",), "recall", 0.55, 0.85, "rarity crowding unchanged: recall 0.55–0.85 at 4×"),
+    _p("V-S4a", "H5", "S4a", ("B-ROOM-01",), "fp:B-ROOM-01", 0.35, 0.75, "flatmates still flagged: 0.35–0.75"),
+    _p("V-S4b", "H5", "S4b", ("B-FAMILY-02",), "fp:B-FAMILY-02", 0.80, 1, "blended families still flagged: ≥ 0.80"),
+    _p("V-S4c", "H4", "S4c", ("B-FLEET-01",), "fp:B-FLEET-01", 0, 0.30, "fleets mostly not flagged: ≤ 0.30"),
+    _p("V-S4d.1", "H4", "S4d", ("B-AGENT-01",), "fp:B-AGENT-01", 0, 0.20, "body shops not flagged: ≤ 0.20"),
+    _p("V-S4d.2", "H4", "S4d", ("B-AGENT-01",), "recall:R-RING-02", 0, 0.40, "story rings crowded out: ≤ 0.40"),
+    _p("V-S5a", "H8", "S5a", ALL, "recall", 0.97, 1, "register gaps still harmless: recall ≥ 0.97"),
+    _p("V-S5b.1", "H4", "S5b", (1.0,), "recall:R-RING-04", 0, 0.25, "missing banks unchanged: R-RING-04 ≤ 0.25"),
+    _p("V-S5b.2", "H4", "S5b", (1.0,), "recall", 0.60, 0.85, "recall 0.60–0.85"),
+    _p("V-S5c.1", "F1", "S5c", ALL, "precision", 0.95, 1, "precision ≥ 0.95 at every level (was 0.00–0.45)"),
+    _p("V-S5c.2", "F1", "S5c", ALL, "max_benign_fp", 0, 0.02, "every innocent rule's FP rate ≤ 0.02 (was up to 0.82)"),
+    _p("V-S5c.3", "F1", "S5c", (0.25,), "recall", 0.90, 1, "recall 0.90–1.00 at 0.25 (was 0.18)"),
+    _p("V-S5c.4", "F1", "S5c", (1.0,), "recall", 0.78, 0.88, "recall 0.78–0.88 at 1.0: only story rings lost (was 0)"),
+    _p("V-S5c.5", "F1", "S5c", (1.0,), "recall:R-RING-02", 0, 0.10, "with no stories left, R-RING-02 ≤ 0.10"),
+    _p("V-S0", "H8", "S0", ("no fraud",), "flagged_max", 0, 2, "no-fraud world: at most 2 flagged per seed"),
+)
+PREDICTION_SETS = {"v0.1": PREDICTIONS, "v0.2": PREDICTIONS_V02}
 EXPECTED_SENSITIVE = {"score.flag_threshold", "links.caps.SHARED_BANK", "links.caps.SHARED_PHONE",
                       "links.caps.SHARED_EMAIL", "links.caps.SIMILAR_NARRATIVE", "links.story_min_similarity",
                       "rarity.reference_log10"}
@@ -355,12 +393,19 @@ HYPOTHESES = {
     "H8": "Cosmetic mess and gaps in the relationship records do not matter.",
     "H9": "Timing rings depend on their shared phone.",
 }
+FIXES = {
+    "F0": "v0.2 keeps the normal-world results.",
+    "F1": "v0.2 fix 1: a placeholder narrative is not a story.",
+    "F2": "v0.2 fix 2: standard identifier rules (phone prefix, email +tag, bank punctuation, postal extension).",
+    "F3": "v0.2 fix 3: ring fragments reported (evaluation only).",
+}
 
 
 def _check(prediction: Prediction, by_condition: dict[str, list[dict]]) -> dict:
     actual = {}
     for level in prediction.levels:
-        runs = by_condition.get(Scenario(prediction.condition, level).label, [])
+        label = BASELINE if prediction.condition == BASELINE else Scenario(prediction.condition, level).label
+        runs = by_condition.get(label, [])
         actual[str(level)] = metric(runs, prediction.measure) if runs else None
     hit = all(value is not None and prediction.low <= value <= prediction.high for value in actual.values())
     return {"pid": prediction.pid, "hypothesis": prediction.hypothesis, "condition": prediction.condition,
@@ -397,7 +442,7 @@ def _sensitivity_checks(rows: list[dict], baseline: dict) -> tuple[list[str], li
     ]
 
 
-def summarise(runs: list[dict]) -> dict:
+def summarise(runs: list[dict], predictions: str = "v0.1") -> dict:
     by_condition: dict[str, list[dict]] = {}
     for run in sorted(runs, key=lambda item: (item["condition"], item["seed"])):
         by_condition.setdefault(run["condition"], []).append(run)
@@ -407,17 +452,19 @@ def summarise(runs: list[dict]) -> dict:
         table[condition] = {
             "seeds": [item["seed"] for item in items],
             **{name: {"mean": metric(items, name), "std": _spread([item[name] for item in items])}
-               for name in ("precision", "recall", "mean_match_jaccard", "max_benign_fp", "flagged_networks")},
+               for name in ("precision", "recall", "mean_match_jaccard", "max_benign_fp", "flagged_networks",
+                            "precision_counting_fragments", "fragment_networks")},
             "per_rule": {rule: metric(items, ("recall:" if rule.startswith(("R-", "EC-3")) else "fp:") + rule)
                          for rule in rules},
             "capacity": {cutoff: _mean([item["capacity"][cutoff] for item in items]) for cutoff in map(str, CAPACITY)},
             "fraud_groups": _mean([item["fraud_groups"] for item in items]),
         }
     return {"by_condition": by_condition, "table": table,
-            "predictions": [_check(prediction, by_condition) for prediction in PREDICTIONS]}
+            "predictions": [_check(prediction, by_condition) for prediction in PREDICTION_SETS[predictions]]}
 
 
-def run_stress(seeds=STRESS_SEEDS, workers: int | None = None, sensitivity: bool = True) -> dict:
+def run_stress(seeds=STRESS_SEEDS, workers: int | None = None, sensitivity: bool = True,
+               predictions: str = "v0.1") -> dict:
     tasks = [(seed, scenario.name if scenario else None, scenario.level if scenario else None)
              for scenario in conditions() for seed in seeds]
     workers = workers or max(1, (os.cpu_count() or 2) - 1)
@@ -434,20 +481,22 @@ def run_stress(seeds=STRESS_SEEDS, workers: int | None = None, sensitivity: bool
             sensitivity_tasks = [(path, factor) for path in numeric_settings(settings)
                                  for factor in (1 - SENSITIVITY_STEP, 1 + SENSITIVITY_STEP)]
             sensitivity_rows = list(pool.map(_sensitivity_task, sensitivity_tasks))
-    summary = summarise(runs)
-    summary["predictions"] += _threshold_checks(development["sweep"])
+    summary = summarise(runs, predictions)
     sensitive, checks = _sensitivity_checks(sensitivity_rows, development) if sensitivity else ([], [])
-    summary["predictions"] += checks
-    return {"frozen_commit": FROZEN_COMMIT, "config_sha256": config_sha, "seeds": list(seeds),
+    if predictions == "v0.1":  # the threshold and setting predictions were registered for v0.1 only
+        summary["predictions"] += _threshold_checks(development["sweep"]) + checks
+    return {"frozen_commit": FROZEN_COMMIT if predictions == "v0.1" else None, "detector_version": __version__,
+            "prediction_set": predictions, "config_sha256": config_sha, "seeds": list(seeds),
             "development": development, "sensitivity": {"rows": sensitivity_rows, "sensitive": sensitive},
             **summary}
 
 
 def hypotheses_verdicts(predictions: list[dict]) -> dict[str, dict]:
     verdicts = {}
-    for key, text in HYPOTHESES.items():
+    for key, text in {**HYPOTHESES, **FIXES}.items():
         related = [item for item in predictions if item["hypothesis"] == key]
-        verdicts[key] = {"text": text, "predictions": len(related), "hits": sum(item["hit"] for item in related)}
+        if related:
+            verdicts[key] = {"text": text, "predictions": len(related), "hits": sum(item["hit"] for item in related)}
     return verdicts
 
 
