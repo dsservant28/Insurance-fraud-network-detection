@@ -104,7 +104,7 @@ These describe single claims and invoices. They add support to a network but nev
 | `CLAIM_BURST` | Network indicator for `EARLY_CLAIM_PAIR` links: claims within 10 days of policy start, at one provider, within 45 days of each other |
 | `INFLATED_AMOUNT` | The network's invoices have a median at least 2× the peer median for the same incident type and provider type |
 | `UNRECORDED_LINK` | A rebuilt evidence link is missing from `relationship_edge`. Adds support only, never creates a network |
-| `PROVIDER_CONCENTRATION` | At least 3 members, and at least 60% of members, use one provider that is not busy |
+| `PROVIDER_CONCENTRATION` | At least 3 members, and at least 60% of members, use one provider that is not busy. Not counted when a story or early-claim link already rests on that provider, because one fact can't count twice |
 | `ORPHAN_POLICY_REF`, `PAYMENT_OVER_APPROVED`, `DUPLICATE_INVOICE` | Built from the input by the validator's exception rules. The first two are standalone, with score contribution 0, and route to exception cases. A duplicate invoice joins its network when one is flagged |
 
 ### 3.3 Networks
@@ -160,16 +160,16 @@ Groups that look like a pattern but were cleared, such as households, buildings 
 
 | Practice | Plan |
 |---|---|
-| Development and test seeds | Tune only on seed 20261022. Report on 5 unseen seeds as mean ± standard deviation |
+| Development and test seeds | Tune only on seed 20261022. Report on unseen seeds 606, 707, 808, 909 and 1010 as mean ± standard deviation. Seeds 777 and 4242 (D-028) and 101-505 (D-029) were looked at during fixes, so they are retired |
 | Matching | A network matches a labelled group when the claimant Jaccard is at least 0.5. Each group matches at most one network |
-| Metrics | Precision, recall, false-positive rate on look-alikes, false-negative rate, precision@k, recall@k, average precision, NDCG, and rings in the top N |
+| Metrics | Precision, recall, false-positive rate on look-alikes, false-negative rate, precision@k, recall@k, average precision, R-precision and NDCG at N (N = number of fraud groups) |
 | Comparison methods | (a) Flag any shared value. (b) Recorded edges only. (c) The full detector |
 | One principle off at a time | No benign explanations; no repetition rule; provider as a plain link (P4 off) |
 | Per rule | Recall per `R-RING-*` rule, false-positive rate per `B-*` rule |
 | Edge cases | EC-1 to EC-3 found, EC-4 links recovered (`in_recorded_edges = 0`), EC-5 not flagged |
 | Explanation check | Every flagged network has evidence, and every cited ID exists in the input |
 
-**Targets, not results until measured:** recall ≥ 0.9, look-alike false-positive rate ≤ 5%, and precision@24 ≥ 0.85, on unseen seeds.
+**Targets set before measuring:** recall ≥ 0.9, look-alike false-positive rate ≤ 5%, and R-precision ≥ 0.85, on unseen seeds. The measured results are in `docs/EVALUATION.md`.
 
 **Supervised learning is deliberately not used.** The labels come from this project's own generator, so a trained model would partly learn the generator rather than fraud. The labels are used only to measure.
 

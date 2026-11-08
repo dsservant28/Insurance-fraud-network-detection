@@ -584,13 +584,14 @@ The generator also loads the SQL files into `data/output/fraudnet.db` with forei
 | Recall | Rings found / planted rings |
 | False-positive rate | Flagged benign look-alike groups / all benign look-alike groups |
 | False-negative rate | Rings missed / planted rings, which equals 1 - recall |
-| Ranking quality | Precision@k, recall@k, average precision and NDCG |
-| Top-rank check | Share of planted rings in the top `N` networks, where `N` = planted ring count |
+| Ranking quality | Precision@5 and @10, recall@k, average precision, R-precision and NDCG at `N`. Every network the detector outputs is ranked, flagged or not |
+| Top-rank check | Share of fraud groups (rings and EC-3) in the top `N` networks, where `N` = the number of fraud groups. This equals R-precision |
+| Popular providers | `B-PROV-01` has no claimants, so its false-positive rate is the share of popular providers that appear in a flagged network |
 | Edge-case results | Reported per EC ID. EC-1 to EC-4 must be found, and EC-5 must not be flagged on address alone |
 | Explanation check | Every flagged network has indicators with evidence, and every referenced ID exists |
 | Hidden-link recovery | Share of EC-4 links recovered |
 
-Results are reported overall and per rule, on the default seed and on unseen seeds.
+Results are reported overall and per rule, on the default seed and on unseen seeds 606, 707, 808, 909 and 1010, next to two comparison methods and three one-principle-off runs. Command: `python -m fraudnet.evaluate --data data/output --doc docs/EVALUATION.md` (`src/fraudnet/evaluate/`). The results are in `docs/EVALUATION.md`.
 
 ---
 
