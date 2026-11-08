@@ -24,3 +24,23 @@ floor = 0.5                     # a common link type keeps at least half its cap
 
 [indicators]
 inflated_ratio = 2.0            # invoice total against the peer median for the same incident and provider type
+
+[network]
+min_link_strength = 0.15        # weaker links (mostly explained ones) never join claimants
+max_claimants = 12              # larger groups are split with Louvain communities
+louvain_resolution = 1.0
+louvain_seed = 20261022
+repetition_min_claimants = 3    # a weak family counts fully only across this many claimants (P5)
+repetition_factor = 0.5
+
+[support]
+# Claim-level facts add weight to a network the links already formed, up to `cap` in total.
+cap = 0.3
+unrecorded_link = 0.15          # a rebuilt link is missing from relationship_edge
+provider_concentration = 0.2    # most members use one provider that is not busy
+concentration_min_claimants = 3
+concentration_min_share = 0.6
+inflated_amount = 0.2           # members' invoices at that provider have a median of at least inflated_ratio x peers
+
+[score]
+flag_threshold = 0.6

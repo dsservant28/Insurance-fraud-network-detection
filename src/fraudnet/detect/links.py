@@ -138,7 +138,7 @@ def _provider_contact_links(rows: pd.DataFrame, provider: pd.DataFrame, out: _Co
                             {"field": column})
 
 
-def _claims(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
+def claims_with_incidents(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
     return tables["claim"].merge(
         tables["incident"][["incident_id", "incident_type", "incident_date", "city", "narrative"]], on="incident_id")
 
@@ -174,7 +174,7 @@ def _invoice_links(tables: dict[str, pd.DataFrame], claims: pd.DataFrame, out: _
                      "claims": [a["claim_id"], b["claim_id"]]})
 
 
-def _provider_use(tables: dict[str, pd.DataFrame], claims: pd.DataFrame) -> pd.DataFrame:
+def provider_use(tables: dict[str, pd.DataFrame], claims: pd.DataFrame) -> pd.DataFrame:
     used = tables["claim_provider"][["claim_id", "provider_id"]].drop_duplicates().merge(claims, on="claim_id")
     return used.sort_values(["provider_id", "claimant_id", "claim_id"], ignore_index=True)
 
@@ -231,6 +231,31 @@ def _timing_links(used: pd.DataFrame, busy: set[str], settings: dict, out: _Coll
                      "days_apart": apart}, explanation)
 
 
+def _repeated_stories(out: _Collector, settings: dict) -> None:
+    """A busy provider explains a coincidental pair of similar stories, not the same story told by
+    three or more of its customers who all match one another (P3 with P5). Common events stay explained."""
+    minimum = settings["network"]["repetition_min_claimants"]
+    by_provider: dict[str, list[dict]] = {}
+    for item in out.items.values():
+        if item["edge_type"] == "SIMILAR_NARRATIVE":
+            by_provider.setdefault(item["matched_value"], []).append(item)
+    for items in by_provider.values():
+        pairs = {(item["source_node_id"], item["target_node_id"]) for item in items}
+        neighbours: dict[str, set[str]] = {}
+        for a, b in pairs:
+            neighbours.setdefault(a, set()).add(b)
+            neighbours.setdefault(b, set()).add(a)
+        for item in items:
+            if item["explanation_code"] != "BUSY_PROVIDER":
+                continue
+            a, b = item["source_node_id"], item["target_node_id"]
+            shared = neighbours[a] & neighbours[b]  # claimants whose story matches both a and b
+            if len(shared) + 2 >= minimum and all((min(x, y), max(x, y)) in pairs
+                                                  for x in shared for y in shared if x != y):
+                item["explanation_code"], item["explanation_factor"] = None, 1.0
+                item["detail"]["repeated_story_claimants"] = len(shared) + 2
+
+
 def _recorded(tables: dict[str, pd.DataFrame], frame: pd.DataFrame) -> list:
     edges = tables["relationship_edge"]
     recorded = set(zip(edges["source_node_id"], edges["target_node_id"], edges["edge_type"]))
@@ -270,16 +295,17 @@ def rebuild_links(tables: dict[str, pd.DataFrame], settings: dict) -> LinkSet:
     _contact_links(rows, settings, out)
     _provider_contact_links(rows, tables["provider"], out)
 
-    claims = _claims(tables)
+    claims = claims_with_incidents(tables)
     _incident_links(claims, settings, out)
     _invoice_links(tables, claims, out)
 
-    used = _provider_use(tables, claims)
+    used = provider_use(tables, claims)
     customers = used.groupby("provider_id")["claimant_id"].nunique()
     busy_min = float(customers.quantile(settings["explanations"]["busy_provider_percentile"])) if len(customers) else 0.0
     busy = set(customers[customers > busy_min].index)
     similarity = NarrativeSimilarity(tables["incident"]["narrative"])
     _story_links(used, similarity, busy, settings, out)
+    _repeated_stories(out, settings)
     _timing_links(used, busy, settings, out)
 
     records = []
