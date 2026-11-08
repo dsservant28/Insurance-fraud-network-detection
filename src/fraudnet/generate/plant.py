@@ -17,6 +17,7 @@ from fraudnet.generate import pools
 from fraudnet.generate.config import GeneratorConfig
 from fraudnet.generate.lifecycle import policy_status_on
 from fraudnet.generate.master import MasterTables
+from fraudnet.generate.scenario import knobs, noise_rng, reword, sharers
 from fraudnet.generate.transactions import (
     INCIDENT_TYPES_BY_POLICY,
     WINDOW_DAYS,
@@ -26,15 +27,14 @@ from fraudnet.generate.transactions import (
     narrative_text,
 )
 
-RINGS_PER_PATTERN = 4
-RING_SIZE = (3, 8)
+# Ring count, ring size, invoice inflation and the timing burst live in scenario.PlantKnobs, whose
+# defaults are the normal generator's: 4 rings per pattern of 3 to 8 members, inflation 2.5 to 4.0.
 HOUSEHOLDS, HOUSEHOLD_SIZE = 150, (2, 5)
 REPEAT_CLAIMANTS, REPEAT_CLAIMS, REPEAT_MIN_GAP_DAYS = 200, (3, 6), 45
 COMMON_ADDRESS_SITES, SITE_RESIDENTS = 10, (8, 25)
 POPULAR_PROVIDERS = 10
 BENIGN_EVENTS, EVENT_CLAIMANTS = 3, (12, 25)
 PAST_TENANT_ADDRESSES = 20
-INFLATION_RANGE = (2.5, 4.0)
 ORPHAN_POLICY_CLAIMS = 5
 OVERPAID_CLAIMS = 10
 DUPLICATE_INVOICE_GROUPS, DUPLICATE_INVOICE_CLAIMANTS = 5, (2, 3)
@@ -182,6 +182,8 @@ class _Planner:
         self.used_providers: set[int] = set()
         weights = day_weights()
         self.day_probabilities = weights / weights.sum()
+        self.knobs = knobs(config)  # the normal generator's settings unless a stress scenario says otherwise
+        self.noise = noise_rng(config)  # only drawn from by stress scenarios
 
     # ---- shared helpers
 
@@ -296,28 +298,28 @@ class _Planner:
     def _ring_start(self, size: int, types: tuple[str, ...] | None = None) -> tuple[date, list[tuple[int, int]]]:
         def attempt():
             day = self._day()
-            members = self._take(size, lambda key: self._covering(key, day, types), minimum=RING_SIZE[0])
+            members = self._take(size, lambda key: self._covering(key, day, types), minimum=self.knobs.ring_size[0])
             return (day, members) if members else None
         return self._require(attempt, "a ring")
 
     # ---- fraud rings
 
     def ring_shared_contacts(self) -> None:
-        for _ in range(_scaled(self.config, RINGS_PER_PATTERN)):
-            start, members = self._ring_start(_between(self.rng, RING_SIZE))
+        for _ in range(_scaled(self.config, self.knobs.rings_per_pattern)):
+            start, members = self._ring_start(_between(self.rng, self.knobs.ring_size))
             keys = [key for key, _ in members]
             fields = [str(name) for name in self.rng.choice(("phone", "email", "bank_token"),
                                                             size=_between(self.rng, (1, 2)), replace=False)]
-            values = "; ".join(f"{name} {self._share(keys, name)}" for name in fields)
+            values = "; ".join(f"{name} {self._share(sharers(keys, self.knobs), name)}" for name in fields)
             group = self._group("R-RING-01", f"Claimants {{claimants}} have different surnames and addresses "
                                              f"but share {values}.", keys)
             for key, policy_key in members:
                 self._add_claims_near(group, key, policy_key, start, 90, _between(self.rng, (1, 3)))
 
     def ring_repeated_narratives(self) -> None:
-        for number in range(_scaled(self.config, RINGS_PER_PATTERN)):
+        for number in range(_scaled(self.config, self.knobs.rings_per_pattern)):
             incident_type, types, provider_type = PROVIDER_SCENARIOS[number % len(PROVIDER_SCENARIOS)]
-            start, members = self._ring_start(_between(self.rng, RING_SIZE), types)
+            start, members = self._ring_start(_between(self.rng, self.knobs.ring_size), types)
             provider = self._take_provider(provider_type)
             text = narrative_text(self.rng, incident_type)
             group = self._group("R-RING-02", f"Claimants {{claimants}} filed nearly identical narratives "
@@ -329,33 +331,34 @@ class _Planner:
                     city_index = int(self.rng.integers(len(pools.CITIES)))
                     self.plan.incidents.append(PlannedIncident(
                         incident_type=incident_type, day=day,
-                        narrative=_near_copy(self.rng, text),
+                        narrative=reword(self.noise, _near_copy(self.rng, text), self.knobs.story_swaps),
                         location=(pools.CITIES[city_index], f"00{city_index * 10 + int(self.rng.integers(10)):03d}"),
                         claims=[PlannedClaim(key, policy_key, group.group_no, provider_keys=(provider,))],
                     ))
 
     def ring_unusual_timing(self) -> None:
-        for _ in range(_scaled(self.config, RINGS_PER_PATTERN)):
-            size = _between(self.rng, RING_SIZE)
+        for _ in range(_scaled(self.config, self.knobs.rings_per_pattern)):
+            size = _between(self.rng, self.knobs.ring_size)
             provider = self._take_provider("REPAIRER")
 
             def attempt():
-                anchor = WINDOW_START + timedelta(days=int(self.rng.integers((WINDOW_END - WINDOW_START).days - 45)))
+                lead = self.knobs.early_days_max + 5 + self.knobs.burst_window_days  # 45 normally
+                anchor = WINDOW_START + timedelta(days=int(self.rng.integers((WINDOW_END - WINDOW_START).days - lead)))
 
                 def recent_start(key: int):
                     for policy_key in self.held[key]:
                         policy = self.policies[policy_key]
-                        if policy["policy_type"] != "AUTO" or not anchor <= policy["effective_from"] <= anchor + timedelta(days=30):
+                        if policy["policy_type"] != "AUTO" or not anchor <= policy["effective_from"] <= anchor + timedelta(days=self.knobs.burst_window_days):
                             continue
-                        day = policy["effective_from"] + timedelta(days=int(self.rng.integers(0, 11)))
+                        day = policy["effective_from"] + timedelta(days=int(self.rng.integers(0, self.knobs.early_days_max + 1)))
                         if self._in_force(policy_key, day):
                             return policy_key, day
                     return None
-                return self._take(size, recent_start, minimum=RING_SIZE[0])
+                return self._take(size, recent_start, minimum=self.knobs.ring_size[0])
 
             members = self._require(attempt, "an unusual-timing ring")
             keys = [key for key, _ in members]
-            phone = self._share(keys[:max(2, len(keys) // 2)], "phone")
+            phone = self._share(sharers(keys, self.knobs, max(2, len(keys) // 2)), "phone")
             group = self._group("R-RING-03", f"Claimants {{claimants}} all claimed within days of a new policy "
                                              f"starting, reported and invoiced in a tight burst through provider "
                                              f"{{providers}}, and some share phone {phone}.", keys, [provider])
@@ -363,17 +366,17 @@ class _Planner:
                 self.plan.incidents.append(PlannedIncident(
                     incident_type="COLLISION", day=day,
                     claims=[PlannedClaim(key, policy_key, group.group_no, report_lag_days=_between(self.rng, (0, 1)),
-                                         provider_keys=(provider,), invoice_lag_max_days=2)],
+                                         provider_keys=(provider,), invoice_lag_max_days=self.knobs.invoice_lag_max_days)],
                 ))
 
     def ring_provider_collusion(self) -> None:
-        for number in range(_scaled(self.config, RINGS_PER_PATTERN)):
+        for number in range(_scaled(self.config, self.knobs.rings_per_pattern)):
             incident_type, types, provider_type = PROVIDER_SCENARIOS[number % len(PROVIDER_SCENARIOS)]
-            start, members = self._ring_start(_between(self.rng, RING_SIZE), types)
+            start, members = self._ring_start(_between(self.rng, self.knobs.ring_size), types)
             provider = self._take_provider(provider_type)
             keys = [key for key, _ in members]
             bank = self.providers[provider]["bank_token"]
-            for key in keys:
+            for key in sharers(keys, self.knobs):
                 for row in self.contacts[key]:
                     row["bank_token"] = bank
             group = self._group("R-RING-04", f"Claimants {{claimants}} concentrate on provider {{providers}} with "
@@ -382,15 +385,15 @@ class _Planner:
             for key, policy_key in members:
                 self._add_claims_near(group, key, policy_key, start, 90, _between(self.rng, (2, 3)),
                                       incident_type=incident_type, provider_keys=(provider,),
-                                      amount_factor=float(self.rng.uniform(*INFLATION_RANGE)))
+                                      amount_factor=float(self.rng.uniform(*self.knobs.inflation_range)))
 
     def ring_staged_incident(self) -> None:
-        for _ in range(_scaled(self.config, RINGS_PER_PATTERN)):
-            day, members = self._ring_start(_between(self.rng, RING_SIZE), ("AUTO",))
+        for _ in range(_scaled(self.config, self.knobs.rings_per_pattern)):
+            day, members = self._ring_start(_between(self.rng, self.knobs.ring_size), ("AUTO",))
             keys = [key for key, _ in members]
             providers = tuple(self._take_provider("REPAIRER") for _ in range(2))
             field_name = str(self.rng.choice(("phone", "bank_token")))
-            value = self._share(keys[:max(2, len(keys) // 2)], field_name)
+            value = self._share(sharers(keys, self.knobs, max(2, len(keys) // 2)), field_name)
             group = self._group("R-RING-05", f"Claimants {{claimants}} all claimed on the same staged collision, "
                                              f"used only providers {{providers}}, and some share {field_name} {value}.",
                                 keys, providers)
@@ -402,12 +405,13 @@ class _Planner:
             ))
 
     def ring_hidden_link(self) -> None:
-        for _ in range(_scaled(self.config, RINGS_PER_PATTERN)):
-            start, members = self._ring_start(_between(self.rng, RING_SIZE), ("AUTO",))
+        for _ in range(_scaled(self.config, self.knobs.rings_per_pattern)):
+            start, members = self._ring_start(_between(self.rng, self.knobs.ring_size), ("AUTO",))
             keys = [key for key, _ in members]
             provider = self._take_provider("REPAIRER")
-            bank, phone = self._share(keys, "bank_token"), self._share(keys, "phone")
-            address = self._share_address(keys[:max(2, len(keys) // 2)])
+            linked = sharers(keys, self.knobs)
+            bank, phone = self._share(linked, "bank_token"), self._share(linked, "phone")
+            address = self._share_address(sharers(keys, self.knobs, max(2, len(keys) // 2)))
             group = self._group("R-RING-06", f"Claimants {{claimants}} share bank token {bank} and phone {phone}, some "
                                              f"use address {address} in different spellings, and all use provider "
                                              f"{{providers}}. These links are left out of the recorded edges.",
@@ -597,6 +601,71 @@ class _Planner:
                     claims=[PlannedClaim(key, policy_key, group.group_no)],
                 ))
 
+    # ---- innocent groups the detector was not designed around (stress scenario S4 only)
+
+    def flatmates(self) -> None:
+        """B-ROOM-01: unrelated people sharing a flat; half the flats also share a landline."""
+        for _ in range(_scaled(self.config, self.knobs.extra_benign_groups)):
+            members = self._take(_between(self.rng, (2, 4)))
+            if not members:
+                raise ValueError(f"not enough claimants for flatmates: scale {self.config.scale} is too small")
+            keys = [key for key, _ in members]
+            shared = [f"address {self._share_address(keys)}"]
+            if self.rng.random() < 0.5:
+                shared.append(f"landline {self._share(keys, 'phone')}")
+            self._group("B-ROOM-01", f"Claimants {{claimants}} are unrelated flatmates sharing {', '.join(shared)}.", keys)
+
+    def blended_families(self) -> None:
+        """B-FAMILY-02: relatives with different surnames at one address with a joint bank account."""
+        for _ in range(_scaled(self.config, self.knobs.extra_benign_groups)):
+            members = self._take(_between(self.rng, (2, 4)))
+            if not members:
+                raise ValueError(f"not enough claimants for blended families: scale {self.config.scale} is too small")
+            keys = [key for key, _ in members]
+            address, bank = self._share_address(keys), self._share(keys, "bank_token")
+            self._group("B-FAMILY-02", f"Claimants {{claimants}} are one family with different surnames, living at "
+                                       f"{address} with joint bank account {bank}.", keys)
+
+    def company_fleets(self) -> None:
+        """B-FLEET-01: employees whose claim payouts go to their employer's one account."""
+        for _ in range(_scaled(self.config, self.knobs.extra_benign_groups)):
+            members = self._take(_between(self.rng, (5, 12)))
+            if not members:
+                raise ValueError(f"not enough claimants for fleets: scale {self.config.scale} is too small")
+            keys = [key for key, _ in members]
+            account = self._unused_bank_token()
+            for key in keys:
+                for row in self.contacts[key]:
+                    row["bank_token"] = account
+            self._group("B-FLEET-01", f"Claimants {{claimants}} drive for one company, whose account {account} "
+                                      f"receives their claim payouts.", keys)
+
+    def boilerplate_body_shops(self) -> None:
+        """B-AGENT-01: a body shop that files its customers' claims with its own standard text."""
+        for _ in range(_scaled(self.config, self.knobs.extra_benign_groups)):
+            size = _between(self.rng, (6, 10))
+            provider = self._take_provider("REPAIRER")
+
+            def own_day(key: int):
+                day = self._day()
+                policy_key = self._covering(key, day, ("AUTO",))
+                return None if policy_key is None else (policy_key, day)
+
+            members = self._take(size, own_day, minimum=6)
+            if not members:
+                raise ValueError(f"not enough claimants for body shops: scale {self.config.scale} is too small")
+            text = narrative_text(self.rng, "COLLISION")
+            group = self._group("B-AGENT-01", f"Provider {{providers}} filed claims {{claims}} for its unrelated "
+                                              f"customers {{claimants}} with its standard text (\"{text}\").",
+                                [key for key, _ in members], [provider])
+            for key, (policy_key, day) in members:
+                city_index = int(self.rng.integers(len(pools.CITIES)))
+                self.plan.incidents.append(PlannedIncident(
+                    incident_type="COLLISION", day=day, narrative=text,
+                    location=(pools.CITIES[city_index], f"00{city_index * 10 + int(self.rng.integers(10)):03d}"),
+                    claims=[PlannedClaim(key, policy_key, group.group_no, provider_keys=(provider,))],
+                ))
+
     def apply_to_master(self) -> None:
         self.master.claimant = pd.DataFrame(list(self.claimants.values()))
         self.master.claimant_contact = pd.DataFrame([row for rows in self.contacts.values() for row in rows])
@@ -607,15 +676,21 @@ def plan_planting(config: GeneratorConfig, rng: np.random.Generator, master: Mas
     """Choose every planted row and apply the master-data changes. The most constrained rules choose first."""
     planner = _Planner(config, rng, master)
     planner.past_tenants()
-    planner.ring_unusual_timing()
-    planner.ring_shared_contacts()
-    planner.ring_repeated_narratives()
-    planner.ring_provider_collusion()
-    planner.ring_staged_incident()
-    planner.ring_hidden_link()
+    if planner.knobs.plant_fraud:  # False only in stress scenario S0
+        planner.ring_unusual_timing()
+        planner.ring_shared_contacts()
+        planner.ring_repeated_narratives()
+        planner.ring_provider_collusion()
+        planner.ring_staged_incident()
+        planner.ring_hidden_link()
     planner.orphan_policy_claims()
-    planner.duplicate_invoices()
+    if planner.knobs.plant_fraud:
+        planner.duplicate_invoices()
     planner.benign_events()
+    extra = {"B-ROOM-01": planner.flatmates, "B-FAMILY-02": planner.blended_families,
+             "B-FLEET-01": planner.company_fleets, "B-AGENT-01": planner.boilerplate_body_shops}
+    if planner.knobs.extra_benign:
+        extra[planner.knobs.extra_benign]()
     planner.repeat_claimants()
     planner.shared_households()
     planner.common_addresses()

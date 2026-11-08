@@ -13,6 +13,7 @@ from fraudnet.generate.ground_truth import build_labels
 from fraudnet.generate.lifecycle import build_lifecycle
 from fraudnet.generate.master import build_master
 from fraudnet.generate.plant import OVERPAID_CLAIMS, add_group, plan_planting
+from fraudnet.generate.scenario import perturb_register, perturb_tables
 from fraudnet.generate.transactions import build_transaction_source
 
 
@@ -33,6 +34,7 @@ def generate_with_labels(config: GeneratorConfig) -> tuple[dict[str, pd.DataFram
     source = build_transaction_source(config, rng, master, plan)
     derived = build_lifecycle(rng, master, source, max(1, round(OVERPAID_CLAIMS * config.scale)))
     tables, ids = finalize(master, derived, rng)
+    perturb_tables(tables, config)  # stress scenarios only
 
     planted_rows = {"CLAIM": _planted(derived.claim, "claim_key", ids["claim"]),
                     "INVOICE": _planted(derived.invoice, "invoice_key", ids["invoice"]),
@@ -51,6 +53,7 @@ def generate_with_labels(config: GeneratorConfig) -> tuple[dict[str, pd.DataFram
     hidden_pairs = {frozenset(pair) for _, ring in hidden.groupby("ring_id")
                     for pair in combinations(ring["entity_id"], 2)}
     tables["graph_node"], tables["relationship_edge"] = build_graph(tables, hidden_pairs)
+    tables["relationship_edge"] = perturb_register(tables["relationship_edge"], config)
     return tables, labels
 
 
