@@ -5,9 +5,18 @@ import argparse
 from pathlib import Path
 
 from fraudnet.generate.config import DEFAULT_SEED, GeneratorConfig
-from fraudnet.generate.export import write_input
+from fraudnet.generate.export import write_input, write_source_manifest
 from fraudnet.generate.ground_truth import write_hidden
 from fraudnet.generate.pipeline import generate_with_labels
+
+
+def run(seed: int, scale: float, out: Path) -> dict:
+    """Generate one dataset into `out` and return its input manifest."""
+    tables, labels = generate_with_labels(GeneratorConfig(seed=seed, scale=scale))
+    manifest = write_input(tables, out, generator={"seed": seed, "scale": scale})
+    write_hidden(labels, out)
+    write_source_manifest(out, seed, scale, manifest)
+    return manifest
 
 
 def main() -> None:
@@ -17,15 +26,14 @@ def main() -> None:
     parser.add_argument("--out", type=Path, default=Path("data/output"))
     args = parser.parse_args()
 
-    tables, labels = generate_with_labels(GeneratorConfig(seed=args.seed, scale=args.scale))
-    manifest = write_input(tables, args.out)
-    write_hidden(labels, args.out)
+    manifest = run(args.seed, args.scale, args.out)
     for item in manifest["files"]:
-        if "table" in item:
+        if item["path"].startswith("csv/"):
             print(f"{item['table']:<18} {item['rows']:>7} rows")
-    print(f"CSV and SQL files: {args.out / 'input'}")
-    print(f"SQLite database:   {args.out / 'fraudnet.db'}")
-    print(f"Hidden labels:     {args.out / 'hidden'}")
+    print(f"Input files:     {args.out / 'input'}  (CSV, JSON, SQL)")
+    print(f"SQLite database: {args.out / 'fraudnet.db'}")
+    print(f"Hidden labels:   {args.out / 'hidden'}")
+    print(f"Source manifest: {args.out / 'reports' / 'source_manifest.json'}")
 
 
 if __name__ == "__main__":
