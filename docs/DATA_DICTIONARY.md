@@ -267,8 +267,8 @@ SQLite triggers block `UPDATE` and `DELETE` on all event tables.
 | `data_exception` | `exception_id` `EXC-000001` | `exception_type`, `severity`, `entity_type`, `entity_id`, `field_name`, `observed_value`, `expected_rule`, `detail_json` | Facts found by checks, with no fraud label |
 | `detector_run` | `run_id` | `input_manifest_sha256`, `config_sha256`, `code_version` | Traceability for every result |
 | `detected_edge` | `run_id` + `link_id` `LNK-000001`; `source_node_id` + `target_node_id` + `edge_type` + `matched_value` is unique per run | `family`, `normalized_value`, `valid_from`, `valid_to`, `source_refs_json`, `detail_json`, `in_recorded_edges` (empty when no recorded type applies), `cap`, `rarity`, `explanation_code`, `explanation_factor`, `strength` | Links rebuilt from raw attributes. Types, families and explanations: `ARCHITECTURE.md` section 3.1 |
-| `network` | `network_id` `NET-000001` | `run_id`, `score`, `rank`, `member_count`, `summary` | Scored and ranked groups; score and rank are derived |
-| `network_member` (bridge) | `network_id` + `node_id` | `member_role`, `member_score` | Network members |
+| `network` | `network_id` `NET-000001`, numbered in rank order | `run_id`, `rank`, `score`, `priority`, `flagged` (score ≥ flag threshold), `member_count` (claimants), `families`, `summary` | Scored and ranked groups. Every value is derived |
+| `network_member` (bridge) | `network_id` + `node_id` | `member_role` (`CLAIMANT`, `LINKED_PROVIDER`, `SHARED_PROVIDER`, `BILLING_PROVIDER`, `SHARED_INCIDENT`), `member_score` | Network members and the context nodes that carry the evidence |
 | `investigation_subject` (bridge) | `investigation_id` + `node_id` | `subject_role` | People and entities under investigation |
 
 ---
@@ -451,7 +451,9 @@ The detection theory, link families, weights and thresholds are in `ARCHITECTURE
 | `SHARED_BANK`, `SHARED_PHONE`, `SHARED_EMAIL` | Both IDs, matched value, source rows, overlapping dates | Lower weight when household signs are present |
 | `SHARED_ADDRESS` | Both IDs, address, overlapping dates | **Low weight, and never enough to flag on its own** |
 | `REPEATED_NARRATIVE` | Incident IDs, text similarity, compared text | Lower weight without contact or provider links |
-| `EARLY_CLAIM`, `CLAIM_BURST` | Claim IDs, dates, calculated gaps | Timing alone can't flag a network |
+| `CLAIM_BURST` | Claim IDs, days after policy start, days apart, provider | Timing alone can't flag a network |
+| `SHARED_INCIDENT` | Incident ID, party count, claim IDs | Counts only when another family links two of its parties |
+| `PROVIDER_SHARED_CONTACT` | Claimant and provider IDs, the matched phone, email or bank value | Strong identity evidence |
 | `PROVIDER_CONCENTRATION` | Provider ID, claim counts, baseline | Compared with the provider's overall volume |
 | `INFLATED_AMOUNT` | Claim or invoice IDs, amount, comparison group | Compared with similar incidents |
 | `PAYMENT_OVER_APPROVED` | Claim and payment IDs, approved and paid amounts | Standalone anomaly |
@@ -567,7 +569,7 @@ The generator also loads the SQL files into `data/output/fraudnet.db` with forei
 | `sql/schema.sql`, `sql/seed.sql` | `STRICT` tables, constraints and append-only triggers, then inserts in parent-before-child order |
 | `input_manifest.json` | Path, row count and SHA-256 for every input file, plus the generator seed and scale. No label files are listed |
 
-`data/output/` is git-ignored because it can be regenerated. A scale 0.1 copy of `input/`, `hidden/` and `reports/` is committed in `data/sample/` so reviewers can inspect the data without running code.
+`data/output/` is git-ignored because it can be regenerated. A scale 0.1 copy of `input/`, `hidden/`, `reports/` and `detect/` is committed in `data/sample/` so reviewers can inspect the data without running code.
 
 `source_manifest.json` records the generator command, seed, scale, Python and library versions, file list, row counts, checksums and data provenance. **Provenance:** all data is synthetic and no external dataset is used, so no licence or attribution is needed.
 

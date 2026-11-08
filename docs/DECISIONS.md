@@ -199,3 +199,14 @@ Format:
 - **Choice and why:** The app is what reviewers see first. Built-in graphviz is static, and the common wrappers give little control over styling. Cytoscape.js supports click-to-highlight, styling by edge family, dashed unrecorded links and several layouts, with no extra Python dependency. Keeping the file in the repository means the hosted app doesn't rely on an outside CDN.
 - **Trade-off / limitation:** A custom component is more code to maintain than a wrapper library. Cytoscape.js's MIT licence must be kept with the file.
 - **Requirement link:** Primary Actors / Systems (analyst UI); Explanations reference evidence.
+
+## D-028 — Refinements found by testing the theory on unseen seeds
+- **Decision:**
+  - A busy provider no longer explains a story told by 3 or more of its customers who all match one another.
+  - A shared incident joins people into a network only when two of its parties are also linked another way.
+  - A single coincidental provider-based pair (story or early claim) joins nobody unless another family links the same pair.
+  - Every indicator sentence names concrete IDs, including the unrecorded-link sentence.
+- **Options considered:** Lower the busy-provider percentile; split every network with Louvain; set the split size to the largest ring size; apply the repetition principle (P5) at joining time.
+- **Choice and why:** Seed 4242 missed one R-RING-02 ring, because its provider happened to be busy and the explanation discounted all three matching stories. A busy provider makes a coincidental pair likely, not three mutual near-copies. On seeds 777 and 4242, ordinary three-car crashes and single early-claim coincidences attached bystanders to rings, which lowered the match quality. Applying P5 when links join people fixes both without any knowledge of ring sizes. Setting the split size to the largest planted ring would have fitted the generator, so it was rejected.
+- **Trade-off / limitation:** A staged incident with no other link between its parties is no longer grouped. It could never be flagged anyway, because incident evidence alone stays below the threshold. Seeds 777 and 4242 were looked at while making these fixes, so the final evaluation reports 5 further seeds that were never examined.
+- **Requirement link:** Evaluation Focus (false positives, false negatives); Validation Rules (planted patterns rank highly).

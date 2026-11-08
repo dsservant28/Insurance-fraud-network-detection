@@ -57,8 +57,8 @@ The detector answers it with seven principles. Each is a known method, and each 
 | **Household** | Same surname and same normalised address in overlapping periods | Identity link strength × 0.1 |
 | **Building** (EC-5) | Address with at least 6 residents at the same time | Address link strength × 0.3 |
 | **Common event** (storm) | Same incident type, same city and incident dates within 7 days | Story link strength × 0.2 |
-| **Busy provider** | Provider's customer count above the dataset's 95th percentile | Provider-based links strength × 0.2 |
-| **Ordinary crash** | Shared incident with only 2 claimants | Not a link |
+| **Busy provider** | Provider's customer count above the dataset's 95th percentile | Provider-based links strength × 0.2. It does **not** apply to a story told by 3 or more of its customers who all match one another: a busy provider explains a coincidental pair, not a repeated story |
+| **Ordinary crash** | Shared incident with only 2 claimants, or with 3 or more where no two parties are linked any other way | Not a link, or a link that joins nobody (section 3.3) |
 | **Data error** | Orphan policy reference or overpayment | Routed as an exception, never scored as fraud |
 
 ---
@@ -101,25 +101,27 @@ These describe single claims and invoices. They add support to a network but nev
 
 | Code | Rule |
 |---|---|
-| `EARLY_CLAIM` | Incident within 10 days of policy start |
-| `CLAIM_BURST` | Linked claimants' claims fall in a short window |
+| `CLAIM_BURST` | Network indicator for `EARLY_CLAIM_PAIR` links: claims within 10 days of policy start, at one provider, within 45 days of each other |
 | `INFLATED_AMOUNT` | The network's invoices have a median at least 2× the peer median for the same incident type and provider type |
-| `UNRECORDED_LINK` | A rebuilt evidence link is missing from `relationship_edge` |
-| `PROVIDER_CONCENTRATION` | Network members' claims concentrate on one provider far beyond its share of all claims |
-| `ORPHAN_POLICY_REF`, `PAYMENT_OVER_APPROVED`, `DUPLICATE_INVOICE` | Mirrored from `data_exception`. The first two are standalone and route to exception cases |
+| `UNRECORDED_LINK` | A rebuilt evidence link is missing from `relationship_edge`. Adds support only, never creates a network |
+| `PROVIDER_CONCENTRATION` | At least 3 members, and at least 60% of members, use one provider that is not busy |
+| `ORPHAN_POLICY_REF`, `PAYMENT_OVER_APPROVED`, `DUPLICATE_INVOICE` | Built from the input by the validator's exception rules. The first two are standalone, with score contribution 0, and route to exception cases. A duplicate invoice joins its network when one is flagged |
 
 ### 3.3 Networks
-1. **Graph:** claimants are nodes, and edges are evidence links with strength ≥ 0.1 after explanations.
-2. **Groups:** connected components.
-3. **Splitting:** a component with more than 12 claimants is split with Louvain (resolution 1.0, seed from config), using strengths as weights.
-4. **Members:** each network keeps at least 2 claimants. Linked providers, incidents and payments are added as context members (`member_role`).
+1. **Evidence links:** links with strength ≥ 0.15 after explanations, so explained household, building, storm and busy-provider links never join anyone. Two more rules apply P5 at joining time:
+   - A shared incident links every party at once, so its links count only when at least two of its parties are also linked another way. Otherwise an ordinary three-car crash would attach bystanders to a ring member.
+   - A provider-based weak link (story or early claim) whose provider has fewer than 3 such claimants joins nobody, unless another family links the same pair.
+2. **Graph:** claimants are nodes, and evidence links are edges.
+3. **Groups:** connected components.
+4. **Splitting:** a component with more than 12 claimants is split with Louvain (resolution 1.0, seed from config), using strengths as weights.
+5. **Members:** each network keeps at least 2 claimants. Providers and incidents that carry the evidence are added as context members (`member_role`: `LINKED_PROVIDER`, `SHARED_PROVIDER`, `BILLING_PROVIDER`, `SHARED_INCIDENT`).
 
 ### 3.4 Scoring
 For each network and each family *f*:
 
 ```
 link strength   = cap_f × rarity_f × explanation_factor
-rarity_f        = clip(−log10(p_f) / 2, 0.5, 1.0)     p_f = share of claimants with this link type
+rarity_f        = clip(−log10(p_f) / 1.5, 0.5, 1.0)   p_f = share of claimants with an unexplained link of this type
 family strength = strongest link × coverage            coverage = √(members touched / members)
                   × 0.5 if f is weak and links fewer than 3 claimants   (P5)
 score           = 1 − Π (1 − family strength)          noisy-OR over families, plus SUPPORT (cap 0.3)
@@ -127,8 +129,8 @@ score           = 1 − Π (1 − family strength)          noisy-OR over famili
 
 - **Why noisy-OR:** it treats each family as independent evidence. Two moderate families add up to more than either alone, but the score never exceeds 1, and adding members never raises it by itself.
 - **`SUPPORT`** comes from claim-level indicators. It counts only when another family is present.
-- **Flag rule:** score ≥ 0.6. No weak family can reach that alone, so a weak signal always needs corroboration (P4 and P5), while unexplained identity sharing or duplicate billing can stand alone.
-- **Priority:** CRITICAL ≥ 0.9, HIGH ≥ 0.8, MEDIUM ≥ 0.7, LOW otherwise. Networks are ranked by score; ties are broken by member count, then lowest network ID.
+- **Flag rule:** score ≥ 0.6. Address, incident and timing evidence can never reach that alone. A story link already combines two facts (the same provider and a near-copied narrative), so it can flag alone, but only once it repeats across 3 or more claimants. Unexplained identity sharing or duplicate billing can stand alone. These properties are checked by a test (`test_flag_rule_needs_corroboration_for_weak_evidence`).
+- **Priority:** CRITICAL ≥ 0.9, HIGH ≥ 0.8, MEDIUM ≥ 0.7, LOW otherwise. A flagged network between 0.6 and 0.7 is LOW priority. Networks are ranked by score, ties are broken by member count and then lowest claimant ID, and network IDs follow rank.
 - **Initial values:** every number above starts here, is tuned on the default seed only, is stored in `src/fraudnet/detect/detector.toml`, and is reported on unseen seeds (section 5).
 
 ### 3.5 Explanations
@@ -137,7 +139,7 @@ Every network gets:
 - a score breakdown: each family's contribution and each explanation's reduction (shown as a waterfall in the app)
 - a timeline of dates: policy start, incident, report, invoices and payments
 
-Groups that look like a pattern but were cleared, such as households, buildings and storms, get a **"why this isn't suspicious"** note. It is written to `detect/cleared_groups.json`.
+Groups that look like a pattern but were cleared, such as households, buildings and storms, get a **"why this isn't suspicious"** note and the score they would have had without the explanation. They are written to `detect/cleared_groups.json` with IDs `CLR-000001` onwards. For example, a household sharing a phone and an address would score 0.84 without the household explanation.
 
 ---
 
