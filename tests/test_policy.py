@@ -51,6 +51,12 @@ def test_detector_opening_hidden_folder_is_caught(tmp_path):
         assert "R1-leakage" in _rules(policy_check.check_file(f, tmp_path)), code
 
 
+def test_app_reading_labels_is_caught(tmp_path):
+    for code in ('labels = pd.read_csv(folder / "hidden" / "labels.csv")\n', "x = row['is_fraud']\n"):
+        f = _write(tmp_path, "src/fraudnet/app/pages/queue.py", code)
+        assert "R1-leakage" in _rules(policy_check.check_file(f, tmp_path)), code
+
+
 def test_detector_may_use_the_word_hidden_in_a_comment(tmp_path):
     f = _write(tmp_path, "src/fraudnet/detect/edges.py", "# rebuild hidden links from raw attributes\n")
     assert policy_check.check_file(f, tmp_path) == []

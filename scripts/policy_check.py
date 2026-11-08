@@ -2,8 +2,8 @@
 
 Enforces three rules that come straight from the problem statement / project rules:
 
-  R1  No label leakage: code under src/**/detect/ must not mention ground-truth names
-      (ground_truth, is_fraud, ring_id, planted, issue_type, hidden_manifest) or use the
+  R1  No label leakage: code under src/**/detect/ and src/**/app/ must not mention ground-truth
+      names (ground_truth, is_fraud, ring_id, planted, issue_type, hidden_manifest) or use the
       hidden output folder as a path. Only evaluation code may.
   R2  Determinism: generator code (src/**/generate/) must not use the global `random`
       module, global numpy.random functions, or the wall clock. Use a seeded
@@ -87,17 +87,19 @@ def check_file(path: Path, root: Path = ROOT) -> list[Violation]:
 
     rel_str = rel.as_posix()
     is_detect = _in_src_area(rel.parts, "detect")
+    label_free = is_detect or _in_src_area(rel.parts, "app")  # the app shows detector output, never labels
     is_generate = _in_src_area(rel.parts, "generate")
     found: list[Violation] = []
 
     for n, line in enumerate(lines, start=1):
         if line.rstrip().endswith(ALLOW_MARKER):
             continue
-        if is_detect and path.suffix == ".py":
+        if label_free and path.suffix == ".py":
             m = LEAK_TERMS.search(line) or HIDDEN_FOLDER.search(line)
             if m:
+                who = "detector" if is_detect else "app"
                 found.append(Violation("R1-leakage", rel_str, n,
-                                       f"detector code mentions '{m.group(1)}'; detection must never use ground truth"))
+                                       f"{who} code mentions '{m.group(1)}'; only evaluation may use ground truth"))
         if is_generate and path.suffix == ".py":
             for pattern, msg in NONDET_RULES:
                 if pattern.search(line):
