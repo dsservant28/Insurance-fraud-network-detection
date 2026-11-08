@@ -157,3 +157,45 @@ Format:
 - **Choice and why:** Independent checks catch generator mistakes instead of repeating them, and tests break each rule deliberately to prove each check works. The same loader will serve the detector, so it can't reach `hidden/`. Seed and scale are generator settings, not labels. On Windows git converts line endings by default, which would break the sample's recorded checksums for anyone who clones it.
 - **Trade-off / limitation:** Every rule is written twice, once in the generator and once in the validator, so a rule change needs both updated. The reproducibility check regenerates the data three times, which takes about 30 seconds at scale 1.0, so it only runs with `--reproducibility`.
 - **Requirement link:** Step 8 (validation); Step 9 (exports and manifest); Step 10 (regenerate and compare); Step 7 (no leakage).
+
+## D-022 — Detect with explainable evidence rules, not a trained model
+- **Decision:** The detector rebuilds links from raw values and scores them with documented rules: identifier specificity, explaining away, a shared anomaly for shared context, repetition and rarity weighting (`ARCHITECTURE.md` section 2). No supervised model is trained.
+- **Options considered:** A supervised classifier trained on the hidden labels; generic graph anomaly scores (degree, PageRank); explainable evidence rules.
+- **Choice and why:** The labels come from this project's own generator, so a trained model would partly learn the generator rather than fraud, and the labels must stay out of detection (CLAUDE.md rule 1). Generic graph scores flag busy providers and buildings, which are exactly the look-alikes. Evidence rules can name the IDs and values behind every flag, which the brief requires. Each rule was checked against measured counts on the development seed before it was adopted (`ARCHITECTURE.md` section 8).
+- **Trade-off / limitation:** The rules fit the documented fraud patterns. A new pattern needs a new rule. Labels were used only to look at signal behaviour on the development seed, and results are reported on unseen seeds as well.
+- **Requirement link:** Detection (rebuild relationships, score, explain); Validation Rules (planted patterns rank highly, labels separate from features).
+
+## D-023 — Build networks only from evidence links, and split oversized groups
+- **Decision:** Networks are connected groups of claimants joined by evidence links (identity, billing, story, timing, incident, location). "Holds policy" and "used provider" never join people. A group with more than 12 claimants is split with Louvain community detection (`networkx`, fixed seed).
+- **Options considered:** Connected components over every edge; components over evidence links only; community detection on everything.
+- **Choice and why:** Joining people through a shared provider creates one giant false network around every busy provider. A provider becomes part of the evidence only when the claims there share an anomaly (`STORY`, `TIMING`). Louvain is a well-known, deterministic-with-seed method that separates groups joined by a weak bridge.
+- **Trade-off / limitation:** A ring whose only connection is a plain shared provider, with no shared anomaly, isn't found. The 12-claimant split limit is a tuned setting.
+- **Requirement link:** Detection (build networks); Evaluation Focus (false positives).
+
+## D-024 — Score with a noisy-OR over signal families
+- **Decision:** Each family contributes its strongest link × coverage, scaled by rarity in the data and reduced by benign explanations. The network score is 1 − Π(1 − family strength). A network is flagged at score ≥ 0.6, and weak families are capped so that none can reach that alone. All values live in `src/fraudnet/detect/detector.toml`.
+- **Options considered:** Hand-picked points added together; a weighted sum; noisy-OR.
+- **Choice and why:** Noisy-OR treats families as independent evidence, stays between 0 and 1, and doesn't grow just because a network has more members. Capping weak families turns "a weak signal needs corroboration" into arithmetic rather than special cases. Rarity scaling ties weights to the data and gives each explanation a rate that can be checked.
+- **Trade-off / limitation:** The family caps and explanation factors are judgement calls. They are tuned on the development seed only, and the one-principle-off evaluation shows their effect.
+- **Requirement link:** Detection (score and rank); Explanations reference evidence.
+
+## D-025 — Evaluate on unseen seeds, against comparison methods and with one principle off at a time
+- **Decision:** Thresholds are tuned only on seed 20261022. Results are reported on 5 unseen seeds as mean ± standard deviation, compared with "flag any shared value" and "recorded edges only", and repeated with one principle switched off at a time.
+- **Options considered:** Report the development seed only; add unseen seeds; add comparison methods and one-principle-off runs as well.
+- **Choice and why:** A detector tuned and scored on the same data overstates itself. Unseen seeds show whether the rules generalise, comparison methods show what the design adds, and the one-principle-off runs show which principle matters.
+- **Trade-off / limitation:** Unseen seeds come from the same generator, so this tests stability, not real-world performance. Each extra seed adds generation time to evaluation.
+- **Requirement link:** Evaluation Focus (precision, recall, FP and FN rates, ranking quality).
+
+## D-026 — Investigation workflow with a four-eyes rule and a hash-chained history
+- **Decision:** Cases follow the investigation lifecycle in DATA_DICTIONARY section 6. The person who opened a case can't confirm it, and a blocked attempt is recorded with reason `FOUR_EYES_BLOCKED`. CRITICAL cases must be escalated before closing. Each `investigation_events` row stores `prev_hash` and `event_hash` (SHA-256).
+- **Options considered:** Status changes with no role rules; role rules only; role rules plus a hash chain.
+- **Choice and why:** Labelling someone as fraud has consequences, so real fraud teams require a second reviewer. Triggers already block edits and deletes. The hash chain also makes tampering detectable if the database file itself were altered, and the app can show the check.
+- **Trade-off / limitation:** The four-eyes rule makes the live demo need two different users, which the role switcher provides. The hash chain detects tampering but can't prevent it.
+- **Requirement link:** Business Workflow rules 1-5 (actors, history, decisions); Primary Actors.
+
+## D-027 — A custom-designed app with an interactive Cytoscape.js graph
+- **Decision:** The Streamlit app uses its own design system (theme, CSS, fonts, HTML components, one colour per signal family). The network graph is drawn with Cytoscape.js through a small custom component. The JS file is kept in the repository.
+- **Options considered:** Streamlit's built-in graphviz chart; `pyvis` or `streamlit-agraph`; Cytoscape.js embedded directly.
+- **Choice and why:** The app is what reviewers see first. Built-in graphviz is static, and the common wrappers give little control over styling. Cytoscape.js supports click-to-highlight, styling by edge family, dashed unrecorded links and several layouts, with no extra Python dependency. Keeping the file in the repository means the hosted app doesn't rely on an outside CDN.
+- **Trade-off / limitation:** A custom component is more code to maintain than a wrapper library. Cytoscape.js's MIT licence must be kept with the file.
+- **Requirement link:** Primary Actors / Systems (analyst UI); Explanations reference evidence.
