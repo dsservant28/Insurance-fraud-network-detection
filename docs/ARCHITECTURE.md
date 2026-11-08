@@ -194,17 +194,21 @@ stateDiagram-v2
 
 | Role | May do |
 |---|---|
-| `OPS_ANALYST` | Open, start review, add a note, escalate, clear a LOW or MEDIUM case |
+| `OPS_ANALYST` | Open, start review, add a note, escalate, clear a LOW or MEDIUM case that is not escalated |
 | `RISK_REVIEWER` | Confirm or clear, handle escalations, reopen |
 | `SYS_ADMIN` | Run data loads and detection. Makes no case decisions |
 | `CUSTOMER` | Appears only in claim history (submits or withdraws). Has no case access |
 
 **Business rules**
-- **Four-eyes rule:** the person who opened a case can't close it as confirmed. A blocked attempt is recorded as an event with reason `FOUR_EYES_BLOCKED`.
+- **Four-eyes rule:** the person who opened a case can't close it as confirmed.
+- **Refused actions are recorded:** every refused action by case staff is written as a `BLOCKED` event with its reason (`FOUR_EYES_BLOCKED`, `ROLE_NOT_ALLOWED`, `INVALID_TRANSITION`, `ESCALATION_REQUIRED`, `ANALYST_LIMIT`, `REASON_REQUIRED`), so the history shows what was tried as well as what happened. System administrators are refused before any event is written.
+- **One active case:** a network or exception has at most one case that isn't closed.
+- **Demo staff:** synthetic accounts `USR-OPS-01/02`, `USR-RSK-01/02` and `USR-ADM-01` (`src/fraudnet/investigate/workflow.py`).
 - **Critical cases:** a CRITICAL case must be escalated before it can close.
 - **Reasons:** every closing and reopening needs a reason code.
 - **Exception cases:** a `PAYMENT_OVER_APPROVED` case recommends a payment review. An `ORPHAN_POLICY_REF` case recommends holding payment.
-- **History:** `investigation_events` is append-only, and database triggers block `UPDATE` and `DELETE`. Each event also stores the SHA-256 of the previous event plus its own content (`prev_hash`, `event_hash`), so the app can show that the history chain is intact.
+- **History:** `investigation_events` is append-only, and database triggers block `UPDATE` and `DELETE`. Each event also stores the SHA-256 of the previous event plus its own content (`prev_hash`, `event_hash`), so the app can show that the history chain is intact. Cases keep a snapshot of their trigger and survive detector and validator reruns. Regenerating the data replaces the database, and the cases with it.
+- **Commands:** `python -m fraudnet.investigate --data data/output {demo,list,verify,export FILE}`.
 
 ---
 

@@ -217,3 +217,15 @@ Format:
 - **Choice and why:** The first full evaluation on seeds 101-505 gave ring recall 1.000, look-alike false-positive rate 0.000 and precision 0.948 ± 0.015. Each seed had 1-2 extra LOW-priority networks. Looking at one showed three unrelated claimants with early claims at one small provider, scored 0.55 for timing plus 0.20 for "most members use one provider". Every early-claim link already requires that provider, so the same fact was counted twice. Noisy-OR assumes independent evidence, so this is a flaw in applying the theory, not a threshold to tune. Because the flaw was found by looking at seeds 101-505, results on those seeds no longer test unseen data, so fresh seeds are used.
 - **Trade-off / limitation:** R-RING-02 networks backed only by story evidence now score 0.65, a smaller margin over the 0.6 threshold. Three-member early-claim coincidences at a small provider still score 0.55, just below the threshold, by design.
 - **Requirement link:** Evaluation Focus (precision, false positives); Validation Rules (labels separate from tuning).
+
+## D-030 — Cases keep a snapshot of their trigger, and record refused actions
+- **Decision:**
+  - A case stores the run ID, network or exception ID, priority, score and summary at the moment it opens, without an enforced foreign key to `network` or `data_exception`.
+  - Events have an `action` column: `NOTE` and `BLOCKED` events keep the status unchanged.
+  - Every refused action by case staff is written as a `BLOCKED` event with its reason.
+  - The hash chain runs per case.
+  - Analysts may clear only LOW or MEDIUM cases that are not escalated.
+- **Options considered:** Foreign keys to the detector tables; keeping every detector run in the database; snapshots. Silently rejecting refused actions, or recording them.
+- **Choice and why:** The detector and validator replace their tables on every run, so a foreign key would either block the rerun or wipe case history, which must never happen (CLAUDE.md rule 5). A snapshot keeps the case readable exactly as the analyst saw it, and the run ID records which run that was. Recording refusals makes the four-eyes rule and role limits auditable, not just enforced. A per-case chain lets each case be verified and exported on its own.
+- **Trade-off / limitation:** A case can point to a network ID that a later run with different settings numbers differently. The run ID shows which run it came from. Regenerating the data deletes the database, and with it the cases, which the hosted app states (D-018). Staff accounts are synthetic, with no real login.
+- **Requirement link:** Business Workflow rules 1-5; Primary Actors; Step "at least one exception path".

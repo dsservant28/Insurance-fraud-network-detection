@@ -213,10 +213,13 @@ This is the recorded link register. It is true but deliberately incomplete for E
 |---|---|---|---|---|---|---|
 | `investigation_id` | TEXT | R | `INVG-2026-000001` | - | PK | Matches format; immutable |
 | `trigger_type` | TEXT | R | `NETWORK_SCORE`, `DATA_EXCEPTION` | - | No | Allowed value |
-| `network_id` | TEXT | O | FK `network` | - | No | Required for `NETWORK_SCORE` |
-| `exception_id` | TEXT | O | FK `data_exception` | - | No | Required for `DATA_EXCEPTION` |
-| `priority` | TEXT | R | `LOW`, `MEDIUM`, `HIGH`, `CRITICAL` | - | No | **Derived** from score or exception type |
-| `opened_at` | DATETIME | R | UTC | - | No | Matches first event |
+| `run_id` | TEXT | O | Detector run that produced the network | - | No | Required for `NETWORK_SCORE` |
+| `network_id` | TEXT | O | `network` row in that run | - | No | Required for `NETWORK_SCORE`. Not an enforced FK, because detector reruns replace `network` (D-030) |
+| `exception_id`, `exception_type` | TEXT | O | `data_exception` row | - | No | Required for `DATA_EXCEPTION`. Not an enforced FK, for the same reason |
+| `priority` | TEXT | R | `LOW`, `MEDIUM`, `HIGH`, `CRITICAL` | - | No | **Derived:** network priority, or exception severity |
+| `trigger_score`, `trigger_summary` | REAL, TEXT | O, R | Snapshot of the network score and summary, or the exception | - | No | Copied when the case opens, so the case still reads correctly after a rerun |
+| `recommended_action` | TEXT | R | `INVESTIGATE`, `HOLD_PAYMENT` (orphan policy), `REVIEW_PAYMENT` (overpayment) | - | No | **Derived** from the trigger |
+| `opened_at`, `opened_by` | DATETIME, TEXT | R | UTC; staff ID | - | No | Match the first event. `opened_by` drives the four-eyes rule |
 | `current_status` | TEXT | R | See section 6 | - | No | **Derived:** latest `investigation_events` status |
 
 ---
@@ -248,6 +251,7 @@ This is the recorded link register. It is true but deliberately incomplete for E
 | `actor_id` | TEXT | O | Synthetic user ID | Required for non-system staff roles |
 | `reason_code` | TEXT | O | Controlled list by table | Required for denial, failure, reversal and closure |
 | `note` | TEXT | O | Free text | Investigation events only |
+| `action`, `prev_hash`, `event_hash` | TEXT | R | Investigation events only: `OPEN`, `START_REVIEW`, `ESCALATE`, `CONFIRM`, `CLEAR`, `REOPEN`, `NOTE`, `BLOCKED`; SHA-256 hex | `NOTE` and `BLOCKED` keep the status unchanged. `event_hash` covers every other field, including `prev_hash` (D-026, D-030) |
 
 SQLite triggers block `UPDATE` and `DELETE` on all event tables.
 
@@ -269,7 +273,7 @@ SQLite triggers block `UPDATE` and `DELETE` on all event tables.
 | `detected_edge` | `run_id` + `link_id` `LNK-000001`; `source_node_id` + `target_node_id` + `edge_type` + `matched_value` is unique per run | `family`, `normalized_value`, `valid_from`, `valid_to`, `source_refs_json`, `detail_json`, `in_recorded_edges` (empty when no recorded type applies), `cap`, `rarity`, `explanation_code`, `explanation_factor`, `strength` | Links rebuilt from raw attributes. Types, families and explanations: `ARCHITECTURE.md` section 3.1 |
 | `network` | `network_id` `NET-000001`, numbered in rank order | `run_id`, `rank`, `score`, `priority`, `flagged` (score ≥ flag threshold), `member_count` (claimants), `families`, `summary` | Scored and ranked groups. Every value is derived |
 | `network_member` (bridge) | `network_id` + `node_id` | `member_role` (`CLAIMANT`, `LINKED_PROVIDER`, `SHARED_PROVIDER`, `BILLING_PROVIDER`, `SHARED_INCIDENT`), `member_score` | Network members and the context nodes that carry the evidence |
-| `investigation_subject` (bridge) | `investigation_id` + `node_id` | `subject_role` | People and entities under investigation |
+| `investigation_subject` (bridge) | `investigation_id` + `node_id` (FK `graph_node`) | `subject_role` | People and entities under investigation. Append-only |
 
 ---
 
