@@ -21,6 +21,7 @@ FAMILY = {
     "SHARED_BANK": "IDENTITY", "SHARED_PHONE": "IDENTITY", "SHARED_EMAIL": "IDENTITY",
     "SHARED_CONTACT_PROVIDER": "IDENTITY", "DUPLICATE_INVOICE": "BILLING", "SIMILAR_NARRATIVE": "STORY",
     "EARLY_CLAIM_PAIR": "TIMING", "SAME_INCIDENT": "INCIDENT", "SHARED_ADDRESS": "LOCATION",
+    "SHARED_PROVIDER": "PROVIDER",  # only with provider_as_link, an evaluation switch (P4 off)
 }
 STRONG_FAMILIES = frozenset({"IDENTITY", "BILLING"})
 CONTACT_LINKS = {"bank_token": "SHARED_BANK", "phone": "SHARED_PHONE", "email": "SHARED_EMAIL"}
@@ -288,6 +289,24 @@ def _rarity(frame: pd.DataFrame, claimant_count: int, settings: dict) -> dict[st
     return result
 
 
+def _plain_provider_links(used: pd.DataFrame, busy: set[str], settings: dict, out: _Collector) -> None:
+    """Every pair of customers of one provider, with no shared anomaly required.
+
+    Off by default. The evaluator switches it on to measure what principle P4 adds: this is the
+    naive design in which a busy provider merges unrelated people into one network.
+    """
+    explain = settings["explanations"]
+    pairs = used[["provider_id", "claimant_id", "claim_id"]].drop_duplicates(["provider_id", "claimant_id"])
+    pairs = pairs.merge(pairs, on="provider_id", suffixes=("_a", "_b"))
+    pairs = pairs[pairs["claimant_id_a"] < pairs["claimant_id_b"]]
+    for row in pairs.itertuples(index=False):
+        explanation = ("BUSY_PROVIDER", explain["busy_provider_factor"]) if row.provider_id in busy else (None, 1.0)
+        out.add(row.claimant_id_a, row.claimant_id_b, "SHARED_PROVIDER", row.provider_id, row.provider_id,
+                "2026-01-01", OPEN_END, [f"claim_provider:{row.claim_id_a}|{row.provider_id}.provider_id",
+                                         f"claim_provider:{row.claim_id_b}|{row.provider_id}.provider_id"],
+                {"provider_id": row.provider_id}, explanation)
+
+
 def rebuild_links(tables: dict[str, pd.DataFrame], settings: dict) -> LinkSet:
     """Every evidence link in the input, with its explanation and strength."""
     out = _Collector()
@@ -307,6 +326,8 @@ def rebuild_links(tables: dict[str, pd.DataFrame], settings: dict) -> LinkSet:
     _story_links(used, similarity, busy, settings, out)
     _repeated_stories(out, settings)
     _timing_links(used, busy, settings, out)
+    if settings["links"].get("provider_as_link", False):
+        _plain_provider_links(used, busy, settings, out)
 
     records = []
     for item in out.items.values():
@@ -322,7 +343,8 @@ def rebuild_links(tables: dict[str, pd.DataFrame], settings: dict) -> LinkSet:
     frame["in_recorded_edges"] = pd.array(_recorded(tables, frame), dtype="Int64")
 
     rarity = _rarity(frame, len(tables["claimant"]), settings)
-    frame["cap"] = frame["edge_type"].map(settings["links"]["caps"])
+    caps = {**settings["links"]["caps"], "SHARED_PROVIDER": settings["links"].get("shared_provider_cap", 0.35)}
+    frame["cap"] = frame["edge_type"].map(caps)
     frame["rarity"] = frame["edge_type"].map({name: value["rarity"] for name, value in rarity.items()})
     frame["strength"] = (frame["cap"] * frame["rarity"] * frame["explanation_factor"]).round(4)
     frame.insert(0, "link_id", [f"LNK-{number:06d}" for number in range(1, len(frame) + 1)])

@@ -137,8 +137,11 @@ def _support(members: list[str], inside: pd.DataFrame, used: pd.DataFrame, invoi
     users = mine.groupby("provider_id")["claimant_id"].nunique().sort_index()
     top = users.idxmax()
     share = users[top] / len(members)
+    # A story or early-claim link already proves the shared provider, so the same fact can't count twice
+    # (noisy-OR assumes independent evidence).
+    provider_links = inside["edge_type"].isin(["SIMILAR_NARRATIVE", "EARLY_CLAIM_PAIR"]) & (inside["matched_value"] == top)
     concentrated = (users[top] >= values["concentration_min_claimants"] and share >= values["concentration_min_share"]
-                    and top not in busy)
+                    and top not in busy and not provider_links.any())
     if concentrated:
         found.append(Support("PROVIDER_CONCENTRATION", values["provider_concentration"],
                              {"provider_id": top, "claimants_using": int(users[top]), "members": len(members),

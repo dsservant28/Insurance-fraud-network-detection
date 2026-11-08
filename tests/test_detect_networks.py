@@ -261,3 +261,16 @@ def test_command_line_runs(dataset):
     result = subprocess.run([sys.executable, "-m", "fraudnet.detect", "--data", str(folder)],
                             capture_output=True, text=True)
     assert result.returncode == 0 and run["run_id"] in result.stdout
+
+
+def test_one_provider_fact_is_not_counted_twice():
+    """Early-claim links already rest on the shared provider, so provider concentration adds nothing."""
+    members = ["CLT-000001", "CLT-000002", "CLT-000003"]
+    links = _frame(("CLT-000001", "CLT-000002", "EARLY_CLAIM_PAIR", 0.55, "PRV-000001"),
+                   ("CLT-000002", "CLT-000003", "EARLY_CLAIM_PAIR", 0.55, "PRV-000001"))
+    used = pd.DataFrame({"claim_id": ["C1", "C2", "C3"], "provider_id": ["PRV-000001"] * 3, "claimant_id": members})
+    network = score_network(members, evidence_links(links, SETTINGS), used, NO_INVOICES, set(), SETTINGS)
+    assert [item.code for item in network.support] == [] and network.score < SETTINGS["score"]["flag_threshold"]
+    bank = _frame(("CLT-000001", "CLT-000002", "SHARED_BANK", 0.85), ("CLT-000002", "CLT-000003", "SHARED_BANK", 0.85))
+    network = score_network(members, evidence_links(bank, SETTINGS), used, NO_INVOICES, set(), SETTINGS)
+    assert [item.code for item in network.support] == ["PROVIDER_CONCENTRATION"]  # an independent fact here
