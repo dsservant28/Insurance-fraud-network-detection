@@ -12,7 +12,8 @@
     },
     "flagged_by_priority": {
       "HIGH": 3,
-      "MEDIUM": 4
+      "LOW": 1,
+      "MEDIUM": 3
     },
     "flagged_networks": 7,
     "indicators": {
@@ -21,7 +22,7 @@
       "INFLATED_AMOUNT": 2,
       "ORPHAN_POLICY_REF": 1,
       "PAYMENT_OVER_APPROVED": 1,
-      "PROVIDER_CONCENTRATION": 5,
+      "PROVIDER_CONCENTRATION": 2,
       "PROVIDER_SHARED_CONTACT": 1,
       "REPEATED_NARRATIVE": 1,
       "SHARED_ADDRESS": 1,

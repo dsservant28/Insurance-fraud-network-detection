@@ -1,0 +1,8 @@
+rank,network_id,flagged,claimants,group_id,rule_id,is_fraud,jaccard
+1,NET-000001,True,3,RING-004,R-RING-04,True,1.0
+2,NET-000002,True,5,RING-006,R-RING-06,True,1.0
+3,NET-000003,True,2,GRP-0004,EC-3,True,1.0
+4,NET-000004,True,3,RING-001,R-RING-03,True,1.0
+5,NET-000005,True,5,RING-005,R-RING-05,True,0.6
+6,NET-000006,True,4,RING-002,R-RING-01,True,1.0
+7,NET-000007,True,4,RING-003,R-RING-02,True,1.0

@@ -1,0 +1,1408 @@
+{
+  "development": {
+    "comparisons": {
+      "any_shared_value": {
+        "average_precision": 0.1749,
+        "false_negative_rate": 0.1667,
+        "false_positive_networks": 16,
+        "false_positive_rate": 0.4103,
+        "flagged_networks": 21,
+        "fraud_group_recall": 0.7143,
+        "fraud_groups_in_top_n": {
+          "found": 1,
+          "n": 7,
+          "share": 0.1429
+        },
+        "matches": [
+          {
+            "claimants": 12,
+            "flagged": true,
+            "group_id": "GRP-0041",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000001",
+            "rank": 1,
+            "rule_id": "B-ADDR-01"
+          },
+          {
+            "claimants": 5,
+            "flagged": true,
+            "group_id": "GRP-0029",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000002",
+            "rank": 2,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 5,
+            "flagged": true,
+            "group_id": "RING-006",
+            "is_fraud": true,
+            "jaccard": 1.0,
+            "network_id": "CMP-000003",
+            "rank": 3,
+            "rule_id": "R-RING-06"
+          },
+          {
+            "claimants": 5,
+            "flagged": true,
+            "group_id": "GRP-0034",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000004",
+            "rank": 4,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 5,
+            "flagged": true,
+            "group_id": "GRP-0037",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000005",
+            "rank": 5,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 5,
+            "flagged": true,
+            "group_id": "GRP-0031",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000006",
+            "rank": 6,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 5,
+            "flagged": true,
+            "group_id": "GRP-0026",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000007",
+            "rank": 7,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 4,
+            "flagged": true,
+            "group_id": "GRP-0036",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000008",
+            "rank": 8,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 4,
+            "flagged": true,
+            "group_id": "RING-002",
+            "is_fraud": true,
+            "jaccard": 1.0,
+            "network_id": "CMP-000009",
+            "rank": 9,
+            "rule_id": "R-RING-01"
+          },
+          {
+            "claimants": 4,
+            "flagged": true,
+            "group_id": "GRP-0035",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000010",
+            "rank": 10,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 3,
+            "flagged": true,
+            "group_id": "GRP-0039",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000011",
+            "rank": 11,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 3,
+            "flagged": true,
+            "group_id": "GRP-0027",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000012",
+            "rank": 12,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 3,
+            "flagged": true,
+            "group_id": "RING-004",
+            "is_fraud": true,
+            "jaccard": 1.0,
+            "network_id": "CMP-000013",
+            "rank": 13,
+            "rule_id": "R-RING-04"
+          },
+          {
+            "claimants": 3,
+            "flagged": true,
+            "group_id": "GRP-0028",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000014",
+            "rank": 14,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 3,
+            "flagged": true,
+            "group_id": "GRP-0032",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000015",
+            "rank": 15,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 2,
+            "flagged": true,
+            "group_id": "GRP-0033",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000016",
+            "rank": 16,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 2,
+            "flagged": true,
+            "group_id": "GRP-0030",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000017",
+            "rank": 17,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 2,
+            "flagged": true,
+            "group_id": "GRP-0040",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000018",
+            "rank": 18,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 2,
+            "flagged": true,
+            "group_id": "GRP-0038",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000019",
+            "rank": 19,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 2,
+            "flagged": true,
+            "group_id": "RING-005",
+            "is_fraud": true,
+            "jaccard": 0.6667,
+            "network_id": "CMP-000020",
+            "rank": 20,
+            "rule_id": "R-RING-05"
+          },
+          {
+            "claimants": 2,
+            "flagged": true,
+            "group_id": "RING-001",
+            "is_fraud": true,
+            "jaccard": 0.6667,
+            "network_id": "CMP-000021",
+            "rank": 21,
+            "rule_id": "R-RING-03"
+          }
+        ],
+        "mean_match_jaccard": 0.8667,
+        "ndcg_at_10": 0.2202,
+        "ndcg_at_5": 0.1696,
+        "ndcg_at_r": 0.1374,
+        "per_rule": {
+          "B-ADDR-01": {
+            "false_positive_rate": 1.0,
+            "flagged": 1,
+            "groups": 1
+          },
+          "B-EVENT-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 1
+          },
+          "B-HOUSE-01": {
+            "false_positive_rate": 1.0,
+            "flagged": 15,
+            "groups": 15
+          },
+          "B-MOVE-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 2
+          },
+          "B-REPEAT-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 20
+          },
+          "EC-1": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 1
+          },
+          "EC-3": {
+            "flagged": 0,
+            "groups": 1,
+            "recall": 0.0
+          },
+          "R-RING-01": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-02": {
+            "flagged": 0,
+            "groups": 1,
+            "recall": 0.0
+          },
+          "R-RING-03": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-04": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-05": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-06": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          }
+        },
+        "precision": 0.2381,
+        "precision_at_10": 0.2,
+        "precision_at_5": 0.2,
+        "r_precision": 0.1429,
+        "recall": 0.8333,
+        "recall_at_10": 0.2857,
+        "recall_at_5": 0.1429,
+        "true_positive_networks": 5,
+        "unmatched_flagged_networks": 0
+      },
+      "recorded_edges_only": {
+        "average_precision": 0.0928,
+        "false_negative_rate": 0.3333,
+        "false_positive_networks": 16,
+        "false_positive_rate": 0.4103,
+        "flagged_networks": 20,
+        "fraud_group_recall": 0.5714,
+        "fraud_groups_in_top_n": {
+          "found": 0,
+          "n": 7,
+          "share": 0.0
+        },
+        "matches": [
+          {
+            "claimants": 12,
+            "flagged": true,
+            "group_id": "GRP-0041",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000001",
+            "rank": 1,
+            "rule_id": "B-ADDR-01"
+          },
+          {
+            "claimants": 5,
+            "flagged": true,
+            "group_id": "GRP-0029",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000002",
+            "rank": 2,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 5,
+            "flagged": true,
+            "group_id": "GRP-0034",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000003",
+            "rank": 3,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 5,
+            "flagged": true,
+            "group_id": "GRP-0037",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000004",
+            "rank": 4,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 5,
+            "flagged": true,
+            "group_id": "GRP-0031",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000005",
+            "rank": 5,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 5,
+            "flagged": true,
+            "group_id": "GRP-0026",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000006",
+            "rank": 6,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 4,
+            "flagged": true,
+            "group_id": "GRP-0036",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000007",
+            "rank": 7,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 4,
+            "flagged": true,
+            "group_id": "RING-002",
+            "is_fraud": true,
+            "jaccard": 1.0,
+            "network_id": "CMP-000008",
+            "rank": 8,
+            "rule_id": "R-RING-01"
+          },
+          {
+            "claimants": 4,
+            "flagged": true,
+            "group_id": "GRP-0035",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000009",
+            "rank": 9,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 3,
+            "flagged": true,
+            "group_id": "GRP-0039",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000010",
+            "rank": 10,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 3,
+            "flagged": true,
+            "group_id": "GRP-0027",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000011",
+            "rank": 11,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 3,
+            "flagged": true,
+            "group_id": "RING-004",
+            "is_fraud": true,
+            "jaccard": 1.0,
+            "network_id": "CMP-000012",
+            "rank": 12,
+            "rule_id": "R-RING-04"
+          },
+          {
+            "claimants": 3,
+            "flagged": true,
+            "group_id": "GRP-0028",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000013",
+            "rank": 13,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 3,
+            "flagged": true,
+            "group_id": "GRP-0032",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000014",
+            "rank": 14,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 2,
+            "flagged": true,
+            "group_id": "GRP-0033",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000015",
+            "rank": 15,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 2,
+            "flagged": true,
+            "group_id": "GRP-0030",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000016",
+            "rank": 16,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 2,
+            "flagged": true,
+            "group_id": "GRP-0040",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000017",
+            "rank": 17,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 2,
+            "flagged": true,
+            "group_id": "GRP-0038",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "CMP-000018",
+            "rank": 18,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 2,
+            "flagged": true,
+            "group_id": "RING-005",
+            "is_fraud": true,
+            "jaccard": 0.6667,
+            "network_id": "CMP-000019",
+            "rank": 19,
+            "rule_id": "R-RING-05"
+          },
+          {
+            "claimants": 2,
+            "flagged": true,
+            "group_id": "RING-001",
+            "is_fraud": true,
+            "jaccard": 0.6667,
+            "network_id": "CMP-000020",
+            "rank": 20,
+            "rule_id": "R-RING-03"
+          }
+        ],
+        "mean_match_jaccard": 0.8334,
+        "ndcg_at_10": 0.0867,
+        "ndcg_at_5": 0.0,
+        "ndcg_at_r": 0.0,
+        "per_rule": {
+          "B-ADDR-01": {
+            "false_positive_rate": 1.0,
+            "flagged": 1,
+            "groups": 1
+          },
+          "B-EVENT-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 1
+          },
+          "B-HOUSE-01": {
+            "false_positive_rate": 1.0,
+            "flagged": 15,
+            "groups": 15
+          },
+          "B-MOVE-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 2
+          },
+          "B-REPEAT-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 20
+          },
+          "EC-1": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 1
+          },
+          "EC-3": {
+            "flagged": 0,
+            "groups": 1,
+            "recall": 0.0
+          },
+          "R-RING-01": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-02": {
+            "flagged": 0,
+            "groups": 1,
+            "recall": 0.0
+          },
+          "R-RING-03": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-04": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-05": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-06": {
+            "flagged": 0,
+            "groups": 1,
+            "recall": 0.0
+          }
+        },
+        "precision": 0.2,
+        "precision_at_10": 0.1,
+        "precision_at_5": 0.0,
+        "r_precision": 0.0,
+        "recall": 0.6667,
+        "recall_at_10": 0.1429,
+        "recall_at_5": 0.0,
+        "true_positive_networks": 4,
+        "unmatched_flagged_networks": 0
+      }
+    },
+    "detector": {
+      "average_precision": 1.0,
+      "false_negative_rate": 0.0,
+      "false_positive_networks": 0,
+      "false_positive_rate": 0.0,
+      "flagged_networks": 7,
+      "fraud_group_recall": 1.0,
+      "fraud_groups_in_top_n": {
+        "found": 7,
+        "n": 7,
+        "share": 1.0
+      },
+      "matches": [
+        {
+          "claimants": 3,
+          "flagged": true,
+          "group_id": "RING-004",
+          "is_fraud": true,
+          "jaccard": 1.0,
+          "network_id": "NET-000001",
+          "rank": 1,
+          "rule_id": "R-RING-04"
+        },
+        {
+          "claimants": 5,
+          "flagged": true,
+          "group_id": "RING-006",
+          "is_fraud": true,
+          "jaccard": 1.0,
+          "network_id": "NET-000002",
+          "rank": 2,
+          "rule_id": "R-RING-06"
+        },
+        {
+          "claimants": 2,
+          "flagged": true,
+          "group_id": "GRP-0004",
+          "is_fraud": true,
+          "jaccard": 1.0,
+          "network_id": "NET-000003",
+          "rank": 3,
+          "rule_id": "EC-3"
+        },
+        {
+          "claimants": 3,
+          "flagged": true,
+          "group_id": "RING-001",
+          "is_fraud": true,
+          "jaccard": 1.0,
+          "network_id": "NET-000004",
+          "rank": 4,
+          "rule_id": "R-RING-03"
+        },
+        {
+          "claimants": 5,
+          "flagged": true,
+          "group_id": "RING-005",
+          "is_fraud": true,
+          "jaccard": 0.6,
+          "network_id": "NET-000005",
+          "rank": 5,
+          "rule_id": "R-RING-05"
+        },
+        {
+          "claimants": 4,
+          "flagged": true,
+          "group_id": "RING-002",
+          "is_fraud": true,
+          "jaccard": 1.0,
+          "network_id": "NET-000006",
+          "rank": 6,
+          "rule_id": "R-RING-01"
+        },
+        {
+          "claimants": 4,
+          "flagged": true,
+          "group_id": "RING-003",
+          "is_fraud": true,
+          "jaccard": 1.0,
+          "network_id": "NET-000007",
+          "rank": 7,
+          "rule_id": "R-RING-02"
+        }
+      ],
+      "mean_match_jaccard": 0.9429,
+      "ndcg_at_10": 1.0,
+      "ndcg_at_5": 1.0,
+      "ndcg_at_r": 1.0,
+      "per_rule": {
+        "B-ADDR-01": {
+          "false_positive_rate": 0.0,
+          "flagged": 0,
+          "groups": 1
+        },
+        "B-EVENT-01": {
+          "false_positive_rate": 0.0,
+          "flagged": 0,
+          "groups": 1
+        },
+        "B-HOUSE-01": {
+          "false_positive_rate": 0.0,
+          "flagged": 0,
+          "groups": 15
+        },
+        "B-MOVE-01": {
+          "false_positive_rate": 0.0,
+          "flagged": 0,
+          "groups": 2
+        },
+        "B-PROV-01": {
+          "false_positive_rate": 0.0,
+          "in_flagged_networks": 0,
+          "popular_providers": 1
+        },
+        "B-REPEAT-01": {
+          "false_positive_rate": 0.0,
+          "flagged": 0,
+          "groups": 20
+        },
+        "EC-1": {
+          "false_positive_rate": 0.0,
+          "flagged": 0,
+          "groups": 1
+        },
+        "EC-3": {
+          "flagged": 1,
+          "groups": 1,
+          "recall": 1.0
+        },
+        "R-RING-01": {
+          "flagged": 1,
+          "groups": 1,
+          "recall": 1.0
+        },
+        "R-RING-02": {
+          "flagged": 1,
+          "groups": 1,
+          "recall": 1.0
+        },
+        "R-RING-03": {
+          "flagged": 1,
+          "groups": 1,
+          "recall": 1.0
+        },
+        "R-RING-04": {
+          "flagged": 1,
+          "groups": 1,
+          "recall": 1.0
+        },
+        "R-RING-05": {
+          "flagged": 1,
+          "groups": 1,
+          "recall": 1.0
+        },
+        "R-RING-06": {
+          "flagged": 1,
+          "groups": 1,
+          "recall": 1.0
+        }
+      },
+      "precision": 1.0,
+      "precision_at_10": 0.7,
+      "precision_at_5": 1.0,
+      "r_precision": 1.0,
+      "recall": 1.0,
+      "recall_at_10": 1.0,
+      "recall_at_5": 0.7143,
+      "true_positive_networks": 7,
+      "unmatched_flagged_networks": 0
+    },
+    "edge_cases": {
+      "EC-1": {
+        "found": 1,
+        "labelled_claims": 1,
+        "rule": "Orphan policy reference routed to an exception",
+        "status": "PASS"
+      },
+      "EC-2": {
+        "found": 1,
+        "labelled_claims": 1,
+        "rule": "Payment above approved amount routed to payment review",
+        "status": "PASS"
+      },
+      "EC-3": {
+        "found": 1,
+        "groups": 1,
+        "rule": "Duplicate invoice groups flagged as networks",
+        "status": "PASS"
+      },
+      "EC-4": {
+        "expected_pairs": 10,
+        "pairs_wrongly_in_recorded_edges": 0,
+        "recovered_pairs": 10,
+        "recovery": 1.0,
+        "rule": "Hidden ring links recovered and marked missing from the recorded edges",
+        "status": "PASS"
+      },
+      "EC-5": {
+        "address_links_explained_as_building": 1.0,
+        "flagged": 0,
+        "rule": "Common addresses not flagged on address alone",
+        "sites": 1,
+        "status": "PASS"
+      }
+    },
+    "exceptions": {
+      "DUPLICATE_INVOICE": {
+        "found": 2,
+        "labelled": 2,
+        "missed_labels": [],
+        "status": "PASS",
+        "unlabelled_exceptions": []
+      },
+      "ORPHAN_POLICY_REF": {
+        "found": 1,
+        "labelled": 1,
+        "missed_labels": [],
+        "status": "PASS",
+        "unlabelled_exceptions": []
+      },
+      "PAYMENT_OVER_APPROVED": {
+        "found": 1,
+        "labelled": 1,
+        "missed_labels": [],
+        "status": "PASS",
+        "unlabelled_exceptions": []
+      }
+    },
+    "explanations": {
+      "flagged_networks": 7,
+      "flagged_without_indicators": [],
+      "ids_cited": 63,
+      "indicators_without_ids": [],
+      "status": "PASS",
+      "unknown_ids": []
+    },
+    "labelled_groups": {
+      "BENIGN": 39,
+      "EDGE_CASE": 2,
+      "RING": 6
+    },
+    "principles_off": {
+      "no_benign_explanations": {
+        "average_precision": 0.7844,
+        "false_negative_rate": 0.0,
+        "false_positive_networks": 1,
+        "false_positive_rate": 0.0256,
+        "flagged_networks": 7,
+        "fraud_group_recall": 0.8571,
+        "fraud_groups_in_top_n": {
+          "found": 6,
+          "n": 7,
+          "share": 0.8571
+        },
+        "matches": [
+          {
+            "claimants": 3,
+            "flagged": true,
+            "group_id": "RING-004",
+            "is_fraud": true,
+            "jaccard": 1.0,
+            "network_id": "NET-000001",
+            "rank": 1,
+            "rule_id": "R-RING-04"
+          },
+          {
+            "claimants": 5,
+            "flagged": true,
+            "group_id": "RING-006",
+            "is_fraud": true,
+            "jaccard": 1.0,
+            "network_id": "NET-000002",
+            "rank": 2,
+            "rule_id": "R-RING-06"
+          },
+          {
+            "claimants": 4,
+            "flagged": true,
+            "group_id": "RING-002",
+            "is_fraud": true,
+            "jaccard": 1.0,
+            "network_id": "NET-000003",
+            "rank": 3,
+            "rule_id": "R-RING-01"
+          },
+          {
+            "claimants": 7,
+            "flagged": true,
+            "group_id": "GRP-0029",
+            "is_fraud": false,
+            "jaccard": 0.7143,
+            "network_id": "NET-000004",
+            "rank": 4,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 4,
+            "flagged": true,
+            "group_id": "RING-003",
+            "is_fraud": true,
+            "jaccard": 1.0,
+            "network_id": "NET-000005",
+            "rank": 5,
+            "rule_id": "R-RING-02"
+          },
+          {
+            "claimants": 5,
+            "flagged": true,
+            "group_id": "RING-005",
+            "is_fraud": true,
+            "jaccard": 0.6,
+            "network_id": "NET-000006",
+            "rank": 6,
+            "rule_id": "R-RING-05"
+          },
+          {
+            "claimants": 3,
+            "flagged": true,
+            "group_id": "RING-001",
+            "is_fraud": true,
+            "jaccard": 1.0,
+            "network_id": "NET-000007",
+            "rank": 7,
+            "rule_id": "R-RING-03"
+          },
+          {
+            "claimants": 5,
+            "flagged": false,
+            "group_id": "GRP-0037",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "NET-000008",
+            "rank": 8,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 4,
+            "flagged": false,
+            "group_id": null,
+            "is_fraud": false,
+            "jaccard": 0.25,
+            "network_id": "NET-000009",
+            "rank": 9,
+            "rule_id": null
+          },
+          {
+            "claimants": 5,
+            "flagged": false,
+            "group_id": "GRP-0031",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "NET-000010",
+            "rank": 10,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 5,
+            "flagged": false,
+            "group_id": "GRP-0026",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "NET-000011",
+            "rank": 11,
+            "rule_id": "B-HOUSE-01"
+          },
+          {
+            "claimants": 2,
+            "flagged": false,
+            "group_id": "GRP-0033",
+            "is_fraud": false,
+            "jaccard": 1.0,
+            "network_id": "NET-000012",
+            "rank": 12,
+            "rule_id": "B-HOUSE-01"
+          }
+        ],
+        "mean_match_jaccard": 0.9333,
+        "ndcg_at_10": 0.8816,
+        "ndcg_at_5": 0.8539,
+        "ndcg_at_r": 0.8816,
+        "per_rule": {
+          "B-ADDR-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 1
+          },
+          "B-EVENT-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 1
+          },
+          "B-HOUSE-01": {
+            "false_positive_rate": 0.0667,
+            "flagged": 1,
+            "groups": 15
+          },
+          "B-MOVE-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 2
+          },
+          "B-REPEAT-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 20
+          },
+          "EC-1": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 1
+          },
+          "EC-3": {
+            "flagged": 0,
+            "groups": 1,
+            "recall": 0.0
+          },
+          "R-RING-01": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-02": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-03": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-04": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-05": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-06": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          }
+        },
+        "precision": 0.8571,
+        "precision_at_10": 0.6,
+        "precision_at_5": 0.8,
+        "r_precision": 0.8571,
+        "recall": 1.0,
+        "recall_at_10": 0.8571,
+        "recall_at_5": 0.5714,
+        "true_positive_networks": 6,
+        "unmatched_flagged_networks": 0
+      },
+      "no_repetition": {
+        "average_precision": 1.0,
+        "false_negative_rate": 0.0,
+        "false_positive_networks": 1,
+        "false_positive_rate": 0.0,
+        "flagged_networks": 8,
+        "fraud_group_recall": 1.0,
+        "fraud_groups_in_top_n": {
+          "found": 7,
+          "n": 7,
+          "share": 1.0
+        },
+        "matches": [
+          {
+            "claimants": 3,
+            "flagged": true,
+            "group_id": "RING-004",
+            "is_fraud": true,
+            "jaccard": 1.0,
+            "network_id": "NET-000001",
+            "rank": 1,
+            "rule_id": "R-RING-04"
+          },
+          {
+            "claimants": 5,
+            "flagged": true,
+            "group_id": "RING-006",
+            "is_fraud": true,
+            "jaccard": 1.0,
+            "network_id": "NET-000002",
+            "rank": 2,
+            "rule_id": "R-RING-06"
+          },
+          {
+            "claimants": 2,
+            "flagged": true,
+            "group_id": "GRP-0004",
+            "is_fraud": true,
+            "jaccard": 1.0,
+            "network_id": "NET-000003",
+            "rank": 3,
+            "rule_id": "EC-3"
+          },
+          {
+            "claimants": 3,
+            "flagged": true,
+            "group_id": "RING-001",
+            "is_fraud": true,
+            "jaccard": 1.0,
+            "network_id": "NET-000004",
+            "rank": 4,
+            "rule_id": "R-RING-03"
+          },
+          {
+            "claimants": 5,
+            "flagged": true,
+            "group_id": "RING-005",
+            "is_fraud": true,
+            "jaccard": 0.6,
+            "network_id": "NET-000005",
+            "rank": 5,
+            "rule_id": "R-RING-05"
+          },
+          {
+            "claimants": 4,
+            "flagged": true,
+            "group_id": "RING-002",
+            "is_fraud": true,
+            "jaccard": 1.0,
+            "network_id": "NET-000006",
+            "rank": 6,
+            "rule_id": "R-RING-01"
+          },
+          {
+            "claimants": 4,
+            "flagged": true,
+            "group_id": "RING-003",
+            "is_fraud": true,
+            "jaccard": 1.0,
+            "network_id": "NET-000007",
+            "rank": 7,
+            "rule_id": "R-RING-02"
+          },
+          {
+            "claimants": 2,
+            "flagged": true,
+            "group_id": null,
+            "is_fraud": false,
+            "jaccard": 0.0,
+            "network_id": "NET-000008",
+            "rank": 8,
+            "rule_id": null
+          },
+          {
+            "claimants": 2,
+            "flagged": false,
+            "group_id": "GRP-0014",
+            "is_fraud": false,
+            "jaccard": 0.5,
+            "network_id": "NET-000009",
+            "rank": 9,
+            "rule_id": "B-REPEAT-01"
+          }
+        ],
+        "mean_match_jaccard": 0.9429,
+        "ndcg_at_10": 1.0,
+        "ndcg_at_5": 1.0,
+        "ndcg_at_r": 1.0,
+        "per_rule": {
+          "B-ADDR-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 1
+          },
+          "B-EVENT-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 1
+          },
+          "B-HOUSE-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 15
+          },
+          "B-MOVE-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 2
+          },
+          "B-REPEAT-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 20
+          },
+          "EC-1": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 1
+          },
+          "EC-3": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-01": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-02": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-03": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-04": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-05": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          },
+          "R-RING-06": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          }
+        },
+        "precision": 0.875,
+        "precision_at_10": 0.7,
+        "precision_at_5": 1.0,
+        "r_precision": 1.0,
+        "recall": 1.0,
+        "recall_at_10": 1.0,
+        "recall_at_5": 0.7143,
+        "true_positive_networks": 7,
+        "unmatched_flagged_networks": 1
+      },
+      "provider_as_plain_link": {
+        "average_precision": 0.1429,
+        "false_negative_rate": 0.8333,
+        "false_positive_networks": 0,
+        "false_positive_rate": 0.0,
+        "flagged_networks": 1,
+        "fraud_group_recall": 0.1429,
+        "fraud_groups_in_top_n": {
+          "found": 1,
+          "n": 7,
+          "share": 0.1429
+        },
+        "matches": [
+          {
+            "claimants": 8,
+            "flagged": true,
+            "group_id": "RING-006",
+            "is_fraud": true,
+            "jaccard": 0.625,
+            "network_id": "NET-000001",
+            "rank": 1,
+            "rule_id": "R-RING-06"
+          },
+          {
+            "claimants": 48,
+            "flagged": false,
+            "group_id": null,
+            "is_fraud": false,
+            "jaccard": 0.1042,
+            "network_id": "NET-000002",
+            "rank": 2,
+            "rule_id": null
+          },
+          {
+            "claimants": 20,
+            "flagged": false,
+            "group_id": null,
+            "is_fraud": false,
+            "jaccard": 0.125,
+            "network_id": "NET-000003",
+            "rank": 3,
+            "rule_id": null
+          },
+          {
+            "claimants": 22,
+            "flagged": false,
+            "group_id": null,
+            "is_fraud": false,
+            "jaccard": 0.1304,
+            "network_id": "NET-000004",
+            "rank": 4,
+            "rule_id": null
+          },
+          {
+            "claimants": 44,
+            "flagged": false,
+            "group_id": null,
+            "is_fraud": false,
+            "jaccard": 0.1695,
+            "network_id": "NET-000005",
+            "rank": 5,
+            "rule_id": null
+          },
+          {
+            "claimants": 16,
+            "flagged": false,
+            "group_id": null,
+            "is_fraud": false,
+            "jaccard": 0.1176,
+            "network_id": "NET-000006",
+            "rank": 6,
+            "rule_id": null
+          }
+        ],
+        "mean_match_jaccard": 0.625,
+        "ndcg_at_10": 0.2749,
+        "ndcg_at_5": 0.3392,
+        "ndcg_at_r": 0.2749,
+        "per_rule": {
+          "B-ADDR-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 1
+          },
+          "B-EVENT-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 1
+          },
+          "B-HOUSE-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 15
+          },
+          "B-MOVE-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 2
+          },
+          "B-REPEAT-01": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 20
+          },
+          "EC-1": {
+            "false_positive_rate": 0.0,
+            "flagged": 0,
+            "groups": 1
+          },
+          "EC-3": {
+            "flagged": 0,
+            "groups": 1,
+            "recall": 0.0
+          },
+          "R-RING-01": {
+            "flagged": 0,
+            "groups": 1,
+            "recall": 0.0
+          },
+          "R-RING-02": {
+            "flagged": 0,
+            "groups": 1,
+            "recall": 0.0
+          },
+          "R-RING-03": {
+            "flagged": 0,
+            "groups": 1,
+            "recall": 0.0
+          },
+          "R-RING-04": {
+            "flagged": 0,
+            "groups": 1,
+            "recall": 0.0
+          },
+          "R-RING-05": {
+            "flagged": 0,
+            "groups": 1,
+            "recall": 0.0
+          },
+          "R-RING-06": {
+            "flagged": 1,
+            "groups": 1,
+            "recall": 1.0
+          }
+        },
+        "precision": 1.0,
+        "precision_at_10": 0.1,
+        "precision_at_5": 0.2,
+        "r_precision": 0.1429,
+        "recall": 0.1667,
+        "recall_at_10": 0.1429,
+        "recall_at_5": 0.1429,
+        "true_positive_networks": 1,
+        "unmatched_flagged_networks": 0
+      }
+    },
+    "scale": 0.1,
+    "seed": 20261022
+  },
+  "unseen_results": [],
+  "unseen_seeds": null
+}
