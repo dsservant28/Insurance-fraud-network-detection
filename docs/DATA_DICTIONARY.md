@@ -1,6 +1,6 @@
 # Data dictionary and data plan
 
-**Status:** plan decisions approved by the owner (see section 15). The baseline (sections 3-7), fraud rings and benign look-alikes (8.1, 8.2) and ground truth (10) are generated. Edge cases EC-1 to EC-3, edges and everything after them are not built yet, so their counts are still design targets. Final counts will come from the source manifest.
+**Status:** plan decisions approved by the owner (see section 15). The generator is complete: baseline (sections 3-7), planted patterns and edge cases (8), recorded edges (3.8, 5.3) and ground truth (10). The exception checks in 11.2 are built. The rest of the validator, the detector and later stages are not built yet, so their details are still design targets. Final counts will come from the source manifest.
 
 **Conventions**
 
@@ -321,9 +321,9 @@ An incident connects to many claimants through its claims, so it doesn't need an
 | `SHARED_ADDRESS` | Claimant to claimant | Matching normalised address in overlapping periods | Part of about 1,000 shared links |
 | `SHARED_PHONE`, `SHARED_EMAIL`, `SHARED_BANK` | Claimant to claimant | Matching contact values | Part of about 1,000 shared links |
 | `SHARED_CONTACT_PROVIDER` | Claimant to provider | Matching phone, email or bank value | Small |
-| `PAID_TO_SHARED_ACCOUNT` | Payment to claimant or provider | Payee account belongs to someone other than the expected payee | Small |
+| `PAID_TO_SHARED_ACCOUNT` | Payment to claimant or provider | A payment to a claimant landed in an account another claimant or a provider also holds. A provider paid into its own registered account is not flagged | Small |
 
-Together these should exceed 8,000 edges. The validator enforces that minimum, and these estimates must be confirmed by the first generator run.
+Node IDs are the entity IDs themselves, such as `CLT-000001`. The default run gives 12,560 edges: `USED_PROVIDER` 6,164, `HOLDS_POLICY` 2,790, `SHARED_ADDRESS` 2,408, `INCIDENT_PARTY` 562, `SHARED_PHONE` 326, `PAID_TO_SHARED_ACCOUNT` 127, `SHARED_BANK` 109, `SHARED_EMAIL` 48 and `SHARED_CONTACT_PROVIDER` 26. Tests require at least 8,000 x scale. Claimant-to-claimant links need overlapping contact periods, so past tenants (`B-MOVE-01`) get no edge.
 
 ---
 
@@ -420,6 +420,16 @@ Each ring has 3-8 claimants. There are 4 rings per pattern at scale 1.0, making 
 | EC-4 | Planted relationship not represented in edges | Raw shared value exists, but the matching edge is deliberately missing | All 4 `R-RING-06` rings | Not a validator failure; absent edge is only provable by the detector and evaluator | Detector must recover it and mark `in_recorded_edges = 0` |
 | EC-5 | Benign common address treated as proof | Many unrelated residents at one address with no other links | 10 sites | Valid data | Clear; must not rank as suspicious on address alone |
 
+**How each edge case is planted and labelled** (D-020)
+
+| ID | Planting rule | Lifecycle result | Labels (`rule_id` / `is_fraud` / `expected_decision`) |
+|---|---|---|---|
+| EC-1 | A claim names `POL-` plus a number above the highest real policy number | Stays `UNDER_REVIEW`: invoices are checked but no decision or payment is possible | `EC-1` / 0 / `ROUTE_EXCEPTION`, on the claimant and claim |
+| EC-2 | After a claim is fully paid, the last settled payment is repeated 1-5 days later and also settles | Paid amount exceeds approved, so the balance is negative | `EC-2` / 0 / `REVIEW_PAYMENT`, on the claim and duplicate payment |
+| EC-3 | One provider invoice (number, date, lines and total) is copied onto claims of 2-3 different claimants | Each copy goes through normal checks, so the same bill can be paid more than once | `EC-3` / 1 / `INVESTIGATE`, on the claimants, claims and invoices |
+| EC-4 | Shared bank, phone and address values exist in contact rows, but those edges are left out | Normal | Labelled on the `R-RING-06` rings with `issue_type = EC-4` |
+| EC-5 | Unrelated residents share one building address | Normal | Labelled on the `B-ADDR-01` groups with `issue_type = EC-5` |
+
 **Boundary and failure records in normal data**
 
 | Type | Examples |
@@ -467,8 +477,8 @@ Written to `data/output/hidden/ground_truth.csv` and `.json`. There is one row p
 | `group_id` | TEXT | O | `GRP-0001` | Required for look-alike and edge-case groups |
 | `issue_type` | TEXT | O | `EC-1` to `EC-5` | Required for edge cases |
 | `is_fraud` | INTEGER | R | 0 or 1 | From the rule, never drawn at random |
-| `entity_type` | TEXT | R | Entity name | Allowed value |
-| `entity_id` | TEXT | R | ID in input data, or the submitted value for missing policies | Exists unless EC-1 |
+| `entity_type` | TEXT | R | `CLAIMANT`, `PROVIDER`, `CLAIM`, `INVOICE`, `PAYMENT` | Allowed value |
+| `entity_id` | TEXT | R | ID in input data. An EC-1 label is on the claim, and its reason gives the missing policy number | Exists |
 | `expected_decision` | TEXT | R | `INVESTIGATE`, `CLEAR`, `ROUTE_EXCEPTION`, `REVIEW_PAYMENT` | Allowed value |
 | `reason` | TEXT | R | Plain-language reason with concrete IDs or values | Not empty |
 
@@ -512,7 +522,7 @@ The sample in `data/sample/` is protected the same way: the detector is pointed 
 | V-12 | Synthetic-only data | Contact values use the fictional formats and reserved domains |
 
 ### 11.2 Exception checks: reported, without failing the run
-`ORPHAN_POLICY_REF`, `PAYMENT_OVER_APPROVED` and `DUPLICATE_INVOICE` create `data_exception` rows.
+`ORPHAN_POLICY_REF`, `PAYMENT_OVER_APPROVED` and `DUPLICATE_INVOICE` create `data_exception` rows. They are built in `src/fraudnet/validate/exceptions.py` and need input tables only. A `DUPLICATE_INVOICE` row is written for every invoice in a group with the same provider, external number, date and total across two or more claimants.
 
 The validator doesn't read ground truth. The evaluator reconciles the two in both directions:
 - **No silent corruption:** every exception has a label.
