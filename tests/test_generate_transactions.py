@@ -8,7 +8,7 @@ import pytest
 from fraudnet.generate.config import AS_OF_DATE, GeneratorConfig
 from fraudnet.generate.ids import ID_PATTERNS
 from fraudnet.generate.lifecycle import allocate
-from fraudnet.generate.pipeline import generate
+from fraudnet.generate.pipeline import generate, generate_with_labels
 from fraudnet.generate.transactions import INCIDENT_TYPES_BY_POLICY
 
 AS_OF = AS_OF_DATE.isoformat()
@@ -31,8 +31,25 @@ PARENTS = {"claim_events": ("claim_id", "claim"), "invoice_events": ("invoice_id
 
 
 @pytest.fixture(scope="module")
-def tables():
-    return generate(GeneratorConfig(scale=1.0))
+def data():
+    return generate_with_labels(GeneratorConfig(scale=1.0))
+
+
+@pytest.fixture(scope="module")
+def tables(data):
+    return data[0]
+
+
+@pytest.fixture(scope="module")
+def edge_case_claims(data):
+    """Claims planted as EC-1 to EC-3. They break baseline rules on purpose; test_generate_edge_cases.py covers them."""
+    labels = data[1]
+    return set(labels[labels["rule_id"].isin({"EC-1", "EC-2", "EC-3"}) & (labels["entity_type"] == "CLAIM")]["entity_id"])
+
+
+@pytest.fixture(scope="module")
+def normal_claims(tables, edge_case_claims):
+    return tables["claim"][~tables["claim"]["claim_id"].isin(edge_case_claims)]
 
 
 @pytest.fixture(scope="module")
@@ -69,7 +86,7 @@ def test_foreign_keys_resolve(tables):
     claimants = set(tables["claimant"]["claimant_id"])
     assert set(tables["claim"]["incident_id"]) == set(tables["incident"]["incident_id"])
     assert set(tables["claim"]["claimant_id"]) <= claimants
-    assert set(tables["claim"]["policy_id"]) <= set(tables["policy"]["policy_id"])
+    assert set(tables["claim"]["policy_id"].dropna()) <= set(tables["policy"]["policy_id"])
     assert set(tables["invoice"]["claim_id"]) <= claims
     assert set(tables["invoice"]["provider_id"]) <= providers
     assert set(tables["invoice_line"]["invoice_id"]) == invoices
@@ -78,13 +95,13 @@ def test_foreign_keys_resolve(tables):
     assert set(tables["claim_provider"]["provider_id"]) <= providers
 
 
-def test_claimant_holds_the_policy_they_claim_on(tables):
+def test_claimant_holds_the_policy_they_claim_on(tables, normal_claims):
     pairs = set(zip(tables["claimant_policy"]["claimant_id"], tables["claimant_policy"]["policy_id"]))
-    assert all(pair in pairs for pair in zip(tables["claim"]["claimant_id"], tables["claim"]["policy_id"]))
+    assert all(pair in pairs for pair in zip(normal_claims["claimant_id"], normal_claims["policy_id"]))
 
 
-def test_policy_ref_matches_policy_id_in_baseline(tables):
-    assert (tables["claim"]["policy_ref"] == tables["claim"]["policy_id"]).all()
+def test_policy_ref_matches_policy_id_outside_edge_cases(normal_claims):
+    assert (normal_claims["policy_ref"] == normal_claims["policy_id"]).all()
 
 
 def test_invoice_id_contains_its_provider_and_counts_per_provider_by_date(tables):
@@ -139,13 +156,12 @@ def test_paid_and_balance_follow_the_formula(tables):
     assert (claim["balance_cents"] == claim["approved_amount_cents"] - claim["paid_amount_cents"]).all()
 
 
-def test_baseline_never_pays_more_than_approved(tables):
-    assert (tables["claim"]["balance_cents"] >= 0).all()
+def test_never_pays_more_than_approved_outside_edge_cases(normal_claims):
+    assert (normal_claims["balance_cents"] >= 0).all()
 
 
-def test_paid_claims_are_paid_exactly(tables):
-    claim = tables["claim"]
-    finished = claim[claim["current_status"].isin({"PAID"})]
+def test_paid_claims_are_paid_exactly(normal_claims):
+    finished = normal_claims[normal_claims["current_status"].isin({"PAID"})]
     assert not finished.empty
     assert (finished["balance_cents"] == 0).all()
 
@@ -331,11 +347,12 @@ def test_baseline_claims_are_not_concentrated_right_after_policy_start(claim_vie
 @pytest.mark.parametrize("seed, scale", [(1, 1.0), (7, 0.1), (9, 0.25)])
 def test_other_seeds_and_scales_reconcile(seed, scale):
     config = GeneratorConfig(seed=seed, scale=scale)
-    result = generate(config)
+    result, labels = generate_with_labels(config)
     assert len(result["claim"]) == config.count("claim")
     claim = result["claim"]
     assert (claim["balance_cents"] == claim["approved_amount_cents"] - claim["paid_amount_cents"]).all()
-    assert (claim["balance_cents"] >= 0).all()
+    overpaid = set(labels[(labels["rule_id"] == "EC-2") & (labels["entity_type"] == "CLAIM")]["entity_id"])
+    assert set(claim[claim["balance_cents"] < 0]["claim_id"]) == overpaid
     assert set(result["invoice"]["claim_id"]) <= set(claim["claim_id"])
 
 
@@ -343,8 +360,9 @@ def test_some_incidents_have_several_claimants(tables):
     assert (tables["claim"].groupby("incident_id")["claimant_id"].nunique() > 1).any()
 
 
-def test_baseline_external_invoice_numbers_do_not_repeat(tables):
-    assert tables["invoice"]["external_invoice_no"].is_unique
+def test_external_invoice_numbers_do_not_repeat_outside_edge_cases(tables, edge_case_claims):
+    invoice = tables["invoice"]
+    assert invoice[~invoice["claim_id"].isin(edge_case_claims)]["external_invoice_no"].is_unique
 
 
 def test_claim_numbers_follow_report_dates(tables):

@@ -4,6 +4,7 @@ Some rules are deliberately left to the validator, because the required edge cas
 - claim.policy_ref has no foreign key (EC-1 refers to a policy that does not exist).
 - payments may exceed the approved amount (EC-2), so balance can be negative.
 - external_invoice_no is not unique (EC-3).
+- relationship_edge is a recorded register, so a link missing from it (EC-4) is not an error here.
 """
 from __future__ import annotations
 
@@ -32,6 +33,9 @@ POLICY_STATUSES = "('ACTIVE', 'LAPSED', 'CANCELLED', 'EXPIRED')"
 CLAIM_STATUSES = "('SUBMITTED', 'UNDER_REVIEW', 'APPROVED', 'DENIED', 'WITHDRAWN', 'PAID', 'CLOSED')"
 INVOICE_STATUSES = "('RECEIVED', 'VERIFIED', 'APPROVED', 'REJECTED', 'PAID')"
 PAYMENT_STATUSES = "('INITIATED', 'SETTLED', 'FAILED', 'REVERSED')"
+CLAIMANT_PAIR_EDGE_TYPES = "('SHARED_ADDRESS', 'SHARED_PHONE', 'SHARED_EMAIL', 'SHARED_BANK')"
+EDGE_TYPES = ("('HOLDS_POLICY', 'USED_PROVIDER', 'INCIDENT_PARTY', 'SHARED_ADDRESS', 'SHARED_PHONE', 'SHARED_EMAIL', "
+              "'SHARED_BANK', 'SHARED_CONTACT_PROVIDER', 'PAID_TO_SHARED_ACCOUNT')")
 
 TABLES = {
     "claimant": f"""CREATE TABLE claimant (
@@ -164,6 +168,27 @@ TABLES = {
         OR (payee_type = 'PROVIDER' AND payee_provider_id IS NOT NULL AND payee_claimant_id IS NULL))
 ) STRICT;""",
     "payment_events": _events_table("payment_events", "YEV", "payment_id", "payment", PAYMENT_STATUSES),
+    # One node per real entity, so edge endpoints have a true foreign key. Node IDs are the entity IDs.
+    "graph_node": """CREATE TABLE graph_node (
+    node_id TEXT PRIMARY KEY,
+    node_type TEXT NOT NULL CHECK (node_type IN ('CLAIMANT', 'POLICY', 'INCIDENT', 'PROVIDER', 'PAYMENT')),
+    CHECK ((node_type = 'CLAIMANT' AND node_id GLOB 'CLT-*') OR (node_type = 'POLICY' AND node_id GLOB 'POL-*')
+        OR (node_type = 'INCIDENT' AND node_id GLOB 'INC-*') OR (node_type = 'PROVIDER' AND node_id GLOB 'PRV-*')
+        OR (node_type = 'PAYMENT' AND node_id GLOB 'PAY-*'))
+) STRICT;""",
+    "relationship_edge": f"""CREATE TABLE relationship_edge (
+    edge_id TEXT PRIMARY KEY CHECK (edge_id GLOB 'EDG-{_DIGITS_6}'),
+    source_node_id TEXT NOT NULL REFERENCES graph_node (node_id),
+    target_node_id TEXT NOT NULL REFERENCES graph_node (node_id),
+    edge_type TEXT NOT NULL CHECK (edge_type IN {EDGE_TYPES}),
+    valid_from TEXT NOT NULL,
+    valid_to TEXT,
+    source_ref TEXT NOT NULL CHECK (source_ref GLOB '*:*.*'),
+    UNIQUE (source_node_id, target_node_id, edge_type),
+    CHECK (source_node_id <> target_node_id),
+    CHECK (valid_to IS NULL OR valid_to >= valid_from),
+    CHECK (edge_type NOT IN {CLAIMANT_PAIR_EDGE_TYPES} OR source_node_id < target_node_id)
+) STRICT;""",
 }
 
 EVENT_TABLES = tuple(name for name in TABLES if name.endswith("_events"))

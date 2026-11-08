@@ -218,26 +218,32 @@ def _build_invoices(rng: np.random.Generator, claims: list[dict], incidents_by_k
     invoices, lines, links = [], [], {}
     numbers = _ExternalNumbers(rng)
     providers_by_key = {row["provider_key"]: row for row in picker.providers}
+    copies: dict[int, tuple[dict, list[dict]]] = {}  # EC-3: the invoice each duplicate group copies
     for claim in claims:
         incident = incidents_by_key[claim["incident_key"]]
-        policy = policies_by_key[claim["policy_key"]]
+        policy = policies_by_key.get(claim["policy_key"])  # Missing for EC-1 claims.
+        copy_group = claim["plan_copy_group"]
         count = int(rng.choice((0, 1, 2, 3), p=(0.03, 0.70, 0.22, 0.05)))
         chosen_providers = claim["plan_providers"]
-        count = max(count, len(chosen_providers))
+        count = 1 if copy_group is not None else max(count, len(chosen_providers))
 
         draw = rng.random()
         exact_cents = None
-        if count and not chosen_providers and draw < DEDUCTIBLE_BOUNDARY_RATE:
+        boundary_allowed = count and policy is not None and not chosen_providers
+        if boundary_allowed and draw < DEDUCTIBLE_BOUNDARY_RATE:
             count, exact_cents = 1, policy["deductible_cents"]
-        elif count and not chosen_providers and draw < DEDUCTIBLE_BOUNDARY_RATE + OVER_LIMIT_BOUNDARY_RATE:
+        elif boundary_allowed and draw < DEDUCTIBLE_BOUNDARY_RATE + OVER_LIMIT_BOUNDARY_RATE:
             count, exact_cents = 1, policy["coverage_limit_cents"] + policy["deductible_cents"] + 100_000
 
         provider_types = PROVIDER_TYPES_BY_INCIDENT[incident["incident_type"]]
         for position in range(count):
+            copied = copies.get(copy_group) if copy_group is not None else None
             lag = int(rng.integers(0, claim["plan_invoice_lag_max"] + 1))
-            invoice_day = min(AS_OF_DATE, claim["reported_date"] + timedelta(days=lag))
+            invoice_day = copied[0]["invoice_date"] if copied else min(AS_OF_DATE, claim["reported_date"] + timedelta(days=lag))
             wanted = provider_types[0] if position == 0 else _pick(rng, provider_types)
-            if position < len(chosen_providers):
+            if copied:
+                provider = providers_by_key[copied[0]["provider_key"]]
+            elif position < len(chosen_providers):
                 provider = providers_by_key[chosen_providers[position]]
             else:
                 provider = picker.choose(rng, wanted, invoice_day)
@@ -259,12 +265,19 @@ def _build_invoices(rng: np.random.Generator, claims: list[dict], incidents_by_k
                 "invoice_key": invoice_key,
                 "provider_key": provider["provider_key"],
                 "claim_key": claim["claim_key"],
-                "external_invoice_no": numbers.next(),
+                "external_invoice_no": copied[0]["external_invoice_no"] if copied else numbers.next(),
                 "invoice_date": invoice_day,
                 "plan_reject": bool(rng.random() < INVOICE_REJECT_RATE) and exact_cents is None,
+                "plan_group": claim["plan_group"] if copy_group is not None else None,
             })
-            lines.extend(_build_lines(rng, invoice_key, links[link_key]["service_role"],
-                                      incident["incident_type"], exact_cents, claim["plan_amount_factor"]))
+            if copied:
+                new_lines = [{**line, "invoice_key": invoice_key} for line in copied[1]]
+            else:
+                new_lines = _build_lines(rng, invoice_key, links[link_key]["service_role"],
+                                         incident["incident_type"], exact_cents, claim["plan_amount_factor"])
+                if copy_group is not None:
+                    copies[copy_group] = (invoices[-1], new_lines)
+            lines.extend(new_lines)
     return invoices, lines, list(links.values())
 
 
@@ -309,11 +322,14 @@ def build_transaction_source(config: GeneratorConfig, rng: np.random.Generator, 
             reported = _report_date(rng, incident["incident_date"])
         else:
             reported = min(AS_OF_DATE, incident["incident_date"] + timedelta(days=planned.report_lag_days))
+        orphan_ref = planned.orphan_policy_ref if planned else None
         claims.append({
             "claim_key": len(claims),
             "incident_key": incident["incident_key"],
             "claimant_key": claimant_key,
-            "policy_key": policy_key,
+            "policy_key": None if orphan_ref else policy_key,
+            "plan_policy_ref": orphan_ref,
+            "plan_copy_group": planned.invoice_copy_group if planned else None,
             "reported_date": reported,
             "plan_withdraw": bool(rng.random() < WITHDRAW_RATE),
             "plan_manual_denial": bool(rng.random() < MANUAL_DENIAL_RATE),

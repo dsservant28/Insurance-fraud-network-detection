@@ -35,7 +35,20 @@ POPULAR_PROVIDERS = 10
 BENIGN_EVENTS, EVENT_CLAIMANTS = 3, (12, 25)
 PAST_TENANT_ADDRESSES = 20
 INFLATION_RANGE = (2.5, 4.0)
+ORPHAN_POLICY_CLAIMS = 5
+OVERPAID_CLAIMS = 10
+DUPLICATE_INVOICE_GROUPS, DUPLICATE_INVOICE_CLAIMANTS = 5, (2, 3)
 MAX_TRIES = 500
+
+# Label outcome by rule family: (label_kind, is_fraud, expected_decision). EC-4 and EC-5 are labelled
+# on their rings and look-alikes, so they keep those outcomes and only add an issue_type.
+RULE_OUTCOMES = {
+    "R-": ("FRAUD_RING", 1, "INVESTIGATE"),
+    "B-": ("BENIGN_LOOKALIKE", 0, "CLEAR"),
+    "EC-1": ("EDGE_CASE", 0, "ROUTE_EXCEPTION"),
+    "EC-2": ("EDGE_CASE", 0, "REVIEW_PAYMENT"),
+    "EC-3": ("EDGE_CASE", 1, "INVESTIGATE"),
+}
 
 # Incident type, the policy types that cover it, and the provider type that treats it.
 PROVIDER_SCENARIOS = (("COLLISION", ("AUTO",), "REPAIRER"), ("INJURY", ("AUTO", "HEALTH"), "MEDICAL"))
@@ -50,6 +63,8 @@ class PlannedClaim:
     provider_keys: tuple[int, ...] = ()
     amount_factor: float = 1.0
     invoice_lag_max_days: int = 30
+    orphan_policy_ref: str | None = None  # EC-1: the claim names this policy, which does not exist.
+    invoice_copy_group: int | None = None  # EC-3: claims in one group carry copies of a single invoice.
 
 
 @dataclass
@@ -63,7 +78,8 @@ class PlannedIncident:
 
 @dataclass
 class Group:
-    """One documented planted pattern. `reason` may name {claimants} and {providers}."""
+    """One documented planted pattern. `reason` may name {claimants}, {providers}, {claims}, {invoices}
+    and {payments}, which are filled in with final IDs."""
 
     group_no: int
     rule_id: str
@@ -89,6 +105,27 @@ class PlantingPlan:
     @property
     def planned_claims(self) -> list[PlannedClaim]:
         return [claim for incident in self.incidents for claim in incident.claims]
+
+
+def add_group(plan: PlantingPlan, rule_id: str, reason: str, members=(), providers=(), issue_type: str | None = None,
+              label_providers: bool = False) -> Group:
+    """Record one planted group. Its label outcome comes from RULE_OUTCOMES, never a random draw."""
+    family = rule_id if rule_id in RULE_OUTCOMES else rule_id[:2]
+    label_kind, is_fraud, decision = RULE_OUTCOMES[family]
+    is_ring = label_kind == "FRAUD_RING"
+    same_kind = sum((existing.ring_id is not None) == is_ring for existing in plan.groups) + 1
+    group = Group(
+        group_no=len(plan.groups) + 1, rule_id=rule_id, reason=reason,
+        label_kind=label_kind, is_fraud=is_fraud, expected_decision=decision,
+        ring_id=f"RING-{same_kind:03d}" if is_ring else None,
+        group_id=None if is_ring else f"GRP-{same_kind:04d}",
+        issue_type=issue_type or (rule_id if label_kind == "EDGE_CASE" else None),
+        claimant_keys=list(members),
+        provider_keys=list(providers),
+        label_providers=label_providers,
+    )
+    plan.groups.append(group)
+    return group
 
 
 def _scaled(config: GeneratorConfig, base: int, minimum: int = 1) -> int:
@@ -199,23 +236,7 @@ class _Planner:
 
     def _group(self, rule_id: str, reason: str, members=(), providers=(), issue_type: str | None = None,
                label_providers: bool = False) -> Group:
-        number = len(self.plan.groups) + 1
-        is_ring = rule_id.startswith("R-")
-        same_kind = sum(existing.rule_id.startswith("R-") == is_ring for existing in self.plan.groups) + 1
-        group = Group(
-            group_no=number, rule_id=rule_id, reason=reason,
-            label_kind="FRAUD_RING" if is_ring else "BENIGN_LOOKALIKE",
-            is_fraud=int(is_ring),
-            expected_decision="INVESTIGATE" if is_ring else "CLEAR",
-            ring_id=f"RING-{same_kind:03d}" if is_ring else None,
-            group_id=None if is_ring else f"GRP-{same_kind:04d}",
-            issue_type=issue_type,
-            claimant_keys=list(members),
-            provider_keys=list(providers),
-            label_providers=label_providers,
-        )
-        self.plan.groups.append(group)
-        return group
+        return add_group(self.plan, rule_id, reason, members, providers, issue_type, label_providers)
 
     def _share(self, members: list[int], field_name: str) -> str:
         """Give every member the first member's value. Phones change over time, so only the current one is shared."""
@@ -395,6 +416,55 @@ class _Planner:
                 self._add_claims_near(group, key, policy_key, start, 60, _between(self.rng, (1, 2)),
                                       incident_type="COLLISION", provider_keys=(provider,))
 
+    # ---- edge cases EC-1 and EC-3 (EC-2 is added by the lifecycle step; EC-4 and EC-5 are rules above)
+
+    def orphan_policy_claims(self) -> None:
+        """EC-1: a well-formed policy number that matches no policy."""
+        existing = len(self.policies)
+        used_numbers: set[int] = set()
+        for _ in range(_scaled(self.config, ORPHAN_POLICY_CLAIMS)):
+            def attempt():
+                day = self._day()
+                members = self._take(1, lambda key: self._covering(key, day))
+                return (day, members[0]) if members else None
+            day, (key, hint_policy) = self._require(attempt, "an orphan policy claim")
+            number = int(self.rng.integers(existing + 1, 1_000_000))
+            while number in used_numbers:
+                number = int(self.rng.integers(existing + 1, 1_000_000))
+            used_numbers.add(number)
+            reference = f"POL-{number:06d}"
+            group = self._group("EC-1", f"Claim {{claims}} by claimant {{claimants}} names policy {reference}, "
+                                        f"which does not exist.", [key])
+            self.plan.incidents.append(PlannedIncident(
+                incident_type=self._incident_type(hint_policy), day=day,
+                claims=[PlannedClaim(key, hint_policy, group.group_no, orphan_policy_ref=reference)],
+            ))
+
+    def duplicate_invoices(self) -> None:
+        """EC-3: the same provider invoice (number, date and amount) appears on claims of different claimants."""
+        for _ in range(_scaled(self.config, DUPLICATE_INVOICE_GROUPS)):
+            size = _between(self.rng, DUPLICATE_INVOICE_CLAIMANTS)
+
+            def attempt():
+                day = self._day()
+                members = self._take(size, lambda key: self._covering(key, day, ("AUTO",)), minimum=2)
+                return (day, members) if members else None
+
+            day, members = self._require(attempt, "a duplicate invoice")
+            provider = self._take_provider("REPAIRER")
+            group = self._group("EC-3", "Claims {claims} from different claimants {claimants} carry invoices "
+                                        "{invoices} from provider {providers} with the same number, date and amount.",
+                                [key for key, _ in members], [provider])
+            for position, (key, policy_key) in enumerate(members):
+                # The first claim's invoice is copied, so later claims happen no later than the first.
+                earlier = day - timedelta(days=int(self.rng.integers(0, 4)))
+                when = day if position == 0 or not self._in_force(policy_key, earlier) else earlier
+                self.plan.incidents.append(PlannedIncident(
+                    incident_type="COLLISION", day=when,
+                    claims=[PlannedClaim(key, policy_key, group.group_no, provider_keys=(provider,),
+                                         invoice_copy_group=group.group_no)],
+                ))
+
     # ---- benign look-alikes
 
     def past_tenants(self) -> None:
@@ -543,6 +613,8 @@ def plan_planting(config: GeneratorConfig, rng: np.random.Generator, master: Mas
     planner.ring_provider_collusion()
     planner.ring_staged_incident()
     planner.ring_hidden_link()
+    planner.orphan_policy_claims()
+    planner.duplicate_invoices()
     planner.benign_events()
     planner.repeat_claimants()
     planner.shared_households()

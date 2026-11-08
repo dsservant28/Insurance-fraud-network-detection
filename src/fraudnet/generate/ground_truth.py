@@ -13,12 +13,19 @@ from fraudnet.generate.plant import PlantingPlan
 COLUMNS = ["label_id", "label_kind", "rule_id", "ring_id", "group_id", "issue_type", "is_fraud",
            "entity_type", "entity_id", "expected_decision", "reason"]
 
+# Planted rows labelled one by one, and the placeholder each fills in the reason text.
+ROW_ENTITIES = (("CLAIM", "{claims}"), ("INVOICE", "{invoices}"), ("PAYMENT", "{payments}"))
 
-def build_labels(plan: PlantingPlan, claim_group_numbers: dict[str, int], ids: dict[str, dict[int, str]]) -> pd.DataFrame:
-    """One row per labelled entity. Each rule comes from the planting plan, never a random draw."""
-    claims_by_group: dict[int, list[str]] = {}
-    for claim_id, group_no in claim_group_numbers.items():
-        claims_by_group.setdefault(group_no, []).append(claim_id)
+
+def build_labels(plan: PlantingPlan, planted_rows: dict[str, dict[str, int]], ids: dict[str, dict[int, str]]) -> pd.DataFrame:
+    """One row per labelled entity. Each rule comes from the planting plan, never a random draw.
+
+    `planted_rows` maps an entity type such as CLAIM to {final ID: group number}.
+    """
+    rows_by_group: dict[tuple[str, int], list[str]] = {}
+    for entity_type, assignments in planted_rows.items():
+        for entity_id, group_no in assignments.items():
+            rows_by_group.setdefault((entity_type, group_no), []).append(entity_id)
 
     rows = []
     for group in plan.groups:
@@ -28,7 +35,10 @@ def build_labels(plan: PlantingPlan, claim_group_numbers: dict[str, int], ids: d
         entities = [("CLAIMANT", value) for value in claimant_ids]
         if group.label_providers:
             entities += [("PROVIDER", value) for value in provider_ids]
-        entities += [("CLAIM", value) for value in sorted(claims_by_group.get(group.group_no, []))]
+        for entity_type, placeholder in ROW_ENTITIES:
+            members = sorted(rows_by_group.get((entity_type, group.group_no), []))
+            reason = reason.replace(placeholder, ", ".join(members))
+            entities += [(entity_type, value) for value in members]
         rows += [{
             "label_kind": group.label_kind,
             "rule_id": group.rule_id,

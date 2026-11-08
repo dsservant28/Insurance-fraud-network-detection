@@ -93,7 +93,7 @@ def test_benign_groups_reach_their_targets(labels):
 def test_other_seeds_plant_everything(seed):
     _, labels = generate_with_labels(GeneratorConfig(seed=seed, scale=1.0))
     assert labels["ring_id"].nunique() == 24
-    assert set(labels["rule_id"]) == set(RING_RULES) | set(BENIGN_TARGETS)
+    assert set(labels["rule_id"]) == set(RING_RULES) | set(BENIGN_TARGETS) | {"EC-1", "EC-2", "EC-3"}
 
 
 def test_too_small_a_scale_fails_with_a_clear_message():
@@ -322,20 +322,30 @@ def test_every_label_is_complete_and_from_a_documented_rule(labels):
     assert labels["label_id"].map(lambda value: bool(ID_PATTERNS["label"].match(value))).all()
     assert all(rule in text for rule in labels["rule_id"].unique())
     assert (labels["reason"].str.len() > 0).all()
-    fraud = labels["rule_id"].str.startswith("R-")
-    assert (labels["is_fraud"] == fraud.astype(int)).all()
-    assert (labels.loc[fraud, "expected_decision"] == "INVESTIGATE").all()
-    assert (labels.loc[~fraud, "expected_decision"] == "CLEAR").all()
-    assert labels.loc[fraud, "ring_id"].notna().all() and labels.loc[~fraud, "group_id"].notna().all()
+    # Outcome by rule, as documented in DATA_DICTIONARY.md 8.3 and D-020.
+    expected = {"R-": ("FRAUD_RING", 1, "INVESTIGATE"), "B-": ("BENIGN_LOOKALIKE", 0, "CLEAR"),
+                "EC-1": ("EDGE_CASE", 0, "ROUTE_EXCEPTION"), "EC-2": ("EDGE_CASE", 0, "REVIEW_PAYMENT"),
+                "EC-3": ("EDGE_CASE", 1, "INVESTIGATE")}
+    for row in labels.drop_duplicates("rule_id").itertuples(index=False):
+        outcome = expected[row.rule_id] if row.rule_id in expected else expected[row.rule_id[:2]]
+        assert (row.label_kind, row.is_fraud, row.expected_decision) == outcome, row.rule_id
+    rows = labels.drop_duplicates(["rule_id", "label_kind", "is_fraud", "expected_decision"])
+    assert len(rows) == labels["rule_id"].nunique()  # each rule always gives one outcome
+    ring = labels["label_kind"] == "FRAUD_RING"
+    assert labels.loc[ring, "ring_id"].notna().all() and labels.loc[~ring, "group_id"].notna().all()
+    edge_cases = labels["label_kind"] == "EDGE_CASE"
+    assert (labels.loc[edge_cases, "issue_type"] == labels.loc[edge_cases, "rule_id"]).all()
 
 
 def test_labels_refer_to_rows_that_exist_and_reasons_name_them(tables, labels):
-    sources = {"CLAIMANT": ("claimant", "claimant_id"), "PROVIDER": ("provider", "provider_id"), "CLAIM": ("claim", "claim_id")}
+    sources = {"CLAIMANT": ("claimant", "claimant_id"), "PROVIDER": ("provider", "provider_id"),
+               "CLAIM": ("claim", "claim_id"), "INVOICE": ("invoice", "invoice_id"), "PAYMENT": ("payment", "payment_id")}
+    assert set(labels["entity_type"]) == set(sources)
     for entity_type, (table, column) in sources.items():
         rows = labels[labels["entity_type"] == entity_type]
         assert set(rows["entity_id"]) <= set(tables[table][column]), entity_type
-    people = labels[labels["entity_type"].isin({"CLAIMANT", "PROVIDER"})]
-    assert all(entity in reason for entity, reason in zip(people["entity_id"], people["reason"]))
+    named = labels[labels["entity_type"].isin({"CLAIMANT", "PROVIDER"}) | (labels["label_kind"] == "EDGE_CASE")]
+    assert all(entity in reason for entity, reason in zip(named["entity_id"], named["reason"]))
     assert "{" not in "".join(labels["reason"])
 
 

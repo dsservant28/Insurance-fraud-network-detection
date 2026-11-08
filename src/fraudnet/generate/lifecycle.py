@@ -31,6 +31,7 @@ class DerivedTables:
     claim_events: pd.DataFrame
     invoice_events: pd.DataFrame
     payment_events: pd.DataFrame
+    overpayments: list[tuple[int, int]]  # EC-2: (claim_key, duplicate payment_key)
 
 
 class _EventLog:
@@ -148,7 +149,31 @@ def _payee(rng, claim: dict, provider: dict, claimant_bank: dict[int, str]) -> d
             "payee_provider_key": provider["provider_key"], "payee_bank_token": provider["bank_token"]}
 
 
-def build_lifecycle(rng: np.random.Generator, master: MasterTables, source: SourceTables) -> DerivedTables:
+def _duplicate_payments(rng, paid_claims: list[tuple], count: int, payments: list[dict],
+                        payment_events: list[dict]) -> list[tuple[int, int]]:
+    """EC-2: settle one invoice twice in error, so the claim is paid more than was approved.
+
+    The duplicate repeats the last settled payment on a fully paid claim, a few days later.
+    """
+    candidates = [entry for entry in paid_claims
+                  if entry[0]["plan_group"] is None and entry[4] + timedelta(days=10) <= AS_OF_DATE]
+    picks = sorted(rng.choice(len(candidates), size=min(count, len(candidates)), replace=False).tolist())
+    result = []
+    for index in picks:
+        claim, invoice, amount, payee, settled_day = candidates[index]
+        key, day = len(payments), _after(rng, settled_day, 1, 5)
+        log = _EventLog(rng, payment_events, "payment_key", key)
+        payments.append({"payment_key": key, "claim_key": claim["claim_key"], "invoice_key": invoice["invoice_key"],
+                         **payee, "amount_cents": amount, "payment_date": day})
+        log.add("INITIATED", day)
+        log.add("SETTLED", _after(rng, day, 1, 3))
+        payments[-1]["current_status"] = log.status
+        result.append((claim["claim_key"], key))
+    return result
+
+
+def build_lifecycle(rng: np.random.Generator, master: MasterTables, source: SourceTables,
+                    overpayment_count: int = 0) -> DerivedTables:
     policies = {row["policy_key"]: row for row in master.policy.to_dict("records")}
     providers = {row["provider_key"]: row for row in master.provider.to_dict("records")}
     incidents = {row["incident_key"]: row for row in source.incident}
@@ -171,13 +196,13 @@ def build_lifecycle(rng: np.random.Generator, master: MasterTables, source: Sour
         invoice["total_cents"] += line["line_amount_cents"]
         invoice["covered_cents"] += line["line_amount_cents"] * line["is_covered"]
 
-    claims, payments = [], []
+    claims, payments, paid_claims = [], [], []
     claim_event_rows, invoice_event_rows, payment_event_rows = [], [], []
 
     for source_claim in source.claim:
         claim = dict(source_claim)
         incident = incidents[claim["incident_key"]]
-        policy = policies[claim["policy_key"]]
+        policy = policies.get(claim["policy_key"])  # Missing for EC-1: the claim can't be decided.
         claim_invoices = sorted(invoices_by_claim.get(claim["claim_key"], []),
                                 key=lambda row: (row["invoice_date"], row["invoice_key"]))
 
@@ -217,6 +242,8 @@ def build_lifecycle(rng: np.random.Generator, master: MasterTables, source: Sour
                 if log.status in {"RECEIVED", "VERIFIED"}:
                     log.add("REJECTED", decision_day, "OPS_ANALYST", "CLAIM_WITHDRAWN")
             claim_log.add("CLOSED", _after(rng, max(withdraw_day, decision_day), 1, 30), "SYSTEM", "WITHDRAWN")
+        elif policy is None:
+            pass  # No policy to decide against: the claim stays under review and nothing is paid.
         elif decision_day <= AS_OF_DATE and all(logs[i["invoice_key"]].status != "RECEIVED" for i in claim_invoices):
             covered_total = sum(invoice["covered_cents"] for invoice in active)
             reason = denial_reason(claim, policy, incident, policy_events[claim["policy_key"]], covered_total)
@@ -229,7 +256,7 @@ def build_lifecycle(rng: np.random.Generator, master: MasterTables, source: Sour
                 approved = min(covered_total, policy["coverage_limit_cents"]) - policy["deductible_cents"]
                 claim_log.add("APPROVED", decision_day, "OPS_ANALYST")
                 shares = allocate(approved, [invoice["covered_cents"] for invoice in active])
-                settled_days, all_settled = [], True
+                settled_days, all_settled, last_paid = [], True, None
                 for invoice, share in zip(active, shares):
                     log = logs[invoice["invoice_key"]]
                     log.add("APPROVED", decision_day, "OPS_ANALYST")
@@ -240,8 +267,10 @@ def build_lifecycle(rng: np.random.Generator, master: MasterTables, source: Sour
                     all_settled = all_settled and settled is not None
                     if settled is not None:
                         settled_days.append(settled)
+                        last_paid = (invoice, share, payee)
                 if all_settled and settled_days:
                     paid_day = _after(rng, max(settled_days), 1, 3)
+                    paid_claims.append((claim, *last_paid, max(settled_days)))
                     if claim_log.add("PAID", paid_day):
                         claim_log.add("CLOSED", _after(rng, paid_day, 1, 30), "SYSTEM", "SETTLED")
 
@@ -251,6 +280,8 @@ def build_lifecycle(rng: np.random.Generator, master: MasterTables, source: Sour
         for invoice in claim_invoices:
             invoice["current_status"] = logs[invoice["invoice_key"]].status
 
+    overpayments = _duplicate_payments(rng, paid_claims, overpayment_count, payments, payment_event_rows)
+
     paid_by_claim: dict[int, int] = {}
     for payment in payments:
         if payment["current_status"] == "SETTLED":
@@ -258,13 +289,14 @@ def build_lifecycle(rng: np.random.Generator, master: MasterTables, source: Sour
 
     for claim in claims:
         incident = incidents[claim["incident_key"]]
-        policy = policies[claim["policy_key"]]
+        policy = policies.get(claim["policy_key"])
         claim_invoices = invoices_by_claim.get(claim["claim_key"], [])
         claim["claimed_amount_cents"] = sum(invoice["total_cents"] for invoice in claim_invoices)
         claim["paid_amount_cents"] = paid_by_claim.get(claim["claim_key"], 0)
         claim["balance_cents"] = claim["approved_amount_cents"] - claim["paid_amount_cents"]
         claim["days_incident_to_report"] = (claim["reported_date"] - incident["incident_date"]).days
-        claim["days_policy_start_to_incident"] = (incident["incident_date"] - policy["effective_from"]).days
+        claim["days_policy_start_to_incident"] = (
+            None if policy is None else (incident["incident_date"] - policy["effective_from"]).days)
 
     return DerivedTables(
         incident=pd.DataFrame(source.incident),
@@ -276,4 +308,5 @@ def build_lifecycle(rng: np.random.Generator, master: MasterTables, source: Sour
         claim_events=pd.DataFrame(claim_event_rows),
         invoice_events=pd.DataFrame(invoice_event_rows),
         payment_events=pd.DataFrame(payment_event_rows),
+        overpayments=overpayments,
     )

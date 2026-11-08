@@ -64,8 +64,15 @@ def test_documented_joins_lose_no_rows(tables, db):
         SELECT COUNT(*) FROM claim c
         JOIN incident i ON i.incident_id = c.incident_id
         JOIN claimant p ON p.claimant_id = c.claimant_id
-        JOIN policy o ON o.policy_id = c.policy_id""")
+        LEFT JOIN policy o ON o.policy_id = c.policy_id
+        WHERE o.policy_id IS NOT NULL OR c.policy_id IS NULL""")
     assert joined == len(tables["claim"])
+    # The only claims without a policy row are EC-1 claims, whose policy_ref names no policy.
+    assert _first(db, "SELECT COUNT(*) FROM claim WHERE policy_id IS NULL AND policy_ref IN "
+                      "(SELECT policy_id FROM policy)") == 0
+    edges = _first(db, """SELECT COUNT(*) FROM relationship_edge e
+        JOIN graph_node s ON s.node_id = e.source_node_id JOIN graph_node t ON t.node_id = e.target_node_id""")
+    assert edges == len(tables["relationship_edge"])
     assert _first(db, "SELECT COUNT(*) FROM payment p JOIN invoice i USING (invoice_id, claim_id)") == len(tables["payment"])
 
 

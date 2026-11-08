@@ -111,11 +111,14 @@ def finalize(master: MasterTables, derived: DerivedTables,
                          "narrative", "vehicle_ref"]]
 
     # policy_id is derived: it holds policy_ref only when that policy really exists.
+    # EC-1 claims have no policy key; their policy_ref is the number the claimant submitted.
     claim = derived.claim.assign(
         claim_id=derived.claim["claim_key"].map(claim_ids),
         incident_id=derived.claim["incident_key"].map(incident_ids),
         claimant_id=derived.claim["claimant_key"].map(claimant_ids),
-        policy_ref=derived.claim["policy_key"].map(policy_ids),
+        policy_ref=[submitted if pd.isna(key) else policy_ids[int(key)]
+                    for key, submitted in zip(derived.claim["policy_key"], derived.claim["plan_policy_ref"])],
+        days_policy_start_to_incident=derived.claim["days_policy_start_to_incident"].astype("Int64"),
     )
     known_policies = set(policy_ids.values())
     claim["policy_id"] = [ref if ref in known_policies else None for ref in claim["policy_ref"]]
@@ -148,7 +151,8 @@ def finalize(master: MasterTables, derived: DerivedTables,
     )[["payment_id", "claim_id", "invoice_id", "payee_type", "payee_claimant_id", "payee_provider_id",
        "payee_bank_token", "amount_cents", "payment_date", "current_status"]]
 
-    ids = {"claimant": claimant_ids, "provider": provider_ids, "claim": claim_ids}
+    ids = {"claimant": claimant_ids, "provider": provider_ids, "claim": claim_ids, "invoice": invoice_ids,
+           "payment": payment_ids}
     return {
         "incident": _dates_to_text(incident).sort_values("incident_id", ignore_index=True),
         "claim": _dates_to_text(claim).sort_values("claim_id", ignore_index=True),
