@@ -266,7 +266,7 @@ SQLite triggers block `UPDATE` and `DELETE` on all event tables.
 |---|---|---|---|
 | `data_exception` | `exception_id` `EXC-000001` | `exception_type`, `severity`, `entity_type`, `entity_id`, `field_name`, `observed_value`, `expected_rule`, `detail_json` | Facts found by checks, with no fraud label |
 | `detector_run` | `run_id` | `input_manifest_sha256`, `config_sha256`, `code_version` | Traceability for every result |
-| `detected_edge` | `run_id` + `source_node_id` + `target_node_id` + `edge_type` + `matched_value` | `normalized_value`, `source_refs_json`, `valid_from`, `valid_to`, `in_recorded_edges` | Links rebuilt from raw attributes |
+| `detected_edge` | `run_id` + `link_id` `LNK-000001`; `source_node_id` + `target_node_id` + `edge_type` + `matched_value` is unique per run | `family`, `normalized_value`, `valid_from`, `valid_to`, `source_refs_json`, `detail_json`, `in_recorded_edges` (empty when no recorded type applies), `cap`, `rarity`, `explanation_code`, `explanation_factor`, `strength` | Links rebuilt from raw attributes. Types, families and explanations: `ARCHITECTURE.md` section 3.1 |
 | `network` | `network_id` `NET-000001` | `run_id`, `score`, `rank`, `member_count`, `summary` | Scored and ranked groups; score and rank are derived |
 | `network_member` (bridge) | `network_id` + `node_id` | `member_role`, `member_score` | Network members |
 | `investigation_subject` (bridge) | `investigation_id` + `node_id` | `subject_role` | People and entities under investigation |
@@ -444,7 +444,7 @@ Each ring has 3-8 claimants. There are 4 rings per pattern at scale 1.0, making 
 
 ## 9. Detector indicators and scoring inputs
 
-Exact weights and thresholds belong in the detector design step. These rules are already fixed by this plan:
+The detection theory, link families, weights and thresholds are in `ARCHITECTURE.md` sections 2-3 and `src/fraudnet/detect/detector.toml`. These rules are fixed by this plan:
 
 | `indicator_code` | Evidence required | Rule |
 |---|---|---|
