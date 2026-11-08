@@ -186,6 +186,35 @@ Groups that look like a pattern but were cleared, such as households, buildings 
 
 **Supervised learning is deliberately not used.** The labels come from this project's own generator, so a trained model would partly learn the generator rather than fraud. The labels are used only to measure.
 
+### 5.1 Stress test: data the detector was not designed for
+
+Perfect scores on seeds drawn the same way only show stability. The stress test (D-031) changes the data in 15 ways the design never saw. The scenarios cover messy identifiers, camouflaged rings, unusual ring sizes and counts, four kinds of innocent group the detector had never seen, missing or placeholder data, and a world with no fraud.
+
+The protocol has four steps, and the git history shows them in this order:
+1. **Predict first.** Every prediction was committed and pushed before any stress code or data existed (`docs/STRESS_PLAN.md`).
+2. **Freeze the detector.** v0.1 was scored as frozen and hit 41 of 51 predictions (`docs/STRESS.md`). Its failures were placeholder narratives linking everyone (S5c) and identifier forms it didn't clean up (S1b).
+3. **Register the fixes.** The fixes became v0.2 (D-032), with new predictions registered before v0.2 met any stress data (amendment A2).
+4. **Score on new seeds.** v0.2 hit **31 of 31** on confirmation seeds no version had seen (`docs/STRESS_V02.md`).
+
+On v0.1's own stress seeds, v0.2 is no worse than v0.1 by more than 0.02 in precision or recall in any of the 41 conditions (`docs/stress/STRESS_V02_same_seeds.md`).
+
+| Scenario (v0.2, confirmation seeds) | Precision | Ring recall |
+|---|---:|---:|
+| No stress | 0.993 | 1.000 |
+| Uncovered identifier forms, full strength (S1b) | 0.993 | 1.000 (v0.1: 0.817) |
+| Placeholder narratives, full strength (S5c) | 0.992 (v0.1: 0.000) | 0.833 (v0.1: 0.000) |
+| Single-character typos, half the fields (S1c) | 0.433 | 0.667 |
+| Camouflaged rings, full strength (S2) | 0.789 (0.979 counting ring pieces) | 0.700 |
+| Four times as many rings (S3c) | 0.996 | 0.729 |
+| Blended families sharing a bank (S4b) | 0.583 | 0.992, with blended-family FP rate 1.000 |
+
+The remaining failures are known and explained in the reports' failure gallery:
+- **Typos:** a typo breaks an exact match.
+- **Rewording:** reworded stories fall below the 0.85 similarity threshold.
+- **Rarity crowding:** when a link type becomes common, every link of that type weakens.
+- **Pairs:** two-person story rings are missed by design.
+- **Innocent co-residents:** innocent people with different surnames sharing a home and account are flagged.
+
 ---
 
 ## 6. Investigation workflow
@@ -279,6 +308,11 @@ These counts were measured before the detector was written, and they are why eac
 ## 10. Limitations
 
 - **Planted patterns only:** the detector is tested against the six fraud patterns this generator plants, so the results don't measure fraud in general.
-- **Clean baseline contacts:** baseline contact values are unique (D-013), so in this data identity sharing outside households is rare. Real data has more noise, such as typos and shared business numbers.
+- **Clean baseline contacts:** baseline contact values are unique (D-013), so in this data identity sharing outside households is rare. Real data has more noise. The stress test measures what that noise costs (section 5.1):
+  - **Typos:** recall falls to 0.67 when half the fields have a typo.
+  - **Shared business accounts:** company fleets reach a 10% false-alarm rate.
+- **Exact matching:** identifiers are matched after standard clean-up, not fuzzily. A single-character typo breaks a link (stress scenario S1c).
+- **Rarity crowding:** a link type's weight falls as it becomes common. That protects precision but can hide real rings once one kind of sharing is widespread (S3c, S4d).
+- **Co-residents with different surnames:** flatmates and blended families who share a phone or an account are flagged. A co-resident explanation was rejected because it would weaken detection of address-sharing rings (D-032).
 - **Explanation factors are judgement:** the household and building factors are documented judgement calls, and the one-principle-off runs show their effect.
 - **Live cases can reset:** cases on the hosted app reset on restart (D-018).
