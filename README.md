@@ -4,6 +4,10 @@
 
 **Finding insurance fraud rings: groups of people who quietly share bank accounts, phones and stories, without mistaking ordinary families for criminals.**
 
+### [▶ Open the live app](https://insurance-fraud-network-detection-kwxi3ptyqgqtvulnubi7bo.streamlit.app/)
+
+<sub>https://insurance-fraud-network-detection-kwxi3ptyqgqtvulnubi7bo.streamlit.app/ · no sign-in needed · if it has been asleep, click "wake up" and give it about a minute</sub>
+
 [![Live app](https://img.shields.io/badge/live%20app-open%20FraudNet-F4A62A?style=for-the-badge)](https://insurance-fraud-network-detection-kwxi3ptyqgqtvulnubi7bo.streamlit.app/)
 &nbsp;
 ![Python](https://img.shields.io/badge/python-3.13-5BC6E8?style=for-the-badge)
@@ -309,7 +313,8 @@ Every design choice is written down with the options considered and the trade-of
 
 ## Run it yourself
 
-**Requirements:** Python 3.13 and about a minute and a half. No accounts, no API keys, no internet once installed.
+**Requirements:** Python **3.13 or newer** and about a minute and a half. No accounts, no API keys, no internet once installed.
+Check your version with `python --version`. On macOS and Linux the command is often `python3`; use that wherever you see `python` below.
 
 ```bash
 git clone https://github.com/dsservant28/Insurance-fraud-network-detection.git
