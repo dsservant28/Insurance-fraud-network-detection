@@ -284,24 +284,30 @@ These counts were measured before the detector was written, and they are why eac
 
 ## 9. The app
 
-**Concept:** "the investigator's console", a dark intelligence-room interface built on its own design system rather than default Streamlit styling.
+**Concept:** an investigator's console. The app is a dark, plain-language interface with its own theme, and every page answers one question (D-033). The app reads detector output, the validator's reports and the committed evaluation summaries. It never reads labels, and policy rule R1 covers `src/**/app/` as well as `detect/`.
 
-| Page | Contents |
-|---|---|
-| Overview | Headline numbers and the ranked network queue with priority stamps |
-| Network detail | Interactive graph (Cytoscape.js), score waterfall, evidence cards, timeline, explanation and "open case" |
-| Claim explorer | Search one claim and see its policy, incident, invoices, payments and flags |
-| Exceptions | `data_exception` rows and the route to a case |
-| Case board | Cases in status columns, role switcher, four-eyes enforcement and the hash-chain check |
-| Data quality | Validation and reproducibility results |
-| Evaluation lab | Metrics, precision@k curve, seed stability, comparison methods and one-principle-off runs |
-| Guided tour | Walks one ring end to end in about 60 seconds |
+Live: <https://insurance-fraud-network-detection-kwxi3ptyqgqtvulnubi7bo.streamlit.app/>. Entry point: `streamlit_app.py`. Code: `src/fraudnet/app/`.
 
-- **Graph:** Cytoscape.js is kept in the repository and embedded as a small custom component, so the hosted app needs no outside CDN.
-  - **Edges:** coloured by family. Unrecorded links are dashed, and explained links are grey.
-  - **Nodes:** shaped by entity type, and clicking one highlights its neighbours.
-- **Design system:** one colour per signal family, used everywhere (graph, badges, charts). Custom theme, CSS, fonts and HTML components.
-- **Hosting:** Streamlit Community Cloud (D-018). The app rebuilds the data and runs the detector at startup, then caches the result. It states that live cases can reset, and offers the case history as a download.
+| Page | Question it answers | What is on it |
+|---|---|---|
+| Risk field | What needs attention first, and why? | Headline count, the review queue with a one-line plain reason per group, and a clickable score map with exact score contours |
+| Network dossier | Is this group really suspicious? | A live Cytoscape.js ring graph, how the score was built, the detector's evidence, and a timeline that marks same-day incidents |
+| Cases | What happens next, and who may decide? | A five-column status board, the selected case with its sealed history, and a next-step panel that shows the rule check before anything is recorded |
+| Data checks | Can the data be trusted? | The 12 validation checks, coverage of normal, boundary, failure and exception cases, and every data exception with its case status |
+| Evaluation lab | How well does it work, and where does it stop? | Comparisons and one-principle-off runs, the v0.1-against-v0.2 stress grid, and the five edge cases |
+| How it works | What is this, in two minutes? | The five stages, the top-ranked group followed from raw data to score, the innocent-explanation rules, the rarity curve, and the honesty checks |
+
+- **Graph (D-027, D-034):** Cytoscape.js 3.30.2 is kept in `app/vendor/` with its MIT licence, so the app needs no outside CDN.
+  - **Layout:** people sit evenly on a ring, with providers and incidents in the middle as context.
+  - **Lines:** each kind of evidence between two people is one line. The strongest is drawn straight; any other kind curves outward.
+  - **Interaction:** clicking a person or a line lists the links behind it, with strength, register status and ID.
+- **Design:** one colour per evidence family and per priority, the same on every page. Each page uses equal-width columns and equal-height panels, with long detail in collapsed sections.
+- **Writes go through the workflow:** the Cases page calls `investigate.workflow`. Its preview uses the workflow's own rule check, so the page enforces exactly the rules the command line does.
+- **Hosting (D-018):** Streamlit Community Cloud.
+  - **First-start build:** `data/output` is not in git, so on first start `app/bootstrap.py` builds it once: generate, validate, detect and demo cases, in about a minute.
+  - **No half-built data:** the build goes to a staging folder that is renamed into place only when complete.
+  - **Evaluation skipped:** the Evaluation lab reads the committed `docs/EVALUATION.json` and `docs/stress/*.json`.
+  - **Cases can reset:** cases created on the hosted copy are lost when the app restarts, which the Cases page states next to **Download history**.
 
 ---
 
