@@ -167,6 +167,18 @@ def test_evaluation_lab_reads_only_committed_summaries():
     assert not app.exception
 
 
+def test_how_it_works_follows_the_top_group_with_real_numbers(monkeypatch):
+    from streamlit.testing.v1 import AppTest
+    monkeypatch.setenv("FRAUDNET_DATA", str(SAMPLE))
+    app = AppTest.from_file(str(ROOT / "streamlit_app.py"), default_timeout=60)
+    app.run()
+    app.switch_page("src/fraudnet/app/pages/how_it_works.py").run()
+    assert not app.exception
+    page = " ".join(str(getattr(element, "value", "")) for element in app.get("html"))
+    top = load_overview(SAMPLE).flagged[0]
+    assert top.network_id in page and f"{top.score:.4f}" in page
+
+
 def test_risk_field_page_runs_and_selects_a_network(monkeypatch):
     from streamlit.testing.v1 import AppTest
     monkeypatch.setenv("FRAUDNET_DATA", str(SAMPLE))

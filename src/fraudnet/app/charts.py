@@ -76,6 +76,22 @@ def _style(chart):
     ).configure_legend(labelFont="Inter", labelFontSize=12, labelColor=theme.MUTED)
 
 
+def rarity_curve(rarity: dict[str, dict], reference: float, floor: float) -> alt.LayerChart:
+    """rarity = clip(-log10(share) / reference, floor, 1), with each link type marked at its real share."""
+    shares = np.logspace(-3, -0.3, 200)
+    curve = pd.DataFrame({"share": shares, "rarity": np.clip(-np.log10(shares) / reference, floor, 1.0)})
+    marks = pd.DataFrame([{"share": max(v["share"], 0.001), "rarity": v["rarity"],
+                           "type": name.replace("SHARED_", "shared ").replace("_", " ").lower()} for name, v in rarity.items()])
+    x = alt.X("share:Q", title="Share of claimants with this kind of link (log scale)",
+              scale=alt.Scale(type="log", domain=[0.001, 0.5]), axis=alt.Axis(format="%", values=[0.001, 0.01, 0.1]))
+    y = alt.Y("rarity:Q", title="Weight kept", scale=alt.Scale(domain=[0.4, 1.05]), axis=alt.Axis(titlePadding=12))
+    line = alt.Chart(curve).mark_line(color=theme.CYAN, strokeWidth=3).encode(x=x, y=y)
+    dots = alt.Chart(marks).mark_circle(size=90, color=theme.AMBER, stroke=theme.INK, strokeWidth=1.5).encode(
+        x=x, y=y, tooltip=[alt.Tooltip("type:N", title="Link"), alt.Tooltip("share:Q", title="Share", format=".2%"),
+                           alt.Tooltip("rarity:Q", title="Weight kept", format=".3f")])
+    return _style(alt.layer(line, dots).properties(height=300, background="transparent"))
+
+
 TIMELINE_EVENTS = {"POLICY_START": ("Policy started", "triangle-up", "#8F9BAE"), "INCIDENT": ("Incident", "circle", "#E9EDF3"),
                    "INVOICE": ("Invoice", "diamond", "#F4A62A"), "PAYMENT": ("Payment", "square", "#5BC6E8")}
 

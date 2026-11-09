@@ -23,4 +23,5 @@ st.navigation([
     st.Page(PAGES / "cases.py", title="Cases", icon=":material/gavel:"),
     st.Page(PAGES / "data_checks.py", title="Data checks", icon=":material/fact_check:"),
     st.Page(PAGES / "evaluation_lab.py", title="Evaluation lab", icon=":material/science:"),
+    st.Page(PAGES / "how_it_works.py", title="How it works", icon=":material/lightbulb:"),
 ], position="top").run()
