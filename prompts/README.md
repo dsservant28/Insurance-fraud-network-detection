@@ -5,9 +5,9 @@ YottaFlex asks for every prompt submitted to every AI tool used in this project.
 ## Files
 | File | Tool | How it was captured |
 |---|---|---|
-| `00_claude_ai_planning.md` | Claude (claude.ai chat) | Copied by hand from the chat; prompts verbatim |
+
 | `claude_code_prompts.md` | Claude Code (VS Code) | Captured automatically by `.claude/hooks/log_prompt.py` on every prompt |
-| _add a row for any other tool used_ | | |
+
 
 ## Rules for this record
 - Prompts are kept exactly as typed. Nothing has been removed or reworded.
@@ -15,8 +15,6 @@ YottaFlex asks for every prompt submitted to every AI tool used in this project.
 - Where context helps, notes are added as separate lines starting with `> Note:`. The prompt itself is never edited.
 - AI responses are not included (optional per the FAQ).
 
-## Key moments (fill in near the end)
-_5–8 prompts that show how decisions were made: where AI output was accepted, questioned, corrected or rejected._
 
 | Prompt | What happened | Where it shows up |
 |---|---|---|
