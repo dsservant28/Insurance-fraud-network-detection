@@ -26,7 +26,7 @@ Part D: investigation workflow with append-only event history. Full spec: `docs/
 6. **Ground truth comes from documented planting rules**, not random assignment. Every label has a `rule_id` and reason.
 7. **Exact ID formats:** `CLM-2026-000001`, `INC-2026-000001`, `PRV-000001`, `INV-PRV-<provider-id>-000001`
    (counter per provider), `INVG-2026-000001`. Zero-padded, immutable, identical across every file.
-   Other entities: see `docs/DECISIONS.md`.
+   Other entities: see `docs/DATA_DICTIONARY.md`.
 8. **Synthetic data only.** No real personal data, no secrets/keys in the repo.
 9. **Explainability.** Every flag/score must carry evidence that references concrete IDs and values.
 
@@ -38,7 +38,7 @@ src/fraudnet/
   detect/       # edge rebuilding, fraud indicators, network building & scoring, explanations (NO ground truth)
   evaluate/     # compares detector output to ground truth; metrics
   investigate/  # Investigation entity + append-only events
-  app/          # UI / API (decided in DECISIONS.md)
+  app/          # UI / API
 tests/          # pytest
 data/           # generated outputs (git-ignored except a small committed sample if decided)
 docs/           # problem statement, data dictionary, decisions, requirements trace, AI usage
@@ -49,14 +49,13 @@ scripts/        # policy_check.py and helpers
 ## 4. How to work with me (the owner)
 - **Plan first.** For any non-trivial task, propose a short plan and wait for approval before writing code.
 - **Small steps.** One module/feature per step, with its tests. Keep diffs reviewable.
-- **Explain the why.** When you make a design choice, add/append an entry in `docs/DECISIONS.md`
+- **Explain the why.** When you make a design choice, explain it in `docs/ARCHITECTURE.md`
   (decision, alternatives considered, reason, trade-off).
 - **Never commit or push.** The owner reviews diffs and commits manually with meaningful messages.
 - **Run checks before saying "done":** `python scripts/policy_check.py` and `pytest -q`.
 - **Don't invent results.** If something isn't run/verified, say so.
-- Ask when a requirement is ambiguous; otherwise make a reasonable assumption and record it in `docs/DECISIONS.md`.
+- Ask when a requirement is ambiguous; otherwise make a reasonable assumption and record it in `docs/ARCHITECTURE.md`.
 
 ## 5. Stack
-Windows dev machine. Python 3.13.0, pytest. Database, UI and libraries are decided by the owner and recorded in
-`docs/DECISIONS.md` before they are used. Free / locally runnable only. Avoid heavy dependencies.
+Windows dev machine. Python 3.13.0, pytest. Database, UI and libraries are decided by the owner before they are used. Free / locally runnable only. Avoid heavy dependencies.
 Secrets (e.g. DB passwords) come from environment variables / `.env` (git-ignored), never from code.

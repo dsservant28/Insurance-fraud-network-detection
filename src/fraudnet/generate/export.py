@@ -41,7 +41,7 @@ def write_input(tables: dict[str, pd.DataFrame], output_dir: Path, generator: di
 
     The manifest holds no timestamps, so the same seed and scale give identical bytes. `generator`
     records the seed and scale, which the validator needs for volume checks. The .db file is not
-    listed: reproducibility is checked on the CSV, JSON and SQL files (see D-002).
+    listed: reproducibility is checked on the CSV, JSON and SQL files.
     """
     output_dir = Path(output_dir)
     input_dir = output_dir / "input"

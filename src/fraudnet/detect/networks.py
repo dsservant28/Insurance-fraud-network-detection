@@ -98,7 +98,7 @@ def group_claimants(links: pd.DataFrame, settings: dict) -> list[list[str]]:
             groups.append(sorted(component))
             continue
         # Louvain is run on integer node labels with edges added in sorted order. With string labels its result
-        # depended on Python's per-process hash seed (it iterates sets of nodes), even with a fixed random seed (D-035).
+        # depended on Python's per-process hash seed (it iterates sets of nodes), even with a fixed random seed.
         names = sorted(component)
         index = {name: number for number, name in enumerate(names)}
         numbered = nx.Graph()

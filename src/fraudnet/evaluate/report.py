@@ -100,7 +100,7 @@ def markdown(development: dict, unseen: dict | None, command: str) -> str:
               "  not performance on real claims.",
               "- Labels follow documented planting rules, and the detector was designed knowing those patterns exist.",
               "  Perfect scores mean these documented patterns are separated cleanly, not that real fraud would be.",
-              "- Seeds 777 and 4242 (D-028) and 101-505 (D-029) were looked at while fixing the detector, so they are",
+              "- Seeds 777 and 4242 and 101-505 were looked at while fixing the detector, so they are",
               "  not used as unseen seeds.", ""]
     return "\n".join(lines)
 

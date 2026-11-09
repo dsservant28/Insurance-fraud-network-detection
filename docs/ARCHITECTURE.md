@@ -1,7 +1,7 @@
 # Architecture
 
 How the system finds fraud networks, why the method works, and how the parts fit together.
-Field definitions are in `DATA_DICTIONARY.md`, and each choice's alternatives and trade-offs are in `DECISIONS.md` (D-022 to D-027).
+Field definitions are in `DATA_DICTIONARY.md`.
 
 ---
 
@@ -96,7 +96,7 @@ Each link joins two claimants or a claimant and a provider. It carries:
 
 **Narrative similarity** is IDF-weighted Jaccard over word sets with clock times removed. Words common to many narratives, such as template phrasing, count for little, while specific streets and details count for a lot. Plain word overlap was rejected because template text gives unrelated pairs 0.8 to 0.9 (section 8).
 
-**A story needs words (v0.2).** A narrative with fewer than 6 distinct words, such as `N/A` or `See attached report.`, is not a story and makes no story links. In v0.1, identical placeholders at one provider linked every customer into one giant network. In the stress test this dropped ring recall to 0 (docs/STRESS.md, scenario S5c; D-032).
+**A story needs words (v0.2).** A narrative with fewer than 6 distinct words, such as `N/A` or `See attached report.`, is not a story and makes no story links. In v0.1, identical placeholders at one provider linked every customer into one giant network. In the stress test this dropped ring recall to 0 (docs/STRESS.md, scenario S5c).
 
 **Identifier rules (v0.2).** Values are matched on these keys:
 
@@ -173,7 +173,7 @@ Groups that look like a pattern but were cleared, such as households, buildings 
 
 | Practice | Plan |
 |---|---|
-| Development and test seeds | Tune only on seed 20261022. Report on unseen seeds 606, 707, 808, 909 and 1010 as mean ± standard deviation. Seeds 777 and 4242 (D-028) and 101-505 (D-029) were looked at during fixes, so they are retired |
+| Development and test seeds | Tune only on seed 20261022. Report on unseen seeds 606, 707, 808, 909 and 1010 as mean ± standard deviation. Seeds 777 and 4242 and 101-505 were looked at during fixes, so they are retired |
 | Matching | A network matches a labelled group when the claimant Jaccard is at least 0.5. Each group matches at most one network |
 | Metrics | Precision, recall, false-positive rate on look-alikes, false-negative rate, precision@k, recall@k, average precision, R-precision and NDCG at N (N = number of fraud groups) |
 | Comparison methods | (a) Flag any shared value. (b) Recorded edges only. (c) The full detector |
@@ -188,12 +188,12 @@ Groups that look like a pattern but were cleared, such as households, buildings 
 
 ### 5.1 Stress test: data the detector was not designed for
 
-Perfect scores on seeds drawn the same way only show stability. The stress test (D-031) changes the data in 15 ways the design never saw. The scenarios cover messy identifiers, camouflaged rings, unusual ring sizes and counts, four kinds of innocent group the detector had never seen, missing or placeholder data, and a world with no fraud.
+Perfect scores on seeds drawn the same way only show stability. The stress test changes the data in 15 ways the design never saw. The scenarios cover messy identifiers, camouflaged rings, unusual ring sizes and counts, four kinds of innocent group the detector had never seen, missing or placeholder data, and a world with no fraud.
 
 The protocol has four steps, and the git history shows them in this order:
 1. **Predict first.** Every prediction was committed and pushed before any stress code or data existed (`docs/STRESS_PLAN.md`).
 2. **Freeze the detector.** v0.1 was scored as frozen and hit 41 of 51 predictions (`docs/STRESS.md`). Its failures were placeholder narratives linking everyone (S5c) and identifier forms it didn't clean up (S1b).
-3. **Register the fixes.** The fixes became v0.2 (D-032), with new predictions registered before v0.2 met any stress data (amendment A2).
+3. **Register the fixes.** The fixes became v0.2, with new predictions registered before v0.2 met any stress data (amendment A2).
 4. **Score on new seeds.** v0.2 hit **31 of 31** on confirmation seeds no version had seen (`docs/STRESS_V02.md`).
 
 On v0.1's own stress seeds, v0.2 is no worse than v0.1 by more than 0.02 in precision or recall in any of the 41 conditions (`docs/stress/STRESS_V02_same_seeds.md`).
@@ -284,7 +284,7 @@ These counts were measured before the detector was written, and they are why eac
 
 ## 9. The app
 
-**Concept:** an investigator's console. The app is a dark, plain-language interface with its own theme, and every page answers one question (D-033). The app reads detector output, the validator's reports and the committed evaluation summaries. It never reads labels, and policy rule R1 covers `src/**/app/` as well as `detect/`.
+**Concept:** an investigator's console. The app is a dark, plain-language interface with its own theme, and every page answers one question. The app reads detector output, the validator's reports and the committed evaluation summaries. It never reads labels, and policy rule R1 covers `src/**/app/` as well as `detect/`.
 
 Live: <https://insurance-fraud-network-detection-kwxi3ptyqgqtvulnubi7bo.streamlit.app/>. Entry point: `streamlit_app.py`. Code: `src/fraudnet/app/`.
 
@@ -297,13 +297,13 @@ Live: <https://insurance-fraud-network-detection-kwxi3ptyqgqtvulnubi7bo.streamli
 | Evaluation lab | How well does it work, and where does it stop? | Comparisons and one-principle-off runs, the v0.1-against-v0.2 stress grid, and the five edge cases |
 | How it works | What is this, in two minutes? | The five stages, the top-ranked group followed from raw data to score, the innocent-explanation rules, the rarity curve, and the honesty checks |
 
-- **Graph (D-027, D-034):** Cytoscape.js 3.30.2 is kept in `app/vendor/` with its MIT licence, so the app needs no outside CDN.
+- **Graph:** Cytoscape.js 3.30.2 is kept in `app/vendor/` with its MIT licence, so the app needs no outside CDN.
   - **Layout:** people sit evenly on a ring, with providers and incidents in the middle as context.
   - **Lines:** each kind of evidence between two people is one line. The strongest is drawn straight; any other kind curves outward.
   - **Interaction:** clicking a person or a line lists the links behind it, with strength, register status and ID.
 - **Design:** one colour per evidence family and per priority, the same on every page. Each page uses equal-width columns and equal-height panels, with long detail in collapsed sections.
 - **Writes go through the workflow:** the Cases page calls `investigate.workflow`. Its preview uses the workflow's own rule check, so the page enforces exactly the rules the command line does.
-- **Hosting (D-018):** Streamlit Community Cloud.
+- **Hosting:** Streamlit Community Cloud.
   - **First-start build:** `data/output` is not in git, so on first start `app/bootstrap.py` builds it once: generate, validate, detect and demo cases, in about a minute.
   - **No half-built data:** the build goes to a staging folder that is renamed into place only when complete.
   - **Evaluation skipped:** the Evaluation lab reads the committed `docs/EVALUATION.json` and `docs/stress/*.json`.
@@ -314,11 +314,11 @@ Live: <https://insurance-fraud-network-detection-kwxi3ptyqgqtvulnubi7bo.streamli
 ## 10. Limitations
 
 - **Planted patterns only:** the detector is tested against the six fraud patterns this generator plants, so the results don't measure fraud in general.
-- **Clean baseline contacts:** baseline contact values are unique (D-013), so in this data identity sharing outside households is rare. Real data has more noise. The stress test measures what that noise costs (section 5.1):
+- **Clean baseline contacts:** baseline contact values are unique, so in this data identity sharing outside households is rare. Real data has more noise. The stress test measures what that noise costs (section 5.1):
   - **Typos:** recall falls to 0.67 when half the fields have a typo.
   - **Shared business accounts:** company fleets reach a 10% false-alarm rate.
 - **Exact matching:** identifiers are matched after standard clean-up, not fuzzily. A single-character typo breaks a link (stress scenario S1c).
 - **Rarity crowding:** a link type's weight falls as it becomes common. That protects precision but can hide real rings once one kind of sharing is widespread (S3c, S4d).
-- **Co-residents with different surnames:** flatmates and blended families who share a phone or an account are flagged. A co-resident explanation was rejected because it would weaken detection of address-sharing rings (D-032).
+- **Co-residents with different surnames:** flatmates and blended families who share a phone or an account are flagged. A co-resident explanation was rejected because it would weaken detection of address-sharing rings.
 - **Explanation factors are judgement:** the household and building factors are documented judgement calls, and the one-principle-off runs show their effect.
-- **Live cases can reset:** cases on the hosted app reset on restart (D-018).
+- **Live cases can reset:** cases on the hosted app reset on restart.

@@ -205,7 +205,7 @@ The method, in order (the git history proves it):
 | Identifier in another form | recall 0.74 to 0.86 | recall 1.000 at every strength |
 | Normal data | 1.000 | 1.000, unchanged |
 
-Still failing, documented on purpose: typos (no fuzzy guessing), heavily reworded stories, and flatmates or blended families with different surnames. Explaining those away would also hide real rings that share an address ([D-032](docs/DECISIONS.md)).
+Still failing, documented on purpose: typos (no fuzzy guessing), heavily reworded stories, and flatmates or blended families with different surnames. Explaining those away would also hide real rings that share an address.
 
 </details>
 
@@ -301,17 +301,17 @@ On the hosted copy the dataset is rebuilt on first start, and cases created ther
 
 ## 8. Key decisions
 
-All 35 decisions are recorded, with the options considered and the trade-offs, in [docs/DECISIONS.md](docs/DECISIONS.md). The ones that shaped the project most:
+The choices that shaped the project most:
 
 | Decision | Why |
 |---|---|
-| Evidence rules, not machine learning (D-022) | The labels come from our own generator, so a trained model would learn the generator, not fraud |
-| Answers physically separated and policed (D-011) | An automatic check fails if detector or app code names a label file or column |
-| Noisy-OR scoring (D-024) | Evidence reinforces without passing 1, and every score can be broken down step by step |
-| Predictions pushed before the stress test (D-031) | The git history shows nothing was tuned to the answers |
-| Four-eyes rule and a hash chain (D-026, D-030) | Decisions must be auditable, including refused attempts |
-| SQLite, rebuilt on start-up (D-002, D-018) | One file, no external account, the same schema and triggers everywhere |
-| Investigator-first app in plain language (D-033, D-034) | One question per page; technical codes stay on the dossier |
+| Evidence rules, not machine learning | The labels come from our own generator, so a trained model would learn the generator, not fraud |
+| Answers physically separated and policed | An automatic check fails if detector or app code names a label file or column |
+| Noisy-OR scoring | Evidence reinforces without passing 1, and every score can be broken down step by step |
+| Predictions pushed before the stress test | The git history shows nothing was tuned to the answers |
+| Four-eyes rule and a hash chain | Decisions must be auditable, including refused attempts |
+| SQLite, rebuilt on start-up | One file, no external account, the same schema and triggers everywhere |
+| Investigator-first app in plain language | One question per page; technical codes stay on the dossier |
 
 ---
 
@@ -370,7 +370,6 @@ python scripts/policy_check.py      # label separation, determinism, no secrets
 |---|---|
 | [ARCHITECTURE.md](docs/ARCHITECTURE.md) | Detection theory, pipeline, scoring, workflow, limits |
 | [DATA_DICTIONARY.md](docs/DATA_DICTIONARY.md) | Every table and field, keys, planting rules, metrics |
-| [DECISIONS.md](docs/DECISIONS.md) | 35 decisions with alternatives and trade-offs |
 | [EVALUATION.md](docs/EVALUATION.md) | Measured results and comparisons |
 | [STRESS_PLAN.md](docs/STRESS_PLAN.md), [STRESS.md](docs/STRESS.md), [STRESS_V02.md](docs/STRESS_V02.md) | The stress test: predictions first, then results |
 | [AI_USAGE.md](docs/AI_USAGE.md) | How AI assistance was used |

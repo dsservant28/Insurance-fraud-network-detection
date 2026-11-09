@@ -1,4 +1,4 @@
-"""The live link graph: Cytoscape.js (vendored, MIT) inside an embedded HTML component (D-027, D-034).
+"""The live link graph: Cytoscape.js (vendored, MIT) inside an embedded HTML component.
 
 People sit evenly on a ring, providers and incidents in the middle as context. Each kind of evidence
 between one pair of people is one line: the strongest kind is straight, any other kind curves outward.

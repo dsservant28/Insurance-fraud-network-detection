@@ -293,7 +293,7 @@ print(json.dumps(group_claimants(links, settings)))
 
 def test_louvain_split_is_the_same_in_every_process():
     # Python randomises string hashing per process. Oversized groups are split by Louvain, whose result must not
-    # depend on that (D-035), so the same grouping runs under three different hash seeds.
+    # depend on that, so the same grouping runs under three different hash seeds.
     import os
     import subprocess
     import sys

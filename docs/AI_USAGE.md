@@ -48,10 +48,10 @@ The challenge allows AI assistance. This document says how it was used. In short
 
 ## What the assistant did
 
-- **Options and implementation:** proposed options with trade-offs for the owner to choose from, then implemented the chosen ones in code, tests and documentation, and recorded each decision in [DECISIONS.md](DECISIONS.md).
+- **Options and implementation:** proposed options with trade-offs for the owner to choose from, then implemented the chosen ones in code, tests and documentation.
 - **Checks:** ran the test suite and the policy check before reporting work as done.
 - **App screenshots:** screenshotted each app page in a browser to check what the owner would see.
-- **Bugs:** reported its own bugs when tests or checks found them, for example the hash-seed dependence in the Louvain split (D-035), and fixed them once the owner approved.
+- **Bugs:** reported its own bugs when tests or checks found them, for example the hash-seed dependence in the Louvain split, and fixed them once the owner approved.
 
 ## Safeguards
 
@@ -61,4 +61,4 @@ The challenge allows AI assistance. This document says how it was used. In short
 
 ## Prompt history
 
-The full prompt history is in `prompts/`. It was kept out of git during the build and added at the end of the challenge (D-012).
+The full prompt history is in `prompts/`. It was kept out of git during the build and added at the end of the challenge.

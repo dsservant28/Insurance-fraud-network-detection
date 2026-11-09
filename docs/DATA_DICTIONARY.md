@@ -72,7 +72,7 @@ The brief's section is titled "Suggested Volume" and Step 4 calls it the baselin
 
 | Field | Planned distribution |
 |---|---|
-| Claims per claimant | Long tail: many with 1-3, some with none, a few with more. Baseline maximum is 8 (D-017) |
+| Claims per claimant | Long tail: many with 1-3, some with none, a few with more. Baseline maximum is 8 |
 | Provider popularity | Skewed, with a few genuinely busy providers |
 | Invoice amounts | Log-normal, varying by incident type |
 | Incident dates | Vary by season and day of week across 2026-01-01 to 2026-09-30 |
@@ -214,7 +214,7 @@ This is the recorded link register. It is true but deliberately incomplete for E
 | `investigation_id` | TEXT | R | `INVG-2026-000001` | - | PK | Matches format; immutable |
 | `trigger_type` | TEXT | R | `NETWORK_SCORE`, `DATA_EXCEPTION` | - | No | Allowed value |
 | `run_id` | TEXT | O | Detector run that produced the network | - | No | Required for `NETWORK_SCORE` |
-| `network_id` | TEXT | O | `network` row in that run | - | No | Required for `NETWORK_SCORE`. Not an enforced FK, because detector reruns replace `network` (D-030) |
+| `network_id` | TEXT | O | `network` row in that run | - | No | Required for `NETWORK_SCORE`. Not an enforced FK, because detector reruns replace `network` |
 | `exception_id`, `exception_type` | TEXT | O | `data_exception` row | - | No | Required for `DATA_EXCEPTION`. Not an enforced FK, for the same reason |
 | `priority` | TEXT | R | `LOW`, `MEDIUM`, `HIGH`, `CRITICAL` | - | No | **Derived:** network priority, or exception severity |
 | `trigger_score`, `trigger_summary` | REAL, TEXT | O, R | Snapshot of the network score and summary, or the exception | - | No | Copied when the case opens, so the case still reads correctly after a rerun |
@@ -251,7 +251,7 @@ This is the recorded link register. It is true but deliberately incomplete for E
 | `actor_id` | TEXT | O | Synthetic user ID | Required for non-system staff roles |
 | `reason_code` | TEXT | O | Controlled list by table | Required for denial, failure, reversal and closure |
 | `note` | TEXT | O | Free text | Investigation events only |
-| `action`, `prev_hash`, `event_hash` | TEXT | R | Investigation events only: `OPEN`, `START_REVIEW`, `ESCALATE`, `CONFIRM`, `CLEAR`, `REOPEN`, `NOTE`, `BLOCKED`; SHA-256 hex | `NOTE` and `BLOCKED` keep the status unchanged. `event_hash` covers every other field, including `prev_hash` (D-026, D-030) |
+| `action`, `prev_hash`, `event_hash` | TEXT | R | Investigation events only: `OPEN`, `START_REVIEW`, `ESCALATE`, `CONFIRM`, `CLEAR`, `REOPEN`, `NOTE`, `BLOCKED`; SHA-256 hex | `NOTE` and `BLOCKED` keep the status unchanged. `event_hash` covers every other field, including `prev_hash` |
 
 SQLite triggers block `UPDATE` and `DELETE` on all event tables.
 
@@ -388,7 +388,7 @@ Current status columns are a convenience copy of the latest event. The event tab
 5. Assign final IDs.
 6. Write input files and, separately, ground truth.
 
-Planted rows are never added on top of the requested counts. They use part of each count. Changes to master data, such as shared contacts and joint policies, are applied before step 2, so baseline claims always use the final parents (D-019). Planted claims are added after the baseline claims and pass through the same invoice and lifecycle code.
+Planted rows are never added on top of the requested counts. They use part of each count. Changes to master data, such as shared contacts and joint policies, are applied before step 2, so baseline claims always use the final parents. Planted claims are added after the baseline claims and pass through the same invoice and lifecycle code.
 
 ### 8.1 Fraud rings
 
@@ -424,7 +424,7 @@ Each ring has 3-8 claimants. There are 4 rings per pattern at scale 1.0, making 
 | EC-4 | Planted relationship not represented in edges | Raw shared value exists, but the matching edge is deliberately missing | All 4 `R-RING-06` rings | Not a validator failure; absent edge is only provable by the detector and evaluator | Detector must recover it and mark `in_recorded_edges = 0` |
 | EC-5 | Benign common address treated as proof | Many unrelated residents at one address with no other links | 10 sites | Valid data | Clear; must not rank as suspicious on address alone |
 
-**How each edge case is planted and labelled** (D-020)
+**How each edge case is planted and labelled**
 
 | ID | Planting rule | Lifecycle result | Labels (`rule_id` / `is_fraud` / `expected_decision`) |
 |---|---|---|---|
@@ -647,14 +647,14 @@ The stress test (`docs/STRESS_PLAN.md`) runs the detector on 15 scenarios it was
 
 ## 15. Approved decisions
 
-All seven were approved by the owner and are recorded in `docs/DECISIONS.md`.
+All seven were approved by the owner.
 
-| # | Topic | Decision | Record |
-|---|---|---|---|
-| 1 | Edge count | At least 8,000 instead of exactly 8,000 | D-006 |
-| 2 | Currency and locale | USD with fictional, neutral addresses | D-007 |
-| 3 | Number of rings | 24 rings, 4 per pattern | D-008 |
-| 4 | Effective-dated contacts | Keep `claimant_contact` | D-009 |
-| 5 | Other ID formats | `CLT-`, `POL-`, `PAY-2026-`, `CON-`, `EDG-`, `FIN-`, `NET-`, `EXC-`, `GT-` and event prefixes as shown above | D-005 |
-| 6 | Sample data in GitHub | Commit a scale 0.1 sample in `data/sample/`, including `hidden/` | D-010 |
-| 7 | Stronger leakage guard | Block hidden-folder paths in `policy_check.py`, and add the removed-folder test with the detector | D-011 |
+| # | Topic | Decision |
+|---|---|---|
+| 1 | Edge count | At least 8,000 instead of exactly 8,000 |
+| 2 | Currency and locale | USD with fictional, neutral addresses |
+| 3 | Number of rings | 24 rings, 4 per pattern |
+| 4 | Effective-dated contacts | Keep `claimant_contact` |
+| 5 | Other ID formats | `CLT-`, `POL-`, `PAY-2026-`, `CON-`, `EDG-`, `FIN-`, `NET-`, `EXC-`, `GT-` and event prefixes as shown above |
+| 6 | Sample data in GitHub | Commit a scale 0.1 sample in `data/sample/`, including `hidden/` |
+| 7 | Stronger leakage guard | Block hidden-folder paths in `policy_check.py`, and add the removed-folder test with the detector |

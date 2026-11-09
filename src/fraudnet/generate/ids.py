@@ -1,4 +1,4 @@
-"""ID formats from the brief and docs/DECISIONS.md (D-004, D-005)."""
+"""ID formats from the brief and docs/DATA_DICTIONARY.md."""
 from __future__ import annotations
 
 import re

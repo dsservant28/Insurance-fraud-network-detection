@@ -322,7 +322,7 @@ def test_every_label_is_complete_and_from_a_documented_rule(labels):
     assert labels["label_id"].map(lambda value: bool(ID_PATTERNS["label"].match(value))).all()
     assert all(rule in text for rule in labels["rule_id"].unique())
     assert (labels["reason"].str.len() > 0).all()
-    # Outcome by rule, as documented in DATA_DICTIONARY.md 8.3 and D-020.
+    # Outcome by rule, as documented in DATA_DICTIONARY.md 8.3.
     expected = {"R-": ("FRAUD_RING", 1, "INVESTIGATE"), "B-": ("BENIGN_LOOKALIKE", 0, "CLEAR"),
                 "EC-1": ("EDGE_CASE", 0, "ROUTE_EXCEPTION"), "EC-2": ("EDGE_CASE", 0, "REVIEW_PAYMENT"),
                 "EC-3": ("EDGE_CASE", 1, "INVESTIGATE")}

@@ -1,4 +1,4 @@
-"""First start on a host: build the dataset the app reads (D-018).
+"""First start on a host: build the dataset the app reads.
 
 `data/output` is not in git, so a fresh deployment builds it once: generate, validate, detect and open the
 demo cases (the evaluation pages read committed summaries, so that stage is skipped). The build goes into a

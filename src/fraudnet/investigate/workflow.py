@@ -241,7 +241,7 @@ class Workflow:
 
 
 def export_history(workflow: Workflow) -> dict:
-    """Every case and event, for download: live cases on the hosted app can reset when it restarts (D-018)."""
+    """Every case and event, for download: live cases on the hosted app can reset when it restarts."""
     cases = workflow.cases()
     return {"cases": cases, "events": workflow.history(),
             "subjects": {case["investigation_id"]: workflow.subjects(case["investigation_id"]) for case in cases},

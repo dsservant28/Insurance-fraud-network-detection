@@ -32,7 +32,7 @@ def summary_for_app(development: dict, unseen: dict | None) -> dict:
     return out
 from fraudnet.evaluate.run import aggregate, evaluate_dataset, evaluate_seeds
 
-# Never looked at while designing or tuning the detector. 777 and 4242 (D-028) and 101-505 (D-029) were
+# Never looked at while designing or tuning the detector. 777 and 4242 and 101-505 were
 # looked at during fixes, so they are retired as test seeds.
 UNSEEN_SEEDS = (606, 707, 808, 909, 1010)
 

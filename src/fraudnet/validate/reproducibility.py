@@ -20,7 +20,7 @@ COMPARED_FOLDERS = ("input", "hidden", "reports")
 
 
 def file_checksums(output_dir: Path) -> dict[str, str]:
-    """SHA-256 of every exported file. The .db file is excluded, as D-002 explains."""
+    """SHA-256 of every exported file. The .db file is excluded: the database file is not byte-stable across runs."""
     output_dir = Path(output_dir)
     return {path.relative_to(output_dir).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
             for folder in COMPARED_FOLDERS if (output_dir / folder).exists()
