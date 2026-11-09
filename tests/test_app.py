@@ -90,6 +90,19 @@ def test_graph_draws_one_line_per_pair_and_kind_of_evidence():
     assert [d["context"] for d in lines if d["family"] == "CONTEXT"] == [True]
 
 
+def test_graph_puts_people_on_a_ring_and_context_in_the_middle():
+    import math
+    from fraudnet.app.graph import elements, ring_radius
+    nodes = {e["data"]["id"]: e for e in elements(_graph_network()) if "source" not in e["data"]}
+    radius = ring_radius(2)
+    assert all(math.isclose(math.hypot(nodes[c]["position"]["x"], nodes[c]["position"]["y"]), radius, abs_tol=0.2)
+               for c in ("A", "B"))
+    assert nodes["A"]["position"] == {"x": 0.0, "y": -radius}  # the first member sits at the top
+    assert nodes["PRV-000001"]["position"] == {"x": 0.0, "y": 0.0}
+    lines = [e["data"] for e in elements(_graph_network()) if "source" in e["data"] and not e["data"]["context"]]
+    assert sorted(d["bend"] for d in lines) == [0, 40]  # strongest kind straight, the next one curves
+
+
 def test_graph_page_text_cannot_break_out_of_the_script():
     from fraudnet.app.graph import html
     page = html(_graph_network())

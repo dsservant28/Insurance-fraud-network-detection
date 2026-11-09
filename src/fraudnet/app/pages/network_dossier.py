@@ -65,12 +65,12 @@ else:
     st.html('<div class="fn-strip"><span class="fn-chip-outline">No case open on this network yet</span></div>')
 
 # ---- graph and the case for suspicion
-graph_col, side = st.columns([1.5, 1], gap="large")
+graph_col, side = st.columns([1.85, 1], gap="large")
 
 with graph_col:
     with st.container(border=True):
         st.html('<div class="fn-panel-head"><h2>Who is linked to whom</h2><span class="fn-kicker">live graph</span></div>')
-        st.iframe(graph_html(network), height=564)  # our own generated HTML; data text is set with textContent
+        st.iframe(graph_html(network), height=624)  # our own generated HTML; data text is set with textContent
         evidence_edges = [edge for edge in network.detail["graph"]["edges"] if edge.get("evidence")]
         families = sorted({edge.get("family") for edge in evidence_edges})
         missing = sum(1 for edge in evidence_edges if edge.get("recorded") == 0)
@@ -107,7 +107,7 @@ with side:
         rows += (f'<div style="display: grid; grid-template-columns: 12px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 6px 0">'
                  f'<span style="width: 12px; height: 12px; border-radius: 3px; background: {colour}"></span>'
                  f'<span>{theme.esc(FAMILY_LABEL.get(step["family"], step["family"]))}'
-                 f'<span style="color: {theme.FAINT}; font-size: 12px"> · removes {share:.0%} of the doubt left</span></span>'
+                 f'<span style="display: block; color: {theme.FAINT}; font-size: 12px">removes {share:.0%} of the doubt left</span></span>'
                  f'<span class="fn-mono" style="font-weight: 600">+{added:.4f}</span></div>')
     st.html(f"""
 <div class="fn-card">
