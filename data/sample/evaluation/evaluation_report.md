@@ -61,7 +61,7 @@ Flagged networks: 7, of which 7 match a fraud group and 0 don't. Fraud groups (r
 | Flag every group joined by the recorded relationship register as given | 0.200 | 0.667 | 0.410 | 20 |
 | P3 off: households, buildings, storms and busy providers are not explained away | 0.857 | 1.000 | 0.026 | 7 |
 | P5 off: a weak pattern between two people counts as much as a repeated one | 0.875 | 1.000 | 0.000 | 8 |
-| P4 off: any two customers of a provider are linked, with no shared anomaly | 1.000 | 0.167 | 0.000 | 1 |
+| P4 off: any two customers of a provider are linked, with no shared anomaly | 0.000 | 0.000 | 0.000 | 2 |
 
 ## Limits of this evaluation
 

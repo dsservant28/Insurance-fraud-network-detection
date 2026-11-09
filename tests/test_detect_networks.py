@@ -274,3 +274,36 @@ def test_one_provider_fact_is_not_counted_twice():
     bank = _frame(("CLT-000001", "CLT-000002", "SHARED_BANK", 0.85), ("CLT-000002", "CLT-000003", "SHARED_BANK", 0.85))
     network = score_network(members, evidence_links(bank, SETTINGS), used, NO_INVOICES, set(), SETTINGS)
     assert [item.code for item in network.support] == ["PROVIDER_CONCENTRATION"]  # an independent fact here
+
+
+GROUPING_SCRIPT = """
+import json, sys
+import numpy as np, pandas as pd
+from fraudnet.detect.config import load_config
+from fraudnet.detect.networks import group_claimants
+rng = np.random.default_rng(7)
+people = [f"CLT-{n:06d}" for n in range(1, 61)]
+rows = [(people[i], people[j], round(float(rng.uniform(0.2, 0.9)), 3))
+        for i in range(60) for j in range(i + 1, 60) if rng.random() < 0.09]
+links = pd.DataFrame(rows, columns=["source_node_id", "target_node_id", "strength"])
+settings, _ = load_config()
+print(json.dumps(group_claimants(links, settings)))
+"""
+
+
+def test_louvain_split_is_the_same_in_every_process():
+    # Python randomises string hashing per process. Oversized groups are split by Louvain, whose result must not
+    # depend on that (D-035), so the same grouping runs under three different hash seeds.
+    import os
+    import subprocess
+    import sys
+    outputs = set()
+    for hash_seed in ("1", "8", "15"):
+        env = {**os.environ, "PYTHONHASHSEED": hash_seed}
+        result = subprocess.run([sys.executable, "-c", GROUPING_SCRIPT], capture_output=True, text=True, env=env,
+                                cwd=str(__import__("pathlib").Path(__file__).resolve().parent.parent))
+        assert result.returncode == 0, result.stderr
+        outputs.add(result.stdout)
+    assert len(outputs) == 1
+    groups = __import__("json").loads(outputs.pop())
+    assert len(groups) > 1  # the 60-person component really was split

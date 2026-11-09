@@ -97,10 +97,17 @@ def group_claimants(links: pd.DataFrame, settings: dict) -> list[list[str]]:
         if len(component) <= net["max_claimants"]:
             groups.append(sorted(component))
             continue
-        subgraph = graph.subgraph(sorted(component))
-        parts = nx.community.louvain_communities(subgraph, weight="weight", resolution=net["louvain_resolution"],
+        # Louvain is run on integer node labels with edges added in sorted order. With string labels its result
+        # depended on Python's per-process hash seed (it iterates sets of nodes), even with a fixed random seed (D-035).
+        names = sorted(component)
+        index = {name: number for number, name in enumerate(names)}
+        numbered = nx.Graph()
+        numbered.add_nodes_from(range(len(names)))
+        numbered.add_weighted_edges_from(sorted((min(index[a], index[b]), max(index[a], index[b]), data["weight"])
+                                                for a, b, data in graph.subgraph(names).edges(data=True)))
+        parts = nx.community.louvain_communities(numbered, weight="weight", resolution=net["louvain_resolution"],
                                                  seed=net["louvain_seed"])
-        groups.extend(sorted(part) for part in parts if len(part) >= 2)
+        groups.extend(sorted(names[number] for number in part) for part in parts if len(part) >= 2)
     return sorted(groups, key=lambda group: group[0])
 
 

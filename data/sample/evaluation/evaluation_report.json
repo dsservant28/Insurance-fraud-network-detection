@@ -1324,70 +1324,70 @@
         "unmatched_flagged_networks": 1
       },
       "provider_as_plain_link": {
-        "average_precision": 0.1429,
-        "false_negative_rate": 0.8333,
-        "false_positive_networks": 0,
+        "average_precision": 0.0,
+        "false_negative_rate": 1.0,
+        "false_positive_networks": 2,
         "false_positive_rate": 0.0,
-        "flagged_networks": 1,
+        "flagged_networks": 2,
         "fragment_networks": 0,
-        "fraud_group_recall": 0.1429,
+        "fraud_group_recall": 0.0,
         "fraud_groups_in_top_n": {
-          "found": 1,
+          "found": 0,
           "n": 7,
-          "share": 0.1429
+          "share": 0.0
         },
         "matches": [
           {
-            "claimants": 8,
+            "claimants": 25,
             "flagged": true,
-            "fraud_fragment": false,
-            "group_id": "RING-006",
-            "is_fraud": true,
-            "jaccard": 0.625,
-            "network_id": "NET-000001",
-            "rank": 1,
-            "rule_id": "R-RING-06"
-          },
-          {
-            "claimants": 48,
-            "flagged": false,
             "fraud_fragment": false,
             "group_id": null,
             "is_fraud": false,
-            "jaccard": 0.1042,
+            "jaccard": 0.16,
+            "network_id": "NET-000001",
+            "rank": 1,
+            "rule_id": null
+          },
+          {
+            "claimants": 22,
+            "flagged": true,
+            "fraud_fragment": false,
+            "group_id": null,
+            "is_fraud": false,
+            "jaccard": 0.2273,
             "network_id": "NET-000002",
             "rank": 2,
             "rule_id": null
           },
           {
-            "claimants": 20,
+            "claimants": 42,
             "flagged": false,
             "fraud_fragment": false,
             "group_id": null,
             "is_fraud": false,
-            "jaccard": 0.125,
+            "jaccard": 0.1754,
             "network_id": "NET-000003",
             "rank": 3,
             "rule_id": null
           },
           {
-            "claimants": 22,
+            "claimants": 29,
             "flagged": false,
             "fraud_fragment": false,
             "group_id": null,
             "is_fraud": false,
-            "jaccard": 0.1304,
+            "jaccard": 0.1379,
             "network_id": "NET-000004",
             "rank": 4,
             "rule_id": null
           },
           {
-            "claimants": 44,
+            "claimants": 24,
             "flagged": false,
             "fraud_fragment": false,
             "group_id": null,
             "is_fraud": false,
-            "jaccard": 0.1695,
+            "jaccard": 0.0769,
             "network_id": "NET-000005",
             "rank": 5,
             "rule_id": null
@@ -1404,10 +1404,10 @@
             "rule_id": null
           }
         ],
-        "mean_match_jaccard": 0.625,
-        "ndcg_at_10": 0.2749,
-        "ndcg_at_5": 0.3392,
-        "ndcg_at_r": 0.2749,
+        "mean_match_jaccard": 0.0,
+        "ndcg_at_10": 0.0,
+        "ndcg_at_5": 0.0,
+        "ndcg_at_r": 0.0,
         "per_rule": {
           "B-ADDR-01": {
             "false_positive_rate": 0.0,
@@ -1470,21 +1470,21 @@
             "recall": 0.0
           },
           "R-RING-06": {
-            "flagged": 1,
+            "flagged": 0,
             "groups": 1,
-            "recall": 1.0
+            "recall": 0.0
           }
         },
-        "precision": 1.0,
-        "precision_at_10": 0.1,
-        "precision_at_5": 0.2,
-        "precision_counting_fragments": 1.0,
-        "r_precision": 0.1429,
-        "recall": 0.1667,
-        "recall_at_10": 0.1429,
-        "recall_at_5": 0.1429,
-        "true_positive_networks": 1,
-        "unmatched_flagged_networks": 0
+        "precision": 0.0,
+        "precision_at_10": 0.0,
+        "precision_at_5": 0.0,
+        "precision_counting_fragments": 0.0,
+        "r_precision": 0.0,
+        "recall": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_5": 0.0,
+        "true_positive_networks": 0,
+        "unmatched_flagged_networks": 2
       }
     },
     "scale": 0.1,
