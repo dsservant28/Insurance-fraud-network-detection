@@ -90,6 +90,14 @@ def load_overview(folder: Path | None = None) -> Overview:
     return Overview(folder, run, networks, rows.get("claimant", 0), rows.get("claim", 0), rows)
 
 
+def load_evaluation() -> dict:
+    """The committed evaluation and stress summaries in docs/ (aggregate results only, written by `fraudnet.evaluate`)."""
+    docs = REPO / "docs"
+    read = lambda path: json.loads(path.read_text(encoding="utf-8")) if path.exists() else None  # noqa: E731
+    return {"evaluation": read(docs / "EVALUATION.json"), "stress_v01": read(docs / "stress" / "stress_v0.1.json"),
+            "stress_v02": read(docs / "stress" / "stress_v0.2.json")}
+
+
 def load_reports(folder: Path) -> dict:
     """The validator's reports: summary, exceptions and (when it was run) the reproducibility check."""
     reports = Path(folder) / "reports"

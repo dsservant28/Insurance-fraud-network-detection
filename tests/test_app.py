@@ -156,6 +156,17 @@ def test_data_checks_page_shows_checks_and_every_exception(monkeypatch):
     assert all(row["exception_id"] in page for row in reports["exceptions"])
 
 
+def test_evaluation_lab_reads_only_committed_summaries():
+    from streamlit.testing.v1 import AppTest
+    from fraudnet.app.data import load_evaluation
+    data = load_evaluation()
+    assert data["evaluation"]["development"]["edge_cases"] and data["stress_v01"]["table"] and data["stress_v02"]["table"]
+    app = AppTest.from_file(str(ROOT / "streamlit_app.py"), default_timeout=60)
+    app.run()
+    app.switch_page("src/fraudnet/app/pages/evaluation_lab.py").run()
+    assert not app.exception
+
+
 def test_risk_field_page_runs_and_selects_a_network(monkeypatch):
     from streamlit.testing.v1 import AppTest
     monkeypatch.setenv("FRAUDNET_DATA", str(SAMPLE))

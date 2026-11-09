@@ -12,6 +12,24 @@ import sys
 from pathlib import Path
 
 from fraudnet.evaluate.report import write_report
+from fraudnet.evaluate.stress import write_json
+
+
+def summary_for_app(development: dict, unseen: dict | None) -> dict:
+    """Only aggregate results: headline measures, comparisons, principle-off runs and edge-case checks."""
+    pick = ("precision", "recall", "false_positive_rate", "r_precision", "mean_match_jaccard")
+    out = {"development": {"seed": development["seed"], **{k: development["detector"][k] for k in pick},
+                           "flagged_networks": development["detector"]["flagged_networks"],
+                           "edge_cases": {k: {"rule": v["rule"], "status": v["status"]} for k, v in development["edge_cases"].items()},
+                           "comparisons": {k: {m: v[m] for m in ("precision", "recall")} for k, v in development.get("comparisons", {}).items()},
+                           "principles_off": {k: {m: v[m] for m in ("precision", "recall")} for k, v in development.get("principles_off", {}).items()}}}
+    if unseen:
+        mean = lambda block: {m: block[m]["mean"] for m in ("precision", "recall")}  # noqa: E731
+        out["unseen"] = {"seeds": unseen["seeds"], **{k: unseen["detector"][k]["mean"] for k in pick},
+                         "comparisons": {k: mean(v) for k, v in unseen.get("comparisons", {}).items()},
+                         "principles_off": {k: mean(v) for k, v in unseen.get("principles_off", {}).items()},
+                         "checks_passed": unseen["checks_passed"]}
+    return out
 from fraudnet.evaluate.run import aggregate, evaluate_dataset, evaluate_seeds
 
 # Never looked at while designing or tuning the detector. 777 and 4242 (D-028) and 101-505 (D-029) were
@@ -65,6 +83,8 @@ def main() -> None:
     unseen = aggregate(results) if results else None
     command = "python -m fraudnet.evaluate " + " ".join(sys.argv[1:])
     write_report(args.data / "evaluation", development, results, unseen, command.strip(), args.doc)
+    if args.doc:  # a compact, committed summary beside the report: the app's Evaluation lab reads it
+        write_json(summary_for_app(development, unseen), args.doc.with_suffix(".json"))
 
     detector = development["detector"]
     print(f"Development seed {development['seed']}: precision {detector['precision']}, ring recall {detector['recall']}, "
