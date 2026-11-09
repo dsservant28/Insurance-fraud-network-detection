@@ -142,6 +142,20 @@ def test_dossier_page_runs_and_follows_the_picked_network(monkeypatch):
     assert not app.exception and app.session_state["network"] == last
 
 
+def test_data_checks_page_shows_checks_and_every_exception(monkeypatch):
+    from streamlit.testing.v1 import AppTest
+    from fraudnet.app.data import load_reports
+    monkeypatch.setenv("FRAUDNET_DATA", str(SAMPLE))
+    reports = load_reports(SAMPLE)
+    assert reports["summary"]["checks"] and reports["exceptions"]
+    app = AppTest.from_file(str(ROOT / "streamlit_app.py"), default_timeout=60)
+    app.run()
+    app.switch_page("src/fraudnet/app/pages/data_checks.py").run()
+    assert not app.exception
+    page = " ".join(str(getattr(element, "value", "")) for element in app.get("html"))
+    assert all(row["exception_id"] in page for row in reports["exceptions"])
+
+
 def test_risk_field_page_runs_and_selects_a_network(monkeypatch):
     from streamlit.testing.v1 import AppTest
     monkeypatch.setenv("FRAUDNET_DATA", str(SAMPLE))

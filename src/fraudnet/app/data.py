@@ -90,6 +90,30 @@ def load_overview(folder: Path | None = None) -> Overview:
     return Overview(folder, run, networks, rows.get("claimant", 0), rows.get("claim", 0), rows)
 
 
+def load_reports(folder: Path) -> dict:
+    """The validator's reports: summary, exceptions and (when it was run) the reproducibility check."""
+    reports = Path(folder) / "reports"
+    read = lambda name: json.loads((reports / name).read_text(encoding="utf-8")) if (reports / name).exists() else None  # noqa: E731
+    return {"summary": read("validation_summary.json"), "exceptions": read("data_exception.json") or [],
+            "reproducibility": read("reproducibility_report.json")}
+
+
+def exception_cases(folder: Path) -> dict[str, dict]:
+    """Latest case for each data exception, if any."""
+    database = Path(folder) / "fraudnet.db"
+    if not database.exists():
+        return {}
+    connection = sqlite3.connect(f"file:{database.as_posix()}?mode=ro", uri=True)
+    try:
+        rows = connection.execute("SELECT exception_id, investigation_id, current_status FROM investigation "
+                                  "WHERE exception_id IS NOT NULL ORDER BY investigation_id").fetchall()
+    except sqlite3.OperationalError:
+        rows = []
+    finally:
+        connection.close()
+    return {exception: {"investigation_id": case, "status": status} for exception, case, status in rows}
+
+
 def cases_for_network(folder: Path, network_id: str) -> list[dict]:
     """Investigation cases opened from this network, newest first. Empty if there is no case table yet."""
     database = Path(folder) / "fraudnet.db"
