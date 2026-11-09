@@ -34,7 +34,6 @@ without mistaking ordinary families for criminals.
 8. [Key decisions](#8-key-decisions)
 9. [Run it yourself](#9-run-it-yourself)
 10. [Reference](#10-reference)
-11. [Known limits](#11-known-limits)
 
 ---
 
@@ -429,18 +428,6 @@ scripts/         policy_check.py
 </details>
 
 ---
-
-## 11. Known limits
-
-| Limit | Why it stays |
-|---|---|
-| All data comes from this repository's generator | The brief asks for synthetic data; real fraud data isn't shareable |
-| A one-character typo in a phone or account breaks a link | Fuzzy matching would start joining strangers |
-| Flatmates or blended families with different surnames who share an account are flagged | Explaining them away would also hide real rings that share an address |
-| A very common kind of sharing weighs less for everyone, real rings included | Rarity weighting is what keeps busy buildings and fleets from flooding the queue |
-| Staff accounts are demo users, not real logins | Authentication was out of scope |
-
-<br/>
 
 <div align="center">
 <sub>Built for the YottaFlex AI Associate AI Forward Deployed Engineer challenge by Jagadeep Varma Penmetsa.<br/>
