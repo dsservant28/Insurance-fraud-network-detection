@@ -1,13 +1,12 @@
 <div align="center">
 
-# FraudNet
+# FraudNet &nbsp;·&nbsp; [Live app ↗](https://insurance-fraud-network-detection-kwxi3ptyqgqtvulnubi7bo.streamlit.app/)
 
 Finding insurance fraud rings, the groups of people who quietly share bank accounts, phones and stories,<br/>
 without mistaking ordinary families for criminals.
 
 <br/>
 
-**[Live app](https://insurance-fraud-network-detection-kwxi3ptyqgqtvulnubi7bo.streamlit.app/)** &nbsp;·&nbsp;
 **[Run it locally](#9-run-it-yourself)** &nbsp;·&nbsp;
 **[How it works](#4-how-the-detector-thinks)** &nbsp;·&nbsp;
 **[Results](#6-results)** &nbsp;·&nbsp;
