@@ -20,4 +20,5 @@ PAGES = Path(__file__).resolve().parent / "src" / "fraudnet" / "app" / "pages"
 st.navigation([
     st.Page(PAGES / "risk_field.py", title="Risk field", icon=":material/radar:", default=True),
     st.Page(PAGES / "network_dossier.py", title="Network dossier", icon=":material/hub:"),
+    st.Page(PAGES / "cases.py", title="Cases", icon=":material/gavel:"),
 ], position="top").run()
