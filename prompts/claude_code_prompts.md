@@ -1,6 +1,6 @@
 # FraudNet
 
-> **Record status:** These are reconstructed prompts based on the supplied project brief, README and timestamped prompt history. They are not verbatim historical submissions. Timestamps mirror the source timeline for sequencing only; they do not prove these prompts were sent at those times.
+
 
 ## Prompt 001
 - Time: 2026-11-07 13:17:40 IST
