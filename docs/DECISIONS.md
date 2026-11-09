@@ -319,3 +319,19 @@ Format:
 - **Choice and why:** The first screenshots showed one line per link as an unreadable tangle, and one line per pair made the address links vanish. One line per pair and kind keeps every kind of evidence visible while staying readable, and clicking a line still lists every link with its strength, register status and ID. Data text is written with `textContent`, and the embedded data escapes `</`, so names can't inject markup.
 - **Trade-off / limitation:** Two links of the same kind between one pair show as one line; the click panel lists both. The vendored file must be updated by hand.
 - **Requirement link:** Explainability (evidence references concrete IDs); Part D (investigation UI).
+
+## D-035 — Detector v0.2.1: the Louvain split no longer depends on Python's hash seed
+- **Decision:** Oversized groups (more than 12 claimants) are split with Louvain on an integer-labelled copy of the graph, with edges added in sorted order. The communities are then mapped back to claimant IDs. The version is now 0.2.1.
+- **Options considered:**
+  - Keep the string-labelled graph.
+  - Fix `PYTHONHASHSEED` in every entry point.
+  - Integer labels inside the detector.
+- **Choice and why:**
+  - **How it was found:** rebuilding `docs/EVALUATION.md` changed one comparison row ("P3 off" on the development seed: 1.000 / 0.833 became 0.960 / 0.792) with no code change.
+  - **Cause:** networkx's Louvain iterates Python sets of nodes, and string hashing is randomised per process. So with string claimant IDs, the communities depended on the process even with a fixed random seed. Integer hashes are the same in every process.
+  - **Why not fix the hash seed:** fixing it in every entry point would be fragile, because any new script, test or host could forget it.
+  - **Verified:** the fix gives identical groups under every hash seed tried. A test runs the split in three processes with different hash seeds and requires the same answer.
+- **Trade-off / limitation:**
+  - **Normal data is unaffected.** No group there exceeds 12 claimants, so the main detector's output was already deterministic. The networks in `data/output` and `data/sample` are unchanged apart from the run ID, and the headline evaluation is unchanged.
+  - **Some earlier reports could shift.** The stress reports (docs/STRESS.md, docs/STRESS_V02.md) were produced before this fix. Scenarios that create groups larger than 12, mainly S3b (rings of 15 to 25), could give slightly different numbers if rerun. Those reports are kept as published.
+- **Requirement link:** Step 10 (reproducibility); CLAUDE.md rule 2 (determinism).
