@@ -65,10 +65,11 @@ else:
     st.html('<div class="fn-strip"><span class="fn-chip-outline">No case open on this network yet</span></div>')
 
 # ---- graph and the case for suspicion
+ROW_HEIGHT = 800  # the graph and the evidence panels share one height, so the timeline sits straight below both
 graph_col, side = st.columns([1.85, 1], gap="large")
 
 with graph_col:
-    with st.container(border=True):
+    with st.container(border=True, height=ROW_HEIGHT):
         st.html('<div class="fn-panel-head"><h2>Who is linked to whom</h2><span class="fn-kicker">live graph</span></div>')
         st.iframe(graph_html(network), height=624)  # our own generated HTML; data text is set with textContent
         evidence_edges = [edge for edge in network.detail["graph"]["edges"] if edge.get("evidence")]
@@ -92,7 +93,7 @@ with graph_col:
 </div>
 <div style="font-size: 13px; color: {theme.MUTED}; padding: 2px 2px 4px">Line width shows link strength. {theme.esc(register)}</div>""")
 
-with side:
+with side, st.container(border=True, height=ROW_HEIGHT):
     # How the score is built: each kind of evidence closes part of the doubt that is left.
     steps = network.detail.get("waterfall", [])
     segments, rows, doubt = "", "", 1.0
@@ -110,7 +111,7 @@ with side:
                  f'<span style="display: block; color: {theme.FAINT}; font-size: 12px">removes {share:.0%} of the doubt left</span></span>'
                  f'<span class="fn-mono" style="font-weight: 600">+{added:.4f}</span></div>')
     st.html(f"""
-<div class="fn-card">
+<div>
   <div class="fn-panel-head"><h2>How the score is built</h2><span class="fn-kicker">threshold {data.run["flag_threshold"]}</span></div>
   <div style="display: flex; height: 14px; border-radius: 7px; overflow: hidden; background: #1A212C; margin: 10px 0 8px">{segments}</div>
   {rows}
@@ -131,7 +132,7 @@ with side:
                 "providers were all checked." if not discounted else
                 "Explained away inside this group: " + ", ".join(f"{count} × {code}" for code, count in discounted.items()) + ".")
     st.html(f"""
-<div class="fn-card" style="margin-top: 16px">
+<div style="margin-top: 10px; padding-top: 16px; border-top: 1px solid {theme.LINE}">
   <div class="fn-panel-head"><h2>Evidence</h2><span class="fn-kicker">as the detector wrote it</span></div>
   {cards}
   <div style="padding-top: 12px; border-top: 1px solid #1E2632; font-size: 13px; color: {theme.MUTED}">{theme.esc(innocent)}</div>
