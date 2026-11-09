@@ -29,7 +29,7 @@ from fraudnet.validate.reproducibility import check_reproducibility
 
 
 def run(seed: int, scale: float, out: Path, reproducibility: bool = False, unseen_seeds: list[int] | None = None,
-        demo_cases: bool = True, say=print) -> dict:
+        demo_cases: bool = True, say=print, evaluate: bool = True) -> dict:
     out = Path(out)
     say(f"1/5 generate  seed {seed}, scale {scale} -> {out}")
     manifest = generate_into(seed, scale, out)
@@ -66,6 +66,10 @@ def run(seed: int, scale: float, out: Path, reproducibility: bool = False, unsee
     else:
         say("4/5 investigate  skipped")
 
+    result["run_id"] = run_info["run_id"]
+    if not evaluate:  # the hosted app reads the committed evaluation summaries instead
+        say("5/5 evaluate  skipped")
+        return result
     say("5/5 evaluate")
     development = evaluate_dataset(out, with_comparisons=True)
     results = evaluate_seeds(unseen_seeds, scale) if unseen_seeds else []

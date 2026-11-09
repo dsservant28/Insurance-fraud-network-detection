@@ -16,6 +16,20 @@ st.set_page_config(page_title="FraudNet · Investigator console", page_icon=":ma
 theme.apply()
 st.logo(str(Path(__file__).resolve().parent / "src" / "fraudnet" / "app" / "assets" / "logo.svg"), size="large")
 
+from fraudnet.app import bootstrap  # noqa: E402
+
+
+@st.cache_resource(show_spinner=False)
+def _first_start() -> bool:
+    """Build data/output once per server when it is missing (a fresh hosted deployment)."""
+    if not bootstrap.needed():
+        return False
+    with st.spinner("Building the dataset: first start only, about a minute…"):
+        return bootstrap.build()
+
+
+_first_start()
+
 PAGES = Path(__file__).resolve().parent / "src" / "fraudnet" / "app" / "pages"
 st.navigation([
     st.Page(PAGES / "risk_field.py", title="Risk field", icon=":material/radar:", default=True),

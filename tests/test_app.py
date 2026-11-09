@@ -179,6 +179,15 @@ def test_how_it_works_follows_the_top_group_with_real_numbers(monkeypatch):
     assert top.network_id in page and f"{top.score:.4f}" in page
 
 
+def test_first_start_builds_the_dataset_once_and_leaves_no_staging(tmp_path):
+    from fraudnet.app.bootstrap import build, ready
+    target = tmp_path / "output"
+    assert build(target, scale=0.1) and ready(target)
+    assert not build(target, scale=0.1)  # already there: nothing rebuilt
+    assert not list(tmp_path.glob(".build-*"))
+    assert not (target / "evaluation").exists()  # the hosted app skips evaluation; it reads committed summaries
+
+
 def test_risk_field_page_runs_and_selects_a_network(monkeypatch):
     from streamlit.testing.v1 import AppTest
     monkeypatch.setenv("FRAUDNET_DATA", str(SAMPLE))
